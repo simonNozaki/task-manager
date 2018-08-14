@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tm.dao.service.TaskRepository">
+  <resultMap id="BaseResultMap" type="com.tm.dto.Task">
+    <id column="task_id" jdbcType="CHAR" property="taskId" />
+    <result column="task_title" jdbcType="VARCHAR" property="taskTitle" />
+    <result column="task_label" jdbcType="VARCHAR" property="taskLabel" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="completed_flag" jdbcType="CHAR" property="completedFlag" />
+    <result column="user_id" jdbcType="CHAR" property="userId" />
+  </resultMap>
+
+  <!-- 新規タスクを登録します. -->
+  <select id="registerTask" parameterType="com.tm.dto.Task" resultMap="BaseResultMap">
+  	INSERT INTO task (task_id,task_title,task_label,start_date,deadline,
+  		completed_flag,user_id)
+  	VALUES
+  	(
+  	  nextval('task_id_seq'),#{taskItem.taskTitle},#{taskItem.taskLabel},
+  	  #{taskItem.startDate},#{taskItem.deadline},0,#{taskItem.userId}
+  	)
+  	RETURNING task_id,task_title,task_label,start_date,deadline,completed_flag,
+  		user_id
+  </select>
+</mapper>
