@@ -3,29 +3,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { HttpParams } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Task } from '../entity/task';
-import { ServiceConst } from '../modules/service-const';
+import { ServiceConst } from '../const/service-const';
 import { RegistTaskRequest } from '../dto/interface/regist-task-request';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Logger } from '../config/logger';
+import { FetchTaskResponseDto } from '../dto/interface/fetch-task-response';
+import { AppLog } from '../const/app-log';
+
 
 /**
- * タスクの処理を行うServiceです.
+ * タスクの処理を行うServiceクラスです.
  */
 @Injectable()
 export class TaskService {
 
-  /** HTTPクライアントのデフォルトコンストラクタ */
-  constructor(private http: HttpClient) { }
-
-  /** ロガーインスタンス */
-  logger: Logger = new Logger();
+  /** HTTPクライアント、ロガーのデフォルトコンストラクタ */
+  constructor(private http: HttpClient, private logger: Logger) { }
 
   /** エラーハンドラです. */
   private handleError(error: HttpErrorResponse) {
     // クライアントサイドのErrorハンドリングです.
     if (error.error instanceof ErrorEvent) {
+      this.logger.errorLogger.error(AppLog.TW_TK_CM_001);
       console.error('Errorが発生しました. : ', error.error.message);
     // サーバサイドのErrorハンドリングです.
     } else {
@@ -37,7 +39,23 @@ export class TaskService {
     'Something bad happened; please try again later.');
   }
 
-  // 新規タスクを登録するAPIをコールします.
+  /** タスクの一覧を取得するAPIをコールします. */
+  fetchTask(userId: string): Observable<FetchTaskResponseDto> {
+    // クエリパラメータを準備します.
+    const params = new HttpParams({
+      fromString: 'userId="$userId"'
+    });
+    // APIをコールして、結果を取得します.
+    return this.http.request<FetchTaskResponseDto>(
+      'GET',
+      ServiceConst.URL_TASK_FETCH,
+      {
+        responseType: 'json',
+        params
+      }).pipe(catchError(this.handleError));
+  }
+
+  /** 新規タスクを登録するAPIをコールします. */
   registTask(task: Task): Observable<Task> {
     // HTTPリクエストのオプションをセットします.
     const httpOptions = {
