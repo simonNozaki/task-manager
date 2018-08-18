@@ -11,7 +11,7 @@ import com.tm.dto.bean.regist.RegistTaskRequestDto;
  * TaskモデルのカスタムDTOです.
  */
 @Mapper
-public interface TaskRepository extends TaskMapper{
+public interface TaskRepository extends TaskMapper {
 
 	// 新規タスクを登録します.
 	Task registerTask(@Param("taskItem") RegistTaskRequestDto task);

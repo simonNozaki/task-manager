@@ -12,13 +12,13 @@ import com.tm.service.logic.RegistTaskService;
  * タスク登録サービスの実装クラスです.
  */
 @Service
-public class RegistTaskServiceImpl implements RegistTaskService{
+public class RegistTaskServiceImpl implements RegistTaskService {
 
 	@Autowired
 	TaskRepository taskRepository;
 
 	// タスクの新規登録.
-	public Task registerTask(RegistTaskRequestDto task) throws Exception{
+	public Task registerTask(RegistTaskRequestDto task) throws Exception {
 		Task registResult = new Task();
 		// タスクをデータベースに登録します.
 		registResult = taskRepository.registerTask(task);

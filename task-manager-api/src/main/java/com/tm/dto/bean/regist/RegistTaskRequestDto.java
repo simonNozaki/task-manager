@@ -20,6 +20,8 @@ public class RegistTaskRequestDto {
 	private Date deadline;
 	/** 利用者ID */
 	private String userId;
+	/** タスクメモ */
+	private String taskNote;
 
 	public String getTaskTitle() {
 		return taskTitle;
@@ -50,5 +52,11 @@ public class RegistTaskRequestDto {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getTaskNote() {
+		return taskNote;
+	}
+	public void setTaskNote(String taskNote) {
+		this.taskNote = taskNote;
 	}
 }

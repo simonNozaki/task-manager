@@ -49,7 +49,6 @@ public class TaskController extends TmRestBaseController {
 
 	/** 利用者に紐づくタスクの一覧を取得します. */
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_FETCH_TASK,
-			consumes = MediaType.APPLICATION_JSON_VALUE,
 			method = RequestMethod.GET)
 	@ResponseBody
 	public FetchTaskResponseDto fetchTask(@RequestParam("userId") String userId)
@@ -63,6 +62,8 @@ public class TaskController extends TmRestBaseController {
 			// レスポンスオブジェクトを作成します.
 			res.setTasks(taskList);
 			res.setErrors(errors);
+			// リクエスト処理を終了し、レスポンスを返します.
+			logger.info(AppLog.TM_TK_RG_INFO_002.getCode());
 		} catch(Exception e) {
 			// エラーをログ出力します.
 			logger.error(AppLog.TM_TK_RG_ERR_001.getCode(), e.getMessage());

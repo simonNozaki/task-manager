@@ -21,7 +21,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 public class dbConfig {
 
 	public static final String BASE_PACKAGES = "com.tm.dao";
-    public static final String MAPPER_XML_PATH = "classpath:com/tm/dao/*.xml";
+    public static final String MAPPER_XML_PATH = "classpath:com/tm/dao/**/*.xml";
 
     @Primary
     @Bean(name = "DataSource")

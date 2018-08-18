@@ -1,5 +1,6 @@
 package com.tm.service.logic.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,20 @@ import com.tm.service.logic.FetchTaskService;
  * タスク取得サービスの実装クラスです.
  */
 @Service
-public class FetchTaskServiceImpl implements FetchTaskService{
+public class FetchTaskServiceImpl implements FetchTaskService {
 
 	@Autowired
 	TaskRepository taskRepository;
 
 	public List<Task> fetchTask(String userId) throws Exception {
-
+		List<Task> taskList = new ArrayList<>();
+		try {
 		TaskExample taskExample = new TaskExample();
 		taskExample.createCriteria().andUserIdEqualTo(userId);
-		List<Task> taskList = taskRepository.selectByExample(taskExample);
+		taskList = taskRepository.selectByExample(taskExample);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return taskList;
 	}
 }

@@ -9,18 +9,20 @@
     <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
     <result column="completed_flag" jdbcType="CHAR" property="completedFlag" />
     <result column="user_id" jdbcType="CHAR" property="userId" />
+    <result column="task_note" jdbcType="VARCHAR" property="taskNote" />
   </resultMap>
 
   <!-- 新規タスクを登録します. -->
   <select id="registerTask" parameterType="com.tm.dto.Task" resultMap="BaseResultMap">
   	INSERT INTO task (task_id,task_title,task_label,start_date,deadline,
-  		completed_flag,user_id)
+  		completed_flag,user_id,task_note)
   	VALUES
   	(
   	  nextval('task_id_seq'),#{taskItem.taskTitle},#{taskItem.taskLabel},
-  	  #{taskItem.startDate},#{taskItem.deadline},0,#{taskItem.userId}
+  	  #{taskItem.startDate},#{taskItem.deadline},0,#{taskItem.userId},
+  	  #{taskItem.taskNote}
   	)
   	RETURNING task_id,task_title,task_label,start_date,deadline,completed_flag,
-  		user_id
+  		user_id,task_note
   </select>
 </mapper>
