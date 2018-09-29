@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+	<property name="root.level" value="info" />
+	<property name="console.level" value="info" />
+	<property name="logback.log.dir" value="./logs" />
+	<property name="logback.hostname" value="localhost" />
+	<property name="logback.appname" value="task-manager-api" />
+
+	<!-- consoleへの標準出力 -->
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${console.level}</level>
+		</filter>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{35} - %msg %n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- info -->
+	<appender name="INFO_LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logback.log.dir}/${logback.hostname}_${logback.appname}_trace.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.log.dir}/${logback.hostname}_${logback.appname}_trace.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- error -->
+	<appender name="ERR_LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logback.log.dir}/${logback.hostname}_${logback.appname}_error.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.log.dir}/${logback.hostname}_${logback.appname}_error.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="systemLogger" level="debug">
+		<appender-ref ref="INFO_LOG" />
+		<appender-ref ref="ERR_LOG" />
+	</logger>
+
+	<root level="${root.level}">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
