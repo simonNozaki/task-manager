@@ -1,0 +1,17 @@
+<div>
+  <!-- 登録している利用者のタスク一覧 -->
+  <p>タスク一覧</p>
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{ task.getTaskTitle }} / {{ task.getTaskLabel }} / {{ task.getTaskNote }}
+    </li>
+  </ul>
+
+    <input [(ngModel)]="registTaskRequestDto.setTaskTitle" id="taskTitle" type="text" name="taskTitle" placeholder="タスク名を入力..." />
+    <input [(ngModel)]="registTaskRequestDto.setTaskLabel" id="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
+    <input [(ngModel)]="registTaskRequestDto.setStartDate" id="startDate" type="date" name="startDate" placeholder="開始日を入力...">
+    <input [(ngModel)]="registTaskRequestDto.setDeadline" id="deadline" type="date" name="deadline" placeholder="終了日を入力...">
+    <input [(ngModel)]="registTaskRequestDto.setTaskNote" id="taskNote" type="text" name="taskNote" placeholder="メモ">
+
+    <button (click)="registTask(tasks)">追加</button>
+</div>

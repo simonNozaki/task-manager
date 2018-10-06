@@ -1,0 +1,5 @@
+/.metadata/
+/task-manager-app/node_modules/
+/.recommenders/
+/task-manager-app/.vscode
+/task-manager-web
