@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+-- DB操作ユーザを作成
+-- CREATE ROLE localuser WITH LOGIN PASSWORD '21405apple';
+
+-- テーブルを作成
+>>>>>>> origin/develop
 create table  IF NOT EXISTS users(
 	user_id CHAR(10) NOT NULL,
 	user_name VARCHAR(50) NOT NULL,

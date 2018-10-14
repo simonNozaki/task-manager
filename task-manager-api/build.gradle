@@ -84,7 +84,7 @@ mybatisGenerator.group = 'mybatis'
 */
 flyway {
 	driver='org.postgresql.Driver'
-    url = 'jdbc:postgresql://localhost:5432/task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
+    url = 'jdbc:postgresql://localhost:5532/task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
     user = 'localuser'
     password = '21405apple'
     baselineVersion = 1
