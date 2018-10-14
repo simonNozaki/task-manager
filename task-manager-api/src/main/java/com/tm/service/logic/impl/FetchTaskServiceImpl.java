@@ -25,6 +25,10 @@ public class FetchTaskServiceImpl implements FetchTaskService {
 		TaskExample taskExample = new TaskExample();
 		taskExample.createCriteria().andUserIdEqualTo(userId);
 		taskList = taskRepository.selectByExample(taskExample);
+		// レスポンスチェック
+		if(taskList == null) {
+			return null;
+		}
 		return taskList;
 	}
 }
