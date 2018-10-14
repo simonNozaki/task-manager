@@ -22,13 +22,9 @@ public class FetchTaskServiceImpl implements FetchTaskService {
 
 	public List<Task> fetchTask(String userId) throws Exception {
 		List<Task> taskList = new ArrayList<>();
-		try {
 		TaskExample taskExample = new TaskExample();
 		taskExample.createCriteria().andUserIdEqualTo(userId);
 		taskList = taskRepository.selectByExample(taskExample);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return taskList;
 	}
 }

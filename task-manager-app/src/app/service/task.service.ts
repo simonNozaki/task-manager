@@ -47,13 +47,13 @@ export class TaskService {
   }
 
   /** 新規タスクを登録するAPIをコールします. */
-  registTask(registTaskRequest: RegistTaskRequest): Observable<RegistTaskResponse> {
+  registTask(registTaskRequest: RegistTaskRequest): Observable<RegistTaskRequest> {
     // HTTPリクエストのオプションをセットします.
     const httpOptions = {
       headers : new HttpHeaders({'Content-Type':  'application/json'})
     };
     // APIをコールします.
-    return this.http.post<RegistTaskResponse>(ServiceConst.URL_TASK_REGIST, registTaskRequest, httpOptions)
+    return this.http.post<RegistTaskRequest>(ServiceConst.URL_TASK_REGIST, registTaskRequest, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

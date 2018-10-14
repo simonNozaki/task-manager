@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { TaskService } from '../../service/task.service';
 import { FetchTaskResponseDto } from '../../dto/interface/fetch-task-response';
 import { Task } from '../../entity/task';
@@ -19,22 +19,30 @@ constructor(private taskService: TaskService) { }
   // タスク取得DTO
   fetchTaskResponseDto: FetchTaskResponseDto = new FetchTaskResponseDto();
   // タスクリスト
-  tasks: Task[] = this.fetchTaskResponseDto.getTasks();
+  @Input() tasks: Task[] = this.fetchTaskResponseDto.getTasks();
   // タスク登録DTOを初期化します.
   registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
   // 利用者ID
   private userId = '10001000';
+  // 入力値の変化を検知してバインドするイベントエミッタ
+  @Output() emitter = new EventEmitter<Task[]>();
 
   /** コンポーネント初期化時の起動処理 */
   ngOnInit() {
     this.fetchTasks(this.userId);
   }
 
+  // 入力されたタスクの変化を検知するハンドラ
+  change(tasks) {
+    this.tasks = tasks;
+    this.emitter.emit(this.tasks);
+  }
+
   /** サービスクラスから、タスクの一覧を取得します. */
   fetchTasks(userId): void {
     this.taskService.fetchTask(userId)
     .subscribe(
-      fetchTaskResponseDto => this.fetchTaskResponseDto = fetchTaskResponseDto,
+      (fetchTaskResponseDto: FetchTaskResponseDto) => this.fetchTaskResponseDto = fetchTaskResponseDto,
       () => console.log(this.tasks),
       () => console.log(this.fetchTaskResponseDto)
     );

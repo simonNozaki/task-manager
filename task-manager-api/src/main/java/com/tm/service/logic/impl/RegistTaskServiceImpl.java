@@ -19,9 +19,12 @@ public class RegistTaskServiceImpl implements RegistTaskService {
 
 	// タスクの新規登録.
 	public Task registerTask(RegistTaskRequestDto task) throws Exception {
-		Task registResult = new Task();
 		// タスクをデータベースに登録します.
-		registResult = taskRepository.registerTask(task);
+		Task registResult = taskRepository.registerTask(task);
+		// レスポンスチェック
+		if (registResult == null) {
+			return null;
+		}
 		return registResult;
 	}
 }

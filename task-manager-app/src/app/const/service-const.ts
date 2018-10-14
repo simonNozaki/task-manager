@@ -7,7 +7,7 @@ export module ServiceConst {
    *APIURLの基本コンポーネント定義
    *****************************************/
   export const BASE_URL = 'http://localhost:18080/';
-  export const BASE_API_VERSION = '/api/v1';
+  export const BASE_API_VERSION = 'api/v1';
   export const BASE_URL_FUNC = '/task';
 
   /****************************************
