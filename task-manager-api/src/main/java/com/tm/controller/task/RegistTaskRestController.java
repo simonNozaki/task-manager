@@ -1,21 +1,27 @@
 package com.tm.controller.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tm.consts.AppConst;
 import com.tm.consts.AppLog;
 import com.tm.consts.CtrlConst;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.regist.RegistTaskRequestDto;
 import com.tm.dto.bean.regist.RegistTaskResponseDto;
+import com.tm.dto.common.Errors;
 import com.tm.service.logic.RegistTaskService;
+import com.tm.util.InputInspector;
+import com.tm.util.ObjectUtil;
 
 /**
  * タスク登録.
@@ -23,28 +29,59 @@ import com.tm.service.logic.RegistTaskService;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
-public class RegistTaskRestController extends BaseRestController{
+public class RegistTaskRestController extends BaseRestController {
 
 	@Autowired
 	private RegistTaskService registTaskService;
 
 	/** 新規タスクを登録します.
-	 * @throws Exception */
+	 * @param RegistTaskRequestDto task
+	 * @return RegistTaskResponseDto
+	 * @throws Exception
+	 */
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_REGIST_TASK, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
+	@ResponseStatus(HttpStatus.CREATED)
 	public RegistTaskResponseDto registTask(@RequestBody RegistTaskRequestDto task) throws Exception {
-		// Serviceクラスを呼び出します.
+		//------------------------------------
+		// 入力内容の検査
+		//------------------------------------
+		Errors errors = InputInspector.of(task)
+				.hasNullValue()
+				.violateMaxLength(task.getTaskTitle(), AppConst.TASK_TITLE_MAX, AppLog.TMTKCM10011.getCode())
+				.violateMaxLength(task.getTaskLabel(), AppConst.TASK_LABEL_MAX, AppLog.TMTKCM10012.getCode())
+				.violateMaxLength(task.getTaskNote(), AppConst.TASK_NOTE_MAX, AppLog.TMTKCM10014.getCode())
+				.build();
+
+		//------------------------------------
+		// エラーがある場合レスポンス作成処理
+		//------------------------------------
+		if(errors != null) {
+			return responseProcessBuilder().of(RegistTaskResponseDto::new)
+					.manipulate((RegistTaskResponseDto res) -> {
+						res.setErrors(errors);
+						return res;
+					})
+					.apply();
+		}
+
+		//------------------------------------
+		// サービスクラスの実行
+		//------------------------------------
 		Task registResult = registTaskService.registerTask(task);
-		// レスポンスオブジェクトを作成します.
-		return ResponseProcessBuilder().of(RegistTaskResponseDto::new)
-				.filter((RegistTaskResponseDto res) -> registResult != null)
+
+		//------------------------------------
+		// レスポンス処理
+		//------------------------------------
+		return responseProcessBuilder().of(RegistTaskResponseDto::new)
+				.filter((RegistTaskResponseDto res) -> registResult != null && !ObjectUtil.isNullOrEmpty(errors))
 				.manipulate((RegistTaskResponseDto res) -> {
 					res.setTaskId(registResult.getTaskId());
 					res.setTaskTitle(registResult.getTaskTitle());
 					return res;
 				})
-				.logging(AppLog.TM_TK_RG_INFO_002.getCode(), "info", null)
+				.logging(AppLog.TMTKRG00002.getCode(), AppConst.LOG_LEVEL_INFO, null)
 				.apply();
 	}
 }

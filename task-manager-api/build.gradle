@@ -37,6 +37,7 @@ configurations {
 dependencies {
 	/** Spring boot */
 	compile('org.springframework.boot:spring-boot-starter-web')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.15.RELEASE'
 	runtime('org.springframework.boot:spring-boot-devtools')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 

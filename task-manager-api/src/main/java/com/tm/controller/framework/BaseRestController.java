@@ -15,7 +15,7 @@ import ch.qos.logback.classic.Logger;
 public class BaseRestController {
 
 	/**
-	 * レスポンス処理共通ユーティリティです.
+	 * レスポンス共通プロセッサクラスです.レスポンス生成に必要な機能を提供します.
 	 */
 	protected static final class ResponseProcessor<T> {
 
@@ -23,8 +23,6 @@ public class BaseRestController {
 	  * ロガーインスタンスの初期化.
 	  */
 	  private final Logger LOGGER = (Logger) LoggerFactory.getLogger("systemLogger");
-
-	  ResponseProcessor<?> processor = new ResponseProcessor<>();
 
 	  private final T value;
 
@@ -114,7 +112,7 @@ public class BaseRestController {
 	 * @param T value
 	 * @return ResponseProcessor<T>
 	 */
-	protected static <T> ResponseProcessor<T> ResponseProcessBuilder() {
+	protected static <T> ResponseProcessor<T> responseProcessBuilder() {
 		return new ResponseProcessor<T>();
 	}
 

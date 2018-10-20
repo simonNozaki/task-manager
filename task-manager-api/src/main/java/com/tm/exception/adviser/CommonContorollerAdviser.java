@@ -24,12 +24,12 @@ public class CommonContorollerAdviser {
 
 	/**
 	 * アプリケーション全体で共通のシステムエラー捕捉メソッドです.
-	 * @exception Exception e
+	 * @param Exception e
 	 */
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public void handleSystemError(Exception e) {
-		logger.error(AppLog.TM_TK_RG_ERR_001.getCode(), e.getMessage());
+		logger.error(AppLog.TMTKRG90001.getCode(), e.getMessage());
 	}
 
 }

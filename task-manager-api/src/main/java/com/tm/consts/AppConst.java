@@ -5,14 +5,73 @@ package com.tm.consts;
  */
 public class AppConst {
 
-	/*******************************************************
-	 * フラグ
-	 *******************************************************/
-	/** 未完了 */
+	//------------------------------
+	// 完了フラグ
+	//------------------------------//
+	/**
+	 * 未完了
+	 */
 	public static final String TASK_COMPLETED_FLAG_NOT_COMPLETED = "0";
-	/** 完了済み */
+
+	/**
+	 * 完了済み
+	 */
 	public static final String TASK_COMPLETED_FLAG_COMPLETED = "1";
-	/** 削除済み */
+
+	/**
+	 * 削除済み
+	 */
 	public static final String TASK_COMPLETED_FLAG_DELETED = "2";
+
+	//------------------------------
+	// ログレベル
+	//------------------------------
+	/**
+	 * ログレベル、error
+	 */
+	public static final String LOG_LEVEL_ERROR = "error";
+
+	/**
+	 * ログレベル、warn
+	 */
+	public static final String LOG_LEVEL_WARN = "warn";
+
+	/**
+	 * ログレベル、info
+	 */
+	public static final String LOG_LEVEL_INFO = "info";
+
+	/**
+	 * ログレベル、debug
+	 */
+	public static final String LOG_LEVEL_DEBUG = "debug";
+
+	//------------------------------
+	// 入力桁数
+	//------------------------------
+	/**
+	 * タスクタイトル, 50桁
+	 */
+	public static final int TASK_TITLE_MAX = 50;
+
+	/**
+	 * タスクラベル, 20桁
+	 */
+	public static final int TASK_LABEL_MAX = 20;
+
+	/**
+	 * 完了フラグ, 1桁
+	 */
+	public static final int COMPLETED_FLAG_MAX = 1;
+
+	/**
+	 * タスクメモ, 200文字
+	 */
+	public static final int TASK_NOTE_MAX = 200;
+
+	/**
+	 * 利用者ID, 8桁
+	 */
+	public static final int USER_ID_LENGTH = 8;
 
 }
