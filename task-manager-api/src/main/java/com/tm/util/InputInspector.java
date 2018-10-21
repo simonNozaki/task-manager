@@ -1,5 +1,8 @@
 package com.tm.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.tm.consts.AppLog;
@@ -11,15 +14,10 @@ import com.tm.dto.common.Errors;
  */
 public final class InputInspector<T> {
 
-	Errors errors;
 	T input;
 
 	// デフォルトコンストラクタ禁止
 	private InputInspector() {}
-
-	private InputInspector(T input) {
-		this.input = input;
-	}
 
 	/**
 	 * インプットの入力検査パイプラインを開始します.入力チェック操作はInspectorクラスが提供します.
@@ -42,7 +40,7 @@ public final class InputInspector<T> {
 		// デフォルトコンストラクタ禁止
 		private Inspector(T value) {
 			this.value = value;
-			this.errors = null;
+			this.errors = new Errors();
 		}
 
 		/**
@@ -107,7 +105,9 @@ public final class InputInspector<T> {
 		 */
 		public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
 			if (!predicate.test(input)) {
-				this.errors.getCodes().add(code);
+				List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
+				codes.add(code);
+				this.errors.setCodes(codes);
 			}
 			return this;
 		}

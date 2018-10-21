@@ -52,14 +52,15 @@ public class RegistTaskRestController extends BaseRestController {
 				.violateMaxLength(task.getTaskTitle(), AppConst.TASK_TITLE_MAX, AppLog.TMTKCM10011.getCode())
 				.violateMaxLength(task.getTaskLabel(), AppConst.TASK_LABEL_MAX, AppLog.TMTKCM10012.getCode())
 				.violateMaxLength(task.getTaskNote(), AppConst.TASK_NOTE_MAX, AppLog.TMTKCM10014.getCode())
+				.violateSpecificLength(task.getUserId(), AppConst.USER_ID_LENGTH, AppLog.TMURCM10011.getCode())
 				.build();
 
 		//------------------------------------
 		// エラーがある場合レスポンス作成処理
 		//------------------------------------
-		if(errors != null) {
+		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
 			return responseProcessBuilder().of(RegistTaskResponseDto::new)
-					.manipulate((RegistTaskResponseDto res) -> {
+					.operate((RegistTaskResponseDto res) -> {
 						res.setErrors(errors);
 						return res;
 					})
@@ -75,13 +76,11 @@ public class RegistTaskRestController extends BaseRestController {
 		// レスポンス処理
 		//------------------------------------
 		return responseProcessBuilder().of(RegistTaskResponseDto::new)
-				.filter((RegistTaskResponseDto res) -> registResult != null && !ObjectUtil.isNullOrEmpty(errors))
-				.manipulate((RegistTaskResponseDto res) -> {
+				.operate((RegistTaskResponseDto res) -> {
 					res.setTaskId(registResult.getTaskId());
 					res.setTaskTitle(registResult.getTaskTitle());
 					return res;
 				})
-				.logging(AppLog.TMTKRG00002.getCode(), AppConst.LOG_LEVEL_INFO, null)
 				.apply();
 	}
 }

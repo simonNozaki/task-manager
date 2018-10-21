@@ -6,10 +6,18 @@ import java.util.List;
  * 共通ErrorコードDTOです.
  */
 public class Errors {
-	/** タスクタイトル */
+	/**
+	 * タスクタイトル
+	 */
 	private String taskTitle;
-	/** エラーコードリスト */
+	/**
+	 * エラーコードリスト
+	 */
 	private List<String> codes;
+	/**
+	 * ID
+	 */
+	private String id;
 
 	public List<String> getCodes() {
 		return codes;
@@ -22,5 +30,11 @@ public class Errors {
 	}
 	public void setTaskTitle(String taskTitle) {
 		this.taskTitle = taskTitle;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

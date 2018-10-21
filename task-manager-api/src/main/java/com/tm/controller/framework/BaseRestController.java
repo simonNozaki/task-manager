@@ -82,7 +82,7 @@ public class BaseRestController {
 	   * @param function
 	   * @return
 	   */
-	  public <R> ResponseProcessor<R> manipulate(Function<T, R> function) {
+	  public <R> ResponseProcessor<R> operate(Function<T, R> function) {
 	    return new ResponseProcessor<R>(function.apply(value));
 	  }
 

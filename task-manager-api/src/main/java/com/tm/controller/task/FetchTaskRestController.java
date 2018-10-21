@@ -21,9 +21,10 @@ import com.tm.dto.bean.fetch.FetchTaskResponseDto;
 import com.tm.dto.common.Errors;
 import com.tm.service.logic.FetchTaskService;
 import com.tm.util.InputInspector;
+import com.tm.util.ObjectUtil;
 
 /**
- * タスクのCRUD操作を行うコントローラクラスです.
+ * タスク登録Controllerです.
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
@@ -52,9 +53,10 @@ public class FetchTaskRestController extends BaseRestController {
 		//------------------------------------
 		// エラーがある場合レスポンス作成処理
 		//------------------------------------
-		if(errors != null) {
+		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
 			return responseProcessBuilder().of(FetchTaskResponseDto::new)
-					.manipulate((FetchTaskResponseDto res) -> {
+					.operate((FetchTaskResponseDto res) -> {
+						errors.setId(userId);
 						res.setErrors(errors);
 						return res;
 					})
@@ -71,8 +73,7 @@ public class FetchTaskRestController extends BaseRestController {
 		//------------------------------------
 		// リクエスト処理を終了し、レスポンスを返します.
 		return responseProcessBuilder().of(FetchTaskResponseDto::new)
-				.filter((FetchTaskResponseDto dto) -> dto != null)
-				.manipulate((FetchTaskResponseDto dto) -> {
+				.operate((FetchTaskResponseDto dto) -> {
 					dto.setTasks(taskList);
 					return dto;
 				})
