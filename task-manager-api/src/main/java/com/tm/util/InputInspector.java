@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import com.tm.consts.AppLog;
 import com.tm.dto.common.Errors;
 
 /**
@@ -48,9 +47,9 @@ public final class InputInspector<T> {
 		 * @param value
 		 * @return Inspector<T>
 		 */
-		public Inspector<T> hasNullValue() {
-			Predicate<T> predicate = (T inputValue) -> ObjectUtil.isNullOrEmpty(value);
-			return this.satisfyPredicateWithInput(value, predicate, AppLog.TMTKCM10001.getCode());
+		public Inspector<T> hasNullValue(String code) {
+			Predicate<T> predicate = (T value) -> !ObjectUtil.isNullOrEmpty(value);
+			return this.satisfyPredicateWithInput(value, predicate, code);
 		}
 
 		/**

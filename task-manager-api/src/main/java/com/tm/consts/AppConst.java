@@ -74,4 +74,24 @@ public class AppConst {
 	 */
 	public static final int USER_ID_LENGTH = 8;
 
+	/**
+	 * 利用者名, 50桁
+	 */
+	public static final int USER_NAME_MAX = 50;
+
+	/**
+	 * 利用者メールアドレス, 100桁
+	 */
+	public static final int USER_EMAIL_MAX = 100;
+
+	/**
+	 * 利用者パスワード, 100桁
+	 */
+	public static final int USER_PASSWORD_MAX = 100;
+
+	/**
+	 * 利用者フラグ, 1桁
+	 */
+	public static final int USER_FLAG_LENGTH = 1;
+
 }

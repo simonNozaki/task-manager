@@ -9,16 +9,25 @@ public class CtrlConst {
 	/*******************************************************
 	 * URI定義
 	 *******************************************************/
-	/** アプリケーション内共通APIバージョン */
+	/**
+	 * アプリケーションコンテキスト
+	 */
 	public static final String URI_API_VERSION = "/api/v1";
-	/** 処理大項目 */
+	/**
+	 * 処理大項目：タスク
+	 */
 	public static final String FUNC_TASKS = "/task";
+	/**
+	 * 処理大項目：利用者
+	 */
+	public static final String FUNC_USERS = "/user";
+
 	/** タスクの取得 */
-	public static final String MAP_FETCH_TASK = "/fetch";
+	public static final String MAP_FETCH = "/fetch";
 	/** タスクの登録 */
-	public static final String MAP_REGIST_TASK = "/regist";
+	public static final String MAP_REGIST = "/regist";
 	/** タスクの更新 */
-	public static final String MAP_UPDATE_TASK = "/update";
+	public static final String MAP_UPDATE = "/update";
 	/** タスクの削除 */
-	public static final String MAP_DELETE_TASK = "/delete";
+	public static final String MAP_DELETE = "/delete";
 }

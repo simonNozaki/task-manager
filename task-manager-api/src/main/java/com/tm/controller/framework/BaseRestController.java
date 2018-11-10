@@ -5,10 +5,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
-
 /**
  * 基底Controllerクラスです.
  */
@@ -18,11 +14,6 @@ public class BaseRestController {
 	 * レスポンス共通プロセッサクラスです.レスポンス生成に必要な機能を提供します.
 	 */
 	protected static final class ResponseProcessor<T> {
-
-	  /**
-	  * ロガーインスタンスの初期化.
-	  */
-	  private final Logger LOGGER = (Logger) LoggerFactory.getLogger("systemLogger");
 
 	  private final T value;
 
@@ -47,34 +38,6 @@ public class BaseRestController {
 	   */
 	  public <R> ResponseProcessor<R> of(Supplier<R> supplier) {
 	    return new ResponseProcessor<R>(supplier.get());
-	  }
-
-	  /**
-	   * ログレベルとメッセージを指定して、ログ出力を実施します.スタックトレースに出すときは第三引数も指定します.<br>
-	   * 指定されたログレベルがいづれも適切でない場合は処理を実施しません.
-	   * @param message, level, th
-	   * @return ResponseProcessor<T>
-	   */
-	  public ResponseProcessor<T> logging(String message, String level, Throwable th) {
-	    switch(level) {
-	      case "error":
-	        LOGGER.error(message);
-	        th.printStackTrace();
-	        break;
-	      case "warn":
-	        LOGGER.warn(message);
-	        th.printStackTrace();
-	        break;
-	      case "info":
-	        LOGGER.info(message);
-	        break;
-	      case "debug":
-	        LOGGER.debug(message);
-	        break;
-	      default:
-	        break;
-	    }
-	    return this;
 	  }
 
 	  /**

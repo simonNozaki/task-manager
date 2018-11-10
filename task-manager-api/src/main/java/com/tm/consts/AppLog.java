@@ -17,17 +17,17 @@ public enum AppLog {
 	/**
 	 * Controllerの処理を終了します。
 	 */
-	TMFWCM00012("TMFWCM00011"),
+	TMFWCM00012("TMFWCM0001s"),
 
 	/**
 	 * Serviceの処理を開始します。
 	 */
-	TMFWCM00021("TMFWCM00011"),
+	TMFWCM00021("TMFWCM00021"),
 
 	/**
 	 * Serviceの処理を終了します。
 	 */
-	TMFWCM00022("TMFWCM00011"),
+	TMFWCM00022("TMFWCM00022"),
 
 	/**
 	 * 業務処理中にエラーが発生しました。
@@ -56,6 +56,12 @@ public enum AppLog {
 	 * タスクの取得処理を終了します.
 	 */
 	TMTKFT00002("TMTKFT00002"),
+
+	//------------------------------------
+	// 利用者管理
+	//------------------------------------
+
+
 	//------------------------------------
 	// エラーログ
 	//------------------------------------
@@ -102,12 +108,31 @@ public enum AppLog {
 	/**
 	 * 入力がない
 	 */
-	TMURCM10001("TMURCM90001"),
+	TMURCM10001("TMURCM10001"),
 
 	/**
 	 * 利用者IDが10桁でない
 	 */
-	TMURCM10011("TMURCM10011");
+	TMURCM10011("TMURCM10011"),
+	/**
+	 * 利用者氏名、50桁以上
+	 */
+	TMURCM10012("TMTKCM10012"),
+
+	/**
+	 * 利用者メールアドレス、100桁以上
+	 */
+	TMURCM10013("TMTKCM10013"),
+
+	/**
+	 * 利用者パスワード、100桁以上
+	 */
+	TMURCM10014("TMTKCM10014"),
+
+	/**
+	 * 利用者フラグ、1桁でない
+	 */
+	TMURCM10015("TMTKCM10015");
 
 	private final String code;
     private AppLog(final String code) {
