@@ -58,6 +58,8 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.1'
 
+	 // lib フォルダ以下、サブフォルダも含めて全 jar ファイルを指定
+    compile fileTree(dir: '/Users/SimonNozaki/.gradle/caches/modules-2/files-2.1', include: '**/*.jar')
 
 	/** Test Tools */
 	testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -90,4 +92,13 @@ flyway {
     password = '21405apple'
     baselineVersion = 1
 	baselineDescription = 'マイグレーション初版です.';
+}
+
+/**
+* Gradleの親ディレクトリを検出します.
+*/
+task getHomeDir {
+    doLast {
+        println gradle.gradleHomeDir
+    }
 }
