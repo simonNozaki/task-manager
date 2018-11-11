@@ -8,12 +8,21 @@
       {{ task }}
     </li>
   </ul>
+  
+  <form name="task-register-form" novalidate>
+      <input required [(ngModel)]="taskTitle" #taskTitleTag="ngModel" id="taskTitle" type="text" name="taskTitle" placeholder="タスク名を入力..." >
+      <input [(ngModel)]="taskLabel" id="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
+      <input [(ngModel)]="startDate" id="startDate" type="date" name="startDate" placeholder="開始日を入力...">
+      <input [(ngModel)]="deadline" id="deadline" type="date" name="deadline" placeholder="終了日を入力...">
+      <input [(ngModel)]="taskNote" id="taskNote" type="text" name="taskNote" placeholder="メモ">
+  
+      <button (click)="registTask(registTaskRequestDto)">追加</button>
 
-    <input [(ngModel)]="registTaskRequestDto.setTaskTitle" id="taskTitle" type="text" name="taskTitle" placeholder="タスク名を入力..." />
-    <input [(ngModel)]="registTaskRequestDto.setTaskLabel" id="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
-    <input [(ngModel)]="registTaskRequestDto.setStartDate" id="startDate" type="date" name="startDate" placeholder="開始日を入力...">
-    <input [(ngModel)]="registTaskRequestDto.setDeadline" id="deadline" type="date" name="deadline" placeholder="終了日を入力...">
-    <input [(ngModel)]="registTaskRequestDto.setTaskNote" id="taskNote" type="text" name="taskNote" placeholder="メモ">
-    
-    <button (click)="registTask(tasks)">追加</button>
+      <div *ngIf="taskTitleTag.invalid && (taskTitleTag.dirty || taskTitleTag.touched)">
+          <!-- <div *ngIf="taskTitleTag.required">
+              タイトルは必須入力です。
+          </div> -->
+      </div>
+  </form>
+  
 </div>

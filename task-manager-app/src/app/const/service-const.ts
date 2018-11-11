@@ -3,22 +3,35 @@
  */
 export module ServiceConst {
 
-  /****************************************
-   *APIURLの基本コンポーネント定義
-   *****************************************/
+  //-----------------------------
+  //APIURLの基本コンポーネント定義
+  //-----------------------------
   export const BASE_URL = 'http://localhost:18080/';
   export const BASE_API_VERSION = 'api/v1';
   export const BASE_URL_FUNC = '/task';
+  export const BASE_SLASH = '/';
 
-  /****************************************
-   *画面URL定義
-   *****************************************/
-  /** タスク一覧画面 */
+  //-----------------------------
+  // 画面URL定義
+  //-----------------------------
+  /**
+   * タスク一覧画面
+   */
   export const URL_WEB_TASK = 'task';
 
-  /****************************************
-   *コールするAPIのURL定義
-   *****************************************/
+  /**
+   * 利用者登録画面
+   */
+  export const URL_WEB_USER_SIGNUP = 'signup';
+
+  /**
+   * 利用者認証画面
+   */
+  export const URL_WEB_USER_SIGNIN = 'signin';
+
+  //-----------------------------
+  // コールするAPIのURL定義
+  //-----------------------------
   /** タスクの新規登録 */
   export const URL_TASK_REGIST = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/regist';
   /** タスクの取得 */

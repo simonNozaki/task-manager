@@ -12,50 +12,107 @@ import { RegistTaskRequest } from '../../dto/interface/regist-task-request';
 })
 export class TaskComponent implements OnInit {
 
-/** サービスクラス、およびルートのデフォルトコンストラクタ */
-constructor(private taskService: TaskService) { }
+  /** サービスクラス、およびルートのデフォルトコンストラクタ */
+  constructor(private taskService: TaskService) { }
 
-  /** テンプレート内で参照する変数を初期化します. */
-  // タスク取得DTO
-  fetchTaskResponseDto: FetchTaskResponseDto = new FetchTaskResponseDto();
-  // タスクリスト
-  @Input() tasks: Task[] = this.fetchTaskResponseDto.getTasks();
-  // タスク登録DTOを初期化します.
-  registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
-  // 利用者ID
+
+  /**
+   * タスク取得DTO
+  */
+  public fetchTaskResponseDto: FetchTaskResponseDto = new FetchTaskResponseDto();
+  
+  /**
+   * タスクリスト 
+   */ 
+  @Input() public tasks: Task[] = this.fetchTaskResponseDto.getTasks();
+  
+  /**
+   * タスク登録DTO
+   */ 
+  public registTaskRequestDto: RegistTaskRequest;
+  
+  /**
+   * 利用者ID 
+   */ 
   private userId = '10001000';
-  // 入力値の変化を検知してバインドするイベントエミッタ
+
+  /** 
+   * 入力値の変化を検知してバインドするイベントエミッタ
+   */
   @Output() emitter = new EventEmitter<Task[]>();
 
-  /** コンポーネント初期化時の起動処理 */
+  /** 
+   * タスクタイトル
+   */
+  public taskTitle: string;
+  
+  /**
+   * タスクラベル
+   */
+  public  taskLabel: string;
+  
+  /** 
+   * 開始日
+   */
+  public startDate: Date;
+  
+  /** 
+   * 期限日
+   */
+  public deadline: Date;
+      
+  /** 
+   * タスクメモ 
+   */
+  public taskNote: string;
+
+  /**
+   * コンポーネント初期化時の起動処理
+  */
   ngOnInit() {
-    this.fetchTasks(this.userId);
+    this.registTaskRequestDto = new RegistTaskRequest();
+    this.fetchTaskResponseDto.setTasks(this.fetchTasks(this.userId));
   }
 
-  // 入力されたタスクの変化を検知するハンドラ
-  change(tasks) {
+  /**
+   * 入力されたタスクの変化を検知するハンドラ
+  */
+  change(tasks): void {
     this.tasks = tasks;
     this.emitter.emit(this.tasks);
   }
 
-  /** サービスクラスから、タスクの一覧を取得します. */
-  fetchTasks(userId): void {
+  /**
+   * サービスクラスから、タスクの一覧を取得します.
+  */
+  fetchTasks(userId): Task[] {
     this.taskService.fetchTask(userId)
-    .subscribe(
-      (fetchTaskResponseDto: FetchTaskResponseDto) => this.fetchTaskResponseDto = fetchTaskResponseDto,
-      () => console.log(this.tasks),
-      () => console.log(this.fetchTaskResponseDto)
-    );
+        .subscribe(
+            (res: FetchTaskResponseDto) => this.fetchTaskResponseDto.setTasks(res.getTasks()),
+            () => console.log(this.tasks),
+            () => console.log(this.fetchTaskResponseDto)
+        );
+    return this.fetchTaskResponseDto.getTasks();
   }
 
-  /** テンプレートから受け取ったタスクをDBに非同期で登録します. */
-  registTask(registTaskRequestDto): void {
-    /** 完了フラグ、利用者IDにそれぞれ固定値を設定します. */
+  /**
+   * テンプレートから受け取ったタスクをDBに非同期で登録します.
+  */
+  registTask(registTaskRequestDto: RegistTaskRequest): void {
+    // 登録リクエストDTOの生成
+    this.registTaskRequestDto.setTaskTitle(this.taskTitle);
+    this.registTaskRequestDto.setTaskLabel(this.taskLabel);
+    this.registTaskRequestDto.setStartDate(this.startDate);
+    this.registTaskRequestDto.setDeadline(this.deadline);
+    this.registTaskRequestDto.setTaskNote(this.taskNote);
     this.registTaskRequestDto.setCompletedFlag(TaskManagerCode.TASK_COMPLETED_FLAG_REGISTED);
     this.registTaskRequestDto.setUserId(this.userId);
+
+    console.log(this.registTaskRequestDto);
+
     this.taskService.registTask(registTaskRequestDto)
-    .subscribe(
-      () => console.log(registTaskRequestDto)
-    );
+      .subscribe(
+        () => console.log(registTaskRequestDto)
+      );
   }
 }

@@ -2,19 +2,40 @@
  * タスク登録リクエストDTOです.
  */
 export class RegistTaskRequest {
-  /** タスクタイトル */
+  
+  /** 
+   * タスクタイトル
+   */
   private taskTitle: string;
-  /** タスクラベル */
+  
+  /**
+   * タスクラベル
+   */
   private taskLabel: string;
-  /** 開始日 */
+  
+  /** 
+   * 開始日
+   */
   private startDate: Date;
-  /** 期限日 */
+  
+  /** 
+   * 期限日
+   */
   private deadline: Date;
-  /** 完了フラグ */
+  
+  /** 
+   * 完了フラグ
+   */
   private completedFlag: string;
-  /** 利用者ID */
+  
+  /** 
+   * 利用者ID
+   */
   private userId: string;
-  /** タスクメモ */
+  
+  /** 
+   * タスクメモ 
+   */
   private taskNote: string;
 
   public getTaskTitle () {
