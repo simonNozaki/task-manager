@@ -8,19 +8,36 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * タスク登録リクエストDTOです.
  */
 public class TaskRegistRequestDto {
-	/** タスクタイトル */
+	/**
+	 * タスクタイトル
+	 */
 	private String taskTitle;
-	/** タスクラベル */
+
+	/**
+	 * タスクラベル
+	 */
 	private String taskLabel;
-	/** 開始日 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+	/**
+	 * 開始日
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
-	/** 期限日 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+	/**
+	 * 期限日
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date deadline;
-	/** 利用者ID */
+
+	/**
+	 * 利用者ID
+	 */
 	private String userId;
-	/** タスクメモ */
+
+	/**
+	 * タスクメモ
+	 */
 	private String taskNote;
 
 	public String getTaskTitle() {

@@ -1,5 +1,7 @@
 package com.tm.controller.task;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
-import com.tm.consts.AppLog;
+import com.tm.consts.LogCode;
 import com.tm.consts.CtrlConst;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
@@ -48,12 +50,12 @@ public class TaskRegistRestController extends BaseRestController {
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(task)
-				.hasNullValue(AppLog.TMTKCM10001.getCode())
-				.violateMaxLength(task.getTaskTitle(), AppConst.TASK_TITLE_MAX, AppLog.TMTKCM10011.getCode())
-				.violateMaxLength(task.getTaskLabel(), AppConst.TASK_LABEL_MAX, AppLog.TMTKCM10012.getCode())
-				.violateMaxLength(task.getTaskNote(), AppConst.TASK_NOTE_MAX, AppLog.TMTKCM10014.getCode())
-				.violateSpecificLength(task.getUserId(), AppConst.USER_ID_LENGTH, AppLog.TMURCM10011.getCode())
-				.build();
+                            .hasNullValue(LogCode.TMTKCM10001.getCode())
+                            .violateMaxLength(task.getTaskTitle(), AppConst.TASK_TITLE_MAX, LogCode.TMTKCM10011.getCode())
+                            .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, LogCode.TMTKCM10012.getCode())
+                            .violateMaxLength(Optional.ofNullable(task.getTaskNote()), AppConst.TASK_NOTE_MAX, LogCode.TMTKCM10014.getCode())
+                            .violateSpecificLength(Optional.ofNullable(task.getUserId()), AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
+                            .build();
 
 		//------------------------------------
 		// エラーがある場合レスポンス作成処理

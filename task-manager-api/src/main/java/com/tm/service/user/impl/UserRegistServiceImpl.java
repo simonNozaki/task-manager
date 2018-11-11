@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tm.consts.AppLog;
+import com.tm.consts.LogCode;
 import com.tm.dao.repository.UserRepository;
 import com.tm.dto.Users;
 import com.tm.dto.UsersExample;
@@ -30,15 +30,20 @@ public class UserRegistServiceImpl extends BaseService implements UserRegistServ
 		if (!ObjectUtil.isNullOrEmpty(this.hasRegisteredEmail(user))) {
 			return doPipeServiceOut()
 					.setNormalResult(new Users())
-					.setError(AppLog.TMURCM10015.getCode())
+					.setError(LogCode.TMURCM10015.getCode())
 					.build();
 		}
+
+		// TODOこのへんでID発番、ID発番もクラスに切り出して作成
 
 		// DBにオブジェクトを登録
 		Users result = userRepository.registerUser(user);
 		// レスポンスチェック
 		if (result == null) {
-			return null;
+		    return doPipeServiceOut()
+                    .setNormalResult(new Users())
+                    .setError(LogCode.TMURCM10015.getCode())
+                    .build();
 		}
 
 		// 正常結果を返却

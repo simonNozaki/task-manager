@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
-import com.tm.consts.AppLog;
+import com.tm.consts.LogCode;
 import com.tm.consts.CtrlConst;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
@@ -47,7 +47,7 @@ public class TaskFetchRestController extends BaseRestController {
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(userId)
-				.violateSpecificLength(userId, AppConst.USER_ID_LENGTH, AppLog.TMURCM10011.getCode())
+				.violateSpecificLength(userId, AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
 				.build();
 
 		//------------------------------------

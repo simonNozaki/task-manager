@@ -3,7 +3,7 @@ package com.tm.consts;
 /**
  * ログメッセージ定義クラスです.
  */
-public enum AppLog {
+public enum LogCode {
 
 	//------------------------------------
 	// API機能共通
@@ -135,7 +135,7 @@ public enum AppLog {
 	TMURCM10015("TMTKCM10015");
 
 	private final String code;
-    private AppLog(final String code) {
+    private LogCode(final String code) {
         this.code = code;
     }
     public String getCode() {

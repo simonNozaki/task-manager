@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.consts.AppConst;
-import com.tm.consts.AppLog;
+import com.tm.consts.LogCode;
 import com.tm.consts.CtrlConst;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Users;
@@ -44,16 +45,18 @@ public class UserRegistRestController extends BaseRestController{
 	@CrossOrigin
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserRegistResponseDto register(@RequestBody UserRegistRequestDto user) throws Exception {
+	    ObjectMapper mapper = new ObjectMapper();
+	    System.out.println(mapper.writeValueAsString(user));
 		//------------------------------------
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(user)
-							.hasNullValue(AppLog.TMURCM10001.getCode())
-							.violateMaxLength(user.getUserName(), AppConst.USER_NAME_MAX, AppLog.TMURCM10012.getCode())
-							.violateMaxLength(user.getEmail(), AppConst.USER_EMAIL_MAX, AppLog.TMURCM10013.getCode())
-							.violateMaxLength(user.getPassword(), AppConst.USER_PASSWORD_MAX, AppLog.TMURCM10014.getCode())
-							.violateSpecificLength(user.getUsedFlag(), AppConst.USER_FLAG_LENGTH, AppLog.TMURCM10015.getCode())
-							.build();
+                            .hasNullValue(LogCode.TMURCM10001.getCode())
+                            .violateMaxLength(user.getUserName(), AppConst.USER_NAME_MAX, LogCode.TMURCM10012.getCode())
+                            .violateMaxLength(user.getEmail(), AppConst.USER_EMAIL_MAX, LogCode.TMURCM10013.getCode())
+                            .violateMaxLength(user.getPassword(), AppConst.USER_PASSWORD_MAX, LogCode.TMURCM10014.getCode())
+                            .violateSpecificLength(user.getUsedFlag(), AppConst.USER_FLAG_LENGTH, LogCode.TMURCM10015.getCode())
+                            .build();
 
 		//------------------------------------
 		// エラーがある場合レスポンス作成処理
@@ -72,11 +75,10 @@ public class UserRegistRestController extends BaseRestController{
 		//------------------------------------
 		// レスポンス処理
 		//------------------------------------
-		// TODO ServiceOutの形にあうようにControllerのレスポンスも修正する
 		return responseProcessBuilder().of(UserRegistResponseDto::new)
 				.operate((UserRegistResponseDto res) -> {
-//							res.setUserId(result.getUserId());
-//							res.setUserName(result.getUserName());
+							res.setUserId(result.getValue().getUserId());
+							res.setUserName(result.getValue().getUserName());
 							return res;
 						})
 						.apply();

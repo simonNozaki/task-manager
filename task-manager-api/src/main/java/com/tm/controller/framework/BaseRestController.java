@@ -41,6 +41,16 @@ public class BaseRestController {
 	  }
 
 	  /**
+	   * プロセッサを開始します。具体的な値でコンストラクタを呼び出します。
+	   * @param input
+	   * @return
+	   */
+	  public <R> ResponseProcessor<R> with(R input) {
+		  return new ResponseProcessor<R>(input);
+	  }
+
+
+	  /**
 	   * 生成したDTOに対する中間操作を提供します.
 	   * @param function
 	   * @return
