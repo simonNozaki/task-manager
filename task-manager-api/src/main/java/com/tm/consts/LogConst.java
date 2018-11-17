@@ -1,0 +1,50 @@
+package com.tm.consts;
+
+/**
+ * ログ設定用定数クラスです。
+ */
+public class LogConst {
+
+    //------------------------------------
+    // ログレベル
+    //------------------------------------
+    /**
+     * ログレベル、エラー
+     */
+    public static final String LOG_LEVEL_ERROR = "ERROR";
+
+    /**
+     * ログレベル、警告
+     */
+    public static final String LOG_LEVEL_WARN = "WARN";
+
+    /**
+     * ログレベル、インフォ
+     */
+    public static final String LOG_LEVEL_INFO = "INFO";
+
+    /**
+     * ログレベル、トレース
+     */
+    public static final String LOG_LEVEL_TRACE = "TRACE";
+
+
+    //------------------------------------
+    // ログプレフィックス用レベル別定数
+    //------------------------------------
+    /**
+     * マーカー、エラー
+     */
+    public static final String LOG_PREFIX_ERROR = "ERROR";
+
+    /**
+     * マーカー、インフォ
+     */
+    public static final String LOG_PREFIX_INFO = "INFO ";
+
+    /**
+     * マーカー、トレース
+     */
+    public static final String LOG_PREFIX_TRACE = "     ";
+
+}

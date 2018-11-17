@@ -6,9 +6,14 @@ import { Errors } from '../common/errors';
  */
 export class FetchTaskResponseDto {
 
-  /** タスク一覧 */
+  /** 
+   * タスク一覧
+   */
   private tasks: Task[];
-  /** エラーコード */
+  
+  /**
+   * エラーコード
+   */
   private errors: Errors[];
 
   public getTasks(): Task[] {
