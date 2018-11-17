@@ -7,5 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    <label>
+        Name:
+        <input type="text" formControlName="name" >
+      </label>
+      <p>
+        Value: {{ name.value }}
+      </p>
+      <p>
+        <button (click)="updateName()">Update Name</button>
+      </p>
+    
+      <form [formGroup]="profile" (ngSubmit)="onSubmit(profile)">
+      
+        <label>
+          First Name:
+          <input type="text" formControlName="firstName">
+        </label>
+      
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label>
+      
+      </form>
+    
+      <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    
 </body>
 </html>
