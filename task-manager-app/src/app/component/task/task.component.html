@@ -1,5 +1,4 @@
 <div>
-  <!-- 登録している利用者のタスク一覧 -->
   <p>タスク一覧</p>
   {{ tasks }}
   <ul>
@@ -9,20 +8,21 @@
     </li>
   </ul>
   
-  <form name="task-register-form" novalidate>
-      <input required [(ngModel)]="taskTitle" #taskTitleTag="ngModel" id="taskTitle" type="text" name="taskTitle" placeholder="タスク名を入力..." >
-      <input [(ngModel)]="taskLabel" id="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
-      <input [(ngModel)]="startDate" id="startDate" type="date" name="startDate" placeholder="開始日を入力...">
-      <input [(ngModel)]="deadline" id="deadline" type="date" name="deadline" placeholder="終了日を入力...">
-      <input [(ngModel)]="taskNote" id="taskNote" type="text" name="taskNote" placeholder="メモ">
-  
-      <button (click)="registTask(registTaskRequestDto)">追加</button>
+  <form [formGroup]="taskForm">
+    <input formControlName="taskTitle" required type="text" name="taskTitle" placeholder="タスク名を入力..." >
+    <input formControlName="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
+    <input formControlName="startDate" type="date" name="startDate" placeholder="開始日を入力...">
+    <input formControlName="deadline" type="date" name="deadline" placeholder="終了日を入力...">
+    <input formControlName="taskNote" type="text" name="taskNote" placeholder="メモ">
 
-      <div *ngIf="taskTitleTag.invalid && (taskTitleTag.dirty || taskTitleTag.touched)">
-          <!-- <div *ngIf="taskTitleTag.required">
-              タイトルは必須入力です。
-          </div> -->
-      </div>
+    <p>{{ taskForm.status }}</p>
+
+    <button (click)="registTask(registTaskRequestDto)">追加</button>
+    <div *ngIf="violateRistriction()">
+      {{ checkedResult }}
+    </div>
+
   </form>
+  
   
 </div>
