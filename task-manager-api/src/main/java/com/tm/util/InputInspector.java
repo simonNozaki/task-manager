@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.tm.dto.common.Errors;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 
 /**
  * 入力検査機能を提供するクラスです.
@@ -107,6 +108,7 @@ public final class InputInspector<T> {
 				List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
 				codes.add(code);
 				this.errors.setCodes(codes);
+				throw new TaskManagerErrorRuntimeException(this.errors.getCodes());
 			}
 			return this;
 		}

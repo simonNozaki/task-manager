@@ -59,7 +59,7 @@ public class AppLogger {
 	 * @param Throwable th
 	 */
 	public static void trace(String msg, Throwable th) {
-	    log(LogConst.LOG_PREFIX_TRACE, msg, th);
+	    log(LogConst.LOG_LEVEL_TRACE, msg, th);
 	}
 
 	/**
