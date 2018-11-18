@@ -7,7 +7,7 @@ import { RegistTaskRequest } from '../../dto/interface/regist-task-request';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TypedFormControl } from '../../util/typed-form-control.util';
 import { AppConst } from '../../const/app.const';
-
+ 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -15,7 +15,9 @@ import { AppConst } from '../../const/app.const';
 })
 export class TaskComponent implements OnInit {
 
-  /** サービスクラス、およびルートのデフォルトコンストラクタ */
+  /** 
+   * デフォルトコンストラクタ
+   */
   constructor(private taskService: TaskService) { }
 
   /**
@@ -26,12 +28,8 @@ export class TaskComponent implements OnInit {
   /**
    * タスクリスト 
    */ 
-  @Input() public tasks: Task[] = this.fetchTaskResponseDto.getTasks();
-  
-  /**
-   * タスク登録DTO
-   */ 
-  public registTaskRequestDto: RegistTaskRequest;
+  @Input()
+  public tasks: Task[];
   
   /**
    * 利用者ID 
@@ -41,37 +39,40 @@ export class TaskComponent implements OnInit {
   /** 
    * 入力値の変化を検知してバインドするイベントエミッタ
    */
-  @Output() emitter = new EventEmitter<Task[]>();
+  @Output()
+  public emitter = new EventEmitter<Task[]>();
 
-  public taskTitle:TypedFormControl<string> = new TypedFormControl<string>(null, Validators.required);
+  public taskTitleControl:TypedFormControl<string> = new TypedFormControl<string>(null, Validators.required);
   
-  public  taskLabel:TypedFormControl<string> = new TypedFormControl<string>(null, Validators.maxLength(AppConst.TASK_LABEL_MAX_LENGTH));
+  public  taskLabelControl:TypedFormControl<string> = new TypedFormControl<string>("", Validators.maxLength(AppConst.TASK_LABEL_MAX_LENGTH));
   
-  public startDate: TypedFormControl<Date> = new TypedFormControl<Date>(null);
+  public startDateControl: TypedFormControl<Date> = new TypedFormControl<Date>(null);
   
-  public deadline:TypedFormControl<Date> = new TypedFormControl<Date>(null);
+  public deadlineControl:TypedFormControl<Date> = new TypedFormControl<Date>(null);
       
-  public taskNote:TypedFormControl<string> = new TypedFormControl<string>(null, Validators.maxLength(AppConst.TASK_NOTE_MAX_LENGTH));
+  public taskNoteControl:TypedFormControl<string> = new TypedFormControl<string>("", Validators.maxLength(AppConst.TASK_NOTE_MAX_LENGTH));
 
   /** 
    * バリデーションチェック結果
    */
-  public checkedResult: string = null;
+  private checkedResult: string = null;
 
-  taskForm: FormGroup = new FormGroup({
-    taskTitle: this.taskTitle,
-    taskLabel: this.taskLabel,
-    startDate: this.startDate,
-    deadline: this.deadline,
-    taskNote: this.taskNote
+  /**
+   * タスク登録のフォームグループ
+   */
+  public taskForm: FormGroup = new FormGroup({
+    taskTitleControl: this.taskTitleControl,
+    taskLabelControl: this.taskLabelControl,
+    startDateControl: this.startDateControl,
+    deadlineControl: this.deadlineControl,
+    taskNoteControl: this.taskNoteControl
   });
 
   /**
    * コンポーネント初期化時の起動処理
   */
   ngOnInit() {
-    this.registTaskRequestDto = new RegistTaskRequest();
-    this.fetchTaskResponseDto.setTasks(this.fetchTasks(this.userId));
+    this.tasks = this.fetchTasks(this.userId);
   }
 
   /**
@@ -90,11 +91,14 @@ export class TaskComponent implements OnInit {
   public fetchTasks(userId): Task[] {
     this.taskService.fetchTask(userId)
         .subscribe(
-            (res: FetchTaskResponseDto) => this.fetchTaskResponseDto.setTasks(res.getTasks()),
-            () => console.log(this.tasks),
-            () => console.log(this.fetchTaskResponseDto)
+            (res: FetchTaskResponseDto) => {
+              console.log("response : ", res);
+              console.log("tasks : ", res.tasks);
+              this.tasks = res.tasks;
+              this.fetchTaskResponseDto = res;
+            }
         );
-    return this.fetchTaskResponseDto.getTasks();
+    return this.fetchTaskResponseDto.getTasks;
   }
 
   /**
@@ -102,18 +106,19 @@ export class TaskComponent implements OnInit {
    * @param registTaskRequestDto: RegistTaskRequest
    * @returns void
   */
-  public registTask(registTaskRequestDto: RegistTaskRequest): void {
+  public registTask(): void {
     console.log(this.checkedResult);
     // 入力チェックを違反していない場合、タスク登録処理を実行します
-    if (!this.violateRistriction()) {
+    if (this.violateRistriction() == false) {
+      var registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
       // 登録リクエストDTOの生成
-      this.registTaskRequestDto.setTaskTitle(this.taskTitle.getValue());
-      this.registTaskRequestDto.setTaskLabel(this.taskLabel.getValue());
-      this.registTaskRequestDto.setStartDate(this.startDate.getValue());
-      this.registTaskRequestDto.setDeadline(this.deadline.getValue());
-      this.registTaskRequestDto.setTaskNote(this.taskNote.getValue());
-      this.registTaskRequestDto.setCompletedFlag(TaskManagerCode.TASK_COMPLETED_FLAG_REGISTED);
-      this.registTaskRequestDto.setUserId(this.userId);
+      registTaskRequestDto.setTaskTitle(this.taskTitleControl.getValue());
+      registTaskRequestDto.setTaskLabel(this.taskLabelControl.getValue());
+      registTaskRequestDto.setStartDate(this.startDateControl.getValue());
+      registTaskRequestDto.setDeadline(this.deadlineControl.getValue());
+      registTaskRequestDto.setTaskNote(this.taskNoteControl.getValue());
+      registTaskRequestDto.setCompletedFlag(TaskManagerCode.TASK_COMPLETED_FLAG_REGISTED);
+      registTaskRequestDto.setUserId(this.userId);
     
       // サービスクラスを実行
       this.taskService.registTask(registTaskRequestDto)
@@ -129,30 +134,31 @@ export class TaskComponent implements OnInit {
    * @returns string
    */
   public violateRistriction(): boolean {
-    console.log("入力チェックを開始", this.checkedResult);
+    console.log("入力チェックを開始", this.checkedResult, this.taskLabelControl.errors, this.taskTitleControl.errors);
 
     // タスクタイトル。必須入力チェック
-    if (this.taskTitle.invalid && (this.taskTitle.dirty || this.taskTitle.touched)) {
-      console.log("必須入力に失敗", this.checkedResult);
+    if (this.taskTitleControl.invalid && (this.taskTitleControl.dirty || this.taskTitleControl.touched)) {
       this.checkedResult = AppConst.TASK_TITLE_REQUIRED_VIOLATED;
+      console.log("必須入力に失敗", this.checkedResult);
       return false;
     }
 
     // タスクラベル。20桁以内であることをチェックする
-    if (this.taskLabel.invalid && (this.taskLabel.dirty || this.taskLabel.touched)) {
-      console.log("入力最大値を違反");
+    if (this.taskLabelControl.invalid && (this.taskLabelControl.dirty || this.taskLabelControl.touched)) {
       this.checkedResult =  AppConst.TASK_LABEL_LENGTH_VIOLATED;
+      console.log("入力最大値を違反");
       return false;
     }
 
     // タスクメモ。200文字以内であることをチェックする
-    if (this.taskNote.invalid && (this.taskNote.dirty || this.taskNote.touched)) {
-      console.log("入力最大値を違反");
+    if (this.taskNoteControl.invalid && (this.taskNoteControl.dirty || this.taskNoteControl.touched)) {
       this.checkedResult =  AppConst.TASK_NOTE_LENGTH_VIOLATED;
+      console.log("入力最大値を違反");
       return false;
     }
 
     return true;
   }
+
 
 }

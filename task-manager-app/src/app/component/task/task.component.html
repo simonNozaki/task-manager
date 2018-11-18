@@ -1,26 +1,27 @@
 <div>
   <p>タスク一覧</p>
-  {{ tasks }}
   <ul>
-    <li *ngFor="let task of tasks">
-      {{ task.getTaskTitle }} / {{ task.getTaskLabel }} / {{ task.getTaskNote }}
-      {{ task }}
+    <li *ngFor="let task of fetchTaskResponseDto.tasks">
+      {{ task.taskTitle }} / {{ task.taskLabel }} / {{ task.taskNote }} / {{ task.getTaskTitle }}
+    </li>
+    <li>
+      {{ taskTitleControl.value }} / {{ taskLabelControl.value }} / {{ taskNoteControl.value }}
     </li>
   </ul>
   
-  <form [formGroup]="taskForm">
-    <input formControlName="taskTitle" required type="text" name="taskTitle" placeholder="タスク名を入力..." >
-    <input formControlName="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
-    <input formControlName="startDate" type="date" name="startDate" placeholder="開始日を入力...">
-    <input formControlName="deadline" type="date" name="deadline" placeholder="終了日を入力...">
-    <input formControlName="taskNote" type="text" name="taskNote" placeholder="メモ">
+  <form [formGroup]="taskForm" (ngSubmit)="registTask()">
+    <input formControlName="taskTitleControl" required type="text" name="taskTitle" placeholder="タスク名を入力..." >
+    <input formControlName="taskLabelControl" maxlength="AppConst.TASK_LABEL_MAX_LENGTH" type="text" name="taskLabel" placeholder="ラベルを入力...">
+    <input formControlName="startDateControl" type="date" name="startDate" placeholder="開始日を入力...">
+    <input formControlName="deadlineControl" type="date" name="deadline" placeholder="終了日を入力...">
+    <input formControlName="taskNoteControl" maxlength="AppConst.TASK_NOTE_MAX_LENGTH" type="text" name="taskNote" placeholder="メモ">
 
-    <p>{{ taskForm.status }}</p>
+    <p>{{ taskForm.errors }}</p>
 
-    <button (click)="registTask(registTaskRequestDto)">追加</button>
-    <div *ngIf="violateRistriction()">
-      {{ checkedResult }}
-    </div>
+    <div *ngIf="violateRistriction(); else elseBlock">ステータス：不正あり</div>
+    <ng-template #elseBlock>ステータス：正常</ng-template>
+
+    <button (click)="registTask()" [disabled]="!taskForm.valid">追加</button>
 
   </form>
   
