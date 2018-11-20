@@ -19,8 +19,7 @@ public class RestControllerInterceptor extends HandlerInterceptorAdapter{
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-        AppLogger.trace(LogCode.TMFWCM00011.getCode(), null);
-        System.out.println("prehandle handled. Executed method : " + this.getHandledMethod(handler));
+        AppLogger.trace(LogCode.TMFWCM00011, null, ((HandlerMethod) handler).getBean().getClass(), ((HandlerMethod) handler).getMethod().getName());
         return true;
     }
 
@@ -29,20 +28,7 @@ public class RestControllerInterceptor extends HandlerInterceptorAdapter{
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception{
-        AppLogger.trace(LogCode.TMFWCM00012.getCode(), null);
-        System.out.println("Method Executed. Executed method : " + this.getHandledMethod(handler));
+        AppLogger.trace(LogCode.TMFWCM00012, null, ((HandlerMethod) handler).getBean().getClass(), ((HandlerMethod) handler).getMethod().getName());
     }
 
-
-    /**
-     * ハンドラメソッドから、ハンドリングしたメソッドの情報を取得します。
-     * @param handler
-     */
-    private String getHandledMethod(Object handler) {
-        // ハンドラメソッドのインスタンスを引数に取るとき、実行メソッド名を取得します。
-        if (handler instanceof HandlerMethod) {
-            return ((HandlerMethod) handler).getMethod().getName();
-        }
-        return null;
-    }
 }

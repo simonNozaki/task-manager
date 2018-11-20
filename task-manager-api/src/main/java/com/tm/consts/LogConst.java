@@ -38,6 +38,11 @@ public class LogConst {
     public static final String LOG_PREFIX_ERROR = "ERROR";
 
     /**
+     * マーカー、警告
+     */
+    public static final String LOG_PREFIX_WARN = "WARN ";
+
+    /**
      * マーカー、インフォ
      */
     public static final String LOG_PREFIX_INFO = "INFO ";
