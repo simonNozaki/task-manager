@@ -9,23 +9,23 @@ export class FetchTaskResponseDto {
   /** 
    * タスク一覧
    */
-  tasks: Task[];
+  public tasks: Task[];
   
   /**
    * エラーコード
    */
-  private errors: Errors[];
+  public errors: Errors[];
 
-  public get getTasks(): Task[] {
+  public getTasks(): Task[] {
     return this.tasks;
   }
-  public set setTasks(tasks: Task[]) {
+  public setTasks(tasks: Task[]) {
     this.tasks = tasks;
   }
-  public get getErrors(): Errors[] {
+  public getErrors(): Errors[] {
     return this.errors;
   }
-  public set setErrors(errors: Errors[]) {
+  public setErrors(errors: Errors[]) {
     this.errors = errors;
   }
 }

@@ -3,10 +3,15 @@
  */
 export class Errors {
 
-  /** タスクタイトル */
-  private taskTitle: string;
-  /** エラーコードリスト */
-  private codes: string[];
+  /** 
+   * タスクタイトル
+   */
+  public taskTitle: string;
+  
+   /** 
+    * エラーコードリスト
+    */
+   public codes: string[];
 
   public getCodes(): string[] {
     return this.codes;

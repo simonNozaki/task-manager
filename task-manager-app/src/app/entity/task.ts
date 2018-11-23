@@ -6,7 +6,7 @@ export class Task {
   /**
    * タスクID
    */
-  private taskId: string;
+  public taskId: string;
   
   /** 
    * タスクタイトル
@@ -21,22 +21,22 @@ export class Task {
   /** 
    * 開始日
    */
-  private startDate: Date;
+  public startDate: Date;
   
   /** 
    * 期限日
    */
-  private deadline: Date;
+  public deadline: Date;
   
   /** 
    * 完了フラグ 
    */
-  private completedFlag: string;
+  public completedFlag: string;
   
   /** 
    * 利用者ID 
    */
-  private userId: string;
+  public userId: string;
   
   /** 
    * タスクメモ 
