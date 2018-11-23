@@ -26,7 +26,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} [level] %logger{35} - %msg %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %n</pattern>
 		</encoder>
 	</appender>
 
@@ -41,7 +41,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) %-5level %logger{35} - %msg %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %n</pattern>
 		</encoder>
 	</appender>
 

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.tm.interceptor.RestControllerInterceptor;
 
 /**
- * InterceptorのBean定義クラス
+ * ControllerInterceptorのBean定義クラス
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {

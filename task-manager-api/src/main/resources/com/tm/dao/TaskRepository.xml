@@ -13,16 +13,17 @@
   </resultMap>
 
   <!-- 新規タスクを登録します. -->
-  <select id="registerTask" parameterType="com.tm.dto.Task" resultMap="BaseResultMap">
-  	INSERT INTO task (task_id,task_title,task_label,start_date,deadline,
+  <select id="register" parameterType="com.tm.dto.Task" resultMap="BaseResultMap">
+    INSERT INTO task (task_id,task_title,task_label,start_date,deadline,
   		completed_flag,user_id,task_note)
   	VALUES
   	(
-  	  nextval('task_id_seq'),#{taskItem.taskTitle},#{taskItem.taskLabel},
-  	  #{taskItem.startDate},#{taskItem.deadline},0,#{taskItem.userId},
+  	  #{taskItem.taskId},#{taskItem.taskTitle},#{taskItem.taskLabel},
+  	  #{taskItem.startDate},#{taskItem.deadline},#{taskItem.completedFlag},#{taskItem.userId},
   	  #{taskItem.taskNote}
   	)
   	RETURNING task_id,task_title,task_label,start_date,deadline,completed_flag,
   		user_id,task_note
   </select>
+
 </mapper>

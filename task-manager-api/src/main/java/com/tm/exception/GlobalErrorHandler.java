@@ -25,7 +25,7 @@ public class GlobalErrorHandler {
 	@ExceptionHandler(TaskManagerErrorRuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
 	public void handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e) {
-	    AppLogger.trace(LogCode.TMFWCM90000, e, null, null);
+	    AppLogger.error(LogCode.TMFWCM90000, e, null, null);
 	}
 
 

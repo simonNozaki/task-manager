@@ -95,23 +95,23 @@ public final class InputInspector<T> {
 			return this.satisfyPredicateWithInput(value, predicate, code);
 		}
 
-		/**
-		 * 入力が指定された条件を満たすことを確認します.<br>
-		 * 条件にマッチするエラーを入力することで、エラーコードを設定します.
-		 * @param T input
-		 * @param Predicate<T> predicate
-		 * @param Errors errors
-		 * @return Inspector<T>
-		 */
-		public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
-			if (!predicate.test(input)) {
-				List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
-				codes.add(code);
-				this.errors.setCodes(codes);
-				throw new TaskManagerErrorRuntimeException(this.errors.getCodes());
-			}
-			return this;
-		}
+        /**
+         * 入力が指定された条件を満たすことを確認します.<br>
+         * 条件にマッチするエラーを入力することで、エラーコードを設定します.
+         * @param T input
+         * @param Predicate<T> predicate
+         * @param Errors errors
+         * @return Inspector<T>
+         */
+        public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
+            if (!predicate.test(input)) {
+                List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
+                codes.add(code);
+                this.errors.setCodes(codes);
+                throw new TaskManagerErrorRuntimeException(this.errors.getCodes());
+            }
+            return this;
+        }
 
 		/**
 		 * エラーを構築します.

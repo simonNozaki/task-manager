@@ -24,29 +24,6 @@ public class AppConst {
 	public static final String TASK_COMPLETED_FLAG_DELETED = "2";
 
 	//------------------------------
-	// ログレベル
-	//------------------------------
-	/**
-	 * ログレベル、error
-	 */
-	public static final String LOG_LEVEL_ERROR = "error";
-
-	/**
-	 * ログレベル、warn
-	 */
-	public static final String LOG_LEVEL_WARN = "warn";
-
-	/**
-	 * ログレベル、info
-	 */
-	public static final String LOG_LEVEL_INFO = "info";
-
-	/**
-	 * ログレベル、debug
-	 */
-	public static final String LOG_LEVEL_DEBUG = "debug";
-
-	//------------------------------
 	// 入力桁数
 	//------------------------------
 	/**

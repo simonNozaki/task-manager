@@ -1,5 +1,6 @@
 package com.tm.controller.framework;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -72,7 +73,22 @@ public class BaseRestController {
 	  }
 
 	  /**
-	   * 操作を実行したパイプラインからレスポンスインスタンスを適用します.
+	   * 手動ログ出力機能を提供します。これは中間操作です。
+	   * @param Consumer<V> consumer
+	   * @return ResponseProcessor<T>
+	   */
+	  public <V> ResponseProcessor<T> logOutput(T t) {
+	      // リストオブジェクトの場合、結果を複数件にする
+	      if (t instanceof List) {
+
+	      }
+
+
+	      return new ResponseProcessor<T>();
+	  }
+
+	  /**
+	   * 操作を実行したパイプラインからレスポンスインスタンスを取得します。これは終端操作です。
 	   * @return T t
 	   */
 	  public T apply() {

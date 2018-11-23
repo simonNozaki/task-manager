@@ -9,7 +9,7 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 import com.tm.consts.LogCode;
-import com.tm.consts.LogConst;
+import com.tm.consts.LoggerConst;
 
 import ch.qos.logback.classic.Level;
 
@@ -55,24 +55,24 @@ public class AppLogger {
 
 	    // レベル別にログを出力
 	    switch(level) {
-	        case LogConst.LOG_LEVEL_ERROR:
+	        case LoggerConst.LOG_LEVEL_ERROR:
 	            loggerInstance.setLevel(Level.ERROR);
-	            logPrefix = MarkerFactory.getMarker(LogConst.LOG_PREFIX_ERROR);
+	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
                 INSTANCE.error(logPrefix, logCode.getCode(), exception);
 	            break;
-	        case LogConst.LOG_LEVEL_WARN:
+	        case LoggerConst.LOG_LEVEL_WARN:
 	            loggerInstance.setLevel(Level.WARN);
-	            logPrefix = MarkerFactory.getMarker(LogConst.LOG_PREFIX_WARN);
+	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_WARN);
                 INSTANCE.error(logPrefix, logCode.getCode(), exception);
                 break;
-	        case LogConst.LOG_LEVEL_INFO:
+	        case LoggerConst.LOG_LEVEL_INFO:
                 loggerInstance.setLevel(Level.INFO);
-	            logPrefix = MarkerFactory.getMarker(LogConst.LOG_PREFIX_INFO);
+	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_INFO);
                 INSTANCE.info(logPrefix, logCode.getCode(), exception);
 	            break;
-	        case LogConst.LOG_LEVEL_TRACE:
+	        case LoggerConst.LOG_LEVEL_TRACE:
 	            loggerInstance.setLevel(Level.TRACE);
-	            logPrefix = MarkerFactory.getMarker(LogConst.LOG_PREFIX_TRACE);
+	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_TRACE);
 	            INSTANCE.trace(logPrefix, logCode.getCode(), exception);
                 break;
 	        default:
@@ -90,7 +90,7 @@ public class AppLogger {
 	 * @param Object methodName
 	 */
 	public static void trace(LogCode logCode, Throwable th, Object className, Object methodName) {
-	    log(LogConst.LOG_LEVEL_INFO, logCode, th, className, methodName);
+	    log(LoggerConst.LOG_LEVEL_INFO, logCode, th, className, methodName);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class AppLogger {
      * @param Object methodName
 	 */
 	public static void error(LogCode logCode, Throwable th, Object className, Object methodName) {
-	    log(LogConst.LOG_LEVEL_ERROR, logCode, th, className, methodName);
+	    log(LoggerConst.LOG_LEVEL_ERROR, logCode, th, className, methodName);
 	}
 
 	/**
@@ -111,6 +111,7 @@ public class AppLogger {
 	    MDC.remove(CLASS_NAME);
 	    MDC.remove(METHOD_NAME);
 	    MDC.remove(LOG_CODE);
+	    MDC.remove(LOG_MESSAGE);
 	}
 
 }

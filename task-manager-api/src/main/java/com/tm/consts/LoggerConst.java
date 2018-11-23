@@ -3,7 +3,7 @@ package com.tm.consts;
 /**
  * ログ設定用定数クラスです。
  */
-public class LogConst {
+public class LoggerConst {
 
     //------------------------------------
     // ログレベル
