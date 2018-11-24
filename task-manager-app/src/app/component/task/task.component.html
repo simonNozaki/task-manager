@@ -6,25 +6,23 @@
         <th>タイトル</th>
         <th>タスクラベル</th>
         <th>タスクメモ</th>
+        <th></th>
       </tr>
       <tr *ngFor="let task of tasks">
         <td>{{ task.taskTitle }}</td>
         <td>{{ task.taskLabel }}</td>
         <td>{{ task.taskNote }}</td>
+        <button (click)="complete(task.taskId)" ></button>
+      </tr>
+      <tr>
+        <td>{{ taskForm.get("taskTitleControl").value }}</td>
+        <td>{{ taskForm.get("taskLabelControl").value }}</td>
+        <td>{{ taskForm.get("taskNoteControl").value }}</td>
       </tr>
     </table>
   </div>
 
-  <div>
-    入力値 : 
-    <ul>
-      <li>タイトル : {{ taskForm.get("taskTitleControl").value }} </li>
-      <li>ラベル : {{ taskForm.get("taskLabelControl").value }} </li>
-      <li>メモ : {{ taskForm.get("taskNoteControl").value }}</li>
-    </ul>
-  </div>
-  
-  <form [formGroup]="taskForm" (ngSubmit)="registTask()">
+  <form [formGroup]="taskForm">
     <label>
       タイトル <input formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクタイトル" >
     </label>
@@ -41,45 +39,15 @@
       メモ<input formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
     </label>
 
-    <button (click)="registTask()" >追加</button>
+    <button (click)="registTask()" [disabled]="">追加</button>
 
   </form>
 
   <div>
-    <p>
-      入力ステータス : {{ taskForm.get("taskTitleControl").status }}
-    </p>
-    <p>
-        入力ステータス : {{ taskForm.get("taskLabelControl").status }}
-    </p>
-    <p>
-        入力ステータス : {{ taskForm.get("taskNoteControl").status }}
-    </p>
-  </div>
-  
-  <div>
-    <div *ngIf="taskForm.get('taskTitleControl').hasError('required'); else titleElseBlock">
+    <div *ngIf="violateRistriction()">
       <p>
-        タイトル : このフィールドは必須入力です。
-      </p>
-      <p>
-        <ng-template #titleElseBlock>ステータス : OK</ng-template>
-      </p>
-    </div>
-    <div *ngIf="taskForm.get('taskLabelControl').hasError('maxlength'); else labelElseBlock">
-      <p>
-        ラベル : このフィールドは20文字以内です。
-      </p>
-      <p>
-        <ng-template #labelElseBlock>ステータス : OK</ng-template>
-      </p>
-    </div>
-    <div *ngIf="taskForm.get('taskNoteControl').hasError('maxlength'); else noteElseBlock">
-      <p>
-        メモ : このフィールドは20文字以内です。
-      </p>
-      <p>
-        <ng-template #noteElseBlock>ステータス : OK</ng-template>
+        タイトル : {{ checkedResult }}
+        ステータス : {{ taskForm.get("taskTitleControl").status }}
       </p>
     </div>
   </div>

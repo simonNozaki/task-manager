@@ -7,11 +7,13 @@ import { TaskComponent } from './component/task/task.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WebModule } from './routes/web/web.module';
 import { TaskService } from './service/task.service';
+import { UserComponent } from './component/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskComponent
+    TaskComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

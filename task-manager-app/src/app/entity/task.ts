@@ -43,52 +43,52 @@ export class Task {
    */
   public taskNote: string;
 
-  public get getTaskId(): string {
+  public getTaskId(): string {
     return this.taskId;
   }
-  public set setTaskId(taskId: string) {
+  public setTaskId(taskId: string) {
     this.taskId = taskId;
   }
-  public get getTaskTitle(): string {
+  public getTaskTitle(): string|null {
     return this.taskTitle;
   }
-  public set setTaskTitle(taskTitle: string) {
+  public setTaskTitle(taskTitle: string) {
     this.taskTitle = taskTitle;
   }
-  public get getTaskLabel(): string {
+  public getTaskLabel(): string {
     return this.taskLabel;
   }
-  public set setTaskLabel(taskLabel: string) {
+  public setTaskLabel(taskLabel: string) {
     this.taskLabel = taskLabel;
   }
-  public get getStartDate(): Date {
+  public getStartDate(): Date {
     return this.startDate;
   }
-  public set setStartDate(startDate: Date) {
+  public setStartDate(startDate: Date) {
     this.startDate = startDate;
   }
-  public get getDeadline(): Date {
+  public getDeadline(): Date {
     return this.deadline;
   }
-  public set setDeadline(deadline: Date) {
+  public setDeadline(deadline: Date) {
     this.deadline = deadline;
   }
-  public get getCompletedFlag(): string {
+  public getCompletedFlag(): string {
     return this.completedFlag;
   }
-  public set setCompletedFlag(completedFlag: string) {
+  public setCompletedFlag(completedFlag: string) {
     this.completedFlag = completedFlag;
   }
-  public get getUserId(): string {
+  public getUserId(): string {
     return this.userId;
   }
-  public set setUserId(userId: string) {
+  public setUserId(userId: string) {
     this.userId = userId;
   }
-  public get getTaskNote(): string {
+  public getTaskNote(): string {
     return this.taskNote;
   }
-  public set setTaskNote(taskNote: string) {
+  public setTaskNote(taskNote: string) {
     this.taskNote = taskNote;
   }
 
