@@ -1,10 +1,12 @@
 package com.tm.controller.framework;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 基底Controllerクラスです.
@@ -74,17 +76,15 @@ public class BaseRestController {
 
 	  /**
 	   * 手動ログ出力機能を提供します。これは中間操作です。
+	   * TODO ロガーに機能をマージする。
 	   * @param Consumer<V> consumer
 	   * @return ResponseProcessor<T>
+	 * @throws IOException
 	   */
-	  public <V> ResponseProcessor<T> logOutput(T t) {
-	      // リストオブジェクトの場合、結果を複数件にする
-	      if (t instanceof List) {
-
-	      }
-
-
-	      return new ResponseProcessor<T>();
+	  public <V> ResponseProcessor<T> logOutput(V input) throws IOException {
+	      ObjectMapper mapper = new ObjectMapper();
+          System.out.println(mapper.writeValueAsString(input));
+	      return new ResponseProcessor<T>(value);
 	  }
 
 	  /**

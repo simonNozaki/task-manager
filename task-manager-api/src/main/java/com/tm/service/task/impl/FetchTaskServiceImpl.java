@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tm.consts.AppConst;
 import com.tm.dao.repository.TaskRepository;
 import com.tm.dto.Task;
 import com.tm.dto.TaskExample;
@@ -23,7 +24,7 @@ public class FetchTaskServiceImpl implements FetchTaskService {
 	public List<Task> fetchTask(String userId) throws Exception {
 		List<Task> taskList = new ArrayList<>();
 		TaskExample taskExample = new TaskExample();
-		taskExample.createCriteria().andUserIdEqualTo(userId);
+		taskExample.createCriteria().andUserIdEqualTo(userId).andCompletedFlagEqualTo(AppConst.TASK_COMPLETED_FLAG_NOT_COMPLETED);
 		taskList = taskRepository.selectByExample(taskExample);
 		// レスポンスチェック
 		if(taskList == null) {

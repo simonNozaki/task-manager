@@ -45,7 +45,7 @@ public class TaskRegistRestController extends BaseRestController {
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_REGIST, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.ACCEPTED)
 	public TaskRegistResponseDto register(@RequestBody TaskRegistRequestDto task) throws Exception {
 		//------------------------------------
 		// 入力内容の検査

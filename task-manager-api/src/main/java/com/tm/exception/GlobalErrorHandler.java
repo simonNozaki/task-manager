@@ -25,7 +25,7 @@ public class GlobalErrorHandler {
 	@ExceptionHandler(TaskManagerErrorRuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
 	public void handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e) {
-	    AppLogger.error(LogCode.TMFWCM90000, e, null, null);
+	    AppLogger.error(LogCode.TMFWCM90000, e, null, null, null);
 	}
 
 
@@ -38,7 +38,7 @@ public class GlobalErrorHandler {
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	@ResponseBody
 	public void handleMethodNotAllowedError(HttpRequestMethodNotSupportedException e) {
-		AppLogger.trace(LogCode.TMFWCM90000, e, null, null);
+		AppLogger.error(LogCode.TMFWCM90000, e, null, null, null);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class GlobalErrorHandler {
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public void handleSystemError(Exception e) {
-		AppLogger.trace(LogCode.TMTKRG90001, e, null, null);
+		AppLogger.error(LogCode.TMTKRG90001, e, null, null, null);
 	}
 
 }

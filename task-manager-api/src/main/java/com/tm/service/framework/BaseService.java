@@ -48,7 +48,7 @@ public class BaseService {
 		public ServiceOutBuilder<T> setError(String code) {
 			List<String> codes = new ArrayList<>();
 			codes.add(code);
-			this.errors.setCodes(codes);
+			errors.setCodes(codes);
 			return new ServiceOutBuilder<T>();
 		}
 

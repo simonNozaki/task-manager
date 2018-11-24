@@ -27,29 +27,30 @@ public class UserRegistServiceImpl extends BaseService implements UserRegistServ
 	@Override
 	public ServiceOut<Users> execute(UserRegistRequestDto user) throws Exception{
 		// 入力チェック。同一メールアドレスですでに登録がある場合はエラーを返却
-		if (!ObjectUtil.isNullOrEmpty(this.hasRegisteredEmail(user))) {
+		if (!ObjectUtil.isNullOrEmpty(hasRegisteredEmail(user))) {
 			return doPipeServiceOut()
 					.setNormalResult(new Users())
 					.setError(LogCode.TMURCM10015.getCode())
 					.build();
 		}
 
-		// TODOこのへんでID発番、ID発番もクラスに切り出して作成
+		// TODO このへんでID発番、ID発番もクラスに切り出して作成
 
 		// DBにオブジェクトを登録
 		Users result = userRepository.registerUser(user);
+
 		// レスポンスチェック
 		if (result == null) {
 		    return doPipeServiceOut()
-                    .setNormalResult(new Users())
-                    .setError(LogCode.TMURCM10015.getCode())
-                    .build();
+                      .setNormalResult(new Users())
+                      .setError(LogCode.TMURCM90001.getCode())
+                      .build();
 		}
 
 		// 正常結果を返却
 		return doPipeServiceOut()
-				.setNormalResult(result)
-				.build();
+				  .setNormalResult(result)
+				  .build();
 	}
 
 	/**

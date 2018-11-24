@@ -7,11 +7,19 @@ import com.tm.dto.common.Errors;
  */
 public class TaskRegistResponseDto {
 
-	/** タスクID */
+	/**
+	 * タスクID
+	 */
 	private String taskId;
-	/** タスクタイトル */
+
+	/**
+	 * タスクタイトル
+	 */
 	private String taskTitle;
-	/** Error結果 */
+
+	/**
+	 * Error結果
+	 */
 	private Errors errors;
 
 	public String getTaskId() {

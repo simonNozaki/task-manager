@@ -1,12 +1,13 @@
 package com.tm.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.dto.common.Errors;
-import com.tm.exception.TaskManagerErrorRuntimeException;
 
 /**
  * 入力検査機能を提供するクラスです.
@@ -41,6 +42,19 @@ public final class InputInspector<T> {
 		private Inspector(T value) {
 			this.value = value;
 			this.errors = new Errors();
+		}
+
+		/**
+		 * リクエストされた入力内容をログ出力します。<br>
+		 * TODO ロガー機能に代替できるようにする。
+		 * @param V input
+		 * @return Inspector<T>
+		 * @throws IOException
+		 */
+		public <V> Inspector<T> logInput(V input) throws IOException {
+		    ObjectMapper mapper = new ObjectMapper();
+	        System.out.println(mapper.writeValueAsString(input));
+		    return new Inspector<T>(value);
 		}
 
 		/**
@@ -108,7 +122,6 @@ public final class InputInspector<T> {
                 List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);
                 this.errors.setCodes(codes);
-                throw new TaskManagerErrorRuntimeException(this.errors.getCodes());
             }
             return this;
         }

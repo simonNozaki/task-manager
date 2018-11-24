@@ -9,23 +9,28 @@ public class AppConst {
 	// 完了フラグ
 	//------------------------------//
 	/**
-	 * 未完了
+	 * 未完了, 0
 	 */
 	public static final String TASK_COMPLETED_FLAG_NOT_COMPLETED = "0";
 
 	/**
-	 * 完了済み
+	 * 完了済み, 1
 	 */
 	public static final String TASK_COMPLETED_FLAG_COMPLETED = "1";
 
 	/**
-	 * 削除済み
+	 * 削除済み, 2
 	 */
 	public static final String TASK_COMPLETED_FLAG_DELETED = "2";
 
 	//------------------------------
 	// 入力桁数
 	//------------------------------
+	/**
+	 * タスクID, 10桁
+	 */
+	public static final int TASK_ID_LENGTH = 10;
+
 	/**
 	 * タスクタイトル, 50桁
 	 */

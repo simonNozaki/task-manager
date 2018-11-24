@@ -18,4 +18,11 @@ public interface TaskRepository extends TaskMapper {
 	 * @return Task
 	 */
 	public Task register(@Param("taskItem") Task task);
+
+	/**
+	 * 履歴テーブルに更新したタスクを登録します。
+	 * @param String taskId
+	 * @return String
+	 */
+    public Task insertUpdatedTask(@Param("taskId") String taskId);
 }
