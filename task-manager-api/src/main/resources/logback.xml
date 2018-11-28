@@ -45,12 +45,30 @@
 		</encoder>
 	</appender>
 
-	<!-- ログレベル設定 -->
-	<logger name="TASK_MANAGER_TRACE_LOG" level="${console.level}">
+	<!-- 電文ログ -->
+	<appender name="APP_TELEGRAM_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logback.log.dir}/${logback.hostname}_${logback.appname}_telegram.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.log.dir}/${logback.hostname}_${logback.appname}_telegram.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>3</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{jsonBody} %n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- ロガー指定。nameタグに、FQCN指定で出力元ロガー名を指定しておく -->
+	<logger name="com.tm.config.logger.AppTraceLogger" level="${console.level}">
 		<appender-ref ref="APP_TRACE_LOG" />
 	</logger>
-	<logger name="TASK_MANAGER_ERR_LOG" level="${console.level}">
+	<logger name="com.tm.config.logger.AppTraceLogger" level="${console.level}">
 		<appender-ref ref="APP_ERR_LOG" />
+	</logger>
+	<logger name="com.tm.config.logger.AppTelegramLogger" level="${console.level}">
+		<appender-ref ref="APP_TELEGRAM_LOG" />
 	</logger>
 
 	<root level="${root.level}">

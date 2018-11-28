@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tm.config.AppLogger;
+import com.tm.consts.LogCode;
 import com.tm.dto.common.Errors;
 
 /**
@@ -44,6 +46,14 @@ public final class InputInspector<T> {
 			this.errors = new Errors();
 		}
 
+		private Inspector(T value, Errors errors) {
+		    this.value = value;
+		    if (ObjectUtil.isNullOrEmpty(this.errors)) {
+		        this.errors = new Errors();
+		    }
+		    this.errors = errors;
+		}
+
 		/**
 		 * リクエストされた入力内容をログ出力します。<br>
 		 * TODO ロガー機能に代替できるようにする。
@@ -53,7 +63,7 @@ public final class InputInspector<T> {
 		 */
 		public <V> Inspector<T> logInput(V input) throws IOException {
 		    ObjectMapper mapper = new ObjectMapper();
-	        System.out.println(mapper.writeValueAsString(input));
+	        AppLogger.traceTelegram(LogCode.TMFWCM80001, this.getClass(), new Object(){}.getClass().getEnclosingMethod().getName(), mapper.writeValueAsString(input));
 		    return new Inspector<T>(value);
 		}
 
@@ -119,11 +129,12 @@ public final class InputInspector<T> {
          */
         public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
             if (!predicate.test(input)) {
-                List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
+                // エラーコードのリストがない場合はリストを初期化する
+                List<String> codes = Optional.ofNullable(this.errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);
                 this.errors.setCodes(codes);
             }
-            return this;
+            return new Inspector<T>(this.value, this.errors);
         }
 
 		/**

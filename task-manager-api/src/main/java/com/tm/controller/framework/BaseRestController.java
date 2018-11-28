@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tm.config.AppLogger;
+import com.tm.consts.LogCode;
 
 /**
  * 基底Controllerクラスです.
@@ -83,7 +85,7 @@ public class BaseRestController {
 	   */
 	  public <V> ResponseProcessor<T> logOutput(V input) throws IOException {
 	      ObjectMapper mapper = new ObjectMapper();
-          System.out.println(mapper.writeValueAsString(input));
+          AppLogger.traceTelegram(LogCode.TMFWCM80002, this.getClass(), new Object(){}.getClass().getEnclosingMethod().getName(), mapper.writeValueAsString(input));
 	      return new ResponseProcessor<T>(value);
 	  }
 
