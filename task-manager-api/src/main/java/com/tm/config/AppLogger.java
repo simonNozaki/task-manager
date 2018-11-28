@@ -31,23 +31,19 @@ public class AppLogger {
 
     // ロガー用定数
     private static final String ERR_STACK_TRACE = "errStackTrace";
-    private static final String STACKTRACE_START = "[Interface Trace Start]";
-    private static final String STACKTRACE_END = "[Interface Trace End]";
+    private static final String STACKTRACE_START = "[Telegram Trace Start]";
+    private static final String STACKTRACE_END = "[Telegram Trace End]";
     private static final String STR_NEWLINE = "\n";
-
-    // ロガー名（logback.xmlで出力方式を識別）
-    private final static String appTraceLogger = AppTraceLogger.class.getCanonicalName();
-    private final static String appTelegramLogger = AppTelegramLogger.class.getCanonicalName();
 
 	/**
 	 * ロガーインスタンス、トレースログ用
 	 */
-	private static final Logger appTraceINSTANCE = LoggerFactory.getLogger(appTraceLogger);
+	private static final Logger appTraceINSTANCE = LoggerFactory.getLogger(AppTraceLogger.class.getCanonicalName());
 
 	/**
 	 * ロガーインスタンス、電文ログ用
 	 */
-	private static final Logger appTelegramINSTANCE = LoggerFactory.getLogger(appTelegramLogger);
+	private static final Logger appTelegramINSTANCE = LoggerFactory.getLogger(AppTelegramLogger.class.getCanonicalName());
 
 	/**
 	 * ログレベルに応じたログ出力を実施します。<br>

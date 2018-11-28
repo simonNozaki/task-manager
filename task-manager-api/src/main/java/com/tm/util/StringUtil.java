@@ -12,7 +12,7 @@ public class StringUtil {
 	 * @return boolean
 	 */
 	public static boolean isOverSpecificLength(String target, int max) {
-		if (target.length() < max) {
+		if (target.length() > max) {
 			return true;
 		}
 		return false;

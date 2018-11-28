@@ -47,6 +47,7 @@ public class TaskFetchRestController extends BaseRestController {
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(userId)
+		        .logInput(arrangeLoggingString(userId))
 				.violateSpecificLength(userId, AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
 				.build();
 
@@ -73,11 +74,28 @@ public class TaskFetchRestController extends BaseRestController {
 		//------------------------------------
 		// リクエスト処理を終了し、レスポンスを返します.
 		return responseProcessBuilder().of(TaskFetchResponseDto::new)
+		        .logOutput(taskList)
 				.operate((TaskFetchResponseDto dto) -> {
 					dto.setTasks(taskList);
 					return dto;
 				})
 				.apply();
+	}
+
+	private String arrangeLoggingString(String inputUserId) {
+	    StringBuilder sb = new StringBuilder();
+	    final String leftBracket = "{";
+	    final String rightBracket = "}";
+	    final String colon = " : ";
+	    final String userId = "userId";
+	    sb.append(leftBracket);
+	    sb.append(userId);
+	    sb.append(colon);
+	    sb.append(inputUserId);
+	    sb.append(rightBracket);
+
+	    return sb.toString();
+
 	}
 
 }

@@ -56,7 +56,6 @@ public final class InputInspector<T> {
 
 		/**
 		 * リクエストされた入力内容をログ出力します。<br>
-		 * TODO ロガー機能に代替できるようにする。
 		 * @param V input
 		 * @return Inspector<T>
 		 * @throws IOException
@@ -73,7 +72,7 @@ public final class InputInspector<T> {
 		 * @return Inspector<T>
 		 */
 		public Inspector<T> hasNullValue(String code) {
-			Predicate<T> predicate = (T value) -> !ObjectUtil.isNullOrEmpty(value);
+			Predicate<T> predicate = (T value) -> ObjectUtil.isNullOrEmpty(value);
 			return this.satisfyPredicateWithInput(value, predicate, code);
 		}
 
@@ -85,10 +84,6 @@ public final class InputInspector<T> {
 		 * @return
 		 */
 		public <V> Inspector<T> violateMaxLength(V target, int max, String code) {
-			// 文字列でない場合は評価を実施せず、そのままパイプラインを継続
-			if (target.getClass() != String.class) {
-				return this;
-			}
 			Predicate<V> predicate = (V inputValue) -> StringUtil.isOverSpecificLength(target.toString(), max);
 			return this.satisfyPredicateWithInput(target, predicate, code);
 		}
@@ -101,10 +96,6 @@ public final class InputInspector<T> {
 		 * @return
 		 */
 		public <V> Inspector<T> violateSpecificLength(V target, int max, String code) {
-			// 文字列でない場合は評価を実施せず、そのままパイプラインを継続
-			if (target.getClass() != String.class) {
-				return this;
-			}
 			Predicate<V> predicate = (V inputValue) -> StringUtil.isEqualToSpecificLength(target.toString(), max);
 			return this.satisfyPredicateWithInput(target, predicate, code);
 		}
