@@ -8,21 +8,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { WebModule } from './routes/web/web.module';
 import { TaskService } from './service/task.service';
 import { UserComponent } from './component/user/user.component';
+import { WebRoutingModule } from './routes/web/web-routing.module';
+import { SignupComponent } from './component/user/signup/signup.component';
+import { SignupService } from './service/signup.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
-    UserComponent
+    UserComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     WebModule,
+    WebRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ TaskService ],
+  providers: [ TaskService, SignupService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

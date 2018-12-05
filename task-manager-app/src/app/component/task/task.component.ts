@@ -117,7 +117,11 @@ export class TaskComponent implements OnInit {
             // 登録リクエストDTOの生成
             registTaskRequestDto.setTaskTitle(this.taskForm.get("taskTitleControl").value);
             registTaskRequestDto.setTaskLabel(this.taskForm.get("taskLabelControl").value);
-            registTaskRequestDto.setStartDate(this.taskForm.get("startDateControl").value);
+            if (ObjectUtil.isNullOrUndefined(this.taskForm.get("startDateControl").value)) {
+                registTaskRequestDto.setStartDate(new Date());
+            } else { 
+                registTaskRequestDto.setStartDate(this.taskForm.get("startDateControl").value);
+            }
             registTaskRequestDto.setDeadline(this.taskForm.get("deadlineControl").value);
             registTaskRequestDto.setTaskNote(this.taskForm.get("taskNoteControl").value);
             registTaskRequestDto.setCompletedFlag(TaskManagerCode.TASK_COMPLETED_FLAG_REGISTED);

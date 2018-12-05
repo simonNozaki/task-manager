@@ -1,0 +1,27 @@
+<p>
+  signup works!
+</p>
+
+<div>
+    <form [formGroup]="signupForm">
+        <label>
+            名前 <input formControlName="userNameControl" type="text" name="userName" placeholder="名前" >
+        </label>
+        <label>
+            メールアドレス <input formControlName="emailControl" type="text" name="email" placeholder="メールアドレス" >
+        </label>
+        <label>
+            パスワード <input formControlName="passwordControl" type="text" name="password" placeholder="パスワード" >
+        </label>
+
+        <button (click)="signip()" [disabled]="">サインアップ</button>
+
+    </form>
+
+    <div *ngIf="violateRistriction()">
+      <p>
+        タイトル : {{ checkedResult }}
+        ステータス : {{ signupForm.get("userNameControl").status }}
+      </p>
+    </div>
+</div>
