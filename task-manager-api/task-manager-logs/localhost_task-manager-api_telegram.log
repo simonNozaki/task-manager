@@ -1,40 +1,108 @@
-2018-12-01 10:38:21 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+2018-12-08 09:39:06 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:41:10 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"snozaki@netprotections.co.jp","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:46:34 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:46:36 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:46:48 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:46:48 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:46:49 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:46:49 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:47:38 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:49:25 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:52:11 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:52:11 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+[Telegram Trace Start]
+{"value":{"userId":"5         ","userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"},"errors":{"codes":null,"id":null}}
+[Telegram Trace End] 
+2018-12-08 09:54:58 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:54:58 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+[Telegram Trace Start]
+{"value":null,"errors":{"codes":null,"id":null}}
+[Telegram Trace End] 
+2018-12-08 09:55:53 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+[Telegram Trace Start]
+{"userName":"testuser","email":"test@example.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 09:55:53 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+[Telegram Trace Start]
+{"value":{"userId":"6         ","userName":"testuser","email":"test@example.com","password":"21405apple","usedFlag":"0"},"errors":{"codes":null,"id":null}}
+[Telegram Trace End] 
+2018-12-08 09:55:53 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
 "{userId : 10001000}"
 [Telegram Trace End] 
-2018-12-01 10:38:21 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+2018-12-08 09:55:53 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
 [Telegram Trace Start]
 [{"taskId":"6         ","taskTitle":"テストタスク","taskLabel":"テストラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"8         ","taskTitle":"テスト","taskLabel":"abcdefghijklmnopqrstuvwxyz","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"11        ","taskTitle":"タイトル","taskLabel":"ラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":"メモ"},{"taskId":"182024BY8t","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"182224fzO2","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"185829LVPR","taskTitle":"sample6","taskLabel":"sample6","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"180129PUZv","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181429zISW","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181529punu","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181729erP6","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""}]
 [Telegram Trace End] 
-2018-12-01 10:38:28 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+2018-12-08 10:00:55 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-"{userId : 10001000}"
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
 [Telegram Trace End] 
-2018-12-01 10:38:28 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+2018-12-08 10:02:46 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-[{"taskId":"6         ","taskTitle":"テストタスク","taskLabel":"テストラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"8         ","taskTitle":"テスト","taskLabel":"abcdefghijklmnopqrstuvwxyz","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"11        ","taskTitle":"タイトル","taskLabel":"ラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":"メモ"},{"taskId":"182024BY8t","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"182224fzO2","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"185829LVPR","taskTitle":"sample6","taskLabel":"sample6","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"180129PUZv","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181429zISW","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181529punu","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181729erP6","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""}]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
 [Telegram Trace End] 
-2018-12-01 10:52:36 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+2018-12-08 10:03:42 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-"{userId : 10001000}"
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
 [Telegram Trace End] 
-2018-12-01 10:52:36 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+2018-12-08 10:04:55 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-[{"taskId":"6         ","taskTitle":"テストタスク","taskLabel":"テストラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"8         ","taskTitle":"テスト","taskLabel":"abcdefghijklmnopqrstuvwxyz","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"11        ","taskTitle":"タイトル","taskLabel":"ラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":"メモ"},{"taskId":"182024BY8t","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"182224fzO2","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"185829LVPR","taskTitle":"sample6","taskLabel":"sample6","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"180129PUZv","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181429zISW","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181529punu","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181729erP6","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""}]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
 [Telegram Trace End] 
-2018-12-01 10:52:58 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+2018-12-08 10:09:26 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-"{userId : 10001000}"
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
 [Telegram Trace End] 
-2018-12-01 10:52:58 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+2018-12-08 10:11:19 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-[{"taskId":"6         ","taskTitle":"テストタスク","taskLabel":"テストラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"8         ","taskTitle":"テスト","taskLabel":"abcdefghijklmnopqrstuvwxyz","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"11        ","taskTitle":"タイトル","taskLabel":"ラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":"メモ"},{"taskId":"182024BY8t","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"182224fzO2","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"185829LVPR","taskTitle":"sample6","taskLabel":"sample6","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"180129PUZv","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181429zISW","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181529punu","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181729erP6","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""}]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
 [Telegram Trace End] 
-2018-12-01 10:53:00 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
+2018-12-08 10:11:19 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
 [Telegram Trace Start]
-"{userId : 10001000}"
+{"value":{"userId":null,"userName":null,"email":null,"password":null,"usedFlag":null},"errors":{"codes":["TMURCM10016"],"id":null}}
 [Telegram Trace End] 
-2018-12-01 10:53:00 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+2018-12-08 10:12:34 localhost      task-manager-api INFO  TMFWCM80001 class com.tm.util.InputInspector$Inspector#logInput : 
 [Telegram Trace Start]
-[{"taskId":"6         ","taskTitle":"テストタスク","taskLabel":"テストラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"8         ","taskTitle":"テスト","taskLabel":"abcdefghijklmnopqrstuvwxyz","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":null},{"taskId":"11        ","taskTitle":"タイトル","taskLabel":"ラベル","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":"メモ"},{"taskId":"182024BY8t","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"182224fzO2","taskTitle":"sample5","taskLabel":"sample5","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"185829LVPR","taskTitle":"sample6","taskLabel":"sample6","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"180129PUZv","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181429zISW","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181529punu","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""},{"taskId":"181729erP6","taskTitle":"sample","taskLabel":"samplesamplesamplesamplesamplesamplesample","startDate":null,"deadline":null,"completedFlag":"0","userId":"10001000  ","taskNote":""}]
+{"userName":"testuser","email":"tldk1993@gmail.com","password":"21405apple","usedFlag":"0"}
+[Telegram Trace End] 
+2018-12-08 10:12:34 localhost      task-manager-api INFO  TMFWCM80002 class com.tm.controller.framework.BaseRestController$ResponseProcessor#logOutput : 
+[Telegram Trace Start]
+{"value":{"userId":null,"userName":null,"email":null,"password":null,"usedFlag":null},"errors":{"codes":["TMURCM10016"],"id":null}}
 [Telegram Trace End] 

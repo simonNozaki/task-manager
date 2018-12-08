@@ -25,7 +25,7 @@ public class StringUtil {
 	 * @return boolean
 	 */
 	public static boolean isEqualToSpecificLength(String target, int max) {
-		if (target.length() == max) {
+		if (target.length() != max) {
 			return true;
 		}
 		return false;

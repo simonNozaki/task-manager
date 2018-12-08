@@ -8,15 +8,15 @@ export class UserSignupResponseDto {
     /**
      * 利用者ID
      */
-    private userId: string;
+    public userId: string;
 
     /**
      * 利用者名
      */
-    private userName: string;
+    public userName: string;
 
     /**
      * エラーコード
      */
-    private errors: Errors[];
+    public errors: Errors[];
 }

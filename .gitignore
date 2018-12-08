@@ -3,3 +3,4 @@
 /.recommenders/
 /task-manager-app/.vscode
 /task-manager-web
+task-manager-api/task-manager-logs/

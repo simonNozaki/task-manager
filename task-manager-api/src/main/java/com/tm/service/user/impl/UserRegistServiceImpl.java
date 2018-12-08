@@ -30,7 +30,7 @@ public class UserRegistServiceImpl extends BaseService implements UserRegistServ
 		if (!ObjectUtil.isNullOrEmpty(hasRegisteredEmail(user))) {
 			return doPipeServiceOut()
 					.setNormalResult(new Users())
-					.setError(LogCode.TMURCM10015.getCode())
+					.setError(LogCode.TMURCM10016.getCode())
 					.build();
 		}
 

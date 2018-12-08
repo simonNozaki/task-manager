@@ -7,7 +7,6 @@ import { TaskComponent } from './component/task/task.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WebModule } from './routes/web/web.module';
 import { TaskService } from './service/task.service';
-import { UserComponent } from './component/user/user.component';
 import { WebRoutingModule } from './routes/web/web-routing.module';
 import { SignupComponent } from './component/user/signup/signup.component';
 import { SignupService } from './service/signup.service';
@@ -16,7 +15,6 @@ import { SignupService } from './service/signup.service';
   declarations: [
     AppComponent,
     TaskComponent,
-    UserComponent,
     SignupComponent
   ],
   imports: [

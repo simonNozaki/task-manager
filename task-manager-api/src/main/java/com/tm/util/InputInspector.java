@@ -119,7 +119,7 @@ public final class InputInspector<T> {
          * @return Inspector<T>
          */
         public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
-            if (!predicate.test(input)) {
+            if (predicate.test(input)) {
                 // エラーコードのリストがない場合はリストを初期化する
                 List<String> codes = Optional.ofNullable(this.errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);
