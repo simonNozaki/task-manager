@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
-import com.tm.consts.LogCode;
 import com.tm.consts.CtrlConst;
+import com.tm.consts.LogCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;
 import com.tm.dto.bean.task.TaskRegistResponseDto;
 import com.tm.dto.common.Errors;
+import com.tm.dto.common.ServiceOut;
 import com.tm.service.task.RegistTaskService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -72,15 +73,15 @@ public class TaskRegistRestController extends BaseRestController {
 		//------------------------------------
 		// サービスクラスの実行
 		//------------------------------------
-		Task registResult = registTaskService.registerTask(task);
+		ServiceOut<Task> registResult = registTaskService.registerTask(task);
 
 		//------------------------------------
 		// レスポンス処理
 		//------------------------------------
 		return responseProcessBuilder().of(TaskRegistResponseDto::new)
 				.operate((TaskRegistResponseDto res) -> {
-					res.setTaskId(registResult.getTaskId());
-					res.setTaskTitle(registResult.getTaskTitle());
+					res.setTaskId(registResult.getValue().getTaskId());
+					res.setTaskTitle(registResult.getValue().getTaskTitle());
 					return res;
 				})
 				.apply();

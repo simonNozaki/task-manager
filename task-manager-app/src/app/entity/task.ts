@@ -3,22 +3,45 @@
  */
 export class Task {
 
-  /** タスクID */
-  private taskId: string;
-  /** タスクタイトル */
-  private taskTitle: string;
-    /** タスクラベル */
-    private taskLabel: string;
-  /** 開始日 */
-  private startDate: Date;
-  /** 期限日 */
-  private deadline: Date;
-  /** 完了フラグ */
-  private completedFlag: string;
-  /** 利用者ID */
-  private userId: string;
-  /** タスクメモ */
-  private taskNote: string;
+  /**
+   * タスクID
+   */
+  public taskId: string;
+  
+  /** 
+   * タスクタイトル
+   */
+  public taskTitle: string;
+  
+  /** 
+   * タスクラベル
+   */
+  public taskLabel: string;
+  
+  /** 
+   * 開始日
+   */
+  public startDate: Date;
+  
+  /** 
+   * 期限日
+   */
+  public deadline: Date;
+  
+  /** 
+   * 完了フラグ 
+   */
+  public completedFlag: string;
+  
+  /** 
+   * 利用者ID 
+   */
+  public userId: string;
+  
+  /** 
+   * タスクメモ 
+   */
+  public taskNote: string;
 
   public getTaskId(): string {
     return this.taskId;

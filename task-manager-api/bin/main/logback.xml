@@ -2,8 +2,8 @@
 <!DOCTYPE configuration>
 <configuration>
 
-	<property name="root.level" value="debug" />
-	<property name="console.level" value="debug" />
+	<property name="root.level" value="warn" />
+	<property name="console.level" value="info" />
 	<property name="logback.log.dir" value="./task-manager-logs" />
 	<property name="logback.hostname" value="localhost" />
 	<property name="logback.appname" value="task-manager-api" />
@@ -11,7 +11,7 @@
 	<!-- consoleへの標準出力 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) %-5level %logger{100} - %msg %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %n</pattern>
 		</encoder>
 	</appender>
 
@@ -26,7 +26,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) %-5level %logger{35} - %msg %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %n</pattern>
 		</encoder>
 	</appender>
 
@@ -41,7 +41,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) %-5level %logger{35} - %msg %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %n</pattern>
 		</encoder>
 	</appender>
 

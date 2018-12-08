@@ -3,7 +3,7 @@ package com.tm.consts;
 /**
  * ログ設定用定数クラスです。
  */
-public class LogConst {
+public class LoggerConst {
 
     //------------------------------------
     // ログレベル
@@ -36,6 +36,11 @@ public class LogConst {
      * マーカー、エラー
      */
     public static final String LOG_PREFIX_ERROR = "ERROR";
+
+    /**
+     * マーカー、警告
+     */
+    public static final String LOG_PREFIX_WARN = "WARN ";
 
     /**
      * マーカー、インフォ

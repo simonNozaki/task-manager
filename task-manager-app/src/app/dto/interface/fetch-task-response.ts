@@ -9,12 +9,12 @@ export class FetchTaskResponseDto {
   /** 
    * タスク一覧
    */
-  private tasks: Task[];
+  public tasks: Task[];
   
   /**
    * エラーコード
    */
-  private errors: Errors[];
+  public errors: Errors[];
 
   public getTasks(): Task[] {
     return this.tasks;

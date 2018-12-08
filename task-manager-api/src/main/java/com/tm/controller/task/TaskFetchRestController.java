@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
-import com.tm.consts.LogCode;
 import com.tm.consts.CtrlConst;
+import com.tm.consts.LogCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskFetchResponseDto;
@@ -42,7 +42,7 @@ public class TaskFetchRestController extends BaseRestController {
 	@ResponseBody
 	@CrossOrigin
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public TaskFetchResponseDto fetchTask(@RequestParam("userId") String userId) throws Exception {
+	public TaskFetchResponseDto fetch(@RequestParam("userId") String userId) throws Exception {
 		//------------------------------------
 		// 入力内容の検査
 		//------------------------------------

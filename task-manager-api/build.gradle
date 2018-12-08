@@ -35,35 +35,52 @@ configurations {
 }
 
 dependencies {
-	/** Spring boot */
+	/**
+	*Spring boot
+	*/
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.15.RELEASE'
 	runtime('org.springframework.boot:spring-boot-devtools')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 
-	/** Mybatis */
+	/**
+	* Mybatis
+	*/
 	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
 	compile group: 'org.mybatis.generator', name: 'mybatis-generator-maven-plugin', version: '1.3.7'
 	compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
 	mybatisGenerator group: 'org.mybatis.generator', name: 'mybatis-generator-core',
 		version: mybatisGeneratorVersion
 
-	/** flyway-gradle-plugin */
+	/**
+	* flyway-gradle-plugin
+	*/
 	compile group: 'org.flywaydb', name: 'flyway-gradle-plugin', version: '5.1.4'
 
-	/** Logback */
+	/**
+	* Logback
+	*/
 	compile 'ch.qos.logback:logback-classic:1.2.3'
 
-	/** PostgreSQL */
+	/**
+	* PostgreSQL
+	*/
 	runtime('org.postgresql:postgresql')
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.1'
 
 	 // lib フォルダ以下、サブフォルダも含めて全 jar ファイルを指定
     compile fileTree(dir: '/Users/SimonNozaki/.gradle/caches/modules-2/files-2.1', include: '**/*.jar')
 
-	/** Test Tools */
+	/**
+	* Test Tools
+	*/
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+
+	/**
+	* Apache Commons Lang
+	*/
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }
 
 /**

@@ -1,28 +1,83 @@
 <div>
-  <p>タスク一覧</p>
-  {{ tasks }}
-  <ul>
-    <li *ngFor="let task of tasks">
-      {{ task.getTaskTitle }} / {{ task.getTaskLabel }} / {{ task.getTaskNote }}
-      {{ task }}
-    </li>
-  </ul>
+  <div>
+    タスクのリスト
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <th>タスクラベル</th>
+        <th>タスクメモ</th>
+      </tr>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.taskTitle }}</td>
+        <td>{{ task.taskLabel }}</td>
+        <td>{{ task.taskNote }}</td>
+      </tr>
+      <tr>
+        <td>{{ taskForm.get("taskTitleControl").value }}</td>
+        <td>{{ taskForm.get("taskLabelControl").value }}</td>
+        <td>{{ taskForm.get("taskNoteControl").value }}</td>
+      </tr>
+    </table>
+  </div>
   
-  <form [formGroup]="taskForm">
-    <input formControlName="taskTitle" required type="text" name="taskTitle" placeholder="タスク名を入力..." >
-    <input formControlName="taskLabel" type="text" name="taskLabel" placeholder="ラベルを入力...">
-    <input formControlName="startDate" type="date" name="startDate" placeholder="開始日を入力...">
-    <input formControlName="deadline" type="date" name="deadline" placeholder="終了日を入力...">
-    <input formControlName="taskNote" type="text" name="taskNote" placeholder="メモ">
-
-    <p>{{ taskForm.status }}</p>
-
-    <button (click)="registTask(registTaskRequestDto)">追加</button>
-    <div *ngIf="violateRistriction()">
-      {{ checkedResult }}
-    </div>
+  <form [formGroup]="taskForm" (ngSubmit)="registTask()">
+    <label>
+      タイトル <input formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクタイトル" >
+    </label>
+    <label>
+      ラベル <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="ラベル">
+    </label>
+    <label>      
+      開始日 <input formControlName="startDateControl" type="date" name="startDate" placeholder="開始日">
+    </label>
+    <label>
+      期限日 <input formControlName="deadlineControl" type="date" name="deadline" placeholder="終了日を入力">
+    </label>
+    <label>
+      メモ<input formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
+    </label>
+    <button (click)="registTask()" [disabled]="taskForm.invalid">追加</button>
 
   </form>
+
+  <div>
+    <p>
+      入力ステータス : {{ taskForm.get("taskTitleControl").status }}
+    </p>
+    <p>
+        入力ステータス : {{ taskForm.get("taskLabelControl").status }}
+    </p>
+    <p>
+        入力ステータス : {{ taskForm.get("taskNoteControl").status }}
+    </p>
+  </div>
+  
+  <div>
+    <div *ngIf="taskForm.get('taskTitleControl').hasError('required'); else titleElseBlock">
+      <p>
+        タイトル : このフィールドは必須入力です。
+      </p>
+      <p>
+        <ng-template #titleElseBlock>ステータス : {{ taskForm.get("taskTitleControl").status }}</ng-template>
+      </p>
+    </div>
+    <div *ngIf="taskForm.get('taskLabelControl').hasError('maxlength'); else labelElseBlock">
+      <p>
+        ラベル : このフィールドは20文字以内です。
+      </p>
+      <p>
+        <ng-template #labelElseBlock>ステータス : {{ taskForm.get("taskLabelControl").status }}</ng-template>
+      </p>
+    </div>
+    <div *ngIf="taskForm.get('taskNoteControl').hasError('maxlength'); else noteElseBlock">
+      <p>
+        メモ : このフィールドは200文字以内です。
+      </p>
+      <p>
+        <ng-template #noteElseBlock>ステータス : {{ taskForm.get("taskNoteControl").status }}</ng-template>
+      </p>
+    </div>
+  </div>
   
   
 </div>
