@@ -1,8 +1,7 @@
 package com.tm.consts;
 
 /**
- * アプリ共通の定数ファイルです.
- * @author s.nozaki
+ * アプリ共通URI定数クラス。
  */
 public class CtrlConst {
 
@@ -23,27 +22,32 @@ public class CtrlConst {
 	public static final String FUNC_USERS = "/user";
 
 	/**
-	 * タスクの取得
+	 * 取得
 	 */
 	public static final String MAP_FETCH = "/fetch";
 
 	/**
-	 * タスクの登録
+	 * 登録
 	 */
 	public static final String MAP_REGIST = "/regist";
 
 	/**
-	 * タスクの更新
+	 * 更新
 	 */
 	public static final String MAP_UPDATE = "/update";
 
 	/**
-	 * タスクの削除
+	 * 削除
 	 */
 	public static final String MAP_DELETE = "/delete";
 
 	/**
-	 * タスクの完了
+	 * 完了
 	 */
 	public static final String MAP_COMPLETE = "/complete";
+
+	/**
+	 * 認証
+	 */
+	public static final String MAP_AUTHENTICATION = "/authentication";
 }

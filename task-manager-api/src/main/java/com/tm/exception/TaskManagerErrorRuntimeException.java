@@ -32,6 +32,14 @@ public class TaskManagerErrorRuntimeException extends RuntimeException {
     }
 
     /**
+     * デフォルトコンストラクタ。エラーメッセージと検査例外を引数にとります。
+     * @param th システムエラーの原因
+     */
+    public TaskManagerErrorRuntimeException(Throwable th) {
+        super(th);
+    }
+
+    /**
      * デフォルトコンストラクタ。エラーコードリストを引数に取ります。
      * @param List<?> errorsList
      */
