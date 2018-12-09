@@ -50,4 +50,9 @@ public class CtrlConst {
 	 * 認証
 	 */
 	public static final String MAP_AUTHENTICATION = "/authentication";
+
+	/**
+	 * 認証トークン
+	 */
+	public static final String MAP_AUTH_TOKEN = "/token";
 }

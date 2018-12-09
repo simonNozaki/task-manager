@@ -1,5 +1,7 @@
 package com.tm.dto.bean.user;
 
+import com.tm.dto.common.Errors;
+
 /**
  * 利用者認証レスポンスDTOクラス。
  */
@@ -9,6 +11,11 @@ public class UserAuthenticationResponseDto {
      * 認証トークン
      */
     private String authenticationToken;
+
+    /**
+     * 利用者ID
+     */
+    private String userId;
 
     /**
      * 利用者氏名
@@ -24,6 +31,11 @@ public class UserAuthenticationResponseDto {
      * パスワード
      */
     private String password;
+
+    /**
+     * エラー結果
+     */
+    private Errors errors;
 
     public String getEmail() {
         return email;
@@ -48,6 +60,18 @@ public class UserAuthenticationResponseDto {
     }
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    public Errors getErrors() {
+        return errors;
+    }
+    public void setErrors(Errors errors) {
+        this.errors = errors;
+    }
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }

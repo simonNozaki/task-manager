@@ -38,8 +38,8 @@ public class UserRegistRestController extends BaseRestController{
 
 	/**
 	 * 実行メソッド
-	 * @param UserRegistRequestDto user
-	 * @return UserRegistResponseDto
+	 * @param UserRegistRequestDto 利用者登録のリクエストデータ
+	 * @return UserRegistResponseDto 利用者登録の結果データ
 	 */
 	@RequestMapping(value = CtrlConst.FUNC_USERS + CtrlConst.MAP_REGIST, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
@@ -63,9 +63,9 @@ public class UserRegistRestController extends BaseRestController{
 		//------------------------------------
 		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
 			return responseProcessBuilder().of(UserRegistResponseDto::new)
-						.operate(res -> {res.setErrors(errors); return res;})
-						.apply();
-		}
+                        .operate(res -> {res.setErrors(errors); return res;})
+                        .apply();
+        }
 
 		//------------------------------------
 		// サービスクラスの実行
@@ -76,15 +76,15 @@ public class UserRegistRestController extends BaseRestController{
 		// レスポンス処理
 		//------------------------------------
 		return responseProcessBuilder().of(UserRegistResponseDto::new)
-				  .operate((UserRegistResponseDto res) -> {
-  				      Optional.ofNullable(result.getErrors()).ifPresent((Errors errs) -> res.setErrors(errs));
-				      Optional.ofNullable(result.getValue()).ifPresent((Users users) -> {
-				          res.setUserId(users.getUserId());
-				          res.setUserName(user.getUserName());
-				      });
-					  return res;
-				  })
-				  .logOutput(result)
-				  .apply();
-	}
+                  .operate((UserRegistResponseDto res) -> {
+                      Optional.ofNullable(result.getErrors()).ifPresent((Errors errs) -> res.setErrors(errs));
+                      Optional.ofNullable(result.getValue()).ifPresent((Users users) -> {
+                          res.setUserId(users.getUserId());
+                          res.setUserName(user.getUserName());
+                      });
+                	  return res;
+                  })
+                  .logOutput(result)
+                  .apply();
+    }
 }

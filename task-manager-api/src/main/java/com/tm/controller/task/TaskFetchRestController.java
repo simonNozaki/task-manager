@@ -40,7 +40,7 @@ public class TaskFetchRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_FETCH, method = RequestMethod.GET)
 	@ResponseBody
-	@CrossOrigin
+	@CrossOrigin(allowedHeaders="x-auth-token")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public TaskFetchResponseDto fetch(@RequestParam("userId") String userId) throws Exception {
 		//------------------------------------
