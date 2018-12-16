@@ -45,12 +45,13 @@ public class TaskRegistRestController extends BaseRestController {
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_REGIST, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.ACCEPTED)
 	public TaskRegistResponseDto register(@RequestBody TaskRegistRequestDto task) throws Exception {
 		//------------------------------------
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(task)
+		                    .logInput(task)
                             .hasNullValue(LogCode.TMTKCM10001.getCode())
                             .violateMaxLength(task.getTaskTitle(), AppConst.TASK_TITLE_MAX, LogCode.TMTKCM10011.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, LogCode.TMTKCM10012.getCode())
@@ -79,6 +80,7 @@ public class TaskRegistRestController extends BaseRestController {
 		// レスポンス処理
 		//------------------------------------
 		return responseProcessBuilder().of(TaskRegistResponseDto::new)
+		        .logOutput(registResult.getValue())
 				.operate((TaskRegistResponseDto res) -> {
 					res.setTaskId(registResult.getValue().getTaskId());
 					res.setTaskTitle(registResult.getValue().getTaskTitle());

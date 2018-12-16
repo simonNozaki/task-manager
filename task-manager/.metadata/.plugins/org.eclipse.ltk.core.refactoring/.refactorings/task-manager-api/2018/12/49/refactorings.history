@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 2 elements from プロジェクト &apos;task-manager-api&apos;&#x0A;- 元のプロジェクト: &apos;task-manager-api&apos;&#x0A;- オリジナル要素:&#x0A;     .classpath&#x0A;     .DS_Store" description="要素の削除" element1=".classpath" element2=".DS_Store" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="2" stamp="1544261560806" subPackages="false" version="1.0"/>
+</session>

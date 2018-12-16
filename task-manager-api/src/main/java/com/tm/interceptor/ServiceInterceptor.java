@@ -18,9 +18,9 @@ public class ServiceInterceptor implements MethodInterceptor{
      */
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        AppLogger.trace(LogCode.TMFWCM00021, null, invocation.getThis().getClass(), invocation.getMethod().getName());
+        AppLogger.trace(LogCode.TMFWCM00021, null, invocation.getThis().getClass(), invocation.getMethod().getName(), null);
         Object response = invocation.proceed();
-        AppLogger.trace(LogCode.TMFWCM00022, null, invocation.getThis().getClass(), invocation.getMethod().getName());
+        AppLogger.trace(LogCode.TMFWCM00022, null, invocation.getThis().getClass(), invocation.getMethod().getName(), null);
         return response;
     }
 

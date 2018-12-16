@@ -22,12 +22,28 @@ public class CtrlConst {
 	 */
 	public static final String FUNC_USERS = "/user";
 
-	/** タスクの取得 */
+	/**
+	 * タスクの取得
+	 */
 	public static final String MAP_FETCH = "/fetch";
-	/** タスクの登録 */
+
+	/**
+	 * タスクの登録
+	 */
 	public static final String MAP_REGIST = "/regist";
-	/** タスクの更新 */
+
+	/**
+	 * タスクの更新
+	 */
 	public static final String MAP_UPDATE = "/update";
-	/** タスクの削除 */
+
+	/**
+	 * タスクの削除
+	 */
 	public static final String MAP_DELETE = "/delete";
+
+	/**
+	 * タスクの完了
+	 */
+	public static final String MAP_COMPLETE = "/complete";
 }

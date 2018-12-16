@@ -47,20 +47,21 @@ public class TaskFetchRestController extends BaseRestController {
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(userId)
-				.violateSpecificLength(userId, AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
-				.build();
+                        .logInput(arrangeLoggingString(userId))
+                        .violateSpecificLength(userId, AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
+                        .build();
 
 		//------------------------------------
 		// エラーがある場合レスポンス作成処理
 		//------------------------------------
 		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
 			return responseProcessBuilder().of(TaskFetchResponseDto::new)
-					.operate((TaskFetchResponseDto res) -> {
-						errors.setId(userId);
-						res.setErrors(errors);
-						return res;
-					})
-					.apply();
+                        .operate((TaskFetchResponseDto res) -> {
+                        errors.setId(userId);
+                        res.setErrors(errors);
+                        return res;
+                        })
+                        .apply();
 		}
 
 		//------------------------------------
@@ -71,13 +72,34 @@ public class TaskFetchRestController extends BaseRestController {
 		//------------------------------------
 		// レスポンス処理
 		//------------------------------------
-		// リクエスト処理を終了し、レスポンスを返します.
 		return responseProcessBuilder().of(TaskFetchResponseDto::new)
-				.operate((TaskFetchResponseDto dto) -> {
-					dto.setTasks(taskList);
-					return dto;
-				})
-				.apply();
+        		        .logOutput(taskList)
+                        .operate((TaskFetchResponseDto dto) -> {
+                        dto.setTasks(taskList);
+                        return dto;
+                        })
+                        .apply();
+	}
+
+	/**
+	 * 電文ログ用メッセージを整形します。
+	 * @param String inputUserId
+	 * @return String
+	 */
+	private String arrangeLoggingString(String inputUserId) {
+	    StringBuilder sb = new StringBuilder();
+	    final String leftBracket = "{";
+	    final String rightBracket = "}";
+	    final String colon = " : ";
+	    final String userId = "userId";
+	    sb.append(leftBracket);
+	    sb.append(userId);
+	    sb.append(colon);
+	    sb.append(inputUserId);
+	    sb.append(rightBracket);
+
+	    return sb.toString();
+
 	}
 
 }

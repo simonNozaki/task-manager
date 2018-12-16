@@ -1,12 +1,15 @@
 package com.tm.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tm.config.AppLogger;
+import com.tm.consts.LogCode;
 import com.tm.dto.common.Errors;
-import com.tm.exception.TaskManagerErrorRuntimeException;
 
 /**
  * 入力検査機能を提供するクラスです.
@@ -43,13 +46,33 @@ public final class InputInspector<T> {
 			this.errors = new Errors();
 		}
 
+		private Inspector(T value, Errors errors) {
+		    this.value = value;
+		    if (ObjectUtil.isNullOrEmpty(this.errors)) {
+		        this.errors = new Errors();
+		    }
+		    this.errors = errors;
+		}
+
+		/**
+		 * リクエストされた入力内容をログ出力します。<br>
+		 * @param V input
+		 * @return Inspector<T>
+		 * @throws IOException
+		 */
+		public <V> Inspector<T> logInput(V input) throws IOException {
+		    ObjectMapper mapper = new ObjectMapper();
+	        AppLogger.traceTelegram(LogCode.TMFWCM80001, this.getClass(), new Object(){}.getClass().getEnclosingMethod().getName(), mapper.writeValueAsString(input));
+		    return new Inspector<T>(value);
+		}
+
 		/**
 		 * 入力がnullもしくは空の場合、エラーコードを設定します.
 		 * @param value
 		 * @return Inspector<T>
 		 */
 		public Inspector<T> hasNullValue(String code) {
-			Predicate<T> predicate = (T value) -> !ObjectUtil.isNullOrEmpty(value);
+			Predicate<T> predicate = (T value) -> ObjectUtil.isNullOrEmpty(value);
 			return this.satisfyPredicateWithInput(value, predicate, code);
 		}
 
@@ -61,10 +84,6 @@ public final class InputInspector<T> {
 		 * @return
 		 */
 		public <V> Inspector<T> violateMaxLength(V target, int max, String code) {
-			// 文字列でない場合は評価を実施せず、そのままパイプラインを継続
-			if (target.getClass() != String.class) {
-				return this;
-			}
 			Predicate<V> predicate = (V inputValue) -> StringUtil.isOverSpecificLength(target.toString(), max);
 			return this.satisfyPredicateWithInput(target, predicate, code);
 		}
@@ -77,10 +96,6 @@ public final class InputInspector<T> {
 		 * @return
 		 */
 		public <V> Inspector<T> violateSpecificLength(V target, int max, String code) {
-			// 文字列でない場合は評価を実施せず、そのままパイプラインを継続
-			if (target.getClass() != String.class) {
-				return this;
-			}
 			Predicate<V> predicate = (V inputValue) -> StringUtil.isEqualToSpecificLength(target.toString(), max);
 			return this.satisfyPredicateWithInput(target, predicate, code);
 		}
@@ -105,12 +120,12 @@ public final class InputInspector<T> {
          */
         public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
             if (!predicate.test(input)) {
-                List<String> codes = Optional.ofNullable(errors.getCodes()).orElse(new ArrayList<>());
+                // エラーコードのリストがない場合はリストを初期化する
+                List<String> codes = Optional.ofNullable(this.errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);
                 this.errors.setCodes(codes);
-                throw new TaskManagerErrorRuntimeException(this.errors.getCodes());
             }
-            return this;
+            return new Inspector<T>(this.value, this.errors);
         }
 
 		/**

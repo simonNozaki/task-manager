@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
 import com.tm.consts.LogCode;
 
@@ -19,7 +20,13 @@ public class RestControllerInterceptor extends HandlerInterceptorAdapter{
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-        AppLogger.trace(LogCode.TMFWCM00011, null, ((HandlerMethod) handler).getBean().getClass(), ((HandlerMethod) handler).getMethod().getName());
+        if (handler instanceof HandlerMethod) {
+            ObjectMapper mapper = new ObjectMapper();
+            AppLogger.trace(LogCode.TMFWCM00011, null, getCastedClassNmeForHnadlerMethod(handler), getCastedMethodNmeForHnadlerMethod(handler),
+                    mapper.writeValueAsString(((HandlerMethod) handler).getBean()));
+        } else {
+            AppLogger.trace(LogCode.TMFWCM00011, null, getCastedClassNmeForHnadlerMethod(handler), getCastedMethodNmeForHnadlerMethod(handler), null);
+        }
         return true;
     }
 
@@ -28,7 +35,48 @@ public class RestControllerInterceptor extends HandlerInterceptorAdapter{
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception{
-        AppLogger.trace(LogCode.TMFWCM00012, null, ((HandlerMethod) handler).getBean().getClass(), ((HandlerMethod) handler).getMethod().getName());
+        if (handler instanceof HandlerMethod) {
+            ObjectMapper mapper = new ObjectMapper();
+            AppLogger.trace(LogCode.TMFWCM00012, null, getCastedClassNmeForHnadlerMethod(handler), getCastedMethodNmeForHnadlerMethod(handler),
+                    mapper.writeValueAsString(((HandlerMethod) handler).getBean().toString()));
+        } else {
+            AppLogger.trace(LogCode.TMFWCM00012, null, getCastedClassNmeForHnadlerMethod(handler), getCastedMethodNmeForHnadlerMethod(handler), null);
+        }
+    }
+
+    /**
+     * インターセプトしたオブジェクトの型を判定し、HandlerMethoedのインスタンスの場合クラス名を取得します。
+     * @param Object handler
+     * @return Class<? extends Object>
+     */
+    private Class<? extends Object> getCastedClassNmeForHnadlerMethod(Object handler) {
+        if (handler instanceof HandlerMethod) {
+            return ((HandlerMethod) handler).getBean().getClass();
+        }
+        return handler.getClass();
+    }
+
+    /**
+     * インターセプトしたオブジェクトの型を判定し、HandlerMethoedのインスタンスの場合メソッド名を取得します。
+     * @param Object handler
+     * @return String
+     */
+    private String getCastedMethodNmeForHnadlerMethod(Object handler) {
+        if (handler instanceof HandlerMethod) {
+            return ((HandlerMethod) handler).getMethod().getName();
+        }
+        return handler.getClass().getName();
+    }
+
+    /**
+     * ログメッセージ生成
+     */
+    private String createMessage(Object obj) {
+
+        HandlerMethod hm = (HandlerMethod) obj;
+
+        return hm.getShortLogMessage();
+
     }
 
 }

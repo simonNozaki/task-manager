@@ -16,13 +16,13 @@ export class FetchTaskResponseDto {
    */
   public errors: Errors[];
 
-  public getTasks(): Task[] {
+  public getTasks(): Task[]|null|undefined {
     return this.tasks;
   }
   public setTasks(tasks: Task[]) {
     this.tasks = tasks;
   }
-  public getErrors(): Errors[] {
+  public getErrors(): Errors[]|null|undefined {
     return this.errors;
   }
   public setErrors(errors: Errors[]) {

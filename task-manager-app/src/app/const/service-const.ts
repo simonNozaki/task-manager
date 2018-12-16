@@ -9,6 +9,7 @@ export module ServiceConst {
   export const BASE_URL = 'http://localhost:18080/';
   export const BASE_API_VERSION = 'api/v1';
   export const BASE_URL_FUNC = '/task';
+  export const BASE_URL_USER = '/user';
   export const BASE_SLASH = '/';
 
   //-----------------------------
@@ -32,13 +33,34 @@ export module ServiceConst {
   //-----------------------------
   // コールするAPIのURL定義
   //-----------------------------
-  /** タスクの新規登録 */
+  /** 
+   * タスクの新規登録 
+   */
   export const URL_TASK_REGIST = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/regist';
-  /** タスクの取得 */
+  
+  /** 
+   * タスクの取得
+   */
   export const URL_TASK_FETCH = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/fetch';
-  /** タスクの編集 */
+  
+  /** 
+   * タスクの編集
+   */
   export const URL_TASK_UPDATE = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/update';
-  /** タスクの削除 */
+  
+  /** 
+   * タスクの削除 
+   */
   export const URL_TASK_DELETE = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/delete';
+
+  /**
+   * タスクの完了
+   */
+  export const URL_TASK_COMPLETE = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/complete';
+
+  /**
+   * 利用者の新規登録
+   */
+  export const URL_USER_REGIST = BASE_URL + BASE_API_VERSION + BASE_URL_USER + '/regist';
 }
 

@@ -6,11 +6,18 @@
         <th>タイトル</th>
         <th>タスクラベル</th>
         <th>タスクメモ</th>
+        <th></th>
       </tr>
       <tr *ngFor="let task of tasks">
         <td>{{ task.taskTitle }}</td>
         <td>{{ task.taskLabel }}</td>
         <td>{{ task.taskNote }}</td>
+        <button (click)="complete(task.taskId)" ></button>
+      </tr>
+      <tr>
+        <td>{{ taskForm.get("taskTitleControl").value }}</td>
+        <td>{{ taskForm.get("taskLabelControl").value }}</td>
+        <td>{{ taskForm.get("taskNoteControl").value }}</td>
       </tr>
       <tr>
         <td>{{ taskForm.get("taskTitleControl").value }}</td>
@@ -19,8 +26,13 @@
       </tr>
     </table>
   </div>
+<<<<<<< HEAD
   
   <form [formGroup]="taskForm" (ngSubmit)="registTask()">
+=======
+
+  <form [formGroup]="taskForm">
+>>>>>>> eeb5c7f3d628ae1c8ee2f2c98c31aa8fc845e7d1
     <label>
       タイトル <input formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクタイトル" >
     </label>
@@ -36,11 +48,17 @@
     <label>
       メモ<input formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
     </label>
+<<<<<<< HEAD
     <button (click)="registTask()" [disabled]="taskForm.invalid">追加</button>
+=======
+
+    <button (click)="registTask()" [disabled]="">追加</button>
+>>>>>>> eeb5c7f3d628ae1c8ee2f2c98c31aa8fc845e7d1
 
   </form>
 
   <div>
+<<<<<<< HEAD
     <p>
       入力ステータス : {{ taskForm.get("taskTitleControl").status }}
     </p>
@@ -75,6 +93,12 @@
       </p>
       <p>
         <ng-template #noteElseBlock>ステータス : {{ taskForm.get("taskNoteControl").status }}</ng-template>
+=======
+    <div *ngIf="violateRistriction()">
+      <p>
+        タイトル : {{ checkedResult }}
+        ステータス : {{ taskForm.get("taskTitleControl").status }}
+>>>>>>> eeb5c7f3d628ae1c8ee2f2c98c31aa8fc845e7d1
       </p>
     </div>
   </div>

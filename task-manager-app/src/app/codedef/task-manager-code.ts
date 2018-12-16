@@ -21,4 +21,17 @@ export module TaskManagerCode {
    */
   export const TASK_COMPLETED_FLAG_DELETED = "2";
 
+    //----------------------------
+    // タスクコード定義
+    //----------------------------
+    /**
+     * 利用者利用フラグ：0, 利用中
+     */
+    export const USER_USED_FLAG_USED = "0";
+
+    /**
+     * 利用者利用フラグ：1,退会済み
+     */
+    export const USER_USED_FLAG_DELETED = "1";
+
 }

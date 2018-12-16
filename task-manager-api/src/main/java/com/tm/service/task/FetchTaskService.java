@@ -12,6 +12,10 @@ import com.tm.dto.Task;
 @Service
 public interface FetchTaskService {
 
-	// 利用者IDに紐づくタスクのリストを取得します.
+	/** 利用者IDに紐づくタスクのリストを取得します.
+	 * @param String userId
+	 * @return List<Task>
+	 * @throws Exception
+	 */
 	public List<Task> fetchTask(String userId) throws Exception;
 }

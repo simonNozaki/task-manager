@@ -1,6 +1,11 @@
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}
   </h1>
 </div>
-<app-task></app-task>
+<nav>
+    <a routerLink="/task">タスク</a>
+    <a routerLink="/">トップページ</a>
+    <a routerLink="/signup">サインアップ</a>
+</nav>
+<router-outlet></router-outlet>

@@ -49,7 +49,11 @@ export class Task {
   public setTaskId(taskId: string) {
     this.taskId = taskId;
   }
+<<<<<<< HEAD
   public getTaskTitle(): string {
+=======
+  public getTaskTitle(): string|null {
+>>>>>>> eeb5c7f3d628ae1c8ee2f2c98c31aa8fc845e7d1
     return this.taskTitle;
   }
   public setTaskTitle(taskTitle: string) {

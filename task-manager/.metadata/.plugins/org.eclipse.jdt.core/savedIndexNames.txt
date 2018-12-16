@@ -1,0 +1,2 @@
+INDEX VERSION 1.130+/Users/SimonNozaki/ApplicationDevelopment/task-manager/task-manager/.metadata/.plugins/org.eclipse.jdt.core
+2421546947.index

@@ -19,7 +19,27 @@ export module AppConst {
     /**
      * タスクメモ、200桁
      */
-    export const TASK_NOTE_MAX_LENGTH: number= 200;
+    export const TASK_NOTE_MAX_LENGTH: number = 200;
+
+    /**
+     * 利用者名、50桁
+     */
+    export const USER_NAME_MAX_LENGTH: number = 50;
+
+    /**
+     * 利用者メールアドレス、100桁
+     */
+    export const USER_EMAIL_MAX_LENGTH: number = 100;
+
+    /**
+     * 利用者パスワード、100桁
+     */
+    export const USER_PASSWORD_MAX_LENGTH: number = 100;
+
+    /**
+     * 利用者利用フラグ、1桁
+     */
+    export const USER_USED_FLAG_LENGTH: number = 1;
 
     //-----------------------------
     // バリデーション違反メッセージ
@@ -27,7 +47,7 @@ export module AppConst {
     /**
      * タイトルが入力されていません。タイトルは必須です。
      */
-    export const TASK_TITLE_REQUIRED_VIOLATED: string = "";
+    export const TASK_TITLE_REQUIRED_VIOLATED: string = "タイトルが入力されていません。タイトルは必須です。";
 
     /**
      * ラベルが長すぎます。20文字までです。
@@ -44,5 +64,34 @@ export module AppConst {
      */
     export const TASK_NOTE_LENGTH_VIOLATED: string = "タスクのメモが長すぎます。メモは200文字までです。";
 
+    /**
+     * 名前が入力されていません。名前は必須入力です。
+     */
+    export const USER_SIGNUP_USERNAME_REQUIRED_VIOLATED: string = "名前が入力されていません。名前は必須入力です。";
+
+    /**
+     * 名前が長すぎます。名前は50文字までです。
+     */
+    export const USER_SIGNUP_USERNAME_LENGTH_VIOLATED: string = "名前が長すぎます。名前は50文字までです。";
+
+    /**
+     * メールアドレスが入力されていません。メールアドレスは必須入力です。
+     */
+    export const USER_SIGNUP_EMAIL_REQUIRED_VIOLATED: string = "メールアドレスが入力されていません。メールアドレスは必須入力です。";
+
+    /**
+     * メールアドレスが長すぎます。メールアドレスは100文字までです。
+     */
+    export const USER_SIGNUP_EMAIL_LENGTH_VIOLATED: string = "メールアドレスが長すぎます。メールアドレスは100文字までです。";
+
+    /**
+     * パスワードが入力されていません。パスワードは必須入力です。
+     */
+    export const USER_SIGNUP_PASSWORD_REQUIRED_VIOLATED: string = "パスワードが入力されていません。パスワードは必須入力です。";
+
+    /**
+     * パスワードが長すぎます。パスワードは100文字までです。
+     */
+    export const USER_SIGNUP_PASSWORD_LENGTH_VIOLATED: string = "パスワードが長すぎます。パスワードは100文字までです。";
 
 }
