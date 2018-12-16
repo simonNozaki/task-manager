@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 
 /**
  * Controllerのインターセプタークラス

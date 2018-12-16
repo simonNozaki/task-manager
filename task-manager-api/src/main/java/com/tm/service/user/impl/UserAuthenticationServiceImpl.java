@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 import com.tm.dao.repository.UserRepository;
 import com.tm.dto.Users;
 import com.tm.dto.UsersExample;

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;

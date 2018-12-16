@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 
 /**
  * 基底Controllerクラスです.

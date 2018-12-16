@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskFetchResponseDto;
@@ -40,7 +40,7 @@ public class TaskFetchRestController extends BaseRestController {
 	 */
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_FETCH, method = RequestMethod.GET)
 	@ResponseBody
-	@CrossOrigin(allowedHeaders="x-auth-token")
+	@CrossOrigin
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public TaskFetchResponseDto fetch(@RequestParam("userId") String userId) throws Exception {
 		//------------------------------------

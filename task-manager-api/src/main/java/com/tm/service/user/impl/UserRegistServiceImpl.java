@@ -2,10 +2,11 @@ package com.tm.service.user.impl;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 import com.tm.dao.repository.UserRepository;
 import com.tm.dto.Users;
 import com.tm.dto.UsersExample;
@@ -13,6 +14,7 @@ import com.tm.dto.bean.user.UserRegistRequestDto;
 import com.tm.dto.common.ServiceOut;
 import com.tm.service.framework.BaseService;
 import com.tm.service.user.UserRegistService;
+import com.tm.util.IdCounter;
 import com.tm.util.ObjectUtil;
 
 /**
@@ -34,10 +36,13 @@ public class UserRegistServiceImpl extends BaseService implements UserRegistServ
 					.build();
 		}
 
-		// TODO このへんでID発番、ID発番もクラスに切り出して作成
+		// DB登録用にBeanの詰替およびID発番
+		Users newUser = new Users();
+		BeanUtils.copyProperties(user, newUser);
+		newUser.setUserId(IdCounter.assignIdForUser(8));
 
 		// DBにオブジェクトを登録
-		Users result = userRepository.registerUser(user);
+		Users result = userRepository.registerUser(newUser);
 
 		// レスポンスチェック
 		if (result == null) {

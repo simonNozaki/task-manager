@@ -48,7 +48,7 @@ public final class ObjectUtil {
 
 	    // 各要素のnullチェック
 	    boolean ofRowIsNull = ObjectUtil.getStream(list)
-	        .anyMatch((Object row) -> row.equals(null));
+	        .anyMatch((Object row) -> row.equals(null) || row.equals(""));
 
 	    if (ofRowIsNull) {
 	        return true;

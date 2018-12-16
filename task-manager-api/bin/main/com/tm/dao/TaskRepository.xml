@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tm.dao.repository.TaskRepository">
+  <resultMap id="BaseResultMap" type="com.tm.dto.Task">
+    <id column="task_id" jdbcType="CHAR" property="taskId" />
+    <result column="task_title" jdbcType="VARCHAR" property="taskTitle" />
+    <result column="task_label" jdbcType="VARCHAR" property="taskLabel" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="completed_flag" jdbcType="CHAR" property="completedFlag" />
+    <result column="user_id" jdbcType="CHAR" property="userId" />
+    <result column="task_note" jdbcType="VARCHAR" property="taskNote" />
+  </resultMap>
+
+  <!-- 新規タスクを登録します. -->
+  <select id="register" parameterType="com.tm.dto.Task" resultMap="BaseResultMap">
+    INSERT INTO task (task_id,task_title,task_label,start_date,deadline,
+  		completed_flag,user_id,task_note)
+  	VALUES
+  	(
+  	  #{taskItem.taskId},#{taskItem.taskTitle},#{taskItem.taskLabel},
+  	  #{taskItem.startDate},#{taskItem.deadline},#{taskItem.completedFlag},#{taskItem.userId},
+  	  #{taskItem.taskNote}
+  	)
+  	RETURNING task_id,task_title,task_label,start_date,deadline,completed_flag,
+  		user_id,task_note
+  </select>
+
+  <!-- 履歴テーブルに更新したタスクを登録します。 -->
+  <select id="insertUpdatedTask" resultMap="BaseResultMap">
+    INSERT INTO public.task_history(
+            task_id, task_title, task_label, start_date, deadline, completed_flag,
+            user_id, task_note)
+      SELECT task_id, task_title, task_label, start_date, deadline, completed_flag,
+            user_id, task_note
+      FROM task
+      WHERE task_id = #{taskId}
+    RETURNING task_id,task_title,task_label,start_date,deadline,completed_flag,
+  		user_id,task_note
+  </select>
+
+</mapper>

@@ -12,8 +12,8 @@ import org.slf4j.MarkerFactory;
 
 import com.tm.config.logger.AppTelegramLogger;
 import com.tm.config.logger.AppTraceLogger;
-import com.tm.consts.LogCode;
-import com.tm.consts.LoggerConst;
+import com.tm.consts.log.LogCode;
+import com.tm.consts.log.LoggerConst;
 
 import ch.qos.logback.classic.Level;
 

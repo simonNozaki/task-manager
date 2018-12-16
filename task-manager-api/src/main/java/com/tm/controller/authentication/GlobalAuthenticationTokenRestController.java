@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tm.consts.AuthenticationConst;
 import com.tm.consts.CtrlConst;
 import com.tm.controller.framework.BaseRestController;
 
@@ -23,7 +24,7 @@ public class GlobalAuthenticationTokenRestController extends BaseRestController{
      * @return Map<String,String> トークン情報のマップインスタンス
      */
     @RequestMapping(CtrlConst.MAP_AUTH_TOKEN)
-    public Map<String,String> token(HttpSession session) {
-        return Collections.singletonMap("token", session.getId());
+    public Map<String,String> issueToken(HttpSession session) {
+        return Collections.singletonMap(AuthenticationConst.SESSION_MAP_TOKEN, session.getId());
     }
 }

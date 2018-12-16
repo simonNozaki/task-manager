@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.tm.dao.UsersMapper;
 import com.tm.dto.Users;
-import com.tm.dto.bean.user.UserRegistRequestDto;
 
 /**
  * UsersモデルのカスタムDTOです.
@@ -18,5 +17,5 @@ public interface UserRepository extends UsersMapper {
 	 * @param UserRegistRequestDto user
 	 * @return Users
 	 */
-	public Users registerUser(@Param("user")UserRegistRequestDto user);
+	public Users registerUser(@Param("user")Users newUser);
 }

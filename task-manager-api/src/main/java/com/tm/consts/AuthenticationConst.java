@@ -6,7 +6,7 @@ package com.tm.consts;
 public class AuthenticationConst {
 
     /**
-     *
+     * エンコード文字列の鍵bit長
      */
     public static final String SECRET = "nyasbasamplesecret";
 
@@ -34,4 +34,9 @@ public class AuthenticationConst {
      * 認証情報、パスワード
      */
     public static final String PASSWORD = "password";
+
+    /**
+     * セッション情報から取得するマップキー、トークン
+     */
+    public static final String SESSION_MAP_TOKEN = "token";
 }
