@@ -61,6 +61,11 @@ export module ServiceConst {
   /**
    * 利用者の新規登録
    */
-  export const URL_USER_REGIST = BASE_URL + BASE_API_VERSION + BASE_URL_USER + '/regist';
+  export const URL_USER_REGIST = BASE_URL + BASE_API_VERSION + BASE_URL_USER + '/signup';
+
+  /**
+   * 利用者のサインイン
+   */
+  export const URL_USER_SIGNIN = BASE_URL + BASE_API_VERSION + BASE_URL_USER + '/signin';
 }
 

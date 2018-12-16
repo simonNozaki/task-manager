@@ -94,4 +94,14 @@ export module AppConst {
      */
     export const USER_SIGNUP_PASSWORD_LENGTH_VIOLATED: string = "パスワードが長すぎます。パスワードは100文字までです。";
 
+    /**
+     * 入力されたパスワードはすでに利用されています。
+     */
+    export const USER_ALREADY_REGISTERD: string = "入力されたパスワードはすでに利用されています。";
+
+    /**
+     * 入力された利用者情報は存在しません。メールアドレス、もしくはパスワードが正しいことを確認してください。
+     */
+    export const USER_INFO_INVALID: string = "入力された利用者情報は存在しません。メールアドレス、もしくはパスワードが正しいことを確認してください。";
+
 }

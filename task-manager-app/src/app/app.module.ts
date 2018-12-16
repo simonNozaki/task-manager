@@ -10,13 +10,16 @@ import { TaskService } from './service/task.service';
 import { WebRoutingModule } from './routes/web/web-routing.module';
 import { SignupComponent } from './component/user/signup/signup.component';
 import { SignupService } from './service/signup.service';
-import { XhrGlobalInterceptor } from './interceptor/xhr-global-interceptor';
+import { CommonDeliveryService } from './service/common-delivery.service';
+import { SigninComponent } from './component/user/signin/signin.component';
+import { SigninService } from './service/signin.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -29,11 +32,14 @@ import { XhrGlobalInterceptor } from './interceptor/xhr-global-interceptor';
   providers: [ 
     TaskService,
     SignupService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: XhrGlobalInterceptor, 
-      multi: true
-    }
+    CommonDeliveryService,
+    SigninService
+    // ,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: XhrGlobalInterceptor, 
+    //   multi: true
+    // }
    ],
   bootstrap: [AppComponent]
 })

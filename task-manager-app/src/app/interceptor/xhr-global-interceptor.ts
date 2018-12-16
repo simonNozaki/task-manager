@@ -13,7 +13,7 @@ export class XhrGlobalInterceptor implements HttpInterceptor {
      */
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // 認証用HTTPヘッダーを設定
-        // TODO 独自ヘッダーはここで設定するようにする
+        // TODO 独自ヘッダーはここで設定するようにする、あとで定数モジュールに移動する
         const xhr = req.clone({
             headers: req.headers.set("X-Requested-With", "XMLHttpRequest")
         });
@@ -25,6 +25,6 @@ export class XhrGlobalInterceptor implements HttpInterceptor {
             }
         })
 
-        return next.handle(xhr);
+        return next.handle(req);
     }
 }

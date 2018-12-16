@@ -1,23 +1,19 @@
 <div>
-    <form [formGroup]="signupForm">
-        <label>
-            名前 <input formControlName="userNameControl" type="text" name="userName" placeholder="名前" >
-        </label>
+    <h1>サインインフォーム</h1>
+    <form [formGroup]="signinForm">
         <label>
             メールアドレス <input formControlName="emailControl" type="text" name="email" placeholder="メールアドレス" >
         </label>
         <label>
             パスワード <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
         </label>
-
-        <button (click)="signup()" [disabled]="">サインアップ</button>
-
+        <button (click)="signin()" [disabled]="">サインイン</button>
     </form>
 
     <div *ngIf="violateRistriction()">
       <p>
         タイトル : {{ checkedResult }}
-        ステータス : {{ signupForm.get("userNameControl").status }}
+        ステータス : {{ signinForm.get("emailControl").status }}
       </p>
     </div>
 </div>

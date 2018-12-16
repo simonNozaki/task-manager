@@ -10,6 +10,9 @@ import { ObjectUtil } from '../../util/object.util';
 import { TaskCompleteRequestDto } from '../../dto/interface/task-complete-request.dto';
 import { TaskCompleteResponseDto } from '../../dto/interface/task-complete-response.dto';
 import { _ } from 'underscore';
+import { CommonDeliveryService } from '../../service/common-delivery.service';
+import { Router } from '@angular/router';
+import { ServiceConst } from '../../const/service-const';
 
 /**
  * タスクの業務処理コンポーネント
@@ -28,7 +31,15 @@ export class TaskComponent implements OnInit {
     /** 
      * デフォルトコンストラクタ
      */
-    constructor(private taskService: TaskService) { }
+    constructor(private taskService: TaskService, private router: Router, private commonDeliveryService: CommonDeliveryService) {
+    }
+
+    /**
+     * 利用者ID
+     *   = '10001000'
+     */ 
+    // @Input()
+    public userId: string;
 
     /**
      * タスク取得DTO
@@ -38,20 +49,8 @@ export class TaskComponent implements OnInit {
     /**
      * タスクリスト 
      */ 
-    @Input()
     public tasks: Task[];
     
-    /**
-     * 利用者ID 
-     */ 
-    private userId = '10001000';
-
-    /** 
-     * 入力値の変化を検知してバインドするイベントエミッタ
-     */
-    @Output()
-    public emitter = new EventEmitter<Task[]>();
-
     /**
      * タスク登録のフォームグループ
      */
@@ -72,18 +71,22 @@ export class TaskComponent implements OnInit {
      * コンポーネント初期化時の起動処理
     */
     ngOnInit() {
-      this.tasks = this.fetchTasks(this.userId);
-      this.fetchTaskResponseDto = new FetchTaskResponseDto();
-      this.checkedResult = "";
-      this.violateRistriction();
-    }
-
-    /**
-     * 入力されたタスクの変化を検知するハンドラ
-    */
-    change(tasks): void {
-      this.tasks = tasks;
-      this.emitter.emit(this.tasks);
+        // リダイレクトされたときに、別のコンポーネントから動的に利用者IDを受け取ります。
+        this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
+            console.log("ngOninit, レスポンスuserId : " + userId);
+            this.userId = userId;
+            console.log("ngOninit, サービス呼び出し内userId : " + this.userId);
+            this.tasks = this.fetchTasks(userId);
+            console.log("フェッチしたタスクのリスト : " + JSON.stringify(this.tasks))
+        });
+        
+        // 利用者IDが正常に設定されていない場合、リダイレクトしてアクセスを拒否する
+        if (ObjectUtil.isNullOrUndefined(this.userId)) {
+            this.router.navigateByUrl(ServiceConst.BASE_SLASH + ServiceConst.URL_WEB_USER_SIGNIN);
+        }
+        this.fetchTaskResponseDto = new FetchTaskResponseDto();
+        this.checkedResult = "";
+        console.log("ngOninit内userId : " + this.userId);
     }
 
     /**
@@ -91,14 +94,14 @@ export class TaskComponent implements OnInit {
      * @param userId: string
      * @returns Task[]
     */
-    public fetchTasks(userId): Task[] {
+    public fetchTasks(userId: string): Task[] {
         this.taskService.fetchTask(userId).subscribe(
                 (res: FetchTaskResponseDto) => {
                     this.tasks = res.tasks;
                     this.fetchTaskResponseDto = res;
                 }
             );
-        if (ObjectUtil.isNullOrUndefined(this.fetchTaskResponseDto.getTasks())) {
+        if (ObjectUtil.isNullOrUndefined(this.fetchTaskResponseDto.tasks)) {
             var initializedTasks: Task[] = [];
             return initializedTasks;
         }
@@ -111,6 +114,7 @@ export class TaskComponent implements OnInit {
      * @returns void
     */
     public registTask(): void {
+        console.log("registTask内userId : " + this.userId);
         // 入力チェックを違反していない場合、タスク登録処理を実行します
         if (!this.violateRistriction()) {
             var registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
@@ -165,7 +169,6 @@ export class TaskComponent implements OnInit {
             this.checkedResult =  AppConst.TASK_NOTE_LENGTH_VIOLATED;
             return true;
         }
-        console.log("return true");
 
         return false;
     }
