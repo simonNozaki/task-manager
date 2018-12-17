@@ -10,6 +10,7 @@ import org.slf4j.MDC;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import com.tm.config.logger.AppErrorLogger;
 import com.tm.config.logger.AppTelegramLogger;
 import com.tm.config.logger.AppTraceLogger;
 import com.tm.consts.log.LogCode;
@@ -31,8 +32,8 @@ public class AppLogger {
 
     // ロガー用定数
     private static final String ERR_STACK_TRACE = "errStackTrace";
-    private static final String STACKTRACE_START = "[Telegram Trace Start]";
-    private static final String STACKTRACE_END = "[Telegram Trace End]";
+    private static final String STACKTRACE_START = "----------------------Telegram Trace Start----------------------";
+    private static final String STACKTRACE_END = "----------------------Telegram Trace End----------------------";
     private static final String STR_NEWLINE = "\n";
 
 	/**
@@ -46,16 +47,21 @@ public class AppLogger {
 	private static final Logger appTelegramINSTANCE = LoggerFactory.getLogger(AppTelegramLogger.class.getCanonicalName());
 
 	/**
+     * ロガーインスタンス、エラーログ用
+     */
+    private static final Logger appErrorINSTANCE = LoggerFactory.getLogger(AppErrorLogger.class.getCanonicalName());
+
+	/**
 	 * ログレベルに応じたログ出力を実施します。<br>
 	 * bodyを指定せず、nullが設定された場合MDCのキーを設定しません。
-	 * @param String level
-	 * @param String msg
-	 * @param Throwable th
-	 * @param Object className
-     * @param Object methodName
-     * @param String body
+	 * @param level ログレベル
+	 * @param msg ログメッセージ
+	 * @param th スロー可能オブジェクト
+	 * @param className クラス名
+     * @param methodName メソッド名
+     * @param body
 	 */
-	private static void log(String level, LogCode logCode, Throwable th, Object className, Object methodName, String body) {
+	private static void log(String level, LogCode logCode, Throwable th, Object className, Object methodName) {
 	    // MDCを初期化
 	    MDC.put(CLASS_NAME, className.toString());
 	    MDC.put(METHOD_NAME, methodName.toString());
@@ -73,13 +79,14 @@ public class AppLogger {
 
 	    // ログレベルをロガーに入力
 	    ch.qos.logback.classic.Logger loggerInstance = (ch.qos.logback.classic.Logger)appTraceINSTANCE;
+	    ch.qos.logback.classic.Logger errorLoggerInstance = (ch.qos.logback.classic.Logger)appErrorINSTANCE;
 
 	    // レベル別にログを出力
 	    switch(level) {
 	        case LoggerConst.LOG_LEVEL_ERROR:
-	            loggerInstance.setLevel(Level.ERROR);
+	            errorLoggerInstance.setLevel(Level.ERROR);
 	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
-	            appTraceINSTANCE.error(logPrefix, logCode.getCode(), exception);
+	            appErrorINSTANCE.error(logPrefix, logCode.getCode(), exception);
 	            break;
 	        case LoggerConst.LOG_LEVEL_WARN:
 	            loggerInstance.setLevel(Level.WARN);
@@ -125,13 +132,14 @@ public class AppLogger {
 
         // ログレベルをロガーに入力
         ch.qos.logback.classic.Logger loggerInstance = (ch.qos.logback.classic.Logger)appTelegramINSTANCE;
+        ch.qos.logback.classic.Logger errorLoggerInstance = (ch.qos.logback.classic.Logger)appErrorINSTANCE;
 
         // レベル別にログを出力
         switch(level) {
             case LoggerConst.LOG_LEVEL_ERROR:
-                loggerInstance.setLevel(Level.ERROR);
+                errorLoggerInstance.setLevel(Level.ERROR);
                 logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
-                appTelegramINSTANCE.error(logPrefix, logCode.getCode());
+                appErrorINSTANCE.error(logPrefix, logCode.getCode());
                 break;
             case LoggerConst.LOG_LEVEL_WARN:
                 loggerInstance.setLevel(Level.WARN);
@@ -165,7 +173,7 @@ public class AppLogger {
 	 * @param Object methodName
 	 */
 	public static void trace(LogCode logCode, Throwable th, Object className, Object methodName, String body) {
-	    log(LoggerConst.LOG_LEVEL_INFO, logCode, th, className, methodName, body);
+	    log(LoggerConst.LOG_LEVEL_INFO, logCode, th, className, methodName);
 	}
 
 	/**
@@ -176,7 +184,7 @@ public class AppLogger {
      * @param Object methodName
 	 */
 	public static void error(LogCode logCode, Throwable th, Object className, Object methodName, String body) {
-	    log(LoggerConst.LOG_LEVEL_ERROR, logCode, th, className, methodName, body);
+	    log(LoggerConst.LOG_LEVEL_ERROR, logCode, th, className, methodName);
 	}
 
 	/**
