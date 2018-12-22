@@ -10,10 +10,11 @@ import org.slf4j.MDC;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import com.tm.config.logger.AppErrorLogger;
 import com.tm.config.logger.AppTelegramLogger;
 import com.tm.config.logger.AppTraceLogger;
-import com.tm.consts.LogCode;
-import com.tm.consts.LoggerConst;
+import com.tm.consts.log.LogCode;
+import com.tm.consts.log.LoggerConst;
 
 import ch.qos.logback.classic.Level;
 
@@ -44,6 +45,11 @@ public class AppLogger {
 	 * ロガーインスタンス、電文ログ用
 	 */
 	private static final Logger appTelegramINSTANCE = LoggerFactory.getLogger(AppTelegramLogger.class.getCanonicalName());
+
+	/**
+	 * ロガーインスタンス、エラーログ用
+	 */
+	private static final Logger appErrorINSTANCE = LoggerFactory.getLogger(AppErrorLogger.class.getCanonicalName());
 
 	/**
 	 * ログレベルに応じたログ出力を実施します。<br>
@@ -79,7 +85,7 @@ public class AppLogger {
 	        case LoggerConst.LOG_LEVEL_ERROR:
 	            loggerInstance.setLevel(Level.ERROR);
 	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
-	            appTraceINSTANCE.error(logPrefix, logCode.getCode(), exception);
+	            appErrorINSTANCE.error(logPrefix, logCode.getCode(), exception);
 	            break;
 	        case LoggerConst.LOG_LEVEL_WARN:
 	            loggerInstance.setLevel(Level.WARN);
@@ -131,7 +137,7 @@ public class AppLogger {
             case LoggerConst.LOG_LEVEL_ERROR:
                 loggerInstance.setLevel(Level.ERROR);
                 logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
-                appTelegramINSTANCE.error(logPrefix, logCode.getCode());
+                appErrorINSTANCE.error(logPrefix, logCode.getCode());
                 break;
             case LoggerConst.LOG_LEVEL_WARN:
                 loggerInstance.setLevel(Level.WARN);

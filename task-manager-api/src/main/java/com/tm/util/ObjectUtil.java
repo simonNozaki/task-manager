@@ -57,8 +57,6 @@ public final class ObjectUtil {
 	    return false;
 	}
 
-
-
 	/**
 	 * 任意の型のリストからStreamを返します.リストが空の場合、空のStreamを返却します。
 	 * @param List<T> list

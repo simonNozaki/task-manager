@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 import com.tm.dto.common.Errors;
 
 /**
@@ -119,7 +119,7 @@ public final class InputInspector<T> {
          * @return Inspector<T>
          */
         public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
-            if (!predicate.test(input)) {
+            if (predicate.test(input)) {
                 // エラーコードのリストがない場合はリストを初期化する
                 List<String> codes = Optional.ofNullable(this.errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);

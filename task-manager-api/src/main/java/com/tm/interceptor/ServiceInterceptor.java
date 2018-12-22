@@ -5,7 +5,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.stereotype.Component;
 
 import com.tm.config.AppLogger;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 
 /**
  * サービスインターセプター

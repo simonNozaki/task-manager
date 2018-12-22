@@ -4,20 +4,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TaskComponent } from './component/task/task.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WebModule } from './routes/web/web.module';
 import { TaskService } from './service/task.service';
-import { UserComponent } from './component/user/user.component';
 import { WebRoutingModule } from './routes/web/web-routing.module';
 import { SignupComponent } from './component/user/signup/signup.component';
 import { SignupService } from './service/signup.service';
+import { CommonDeliveryService } from './service/common-delivery.service';
+import { SigninComponent } from './component/user/signin/signin.component';
+import { SigninService } from './service/signin.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
-    UserComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,18 @@ import { SignupService } from './service/signup.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ TaskService, SignupService ],
+  providers: [ 
+    TaskService,
+    SignupService,
+    CommonDeliveryService,
+    SigninService
+    // ,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: XhrGlobalInterceptor, 
+    //   multi: true
+    // }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

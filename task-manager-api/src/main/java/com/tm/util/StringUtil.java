@@ -25,10 +25,28 @@ public class StringUtil {
 	 * @return boolean
 	 */
 	public static boolean isEqualToSpecificLength(String target, int max) {
-		if (target.length() == max) {
+		if (target.length() != max) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 文字列が空もしくはnullであることを確認します。
+	 * @param target 対象文字列
+	 * @return boolean 判定結果
+	 */
+	public static boolean isNullOrBlank(String target) {
+	    return target == null || target == "";
+	}
+
+	/**
+	 * nullの場合空文字に変換します。
+	 * @param s 対象文字列
+	 * @return 変換後文字列
+	 */
+	public static String convertNullToEmpty(String s) {
+	    return s == null ? "" : s;
 	}
 
 }

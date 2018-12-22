@@ -23,27 +23,47 @@ public class CtrlConst {
 	public static final String FUNC_USERS = "/user";
 
 	/**
-	 * タスクの取得
+	 * 取得
 	 */
 	public static final String MAP_FETCH = "/fetch";
 
 	/**
-	 * タスクの登録
+	 * 登録
 	 */
 	public static final String MAP_REGIST = "/regist";
 
 	/**
-	 * タスクの更新
+	 * 更新
 	 */
 	public static final String MAP_UPDATE = "/update";
 
 	/**
-	 * タスクの削除
+	 * 削除
 	 */
 	public static final String MAP_DELETE = "/delete";
 
 	/**
-	 * タスクの完了
+	 * 完了
 	 */
 	public static final String MAP_COMPLETE = "/complete";
+
+	/**
+	 * トークン発行
+	 */
+    public static final String MAP_AUTH_TOKEN = "/token";
+
+    /**
+     * 認証
+     */
+    public static final String MAP_AUTHENTICATION = "/authentication";
+
+    /**
+     * サインアップ
+     */
+    public static final String MAP_SIGNUP = "/signup";
+
+    /**
+     * サインイン
+     */
+    public static final String MAP_SIGNIN = "/signin";
 }

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AppConst } from '../../../const/app.const';
 import { SignupService } from '../../../service/signup.service';
 import { UserSignupRequestDto } from '../../../dto/interface/user-signup-request.dto';
 import { TaskManagerCode } from '../../../codedef/task-manager-code';
 import { UserSignupResponseDto } from '../../../dto/interface/user-signup-response.dto';
+import { Router } from '@angular/router';
+import { ServiceConst } from '../../../const/service-const';
+import { ObjectUtil } from '../../../util/object.util';
+import { CommonDeliveryService } from '../../../service/common-delivery.service';
 
 /**
  * 利用者サインアップコンポーネントクラス。
@@ -23,10 +27,18 @@ export class SignupComponent implements OnInit {
     /**
      * デフォルトコンストラクタ
      */
-    constructor(private signupService: SignupService) { }
+    constructor(private signupService: SignupService, private router: Router, private commonDeliveryService: CommonDeliveryService) { 
+        this.router = router;
+    }
 
     ngOnInit() {
     }
+
+    /**
+     * ルートコンポーネント、およびタスクコンポーネントに渡す利用者IDプロパティ、イベント出力
+     */
+    @Output()
+    public userId = new EventEmitter<String>();
 
     /** 
      * バリデーションチェック結果
@@ -45,7 +57,7 @@ export class SignupComponent implements OnInit {
     /**
      * サインアップを実行します。
      */
-    public signip() {
+    public signup(): void {
         if (!this.violateRistriction()) {
             // リクエストの生成
             var req: UserSignupRequestDto = new UserSignupRequestDto();
@@ -57,11 +69,21 @@ export class SignupComponent implements OnInit {
             // Serviceクラスを実行します。
             this.signupService.signup(req).subscribe((res: UserSignupResponseDto) => {
                 console.log(JSON.stringify(res));
-            })
+                // すでに使われているメールアドレスの場合は、エラーメッセージを表示して何もしない
+                if (!ObjectUtil.isNullOrUndefined(res.errors)) {
+                    this.checkedResult = AppConst.USER_ALREADY_REGISTERD;
+                    console.log(this.checkedResult);
+                } else {
+                    this.commonDeliveryService.emitUserIdChange(res.userId);
+                    this.router.navigateByUrl(ServiceConst.BASE_SLASH + ServiceConst.URL_WEB_TASK);
+                }
+                },
+                (error) => {
+                    console.warn(JSON.stringify(error.error));
+                }
+            )
         }
-      
     }
-
 
     /**
      * 入力チェックに適合していることをチェックします。

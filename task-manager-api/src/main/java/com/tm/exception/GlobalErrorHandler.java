@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.tm.config.AppLogger;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 
 /**
  * AOPによる共通エラーハンドラです.

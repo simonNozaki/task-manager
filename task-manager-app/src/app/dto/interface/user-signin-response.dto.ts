@@ -6,6 +6,11 @@ import { Errors } from "../common/errors";
 export class UserSigninResponseDto {
 
     /**
+     * 認証トークン
+     */
+    public authenticationToken: string;
+
+    /**
      * 利用者ID
      */
     public userId: string;
@@ -14,6 +19,16 @@ export class UserSigninResponseDto {
      * 利用者名
      */
     public userName: string;
+
+    /**
+     * 利用者メールアドレス
+     */
+    public email: string;
+
+    /**
+     * 利用者パスワード
+     */
+    public password: string;
 
     /**
      * エラーコード

@@ -12,13 +12,7 @@ export class ObjectUtil {
      * @returns boolean
      */
     public static isNullOrUndefined(t: any): boolean {
-        if (t == null) {
-            return true;
-        }
-
-        if (typeof(t) == "undefined") {
-            return true;
-        }
-        return false;
+        return (t == null || t == "undefined") ? true : false;
     }
+
 }

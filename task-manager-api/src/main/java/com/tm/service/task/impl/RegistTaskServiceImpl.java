@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tm.consts.AppConst;
-import com.tm.consts.LogCode;
+import com.tm.consts.log.LogCode;
 import com.tm.dao.repository.TaskRepository;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;

@@ -1,7 +1,3 @@
-<p>
-  signup works!
-</p>
-
 <div>
     <form [formGroup]="signupForm">
         <label>
@@ -11,10 +7,10 @@
             メールアドレス <input formControlName="emailControl" type="text" name="email" placeholder="メールアドレス" >
         </label>
         <label>
-            パスワード <input formControlName="passwordControl" type="text" name="password" placeholder="パスワード" >
+            パスワード <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
         </label>
 
-        <button (click)="signip()" [disabled]="">サインアップ</button>
+        <button (click)="signup()" [disabled]="">サインアップ</button>
 
     </form>
 

@@ -3,6 +3,7 @@ package com.tm.service.framework;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import com.tm.dto.common.Errors;
 import com.tm.dto.common.ServiceOut;
@@ -35,9 +36,10 @@ public class BaseService {
 			this.errors = new Errors();
 		}
 
-		private ServiceOutBuilder(T value) {
+		// デフォルトコンストラクタ。引数あり。
+		private ServiceOutBuilder(T value, Errors errors) {
 			this.value = Objects.requireNonNull(value);
-			this.errors = new Errors();
+            this.errors = errors;
 		}
 
 		/**
@@ -46,10 +48,12 @@ public class BaseService {
 		 * @return ServiceOutBuilder<T>
 		 */
 		public ServiceOutBuilder<T> setError(String code) {
-			List<String> codes = new ArrayList<>();
+		    // エラーが初期化されていない場合、コードのリストを初期化する
+		    Errors newErr = Optional.ofNullable(this.errors).orElse(new Errors());
+		    List<String> codes = new ArrayList<>();
 			codes.add(code);
-			errors.setCodes(codes);
-			return new ServiceOutBuilder<T>();
+			newErr.setCodes(codes);
+			return new ServiceOutBuilder<T>(this.value, newErr);
 		}
 
 		/**
@@ -58,7 +62,7 @@ public class BaseService {
 		 * @return
 		 */
 		public <V> ServiceOutBuilder<V> setNormalResult(V input) {
-			return new ServiceOutBuilder<V>(input);
+			return new ServiceOutBuilder<V>(input, null);
 		}
 
 		/**
