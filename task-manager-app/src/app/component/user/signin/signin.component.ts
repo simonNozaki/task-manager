@@ -9,6 +9,9 @@ import { UserSigninResponseDto } from '../../../dto/interface/user-signin-respon
 import { ObjectUtil } from '../../../util/object.util';
 import { ServiceConst } from '../../../const/service-const';
 
+/**
+ * 利用者認証コンポーネントクラス。
+ */
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -41,14 +44,7 @@ export class SigninComponent implements OnInit {
      */
     public userId: string;
 
-    /**
-     * コンポーネント初期化処理
-     */ 
     ngOnInit() {
-        // 利用者IDに変更がある場合、変更を伝播させる。
-        this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
-            this.userId = userId;
-        })    
     }  
 
     /**

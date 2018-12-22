@@ -31,21 +31,31 @@ export class TaskComponent implements OnInit {
     /** 
      * デフォルトコンストラクタ
      */
-    constructor(private taskService: TaskService, private router: Router, private commonDeliveryService: CommonDeliveryService) {
-    }
+    constructor(private taskService: TaskService, private router: Router, private commonDeliveryService: CommonDeliveryService) {}
 
     /**
      * 利用者ID
-     *   = '10001000'
      */ 
-    // @Input()
     public userId: string;
 
     /**
-     * タスク取得DTO
+     * コンポーネント初期化時の起動処理
     */
-    public fetchTaskResponseDto: FetchTaskResponseDto;
-    
+    ngOnInit() {
+        // リダイレクトされたときに、別のコンポーネントから動的に利用者IDを受け取ります。
+        this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
+            this.userId = userId;
+        });
+        
+        // 利用者IDが正常に設定されていない場合、リダイレクトしてアクセスを拒否する
+        if (ObjectUtil.isNullOrUndefined(this.userId)) {
+            this.router.navigateByUrl(ServiceConst.BASE_SLASH + ServiceConst.URL_WEB_USER_SIGNIN);
+        }
+        
+        this.fetchTasks(this.userId);
+        this.checkedResult = "";
+    }
+
     /**
      * タスクリスト 
      */ 
@@ -68,44 +78,15 @@ export class TaskComponent implements OnInit {
     public checkedResult: string;
 
     /**
-     * コンポーネント初期化時の起動処理
-    */
-    ngOnInit() {
-        // リダイレクトされたときに、別のコンポーネントから動的に利用者IDを受け取ります。
-        this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
-            console.log("ngOninit, レスポンスuserId : " + userId);
-            this.userId = userId;
-            console.log("ngOninit, サービス呼び出し内userId : " + this.userId);
-            this.tasks = this.fetchTasks(userId);
-            console.log("フェッチしたタスクのリスト : " + JSON.stringify(this.tasks))
-        });
-        
-        // 利用者IDが正常に設定されていない場合、リダイレクトしてアクセスを拒否する
-        if (ObjectUtil.isNullOrUndefined(this.userId)) {
-            this.router.navigateByUrl(ServiceConst.BASE_SLASH + ServiceConst.URL_WEB_USER_SIGNIN);
-        }
-        this.fetchTaskResponseDto = new FetchTaskResponseDto();
-        this.checkedResult = "";
-        console.log("ngOninit内userId : " + this.userId);
-    }
-
-    /**
      * サービスクラスから、タスクの一覧を取得します.
      * @param userId: string
      * @returns Task[]
     */
-    public fetchTasks(userId: string): Task[] {
-        this.taskService.fetchTask(userId).subscribe(
-                (res: FetchTaskResponseDto) => {
+    public fetchTasks(userId: string): void {
+        this.taskService.fetchTask(userId).subscribe((res: FetchTaskResponseDto) => {
                     this.tasks = res.tasks;
-                    this.fetchTaskResponseDto = res;
                 }
             );
-        if (ObjectUtil.isNullOrUndefined(this.fetchTaskResponseDto.tasks)) {
-            var initializedTasks: Task[] = [];
-            return initializedTasks;
-        }
-        return this.fetchTaskResponseDto.getTasks();
     }
 
     /**
@@ -114,7 +95,6 @@ export class TaskComponent implements OnInit {
      * @returns void
     */
     public registTask(): void {
-        console.log("registTask内userId : " + this.userId);
         // 入力チェックを違反していない場合、タスク登録処理を実行します
         if (!this.violateRistriction()) {
             var registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
@@ -132,9 +112,7 @@ export class TaskComponent implements OnInit {
             registTaskRequestDto.setUserId(this.userId);
 
             // サービスクラスを実行します。
-            this.taskService.registTask(registTaskRequestDto).subscribe(
-                (res: RegistTaskRequest) => console.log(res)
-            );
+            this.taskService.registTask(registTaskRequestDto).subscribe();
 
             // 登録したタスクをリストに追加して、随時表を更新します。
             var newTask: Task = new Task();
@@ -142,7 +120,6 @@ export class TaskComponent implements OnInit {
             newTask.setTaskLabel(registTaskRequestDto.getTaskLabel());
             newTask.setTaskNote(registTaskRequestDto.getTaskNote());
             this.tasks.push(newTask);
-            console.log(JSON.stringify(this.tasks));
         }
 
     }
@@ -186,14 +163,12 @@ export class TaskComponent implements OnInit {
         // サービスクラスの実行。レスポンスが帰ってきてたら、タスクのリストから削除。
         this.taskService.complete(taskCompleteRequestDto).subscribe((res: TaskCompleteResponseDto) => {
             if (!ObjectUtil.isNullOrUndefined(res.taskId)) {
-                  console.log(JSON.stringify(res.taskId));
                   // 完了したタスクを抽出
                   var completedTask: Task = _.where(this.tasks, {taskId : res.taskId});
                   // 完了したタスクのINDEXを取得
                   var index: number = _.indexOf(this.tasks, completedTask);
                   // タスクのリストから削除
                   this.tasks.splice(index, 1);
-                  console.log(completedTask, index, JSON.stringify(this.tasks));
             }
         });
     }

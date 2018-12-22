@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 /**
  * 共通データ授受サービス。ルートコンポーネントと機能コンポーネント間のデータ受け渡しをサポートします。
@@ -12,7 +13,7 @@ export class CommonDeliveryService {
     /**
      * コンポーネント共通利用者ID
      */
-    private userId = new Subject<string>();
+    private userId: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
     /**
      * 利用者IDObservableオブジェクト
@@ -20,10 +21,17 @@ export class CommonDeliveryService {
     public observableUserId: Observable<string> = this.userId.asObservable();
 
     /**
-     * 利用者IDの変更を随時反映します
+     * 利用者IDの変更を随時反映します。
      */
     public emitUserIdChange(userId: string): void {
         this.userId.next(userId);
+    }
+
+    /**
+     * 利用者IDをnullで初期化します。
+     */
+    public initialize(): void {
+        this.userId.next(null);
     }
 
 }
