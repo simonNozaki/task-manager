@@ -48,6 +48,7 @@ public class GlobalErrorHandler {
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public void handleSystemError(Exception e) {
+	    System.out.println(LogCode.TMTKRG90001 + e.getMessage());
 		AppLogger.error(LogCode.TMTKRG90001, e, null, null, null);
 	}
 

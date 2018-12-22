@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
-import com.tm.consts.log.LogCode;
+import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskFetchResponseDto;
@@ -48,7 +48,7 @@ public class TaskFetchRestController extends BaseRestController {
 		//------------------------------------
 		Errors errors = InputInspector.of(userId)
                         .logInput(arrangeLoggingString(userId))
-                        .violateSpecificLength(userId, AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
+                        .violateSpecificLength(userId, AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                         .build();
 
 		//------------------------------------
@@ -75,8 +75,8 @@ public class TaskFetchRestController extends BaseRestController {
 		return responseProcessBuilder().of(TaskFetchResponseDto::new)
         		        .logOutput(taskList)
                         .operate((TaskFetchResponseDto dto) -> {
-                        dto.setTasks(taskList);
-                        return dto;
+                            dto.setTasks(taskList);
+                            return dto;
                         })
                         .apply();
 	}

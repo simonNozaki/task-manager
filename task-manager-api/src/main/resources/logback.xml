@@ -64,7 +64,7 @@
 	<logger name="com.tm.config.logger.AppTraceLogger" level="${console.level}">
 		<appender-ref ref="APP_TRACE_LOG" />
 	</logger>
-	<logger name="com.tm.config.logger.AppTraceLogger" level="error">
+	<logger name="com.tm.config.logger.AppErrorLogger" level="error">
 		<appender-ref ref="APP_ERR_LOG" />
 	</logger>
 	<logger name="com.tm.config.logger.AppTelegramLogger" level="${console.level}">

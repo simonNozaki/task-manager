@@ -52,9 +52,9 @@ public class AppConst {
 	public static final int TASK_NOTE_MAX = 200;
 
 	/**
-	 * 利用者ID, 8桁
+	 * 利用者ID, 10桁
 	 */
-	public static final int USER_ID_LENGTH = 8;
+	public static final int USER_ID_LENGTH = 10;
 
 	/**
 	 * 利用者名, 50桁
