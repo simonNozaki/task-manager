@@ -5,7 +5,580 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-12-14T22:42:00Z</updated>
+  <updated>2018-12-21T21:50:47Z</updated>
+  <entry>
+    <title>Spring Cloud Open Service Broker 3.0.0.M3 Released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-cloud-open-service-broker-3-0-0-m3-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Roy Clarkson</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3509</id>
+    <updated>2018-12-21T21:50:47Z</updated>
+    <content type="html">&lt;p&gt;We&amp;rsquo;re please to announce the release of Spring Cloud Open Service Broker 3.0.0.M3. This 3.0 release will support Spring WebFlux and a reactive programing model, as well as additions and changes in the &lt;a href="https://www.openservicebrokerapi.org/blog/2018/08/21/open-service-broker-v2-14-released"&gt;Open Service Broker API v2.14&lt;/a&gt;. This release includes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Upgrade to Spring Boot 2.1.1.RELEASE (previously built against Spring Boot 2.0)&lt;/li&gt;
+  &lt;li&gt;Adds a convenience property to the various request objects for accessing the &lt;code&gt;Plan&lt;/code&gt; for the specified &lt;code&gt;ServiceDefinition&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Include the following Spring Boot starter:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
+  &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+  &amp;lt;artifactId&amp;gt;spring-cloud-starter-open-service-broker&amp;lt;/artifactId&amp;gt;&#xD;
+  &amp;lt;version&amp;gt;3.0.0.M3&amp;lt;/version&amp;gt;&#xD;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Use the Spring Milestone Repository:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;repository&amp;gt;&#xD;
+  &amp;lt;id&amp;gt;spring-milestones&amp;lt;/id&amp;gt;&#xD;
+  &amp;lt;url&amp;gt;https://repo.spring.io/milestone&amp;lt;/url&amp;gt;&#xD;
+&amp;lt;/repository&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href="https://spring.io/projects/spring-cloud-open-service-broker"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker"&gt;GitHub&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/3.0.0.M3/reference/html5"&gt;Reference Doc&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/3.0.0.M3/apidocs/"&gt;API Doc&lt;/a&gt; &lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Cloud Open Service Broker 2.1.0 Released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-cloud-open-service-broker-2-1-0-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Roy Clarkson</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3508</id>
+    <updated>2018-12-21T21:44:23Z</updated>
+    <content type="html">&lt;p&gt;We&amp;rsquo;re please to announce the release of Spring Cloud Open Service Broker 2.1.0. This release supports additions and changes in the &lt;a href="https://www.openservicebrokerapi.org/blog/2018/08/21/open-service-broker-v2-14-released"&gt;Open Service Broker API v2.14&lt;/a&gt;. This release includes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Upgrade to Spring Boot 2.0.7.RELEASE&lt;/li&gt;
+  &lt;li&gt;Support for asynchronous service instance binding and unbinding&lt;/li&gt;
+  &lt;li&gt;Support providing an updated &lt;code&gt;dashboard_url&lt;/code&gt; when updating a service instance&lt;/li&gt;
+  &lt;li&gt;Resolves issues with deserializing the model objects that were converted to the builder pattern&lt;/li&gt;
+  &lt;li&gt;Adds a convenience property to the various request objects for accessing the &lt;code&gt;Plan&lt;/code&gt; for the specified &lt;code&gt;ServiceDefinition&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Include the following Spring Boot starter:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
+  &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+  &amp;lt;artifactId&amp;gt;spring-cloud-starter-open-service-broker-webmc&amp;lt;/artifactId&amp;gt;&#xD;
+  &amp;lt;version&amp;gt;2.1.0.RELEASE&amp;lt;/version&amp;gt;&#xD;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href="https://spring.io/projects/spring-cloud-open-service-broker"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker"&gt;GitHub&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/2.1.0.RELEASE/reference/html5"&gt;Reference Doc&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-cloud-open-service-broker/docs/2.1.0.RELEASE/apidocs/"&gt;API Doc&lt;/a&gt; &lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Cloud Data Flow and Skipper 2.0 M1 Released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-cloud-data-flow-and-skipper-2-0-m1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Mark Pollack</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3506</id>
+    <updated>2018-12-21T20:05:23Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;a href="https://cloud.spring.io/spring-cloud-dataflow/"&gt;Spring Cloud Data Flow&lt;/a&gt; team is pleased to announce the release of &lt;code&gt;2.0 M1&lt;/code&gt; Follow the &lt;em&gt;Getting Started&lt;/em&gt; guides for running on &lt;a href="https://docs.spring.io/spring-cloud-dataflow/docs/2.0.0.M1/reference/htmlsingle/#getting-started-local"&gt;Local&lt;/a&gt;, &lt;a href="https://docs.spring.io/spring-cloud-dataflow/docs/2.0.0.M1/reference/htmlsingle/#getting-started-cloudfoundry"&gt;Cloud Foundry&lt;/a&gt;, and &lt;a href="https://docs.spring.io/spring-cloud-dataflow/docs/2.0.0.M1/reference/htmlsingle/#getting-started-kubernetes"&gt;Kubernetes&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Hand in hand is the &lt;code&gt;2.0 M1&lt;/code&gt; release of &lt;a href="https://cloud.spring.io/spring-cloud-skipper/"&gt;Spring Cloud Skipper&lt;/a&gt; which has been updated to depend upon Spring Boot 2.1.  The &lt;a href="https://docs.spring.io/spring-cloud-skipper/docs/2.0.0.M1/reference/htmlsingle/#getting-started"&gt;getting started section&lt;/a&gt; in the reference guide is the best place to start kicking the tires.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="here-are-the-highlights-for-data-flow"&gt;&lt;a class="anchor" href="#here-are-the-highlights-for-data-flow"&gt;&lt;/a&gt;Here are the highlights for Data Flow&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Stream deployment always delegates to Skipper&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Single server that runs on all supported platforms&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update to Boot 2.1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Standardize on OAuth2 and OpenID Connect for Security&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update internals to use JPA&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UI improvements&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Task/Job Execution and Performance improvements&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="stream-deployment-always-delegates-to-skipper"&gt;&lt;a class="anchor" href="#stream-deployment-always-delegates-to-skipper"&gt;&lt;/a&gt;Stream deployment always delegates to Skipper&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The 1.x series of Data Flow Server allowed for Streams to be deployed directly by the Data Flow Server or to delegate to Skipper.  This resulted in two modes of operation, 'classic' and 'skipper'.  Now there is just one option to deploy streams, via Skipper, which provides rolling upgrade and downgrade functionality for stream applications.  Tasks are deployed by the Data Flow server as before.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="single-server-that-runs-on-all-supported-platforms"&gt;&lt;a class="anchor" href="#single-server-that-runs-on-all-supported-platforms"&gt;&lt;/a&gt;Single server that runs on all supported platforms&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We have consolidated the Local, Cloud Foundry, and Kubernetes servers into a single server, no need to pick different jar or docker images depending on what platform you want to run.  The getting started steps for each platfrom remains largely the same.  One big change is how Tasks are configured, as we are opening up the capability for Tasks to be launched across different platforms.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="update-to-boot-2-1"&gt;&lt;a class="anchor" href="#update-to-boot-2-1"&gt;&lt;/a&gt;Update to Boot 2.1&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The Data Flow Server 2.0 release is now based on Spring Boot 2.1.  With this foundation shift we took some time to address technical debt and adopt to new features from Spring Boot.  As we head towards Data Flow 2.0 GA, we will continue to address technical debt areas and some additional internal refactoring.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="standardize-on-oauth2-and-openid-connect-for-security"&gt;&lt;a class="anchor" href="#standardize-on-oauth2-and-openid-connect-for-security"&gt;&lt;/a&gt;Standardize on OAuth2 and OpenID Connect for Security&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;A large amount of effort has gone into improving the security by adoptiong OAuth2 and OpenID connect as the default security implementation.  Traditional security options were removed.   Token authorization, lifecycle-management, revocation, and renewal are all part of this feature-set, and we are excited about the developer experience this brings to our users.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="update-internals-to-use-jpa"&gt;&lt;a class="anchor" href="#update-internals-to-use-jpa"&gt;&lt;/a&gt;Update internals to use JPA&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Coming from Spring XD to Data Flow 1.x, we retained a few 'key-value' like tables and managed them via Spring JDBC APIs.  We now updated to use Spring Data JPA and will introduce Flyway for schema management in a future milestone release.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="ui-improvements"&gt;&lt;a class="anchor" href="#ui-improvements"&gt;&lt;/a&gt;UI improvements&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Improvements to the Dashboard continue in a regular pace.  Angular has been upgraded to 7.1.1 and based on user feedback added a job restart button inside the execution page of a job.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="task-job-execution-and-performance-improvements"&gt;&lt;a class="anchor" href="#task-job-execution-and-performance-improvements"&gt;&lt;/a&gt;Task/Job Execution and Performance improvements&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Thanks to the community member Nicolas Widart for his thorough &lt;a href="https://github.com/spring-cloud/spring-cloud-dataflow/issues/2583"&gt;bug report&lt;/a&gt; on the task-execution and the performance issues associated with it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;A new endpoint was added to avoid breaking changes to the existing REST resource which is now used behind the scenes in the client tools. With these changes, queries for task/batch execution history are almost 10x faster, helping when there are hundreds of steps in a batch job.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="what-is-next"&gt;&lt;a class="anchor" href="#what-is-next"&gt;&lt;/a&gt;What is next&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The 2.0 M2 release will provide an overhaul of the Analytics support - migrating to use Micrometer and it&amp;#8217;s supported backends instead of the current Redis based functionality.  The Analytics Dashboard will also be retired and use of more production grade tools such as Grafana will be possible.  Metric collection will also undergo a similar change, the servers and the out of the box applications will be instrumented with the Mirometer library for some popular monitoring platforms.  The Spring Cloud Metrics Collector will no longer be used.  Task support will get some improvements, allowing for the Data Flow server to launch tasks across platforms.  We are also working on a new Data Flow web site that will provide a better experience to understand how you can use Data Flow for a wide variety of use-cases.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Also note that the 1.x line of Spring Cloud Data Flow will cease maintenance twelve months from the 2.0 GA announcement date. The 2.,0 GA is tentatively planned for February 2019, so in February 2020, the 1.x line would reach end-of-general-support status.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="stay-in-touch"&gt;&lt;a class="anchor" href="#stay-in-touch"&gt;&lt;/a&gt;Stay in touch&amp;#8230;&amp;#8203;&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Happy Holidays and New Year!  As always, we welcome feedback and contributions, so please reach out to us on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud-dataflow"&gt;Stackoverflow&lt;/a&gt; or &lt;a href="https://github.com/spring-cloud/spring-cloud-dataflow/issues"&gt;GitHub&lt;/a&gt; or via &lt;a href="https://gitter.im/spring-cloud/spring-cloud-dataflow"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Cloud for Alibaba 0.2.1 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-cloud-for-alibaba-0-2-1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Spencer Gibb</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3505</id>
+    <updated>2018-12-21T18:10:40Z</updated>
+    <content type="html">&lt;p&gt;&lt;strong&gt;NOTE: This is a guest post from our friends at Alibaba.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Hello everyone! Today, we’re very excited to announce that the 0.2.1.RELEASE of Spring Cloud Alibaba is available now.&lt;/p&gt;
+&lt;p&gt;Release highlights:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Added two new modules to Spring Cloud Alibaba: spring-cloud-alibaba-schedulerx and spring-cloud-stream-binder-rocketmq.&lt;/li&gt;
+  &lt;li&gt;Added some new features in spring-cloud-alibaba-nacos and spring-cloud-alibaba-sentinel.&lt;/li&gt;
+  &lt;li&gt;Fixed some bugs in the previous version.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notes: &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+  &lt;p&gt;The Spring Cloud Alibaba project is a community project maintained by Alibaba.&lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;
+  &lt;p&gt;The 0.2.1.RELEASE is compatible with Spring Cloud Finchley. Also included in this version is a 0.1.1.RELEASE, which is compatible with Spring Cloud Edgware. 0.1.1.RELEASE also contains the components and features that are new in 0.2.1.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-stream-binder-rocketmq" class="anchor" name="spring-cloud-stream-binder-rocketmq"&gt;&lt;/a&gt;Spring Cloud Stream Binder RocketMQ&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Implements the message abstraction of Spring Cloud Stream API.&lt;/li&gt;
+  &lt;li&gt;Includes support for transaction messages.&lt;/li&gt;
+  &lt;li&gt;Includes support for filtering messages with tags and SQL expressions on the consumer side, as well as ordered, concurrent, and broadcast message consumption.&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-alibaba-cloud-schedulerx" class="anchor" name="spring-cloud-alibaba-cloud-schedulerx"&gt;&lt;/a&gt;Spring Cloud Alibaba Cloud SchedulerX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Provides accurate, highly reliable, and highly available scheduled job scheduling services with response time within seconds.&lt;/li&gt;
+  &lt;li&gt;Supports a rich set of job execution models, including stand-alone execution, broadcast execution, and distributed subjobs execution.&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-alibaba-nacos-config" class="anchor" name="spring-cloud-alibaba-nacos-config"&gt;&lt;/a&gt;Spring Cloud Alibaba Nacos Config&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Upgraded Nacos Client version to 0.6.1.&lt;/li&gt;
+  &lt;li&gt;Added support for getting and listening for configurations from multiple dataids and groupids and setting priorities based on the combination of dataids and groupids.&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-alibaba-nacos-discovery" class="anchor" name="spring-cloud-alibaba-nacos-discovery"&gt;&lt;/a&gt;Spring Cloud Alibaba Nacos Discovery&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Upgraded Nacos Client version to 0.6.1.&lt;/li&gt;
+  &lt;li&gt;Added support for setting the service instance to the unavailable state on the Nacos Console so that the service is automatically filtered out during service discovery.&lt;/li&gt;
+  &lt;li&gt;Added support for ignoring the local cache when initializing service discovery.&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-alibaba-sentinel" class="anchor" name="spring-cloud-alibaba-sentinel"&gt;&lt;/a&gt;Spring Cloud Alibaba Sentinel&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Added support for Feign so that it is now compatible with all @FeignClient properties, including &lt;code&gt;fallback&lt;/code&gt; and &lt;code&gt;fallbackFactory&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Added support for parameter flow control and cluster flow control.&lt;/li&gt;
+  &lt;li&gt;Refactored the design of the &lt;code&gt;ReadableDataSource&lt;/code&gt; to provide a more user-friendly way to configure persistent Sentinel rules.&lt;/li&gt;
+  &lt;li&gt;Optimized the post-processing mechanism of Sentinel after &lt;code&gt;RestTemplate&lt;/code&gt; is degraded.&lt;/li&gt;
+  &lt;li&gt;Added some properties corresponding to the Sentinel configuration information, such as log directory and log file name.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;&lt;a href="#what-rsquo-s-next" class="anchor" name="what-rsquo-s-next"&gt;&lt;/a&gt;What&amp;rsquo;s Next?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Spring Cloud Alibaba Cloud SLS&lt;/strong&gt;, a one-stop service for log management, is a proven tool that thrives in waves of big data challenges within Alibaba Group. Without getting your hands dirty on any code, you can quickly collect, consume, deliver, query, and analyze log data, thereby improving the operation, maintenance, and marketing efficiency and gaining the power of processing massive amounts of log data, which is required in the DT age.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Spring Cloud Alibaba Dubbo&lt;/strong&gt; Dubbo is a popular open source RPC framework. We will integrate Dubbo into Spring Cloud Alibaba so that you can enjoy the convenience of Spring Cloud when developing Dubbo applications.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Cloud Greenwich.RC2 is now available</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-cloud-greenwich-rc2-is-now-available" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Ryan Baxter</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3504</id>
+    <updated>2018-12-21T18:09:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the community, I am pleased to announce that the Release Candidate 2 (RC2) of the &lt;a href="https://cloud.spring.io"&gt;Spring Cloud Greenwich&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href="https://repo.spring.io/milestone/"&gt;Spring Milestone&lt;/a&gt; repository. You can check out the Greenwich &lt;a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Greenwich-Release-Notes"&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#notable-changes-in-the-greenwich-release-train" class="anchor" name="notable-changes-in-the-greenwich-release-train"&gt;&lt;/a&gt;Notable Changes in the Greenwich Release Train&lt;/h2&gt;
+&lt;p&gt;For a complete list of issues in this release across all projects see the &lt;a href="https://github.com/orgs/spring-cloud/projects/12"&gt;project page on GitHub&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;&lt;a href="#spring-cloud-contract" class="anchor" name="spring-cloud-contract"&gt;&lt;/a&gt;Spring Cloud Contract&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Added support for binary payloads (&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/pull/818"&gt;GH-818&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-security" class="anchor" name="spring-cloud-security"&gt;&lt;/a&gt;Spring Cloud Security&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring Cloud Gateway Filter added to support OAuth2 (&lt;a href="https://github.com/spring-cloud/spring-cloud-security/issues/141"&gt;GH-141&lt;/a&gt;). A sample application demonstrating its use is available &lt;a href="https://github.com/spring-cloud-samples/sample-gateway-oauth2login"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-kubernetes" class="anchor" name="spring-cloud-kubernetes"&gt;&lt;/a&gt;Spring Cloud Kubernetes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Added a module to detect the presence of Istio (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/233"&gt;GH-233&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-openfeign" class="anchor" name="spring-cloud-openfeign"&gt;&lt;/a&gt;Spring Cloud OpenFeign&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Upgrade to OpenFeign 10.1.0 (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues/85"&gt;GH-85&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-task" class="anchor" name="spring-cloud-task"&gt;&lt;/a&gt;Spring Cloud Task&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2018/12/20/spring-cloud-task-2-1-0-m2-is-now-available"&gt;Blog Post&lt;/a&gt;&lt;/p&gt;&lt;h3&gt;&lt;a href="#spring-cloud-config" class="anchor" name="spring-cloud-config"&gt;&lt;/a&gt;Spring Cloud Config&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Added &lt;code&gt;EnvironmentRepository&lt;/code&gt; to support a CredHub backend (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/pull/1211"&gt;GH-1211&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The following modules were updated as part of Greenwich.RC2:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Module &lt;/th&gt;
+      &lt;th&gt;Version &lt;/th&gt;
+      &lt;th&gt;Issues&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Security &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-security/issues?q=is%3Aclosed+milestone%3A2.1.0.RC3"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Vault &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC1 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Contract &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/milestone/46?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Kubernetes &lt;/td&gt;
+      &lt;td&gt;1.0.0.RC2 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/milestone/8?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Commons &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Zookeeper &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Openfeign &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues?q=is%3Aclosed+milestone%3A2.1.0.RC3"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Aws &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC1 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Starter &lt;/td&gt;
+      &lt;td&gt;Greenwich.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Bus &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Sleuth &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-sleuth/issues?q=is%3Aclosed+milestone%3A2.1.0.RC3"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Netflix &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/milestone/73?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Stream &lt;/td&gt;
+      &lt;td&gt;Fishtown.RC4 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-stream/milestone/52?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Gcp &lt;/td&gt;
+      &lt;td&gt;1.1.0.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Cloudfoundry &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Build &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-build/milestone/21?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Dependencies &lt;/td&gt;
+      &lt;td&gt;Greenwich.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Task &lt;/td&gt;
+      &lt;td&gt;2.1.0.M2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Release &lt;/td&gt;
+      &lt;td&gt;Greenwich.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Function &lt;/td&gt;
+      &lt;td&gt;2.0.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-function/milestone/15?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud &lt;/td&gt;
+      &lt;td&gt;Greenwich.RC2 &lt;/td&gt;
+      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Consul &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-consul/milestone/37?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Config &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-config/milestone/59?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Gateway &lt;/td&gt;
+      &lt;td&gt;2.1.0.RC3 &lt;/td&gt;
+      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/milestone/20?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As always, we welcome feedback on &lt;a href="https://github.com/spring-cloud/"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;Gitter&lt;/a&gt;, on &lt;a href="http://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href="https://twitter.com/SpringCloud"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;repositories&amp;gt;&#xD;
+    &amp;lt;repository&amp;gt;&#xD;
+        &amp;lt;id&amp;gt;spring-milestones&amp;lt;/id&amp;gt;&#xD;
+        &amp;lt;name&amp;gt;Spring Milestones&amp;lt;/name&amp;gt;&#xD;
+        &amp;lt;url&amp;gt;http://repo.spring.io/milestone&amp;lt;/url&amp;gt;&#xD;
+        &amp;lt;snapshots&amp;gt;&#xD;
+            &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;&#xD;
+        &amp;lt;/snapshots&amp;gt;&#xD;
+    &amp;lt;/repository&amp;gt;&#xD;
+&amp;lt;/repositories&amp;gt;&#xD;
+&amp;lt;dependencyManagement&amp;gt;&#xD;
+    &amp;lt;dependencies&amp;gt;&#xD;
+        &amp;lt;dependency&amp;gt;&#xD;
+            &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+            &amp;lt;artifactId&amp;gt;spring-cloud-dependencies&amp;lt;/artifactId&amp;gt;&#xD;
+            &amp;lt;version&amp;gt;Greenwich.RC2&amp;lt;/version&amp;gt;&#xD;
+            &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;&#xD;
+            &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;&#xD;
+        &amp;lt;/dependency&amp;gt;&#xD;
+    &amp;lt;/dependencies&amp;gt;&#xD;
+&amp;lt;/dependencyManagement&amp;gt;&#xD;
+&amp;lt;dependencies&amp;gt;&#xD;
+    &amp;lt;dependency&amp;gt;&#xD;
+        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+        &amp;lt;artifactId&amp;gt;spring-cloud-starter-config&amp;lt;/artifactId&amp;gt;&#xD;
+    &amp;lt;/dependency&amp;gt;&#xD;
+    &amp;lt;dependency&amp;gt;&#xD;
+        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&#xD;
+    &amp;lt;/dependency&amp;gt;&#xD;
+    ...&#xD;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or with Gradle:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;buildscript {&#xD;
+    dependencies {&#xD;
+        classpath &amp;quot;io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE&amp;quot;&#xD;
+    }&#xD;
+}&#xD;
+&#xD;
+repositories {&#xD;
+    maven {&#xD;
+        url &amp;#39;http://repo.spring.io/milestone&amp;#39;&#xD;
+    }&#xD;
+}&#xD;
+&#xD;
+apply plugin: &amp;quot;io.spring.dependency-management&amp;quot;&#xD;
+&#xD;
+dependencyManagement {&#xD;
+    imports {&#xD;
+        mavenBom &amp;#39;org.springframework.cloud:spring-cloud-dependencies:Greenwich.RC2&amp;#39;&#xD;
+    }&#xD;
+}&#xD;
+&#xD;
+dependencies {&#xD;
+    compile &amp;#39;org.springframework.cloud:spring-cloud-starter-config&amp;#39;&#xD;
+    compile &amp;#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&amp;#39;&#xD;
+    ...&#xD;
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Tools 4.1.0 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-tools-4-1-0-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Martin Lippert</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3507</id>
+    <updated>2018-12-21T18:05:30Z</updated>
+    <content type="html">&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+&lt;p&gt;I am happy to announce the 4.1.0 release of the Spring Tools 4 for Eclipse, Visual Studio Code, and Atom.&lt;/p&gt;
+&lt;p&gt;Highlights from this release include:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;(Eclipse) updated to Eclipse 2018-12 release&lt;/li&gt;
+  &lt;li&gt;(Eclipse) live hovers now combine JavaDoc and live information from running boot apps&lt;/li&gt;
+  &lt;li&gt;(Eclipse) boot dashboard now shows live request mappings and beans for reactive web boot apps, too&lt;/li&gt;
+  &lt;li&gt;(Spring Boot) initial content-assist support for Spring Data repository definitions&lt;/li&gt;
+  &lt;li&gt;(CF Manifest) added support for new buildpacks attribute&lt;/li&gt;
+  &lt;li&gt;various bug fixes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To download the distribution for Eclipse and find links to the marketplace entries for Visual Studio Code and Atom, please go visit:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring Tools 4: &lt;a href="https://spring.io/tools/"&gt;https://spring.io/tools/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Detailed changes can be found here: &lt;a href="https://github.com/spring-projects/sts4/wiki/Changelog#2018-12-20-410-release"&gt;https://github.com/spring-projects/sts4/wiki/Changelog#2018-12-20-410-release&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Tool Suite 3.9.7 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/21/spring-tool-suite-3-9-7-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Martin Lippert</name>
+    </author>
+    <id>tag:spring.io,2018-12-21:3503</id>
+    <updated>2018-12-21T11:21:03Z</updated>
+    <content type="html">&lt;p&gt;Dear Spring Community,&lt;/p&gt;
+&lt;p&gt;I am happy to announce the 3.9.7 maintenance release of the Spring Tool Suite 3.&lt;/p&gt;
+&lt;p&gt;Highlights from this update release include:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;updated to Eclipse 2018-12 release&lt;/li&gt;
+  &lt;li&gt;added support for Buildship 3&lt;/li&gt;
+  &lt;li&gt;added full-blown embedded properties editor for boot launch configs&lt;/li&gt;
+  &lt;li&gt;boot dashboard now shows live request mappings and beans for reactive web boot apps, too&lt;/li&gt;
+  &lt;li&gt;various bug fixes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To download the distributions, please go visit:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring Tool Suite 3: &lt;a href="https://spring.io/tools3/sts/all"&gt;&lt;a href="https://spring.io/tools3/sts/all"&gt;https://spring.io/tools3/sts/all&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Detailed new and noteworthy notes can be found here: &lt;a href="http://docs.spring.io/sts/nan/v397/NewAndNoteworthy.html"&gt;STS 3.9.7 New &amp;amp; Noteworthy&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Cloud Task 2.1.0.M2 is now available</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/20/spring-cloud-task-2-1-0-m2-is-now-available" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Glenn Renfro</name>
+    </author>
+    <id>tag:spring.io,2018-12-13:3499</id>
+    <updated>2018-12-20T19:28:32Z</updated>
+    <content type="html">&lt;p&gt;We are pleased to announce that Spring Cloud Task 2.1.0.M2 is now available on Github and the Pivotal download repository. Many thanks to all of those who contributed to this release.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-rsquo-s-new" class="anchor" name="what-rsquo-s-new"&gt;&lt;/a&gt;What&amp;rsquo;s New?&lt;/h2&gt;
+&lt;p&gt;Spring Cloud Task 2.1.0.M2 is intended to be the version of the framework aligned with Spring Boot 2.1.0. Updates from 2.1.0.M1 include:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Update all dependencies.&lt;/li&gt;
+  &lt;li&gt;By popular demand, &lt;code&gt;@EnableTask&lt;/code&gt; is back.&lt;/li&gt;
+  &lt;li&gt;Bug Fixes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s walk through these updates in more detail.&lt;/p&gt;&lt;h2&gt;&lt;a href="#enabletask-is-back" class="anchor" name="enabletask-is-back"&gt;&lt;/a&gt;@EnableTask is back&lt;/h2&gt;
+&lt;p&gt;By popular demand, &lt;code&gt;@EnableTask&lt;/code&gt; is back, with a twist! In this case, &lt;code&gt;AutoConfiguration&lt;/code&gt; is still being used to create the &lt;code&gt;TaskExplorer&lt;/code&gt;, &lt;code&gt;TaskConfigurer&lt;/code&gt;, and other beans but does not create the &lt;code&gt;TaskLifecycleListener&lt;/code&gt; (the bean that adds the Task Lifecycle to your application). The &lt;code&gt;TaskLifecycleListener&lt;/code&gt; bean is created when a user adds the &lt;code&gt;@EnableTask&lt;/code&gt; to their application or configuration. We added this back to let users who are building their own applications that are not tasks but monitor or browse the task repository build applications by using the provided autoconfiguration.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-do-you-think" class="anchor" name="what-do-you-think"&gt;&lt;/a&gt;What Do You Think?&lt;/h2&gt;
+&lt;p&gt;We look forward to your feedback on these new features in &lt;a href="https://github.com/spring-cloud/spring-cloud-task/issues"&gt;Github&lt;/a&gt;, &lt;a href="http://stackoverflow.com/tags/spring-cloud-task"&gt;StackOverflow&lt;/a&gt;, &lt;a href="https://gitter.im/spring-cloud/spring-cloud-task"&gt;Gitter&lt;/a&gt;, or directly via Twitter to &lt;a href="https://twitter.com/michaelminella"&gt;@michaelminella&lt;/a&gt; or &lt;a href="https://twitter.com/cppwfs"&gt;@cppwfs&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cloud.spring.io/spring-cloud-task/"&gt;Spring Cloud Task Home&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-task"&gt;Source on GitHub&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-cloud-task/docs/2.1.0.M1/reference/htmlsingle/"&gt;Reference Documentation&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Tips: Reactive SQL Data Access with Spring Data R2DBC</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/19/spring-tips-reactive-sql-data-access-with-spring-data-r2dbc" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2018-12-14:3500</id>
+    <updated>2018-12-19T02:00:00Z</updated>
+    <content type="html">&lt;p&gt;Hi Spring fans! In this installment of Spring Tips we look at using the nascent R2DBC abstraction supporting reactive SQL data access and then introduce the Spring Data R2DBC project that supports typical Spring Data idioms like repositories. &lt;/p&gt;
+&lt;p&gt;speaker: &lt;a href="http://twitter.com/starbuxman"&gt;Josh Long &lt;/a&gt;&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/fIMdlE5Hvzk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</content>
+  </entry>
+  <entry>
+    <title>This Week in Spring  - December 18th, 2018</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/12/19/this-week-in-spring-december-18th-2018" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2018-12-19:3502</id>
+    <updated>2018-12-19T00:18:00Z</updated>
+    <content type="html">&lt;p&gt;&lt;em&gt;Hi Spring fans!&lt;/em&gt; &lt;/p&gt;
+&lt;p&gt;Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I just wrapped up the last two talks or workshops I&amp;rsquo;ll do this year. Yesterday we spent four hours looking at &lt;a href="http://ReactiveSpring.io"&gt;Reactive Spring&lt;/a&gt; and today we spent four hours looking at &lt;a href="https://github.com/joshlong/bootiful-kotlin-online-training"&gt;Spring Boot and Kotlin&lt;/a&gt;. I love doing these sorts of trainings because I really get to dive deep on topics with my audiences. It&amp;rsquo;s, truly, one of the rare pleasures in an otherwise hectic schedule. Needless to say, I am &lt;em&gt;super relaxed&lt;/em&gt; and happy as I write this and I hope you are too! &lt;/p&gt;
+&lt;p&gt;You realize it&amp;rsquo;s &lt;em&gt;already&lt;/em&gt; December 18th, 2018, already? Gee time flies when you&amp;rsquo;re having fun! The &lt;em&gt;next&lt;/em&gt; installment of &lt;em&gt;This Week in Spring&lt;/em&gt; is on the 25th, which, for some in the world, is the holiday Christmas. If that includes you, then let us be the first to &lt;em&gt;wish you and yours the merriest of Christmases!&lt;/em&gt; &lt;/p&gt;
+&lt;p&gt;Next week&amp;rsquo;s installment will &lt;em&gt;also&lt;/em&gt; be the last installment in 2018 which means that it&amp;rsquo;ll be another installment of our annual year-end spectacular, &lt;em&gt;This Year in Spring&lt;/em&gt;! Don&amp;rsquo;t miss it! (Or do; it&amp;rsquo;ll be there waiting for you the next day :-))&lt;/p&gt;
+&lt;p&gt;What do you think were the biggest events and announcements in 2018 in Spring and its satellite ecosystems like Java, NoSQL, enterprise application integration, Reactive Programming, Kotlin, Groovy, Scala, microservices, batch processing and so on? LET ME KNOW on &lt;a href="http://twitter.com/Starbuxman"&gt;TWITTER (@starbuxman)&lt;/a&gt; or EMAIL &lt;a href="mailto:josh@joshlong.com"&gt;josh@joshlong.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This holiday season, give the gift that keeps on giving: Spring! &lt;/p&gt;
+&lt;p&gt;Now then: onward, we&amp;rsquo;ve got a ton of stuff to look at, so let&amp;rsquo;s get to it! &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/12/14/spring-credhub-2-0-0-rc1-released"&gt;Spring CredHub 2.0.0.RC1 released&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://medium.com/@NetflixTechBlog/netflix-oss-and-spring-boot-coming-full-circle-4855947713a0"&gt;Netflix OSS and Spring Boot — Coming Full Circle – Netflix Technology Blog – Medium&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Hi Spring fans! In this latest installment of &lt;em&gt;Spring Tips&lt;/em&gt; &lt;a href="https://spring.io/blog/2018/12/12/spring-tips-bootiful-google-cloud-platform"&gt; we look at the &lt;em&gt;Bootiful&lt;/em&gt; Google Cloud Platform&lt;/a&gt;. This is a natural follow watch after you&amp;rsquo;ve watched the previous &lt;em&gt;Spring Tip&lt;/em&gt; &lt;a href="https://www.youtube.com/watch?v=jRgZe7kWDnU"&gt;introducing Spring for Microsoft Azure&lt;/a&gt;. And, of course, do &lt;em&gt;not&lt;/em&gt; miss tomorrow&amp;rsquo;s installment of &lt;em&gt;Spring Tips&lt;/em&gt;! Follow &lt;a href="http://twitter.com/SpringTipsLive"&gt;@SpringTipsLive&lt;/a&gt; on Twitter for the latest installments.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now"&gt;Spring Cloud Greenwich.RC1 available now&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Lots of good information on &lt;a href="https://www.cloudfoundry.org/?s=service+mesh"&gt;service meshes and Cloud Foundry&lt;/a&gt;&lt;br/&gt;Check out the latest 3.1.1 release of the &lt;a href="https://github.com/arangodb/spring-data"&gt;community led Spring Data ArangoDB project&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Do you &lt;em&gt;really&lt;/em&gt; want to use a reactive facade on top of a blocking abstraction like JDBC? &lt;em&gt;Really&lt;/em&gt;? And you&amp;rsquo;re sure that you understand that the library might saturate your threadpool? And you&amp;rsquo;re sure that you can&amp;rsquo;t use one of the natively reactive options from R2DBC (H2, PostgreSQL, or Microsoft SQL Server)? Then check out this &lt;a href="https://github.com/IBM/reactive-components"&gt;library that provides a Project Reactor-powered facade on top of blocking- and non-reactive components like JDBC and JPA &lt;/a&gt;. But remember, it &lt;em&gt;isn&amp;rsquo;t&lt;/em&gt; really reactive!&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/12/12/spring-data-r2dbc-1-0-m1-released"&gt;Spring Data R2DBC 1.0 M1 released&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/12/12/how-fast-is-spring"&gt;How Fast is Spring?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Baeldung have a nice introduction &lt;a href="https://www.baeldung.com/rsocket"&gt; to RSocket &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Do you want to encode rich web semantic information in your Spring Boot application using JSON-LD? &lt;a href="https://github.com/kbss-cvut/jb4jsonld"&gt;Check out this nifty looking project on Github&lt;/a&gt; and &lt;a href="https://github.com/kbss-cvut/jopa-examples/blob/master/jsonld/pom.xml"&gt;maybe these examples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Baeldung also have an interesting post on &lt;a href="https://www.baeldung.com/java-restart-spring-boot-app"&gt;programmatically restarting a Spring Boot Application&lt;/a&gt; manually and using the Spring Boot Actuator endpoint&lt;/li&gt;
+  &lt;li&gt;Our own Kenny Bastani has put together a nice reference architecture on reactive event sourcing microservices &lt;a href="https://t.co/YEt5W7J9vN?ssr=true"&gt;complete with instructions on how to deploy to Kubernetes with Docker Compose&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now"&gt;The Spring Cloud RC is out&lt;/a&gt;. With it comes the announcement of some Spring Cloud Netflix projects going into maintenance mode. [It&amp;rsquo;s time to consider moving over to Spring Cloud Gateway, Spring Cloud LoadBalancer and Resilience4J.&lt;/li&gt;
+  &lt;li&gt;The ServerSide have an interesting post on how to &lt;a href="https://www.theserverside.com/tutorial/Avoid-boilerplate-code-with-this-typable-Spring-beans-tutorial"&gt;use strongly typed qualifiers in Spring &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
   <entry>
     <title>Spring CredHub 2.0.0.RC1 released</title>
     <link rel="alternate" href="https://spring.io/blog/2018/12/14/spring-credhub-2-0-0-rc1-released" />
@@ -1301,224 +1874,5 @@ Flux&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt; rows = databaseClient.exec
 &lt;p&gt;What does the future hold for reactive programming and relational databases? Honestly, I don&amp;rsquo;t know. If I attempted an educated guess, I can see Project Loom and a Fiber-based Executor combined with well-established JDBC drivers as a potential game changer in the industry. With Java&amp;rsquo;s accelerated release cadence, that may not be far away.&lt;/p&gt;
 &lt;p&gt;ADBA targets inclusion in the Java Standard runtime, which I foresee coming no sooner than Java 17, which would be sometime in 2021, according to the current schedule.&lt;/p&gt;
 &lt;p&gt;Contrast that with R2DBC, which is available now. It comes with drivers and clients and allows experimental usage. A neat side effect of R2DBC is that it exposes a fully reactive API while being independent of the underlying database engine. With releases already happening, there&amp;rsquo;s no need to guess about Project Loom nor wait potentially three years to test drive an API. It&amp;rsquo;s possible today with R2DBC.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring IO Platform Cairo-SR6</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/12/06/spring-io-platform-cairo-sr6" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Andy Wilkinson</name>
-    </author>
-    <id>tag:spring.io,2018-12-06:3489</id>
-    <updated>2018-12-06T13:30:41Z</updated>
-    <content type="html">&lt;p&gt;I am pleased to announce that &lt;a href="https://spring.io/projects/platform"&gt;Spring IO Platform&lt;/a&gt; Cairo-SR6 is now available from both &lt;a href="https://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and Maven Central. &lt;/p&gt;
-&lt;p&gt;This maintenance release upgrades the versions of a number of the projects in the Platform:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Reactor Bismuth-SR14&lt;/li&gt;
-  &lt;li&gt;Spring AMQP 2.0.10&lt;/li&gt;
-  &lt;li&gt;Spring Boot 2.0.7&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Connectors 2.0.4&lt;/li&gt;
-  &lt;li&gt;Spring Data Kay-SR12&lt;/li&gt;
-  &lt;li&gt;Spring Framework 5.0.11&lt;/li&gt;
-  &lt;li&gt;Spring Integration 5.0.10&lt;/li&gt;
-  &lt;li&gt;Spring Kafka 2.1.11&lt;/li&gt;
-  &lt;li&gt;Spring Security 5.0.10&lt;/li&gt;
-  &lt;li&gt;Spring Session Apple-SR7&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The versions of a number of third-party dependencies have also been updated.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/platform"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-io/platform"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-io/platform/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/platform/docs/Cairo-SR6/reference/htmlsingle"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Tools 4.0.2 released</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/12/05/spring-tools-4-0-2-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Nieraj Singh</name>
-    </author>
-    <id>tag:spring.io,2018-12-05:3488</id>
-    <updated>2018-12-05T11:58:00Z</updated>
-    <content type="html">&lt;p&gt;Dear Spring Community,&lt;/p&gt;
-&lt;p&gt;I am happy to announce the 4.0.2 release of the Spring Tools 4 for Eclipse, Visual Studio Code, and Atom.&lt;/p&gt;
-&lt;p&gt;Highlights from this release include:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;(Spring Boot) CTRL-CLICK navigation from application.properties and application.yml to Java&lt;/li&gt;
-  &lt;li&gt;(Spring Boot) Improvements to &amp;lsquo;Goto Symbol&amp;rsquo; and &amp;lsquo;Live Hover&amp;rsquo; for functional style WebFlux request mappings&lt;/li&gt;
-  &lt;li&gt;(Spring Boot) Support for Spring Boot log groups in properties and yaml editor&lt;/li&gt;
-  &lt;li&gt;(Spring Boot) Various bug fixes&lt;/li&gt;
-  &lt;li&gt;(Eclipse) Boot launch config editor &amp;lsquo;override properties&amp;rsquo; now uses full-featured embedded properties editor&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Detailed changes can be found here:&lt;br/&gt;&lt;a href="https://github.com/spring-projects/sts4/wiki/Changelog#2018-11-30-402-release"&gt;https://github.com/spring-projects/sts4/wiki/Changelog#2018-11-30-402-release&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;To download the distribution for Eclipse and find links to the marketplace entries for Visual Studio Code and Atom, please visit:&lt;br/&gt;&lt;a href="http://spring.io/tools/"&gt;http://spring.io/tools/&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Tips: Bootiful Microsoft Azure</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/12/05/spring-tips-bootiful-microsoft-azure" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2018-12-02:3486</id>
-    <updated>2018-12-05T00:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans! In this installment of Spring Tips we look at how to use Spring to work with infrastructure on Microsoft Azure&lt;/p&gt;
-&lt;p&gt;speaker: &lt;a href="http://twitter.com/starbuxman"&gt;Josh Long &lt;/a&gt;&lt;/p&gt;
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/jRgZe7kWDnU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - December 5th, 2018</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/12/04/this-week-in-spring-december-5th-2018" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2018-12-04:3487</id>
-    <updated>2018-12-04T23:51:23Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans and welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! Today I concluded my brief time in Paris, France, for the &lt;em&gt;epic&lt;/em&gt; SpringOne Tour event and I&amp;rsquo;ll be off to Milan, Italy, in about 12 hours where I&amp;rsquo;ll be speaking at the &lt;a href="https://www.jugmilano.it/meeting-107.html"&gt;Milano JUG Wednesday night&lt;/a&gt;. &lt;em&gt;Ci saro presto, Milano!&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Tomorrow we&amp;rsquo;ll have the first installment of season 5 of &lt;a href="http://twitter.com/SpringTipsLive"&gt;&lt;em&gt;Spring Tips&lt;/em&gt;&lt;/a&gt; available so be sure to check this space soon and every Wednesday until we&amp;rsquo;ve exhausted all 11 episodes! &lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;There&amp;rsquo;s a lot to love in &lt;a href="https://github.com/spring-projects/sts4/wiki/Changelog#2018-11-30-402-release"&gt;the new Spring Tool Suite 4 release!&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/11/30/spring-session-bean-sr1-and-apple-sr7-released"&gt;Spring Session Bean-SR1 and Apple-SR7 Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/11/30/spring-boot-2-1-1-available-now"&gt;Spring Boot 2.1.1 available now&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/11/30/spring-boot-2-0-7-available-now"&gt;Spring Boot 2.0.7 available now&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Want to learn the ways that Pivotal Cloud Foundry supports you on &lt;a href="https://pivotal.io/partners/aws?mkt_tok=eyJpIjoiWXpObU9EUTRNbUl3WkdRMyIsInQiOiJwNU5rcDcrVDFzSnpjM0tWemRDK1M0S1dNQnMrdVN0U0dKdTlMajRzQXlVd1QyZjdLUGFNOUN2ekJGNG1HdTI2emtMZWpHekh3Ukk1VEQ4eHVJTDFxS05VUlwvdTA2NVJ2SWc5VVwvSWZjOGV4R0xkczRZa3dQZ1lhRGJUUjNoUTMyIn0%253D"&gt;Amazon Web Services (AWS)?&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/11/29/spring-io-platform-brussels-sr15"&gt;Spring IO Platform Brussels-SR15&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/11/29/spring-security-5-1-2-5-0-10-4-2-10-released"&gt;Spring Security 5.1.2, 5.0.10, 4.2.10 Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/11/29/spring-boot-1-5-18-available-now"&gt;Spring Boot 1.5.18 available now&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check this out! &lt;a href="https://www.rabbitmq.com/blog/2018/12/04/this-month-in-rabbitmq-dec-4-2018/"&gt;&lt;em&gt;This Month in RabbitMQ&lt;/em&gt;, Dec 4, 2018&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check out these new Spring Security &lt;a href="https://twitter.com/jzheaux/status/1069653892168802305?s=12"&gt;first-timer issues&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;I dig Maciej Walkowiak&amp;rsquo;s walkthrough of developing &lt;a href="https://twitter.com/maciejwalkowiak/status/1069718456537362432?s=12"&gt;complete&lt;/a&gt; reactive Spring applications with Spring WebFlux, Spring Data Redis, Test Containers, Lombok and of course Spring Boot&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://t.co/KdytTYXAg6"&gt;Matt Raible&amp;rsquo;s published the slides from his &amp;ldquo;Bootiful Development with Spring Boot and Vue&amp;rdquo; talk this evening. &lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Not stricly speaking related to Spring, but still interesting. It&amp;rsquo;s a French-language post on &lt;a href="https://www.elastic.co/fr/blog/monitoring-java-applications-with-metricbeat-and-jolokia"&gt;observing Java applications with Metricbeat and Jolokia over on the Elastic blog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This is an oldie-but-a-goodie over on &lt;em&gt;JavaWorld&lt;/em&gt;: &lt;a href="https://www.javaworld.com/article/3288219/spring-framework/mastering-spring-framework-5-part-2-spring-webflux.amp.html"&gt;mastering Spring framework 5, Part 2: Spring WebFlux | JavaWorld&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Nice article offering insights on tuning an &lt;a href="https://middlewareblog.redhat.com/2018/10/15/insights-about-tuning-an-apache-camel-application-deployed-into-spring-boot/amp/?__twitter_impression=true"&gt;Apache Camel application deployed into Spring Boot &lt;/a&gt; over on the JBoss Middleware blog.&lt;/li&gt;
-  &lt;li&gt;I love these Chinese-language videos &lt;a href="https://www.youtube.com/playlist?list=PL95Ey4rht7980EH8yr7SLBvj9XSE1ggdy"&gt;on using project Reactor&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;I love Spring Framework lead Juergen Hoeller&amp;rsquo;s SpringOne Platform 2018 presentation, &lt;a href="https://www.infoq.com/presentations/spring-5-1-jdk-8-11"&gt;&lt;em&gt;Spring Framework 5.1 on JDK 8 &amp;amp; 11&lt;/em&gt;&lt;/a&gt;, now up on InfoQ&lt;/li&gt;
-  &lt;li&gt;Be sure to not miss &lt;a href="https://medium.com/netifi/building-end-to-end-reactive-scalable-data-driven-applications-dac4273c16b6"&gt;Ben Hale, Mark Paluch and Ryland Degnan&amp;rsquo;s upcoming webinar on R2DBC and RSocketIO on Dec 6&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This is a nice post on customizing &lt;a href="https://dzone.com/articles/customize-error-responses-in-spring-boot"&gt;error responses in a Spring Boot application&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Don&amp;rsquo;t miss the upcoming webinar on &lt;a href="https://www.brighttalk.com/webcast/14883/338287?utm_campaign=Twitter&amp;utm_source=brighttalk-sharing&amp;utm_medium=web"&gt;continuous delivery to the cloud with Spinnaker&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Yet another epic installment of &lt;a href="https://itunes.apple.com/us/podcast/talking-kotlin/id1194631266?mt=2&amp;i=1000413742861#"&gt;the &lt;em&gt;Talking Kotlin&lt;/em&gt; podcast on monitoring applications with Micrometer&amp;rsquo;s own Jon Schneider&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;The Spring team&amp;rsquo;s epic Greg L. Turnquist has been busy pruning a lot of relics from the Spring guides from &lt;a href="https://spring.io/guides"&gt;the old pre-1.0 days of Spring Boot&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Expedia have a nice UI, &lt;a href="https://github.com/ExpediaDotCom/haystack-ui"&gt;Haystack&lt;/a&gt;, that can be paired with Zipkin. Cool!&lt;/li&gt;
-  &lt;li&gt;Vladimír Oraný has a nice 10-part series on &lt;a href="https://medium.com/@musketyr/groovy-dsl-builders-1-the-concept-2d5a97fa0a51"&gt;writing builder style DSLs in Apache Groovy.&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;The Baeldung blog has a nice post on &lt;a href="https://www.baeldung.com/spring-boot-testing"&gt;testing in Spring Boot&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check out the &lt;a href="https://www.npmjs.com/package/generator-jhipster-kotlin"&gt;JHipster Kotlin 0.6.0 support&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This is a prettu epic post on &lt;a href="https://cantina.co/getting-started-with-spring-boot-jooq-flyway-and-modelmapper/"&gt;getting started with Spring Boot, JOOQ, Flyway, and ModelMapper &lt;/a&gt; on the Cantina blog&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://projectriff.io/blog/announcing-riff-0-2-0/"&gt;Riff v0.2.0 is now available&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This post - which looks at &lt;a href="https://medium.com/@lahtela/dynamic-flow-control-during-backpressure-with-rxjava-and-rsockets-41e369cda122"&gt;dynamic Flow Control during Backpressure with RxJava and RSockets&lt;/a&gt; - also maps nicely to Reactor concepts.&lt;/li&gt;
-&lt;/ul&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Session Bean-SR1 and Apple-SR7 Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/11/30/spring-session-bean-sr1-and-apple-sr7-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Rob Winch</name>
-    </author>
-    <id>tag:spring.io,2018-11-30:3485</id>
-    <updated>2018-11-30T19:29:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;em&gt;This post was authored by &lt;a href="https://github.com/vpavic"&gt;Vedran Pavić&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community I’m pleased to announce the releases of Spring Session BOM &lt;code&gt;Bean-SR1&lt;/code&gt; and &lt;code&gt;Apple-SR7&lt;/code&gt;. These maintenance releases are based on Spring Session &lt;code&gt;2.1.2.RELEASE&lt;/code&gt; and &lt;code&gt;2.0.8.RELEASE&lt;/code&gt;, respectively, which bring a couple of bug fixes together with the usual dependency upgrades.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Complete details of these releases can be found in the following changelogs:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-session/milestone/48?closed=1"&gt;&lt;code&gt;2.1.2.RELEASE&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-session/milestone/47?closed=1"&gt;&lt;code&gt;2.0.8.RELEASE&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://projects.spring.io/spring-session/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-session/docs/2.1.2.RELEASE/reference/html5/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-session/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-session"&gt;Gitter&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-session"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Boot 2.1.1 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/11/30/spring-boot-2-1-1-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Madhura Bhave</name>
-    </author>
-    <id>tag:spring.io,2018-11-30:3483</id>
-    <updated>2018-11-30T11:02:30Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone that contributed, I&amp;rsquo;m happy to announce that Spring Boot 2.1.1 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This release contains &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.1.1.RELEASE"&gt;almost 70 closed issues and pull requests&lt;/a&gt; which include bug fixes, documentation updates and dependency upgrades. Thanks to everyone who contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Boot 2.0.7 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/11/30/spring-boot-2-0-7-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Stéphane Nicoll</name>
-    </author>
-    <id>tag:spring.io,2018-11-30:3484</id>
-    <updated>2018-11-30T08:00:37Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, it is my pleasure to announce that Spring Boot 2.0.7 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 2.0.7 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.0.7.RELEASE"&gt;81 fixes, improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.0.7.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring IO Platform Brussels-SR15</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/11/29/spring-io-platform-brussels-sr15" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Andy Wilkinson</name>
-    </author>
-    <id>tag:spring.io,2018-11-29:3482</id>
-    <updated>2018-11-29T17:11:07Z</updated>
-    <content type="html">&lt;p&gt;I am pleased to announce that &lt;a href="https://spring.io/projects/platform"&gt;Spring IO Platform&lt;/a&gt; Brussels-SR15 is now available from both &lt;a href="https://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and Maven Central. &lt;/p&gt;
-&lt;p&gt;This maintenance release upgrades the versions of a number of the projects in the Platform:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Boot 1.5.18&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Connectors 1.2.7&lt;/li&gt;
-  &lt;li&gt;Spring Data Ingalls SR17&lt;/li&gt;
-  &lt;li&gt;Spring Framework 4.3.21&lt;/li&gt;
-  &lt;li&gt;Spring Integration 4.3.18&lt;/li&gt;
-  &lt;li&gt;Spring Security 4.2.10&lt;/li&gt;
-  &lt;li&gt;Spring Session 1.3.4&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The versions of a number of third-party dependencies have also been updated.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/platform"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-io/platform"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-io/platform/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/platform/docs/Brussels-SR15/reference/htmlsingle"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 5.1.2, 5.0.10, 4.2.10  Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/11/29/spring-security-5-1-2-5-0-10-4-2-10-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Rob Winch</name>
-    </author>
-    <id>tag:spring.io,2018-11-29:3481</id>
-    <updated>2018-11-29T14:50:55Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community I am pleased to announce the release of Spring Security 5.1.2 (&lt;a href="https://github.com/spring-projects/spring-security/issues?q=is%3Aclosed+milestone%3A5.1.2+sort%3Aupdated-desc"&gt;changelog&lt;/a&gt;), 5.0.10 (&lt;a href="https://github.com/spring-projects/spring-security/issues?q=is%3Aclosed+milestone%3A5.0.10+sort%3Aupdated-desc"&gt;changelog&lt;/a&gt;), and 4.2.10 (&lt;a href="https://github.com/spring-projects/spring-security/issues?q=is%3Aclosed+milestone%3A4.2.10+sort%3Aupdated-desc"&gt;changelog&lt;/a&gt;). This series of releases provides a round of bug fixes and users are encouraged to update to the latest patch release.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; |
-&lt;a href="http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/"&gt;Reference&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Boot 1.5.18 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/11/29/spring-boot-1-5-18-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Stéphane Nicoll</name>
-    </author>
-    <id>tag:spring.io,2018-11-29:3480</id>
-    <updated>2018-11-29T11:34:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Boot 1.5.18 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 1.5.18 is a maintenance release that includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v1.5.18.RELEASE"&gt;16 fixes, documentation improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;
-&lt;p&gt;If you haven’t already upgraded to Spring Boot 2, please consider doing so as support for 1.x will &lt;a href="https://spring.io/blog/2018/07/30/spring-boot-1-x-eol-aug-1st-2019"&gt;end on August 1st 2019&lt;/a&gt;. &lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/1.5.18.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

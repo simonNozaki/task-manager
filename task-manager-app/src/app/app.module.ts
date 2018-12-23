@@ -13,13 +13,15 @@ import { SignupService } from './service/signup.service';
 import { CommonDeliveryService } from './service/common-delivery.service';
 import { SigninComponent } from './component/user/signin/signin.component';
 import { SigninService } from './service/signin.service';
+import { SignoutComponent } from './component/user/signout/signout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    SignoutComponent
   ],
   imports: [
     BrowserModule,

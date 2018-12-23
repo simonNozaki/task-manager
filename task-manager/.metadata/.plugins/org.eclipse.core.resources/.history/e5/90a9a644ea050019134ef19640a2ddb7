@@ -1,0 +1,12 @@
+package com.tm.config.logger;
+
+/**
+<<<<<<< HEAD
+ * エラーログ用クラス。logback.xmlでロガーを識別するために使う。
+=======
+ * 電文ログ用クラス。logback.xmlでロガーを識別するために使う。
+>>>>>>> ae7e3c5dc3a4fe44b525d66b5c7e81aee5fba089
+ */
+public class AppErrorLogger {
+
+}

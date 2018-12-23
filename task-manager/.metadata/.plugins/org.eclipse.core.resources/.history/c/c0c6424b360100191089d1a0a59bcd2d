@@ -1,5 +1,0 @@
-package com.tm.config.logger;
-
-public class AppErrorLogger {
-
-}

@@ -4,15 +4,16 @@ import { ServiceConst } from '../../const/service-const';
 import { TaskComponent } from '../../component/task/task.component';
 import { SignupComponent } from '../../component/user/signup/signup.component';
 import { SigninComponent } from '../../component/user/signin/signin.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [ 
     { path: ServiceConst.URL_WEB_TASK, component: TaskComponent },
     { path: ServiceConst.URL_WEB_USER_SIGNUP, component: SignupComponent},
-    { path: ServiceConst.URL_WEB_USER_SIGNIN, component: SigninComponent},
+    { path: ServiceConst.URL_WEB_USER_SIGNIN, component: SigninComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes), RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class WebRoutingModule { }

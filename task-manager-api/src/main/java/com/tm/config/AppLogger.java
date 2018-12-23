@@ -32,8 +32,8 @@ public class AppLogger {
 
     // ロガー用定数
     private static final String ERR_STACK_TRACE = "errStackTrace";
-    private static final String STACKTRACE_START = "[Telegram Trace Start]";
-    private static final String STACKTRACE_END = "[Telegram Trace End]";
+    private static final String STACKTRACE_START = "----------------------Telegram Trace Start----------------------";
+    private static final String STACKTRACE_END = "----------------------Telegram Trace End----------------------";
     private static final String STR_NEWLINE = "\n";
 
 	/**
@@ -54,14 +54,14 @@ public class AppLogger {
 	/**
 	 * ログレベルに応じたログ出力を実施します。<br>
 	 * bodyを指定せず、nullが設定された場合MDCのキーを設定しません。
-	 * @param String level
-	 * @param String msg
-	 * @param Throwable th
-	 * @param Object className
-     * @param Object methodName
-     * @param String body
+	 * @param level ログレベル
+	 * @param msg ログメッセージ
+	 * @param th スロー可能オブジェクト
+	 * @param className クラス名
+     * @param methodName メソッド名
+     * @param body
 	 */
-	private static void log(String level, LogCode logCode, Throwable th, Object className, Object methodName, String body) {
+	private static void log(String level, LogCode logCode, Throwable th, Object className, Object methodName) {
 	    // MDCを初期化
 	    MDC.put(CLASS_NAME, className.toString());
 	    MDC.put(METHOD_NAME, methodName.toString());
@@ -79,11 +79,12 @@ public class AppLogger {
 
 	    // ログレベルをロガーに入力
 	    ch.qos.logback.classic.Logger loggerInstance = (ch.qos.logback.classic.Logger)appTraceINSTANCE;
+	    ch.qos.logback.classic.Logger errorLoggerInstance = (ch.qos.logback.classic.Logger)appErrorINSTANCE;
 
 	    // レベル別にログを出力
 	    switch(level) {
 	        case LoggerConst.LOG_LEVEL_ERROR:
-	            loggerInstance.setLevel(Level.ERROR);
+	            errorLoggerInstance.setLevel(Level.ERROR);
 	            logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
 	            appErrorINSTANCE.error(logPrefix, logCode.getCode(), exception);
 	            break;
@@ -131,11 +132,12 @@ public class AppLogger {
 
         // ログレベルをロガーに入力
         ch.qos.logback.classic.Logger loggerInstance = (ch.qos.logback.classic.Logger)appTelegramINSTANCE;
+        ch.qos.logback.classic.Logger errorLoggerInstance = (ch.qos.logback.classic.Logger)appErrorINSTANCE;
 
         // レベル別にログを出力
         switch(level) {
             case LoggerConst.LOG_LEVEL_ERROR:
-                loggerInstance.setLevel(Level.ERROR);
+                errorLoggerInstance.setLevel(Level.ERROR);
                 logPrefix = MarkerFactory.getMarker(LoggerConst.LOG_PREFIX_ERROR);
                 appErrorINSTANCE.error(logPrefix, logCode.getCode());
                 break;
@@ -171,7 +173,7 @@ public class AppLogger {
 	 * @param Object methodName
 	 */
 	public static void trace(LogCode logCode, Throwable th, Object className, Object methodName, String body) {
-	    log(LoggerConst.LOG_LEVEL_INFO, logCode, th, className, methodName, body);
+	    log(LoggerConst.LOG_LEVEL_INFO, logCode, th, className, methodName);
 	}
 
 	/**
@@ -182,7 +184,7 @@ public class AppLogger {
      * @param Object methodName
 	 */
 	public static void error(LogCode logCode, Throwable th, Object className, Object methodName, String body) {
-	    log(LoggerConst.LOG_LEVEL_ERROR, logCode, th, className, methodName, body);
+	    log(LoggerConst.LOG_LEVEL_ERROR, logCode, th, className, methodName);
 	}
 
 	/**

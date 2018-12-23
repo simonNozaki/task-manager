@@ -21,7 +21,6 @@ import com.tm.dto.Users;
 import com.tm.dto.bean.user.UserAuthenticationRequestDto;
 import com.tm.dto.bean.user.UserAuthenticationResponseDto;
 import com.tm.dto.common.Errors;
-import com.tm.dto.common.ServiceOut;
 import com.tm.service.user.UserAuthenticationService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -67,25 +66,22 @@ public class UserSigninRestController extends BaseRestController {
         }
 
         //------------------------------------
-        // サービスクラスの実行
+        // サービスクラスの実行およびレスポンス処理
         //------------------------------------
-        ServiceOut<Users> result = userAuthenticationService.execute(req);
+        return responseProcessBuilder().executeService(userAuthenticationService.execute(req))
+                   .map((Users user, Errors error) -> {
+                       UserAuthenticationResponseDto res = new UserAuthenticationResponseDto();
+                       Optional.ofNullable(error).ifPresent((Errors errs) -> res.setErrors(errs));
+                       Optional.ofNullable(user).ifPresent((Users users) -> {
+                           res.setUserId(users.getUserId());
+                           res.setEmail(users.getEmail());
+                           res.setUserName(users.getUserName());
+                           res.setPassword(users.getPassword());
+                       });
+                       return res;
+                   })
+                   .log()
+                   .apply();
 
-        //------------------------------------
-        // レスポンス処理
-        //------------------------------------
-        return responseProcessBuilder().of(UserAuthenticationResponseDto::new)
-                  .operate((UserAuthenticationResponseDto res) -> {
-                      Optional.ofNullable(result.getErrors()).ifPresent((Errors errs) -> res.setErrors(errs));
-                      Optional.ofNullable(result.getValue()).ifPresent((Users users) -> {
-                          res.setUserId(users.getUserId());
-                          res.setEmail(users.getEmail());
-                          res.setUserName(users.getUserName());
-                          res.setPassword(users.getPassword());
-                      });
-                      return res;
-                  })
-                  .logOutput(result)
-                  .apply();
     }
 }

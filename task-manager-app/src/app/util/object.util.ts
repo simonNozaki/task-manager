@@ -1,6 +1,3 @@
-import { Optional } from "@angular/core";
-import { Task } from "../entity/task";
-
 /**
  * オブジェクト操作のユーティリティを提供します。
  */
@@ -12,7 +9,7 @@ export class ObjectUtil {
      * @returns boolean
      */
     public static isNullOrUndefined(t: any): boolean {
-        return (t == null || t == "undefined") ? true : false;
+        return (t == null || typeof t == "undefined") ? true : false;
     }
 
 }
