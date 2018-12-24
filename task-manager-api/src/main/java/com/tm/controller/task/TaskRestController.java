@@ -22,7 +22,7 @@ import com.tm.dto.bean.task.TaskRegistRequestDto;
 import com.tm.dto.bean.task.TaskRegistResponseDto;
 import com.tm.dto.common.Errors;
 import com.tm.dto.common.ServiceOut;
-import com.tm.service.task.RegistTaskService;
+import com.tm.service.task.TaskRegisterService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
 
@@ -32,10 +32,10 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
-public class TaskRegistRestController extends BaseRestController {
+public class TaskRestController extends BaseRestController {
 
 	@Autowired
-	private RegistTaskService registTaskService;
+	private TaskRegisterService registTaskService;
 
 	/** 新規タスクを登録します.
 	 * @param TaskRegistRequestDto task

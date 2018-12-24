@@ -13,14 +13,21 @@ public class CtrlConst {
 	 * アプリケーションコンテキスト
 	 */
 	public static final String URI_API_VERSION = "/api/v1";
+
 	/**
 	 * 処理大項目：タスク
 	 */
 	public static final String FUNC_TASKS = "/task";
+
 	/**
 	 * 処理大項目：利用者
 	 */
 	public static final String FUNC_USERS = "/user";
+
+	/**
+	 * 処理中項目：ラベル
+	 */
+	public static final String FUNC_TASKS_LABEL = "/label";
 
 	/**
 	 * 取得

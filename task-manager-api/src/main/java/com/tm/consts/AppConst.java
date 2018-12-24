@@ -6,7 +6,7 @@ package com.tm.consts;
 public class AppConst {
 
 	//------------------------------
-	// 完了フラグ
+	// タスク完了フラグ
 	//------------------------------//
 	/**
 	 * 未完了, 0
@@ -22,6 +22,19 @@ public class AppConst {
 	 * 削除済み, 2
 	 */
 	public static final String TASK_COMPLETED_FLAG_DELETED = "2";
+
+	//------------------------------
+    // タスクラベル利用フラグ
+    //------------------------------//
+    /**
+     * タスクラベル：登録済み, 0
+     */
+    public static final String TASK_LABEL_USED_FLAG_REGISTERED = "0";
+
+    /**
+     * タスクラベル：削除済み, 1
+     */
+    public static final String TASK_LABEL_USED_FLAG_DELETED = "2";
 
 	//------------------------------
 	// 入力桁数

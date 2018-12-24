@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tm.consts.AppConst;
-import com.tm.consts.log.LogCode;
+import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.dao.repository.TaskRepository;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;
 import com.tm.dto.common.ServiceOut;
 import com.tm.service.framework.BaseService;
-import com.tm.service.task.RegistTaskService;
+import com.tm.service.task.TaskRegisterService;
 import com.tm.util.IdCounter;
 
 /**
  * タスク登録サービスの実装クラスです.
  */
 @Service
-public class RegistTaskServiceImpl extends BaseService implements RegistTaskService {
+public class TaskRegisterServiceImpl extends BaseService implements TaskRegisterService {
 
 	@Autowired
 	TaskRepository taskRepository;
@@ -42,7 +42,7 @@ public class RegistTaskServiceImpl extends BaseService implements RegistTaskServ
 		if (registedTask == null) {
 		    return doPipeServiceOut()
                     .setNormalResult(new Task())
-                    .setError(LogCode.TMTKRG90001.getCode())
+                    .setError(TaskManagerErrorCode.ERR999999.getCode())
                     .build();
 		}
 

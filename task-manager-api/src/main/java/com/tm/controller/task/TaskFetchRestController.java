@@ -24,7 +24,7 @@ import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
 
 /**
- * タスク登録Controllerです.
+ * タスク情報取得Controllerです.
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)

@@ -7,7 +7,7 @@ import com.tm.dao.TaskMapper;
 import com.tm.dto.Task;
 
 /**
- * TaskモデルのカスタムDTOです.
+ * Taskモデルの拡張リポジトリクラスです。
  */
 @Mapper
 public interface TaskRepository extends TaskMapper {
