@@ -2,5 +2,4 @@
 /task-manager-app/node_modules/
 /.recommenders/
 /task-manager-app/.vscode
-/task-manager-web
 task-manager-api/task-manager-logs/

@@ -19,7 +19,7 @@ export class SignoutService {
      * サインアウトを実施します。
      */
     public signout(): void {
-        if(this.isSignedin()) {
+        if(this.isSignedin) {
             this.commonDeliveryService.initialize();
         };
     };
@@ -31,10 +31,12 @@ export class SignoutService {
     private isSignedin(): boolean {
         this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
             if (ObjectUtil.isNullOrUndefined(userId)) {
-                return false;
-            }            
-          });
-          return true;
+                this.signedinFlag = false;
+            } else {
+                this.signedinFlag = true;
+            }
+        });
+        return this.signedinFlag;
     };
 
 }
