@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../service/task.service';
 import { FetchTaskResponseDto } from '../../dto/interface/fetch-task-response';
 import { Task } from '../../entity/task';
@@ -13,6 +13,12 @@ import { _ } from 'underscore';
 import { CommonDeliveryService } from '../../service/common-delivery.service';
 import { Router } from '@angular/router';
 import { ServiceConst } from '../../const/service-const';
+import { TaskLabel } from '../../entity/task-label';
+import { TaskLabelService } from '../../service/task-label.service';
+import { TaskLabelFetchResponseDto } from '../../dto/interface/task-label-fetch-response.dto';
+import { RegistTaskResponse } from '../../dto/interface/regist-task-response';
+import { TaskLabelRegisterRequestDto } from '../../dto/interface/task-label-register-request.dto';
+import { TaskLabelRegisterResponseDto } from '../../dto/interface/task-label-register-response.dto';
 
 /**
  * タスクの業務処理コンポーネント
@@ -24,14 +30,11 @@ import { ServiceConst } from '../../const/service-const';
 })
 export class TaskComponent implements OnInit {
 
-    //-----------------------------
-    // コンポーネント内プロパティ
-    //-----------------------------
-
     /** 
      * デフォルトコンストラクタ
      */
-    constructor(private taskService: TaskService, private router: Router, private commonDeliveryService: CommonDeliveryService) {}
+    constructor(private taskService: TaskService, private router: Router, private commonDeliveryService: CommonDeliveryService,
+        private taskLabelService: TaskLabelService) {}
 
     /**
      * 利用者ID
@@ -52,7 +55,11 @@ export class TaskComponent implements OnInit {
             this.router.navigateByUrl(ServiceConst.BASE_SLASH + ServiceConst.URL_WEB_USER_SIGNIN);
         }
         
+        // タスクのリストをプロパティに設定
         this.fetchTasks(this.userId);
+
+        // タスクラベルのリストをプロパティに設定
+        this.fetchLabels(this.userId);
         this.checkedResult = "";
     }
 
@@ -60,6 +67,11 @@ export class TaskComponent implements OnInit {
      * タスクリスト 
      */ 
     public tasks: Task[];
+
+    /**
+     * タスクラベルリスト
+     */
+    public labels: TaskLabel[];
     
     /**
      * タスク登録のフォームグループ
@@ -70,6 +82,13 @@ export class TaskComponent implements OnInit {
         startDateControl: new FormControl(null),
         deadlineControl: new FormControl(null),
         taskNoteControl: new FormControl("", Validators.maxLength(AppConst.TASK_NOTE_MAX_LENGTH))
+    });
+
+    /**
+     * タスクラベル登録フォームグループ
+     */
+    public taskLabelForm: FormGroup = new FormGroup({
+        taskLabelControl: new FormControl(null, Validators.required)
     });
   
     /** 
@@ -112,7 +131,9 @@ export class TaskComponent implements OnInit {
             registTaskRequestDto.setUserId(this.userId);
 
             // サービスクラスを実行します。
-            this.taskService.registTask(registTaskRequestDto).subscribe();
+            this.taskService.registTask(registTaskRequestDto).subscribe((res: RegistTaskResponse) => {
+                console.log(JSON.stringify(res));
+            });
 
             // 登録したタスクをリストに追加して、随時表を更新します。
             var newTask: Task = new Task();
@@ -121,7 +142,6 @@ export class TaskComponent implements OnInit {
             newTask.setTaskNote(registTaskRequestDto.getTaskNote());
             this.tasks.push(newTask);
         }
-
     }
 
     /**
@@ -173,5 +193,37 @@ export class TaskComponent implements OnInit {
         });
     }
 
+    /**
+     * 利用者の保持するタスクラベルのリストを取得します。
+     * @param userId: string 利用者ID
+     */
+    public fetchLabels(userId: string): void {
+        this.taskLabelService.fetch(userId).subscribe((res: TaskLabelFetchResponseDto) => {
+            console.log(JSON.stringify(res));
+            this.labels = res.labels;
+        })
+    }
+
+    /**
+     * ラベルを新規登録します。
+     */
+    public registerLabel(): void {
+        // リクエストオブジェクトを初期化
+        var req: TaskLabelRegisterRequestDto = new TaskLabelRegisterRequestDto();
+        req.taskLabel = this.taskLabelForm.get("taskLabelControl").value;
+        req.usedFlag = TaskManagerCode.TASK_LABEL_REGISTRED;
+        req.userId = this.userId;
+
+        // 正常に登録できたら、リストに追加する
+        this.taskLabelService.registerLabel(req).subscribe((res: TaskLabelRegisterResponseDto) => {
+            console.log(JSON.stringify(res));
+            var label: TaskLabel = new TaskLabel();
+            label.labelId = res.labelId;
+            label.taskLabel = res.taskLabel;
+            label.usedFlag = TaskManagerCode.TASK_LABEL_REGISTRED;
+            label.userId = this.userId;
+            this.labels.push(label);
+        });
+    }
 
 }

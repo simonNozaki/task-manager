@@ -11,6 +11,7 @@ import { RegistTaskRequest } from '../dto/interface/regist-task-request';
 import { GlobalErrorHandler } from '../exception/global-error-handler';
 import { TaskCompleteRequestDto } from '../dto/interface/task-complete-request.dto';
 import { TaskCompleteResponseDto } from '../dto/interface/task-complete-response.dto';
+import { RegistTaskResponse } from '../dto/interface/regist-task-response';
 
 
 /**
@@ -43,7 +44,7 @@ export class TaskService {
      * @param registTaskRequest: RegistTaskRequest
      * @returns Observable<RegistTaskRequest>
      */
-    public registTask(registTaskRequest: RegistTaskRequest): Observable<RegistTaskRequest> {
+    public registTask(registTaskRequest: RegistTaskRequest): Observable<RegistTaskResponse> {
         // HTTPリクエストのオプションをセットします.
         const httpOptions = {
             headers : new HttpHeaders({

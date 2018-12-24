@@ -77,15 +77,15 @@ public final class InputInspector<T> {
 		}
 
 		/**
-		 * 桁数チェックを行い、上限を超えていればエラーコードを設定します.
+		 * 桁数チェックを行い、上限を超えていればエラーコードを設定します。
 		 * @param String target
 		 * @param int max
 		 * @param String code
 		 * @return
 		 */
 		public <V> Inspector<T> violateMaxLength(V target, int max, String code) {
-			Predicate<V> predicate = (V inputValue) -> StringUtil.isOverSpecificLength(target.toString(), max);
-			return this.satisfyPredicateWithInput(target, predicate, code);
+		    Predicate<V> predicate = (V inputValue) -> StringUtil.isOverSpecificLength(target.toString(), max);
+		    return this.satisfyPredicateWithInput(target, predicate, code);
 		}
 
 		/**
@@ -95,9 +95,8 @@ public final class InputInspector<T> {
 		 * @param String code
 		 * @return
 		 */
-		public <V> Inspector<T> violateSpecificLength(V target, int max, String code) {
-			Predicate<V> predicate = (V inputValue) -> StringUtil.isEqualToSpecificLength(target.toString(), max);
-			return this.satisfyPredicateWithInput(target, predicate, code);
+		public <V> Inspector<T> violateSpecificLength(V target, int length, String code) {
+			return this.satisfyPredicateWithInput(target, (V inputValue) -> StringUtil.isNotEqualToSpecificLength(target.toString(), length), code);
 		}
 
 		/**
@@ -119,7 +118,9 @@ public final class InputInspector<T> {
          * @return Inspector<T>
          */
         public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
-            if (predicate.test(input)) {
+            if (input == null) {
+                return new Inspector<T>(this.value, this.errors);
+            } else if (predicate.test(input)) {
                 // エラーコードのリストがない場合はリストを初期化する
                 List<String> codes = Optional.ofNullable(this.errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);

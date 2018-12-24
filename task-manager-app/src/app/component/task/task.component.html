@@ -22,12 +22,24 @@
     </table>
   </div>
 
+  <form [formGroup]="taskLabelForm">
+      <label>
+          新規ラベル <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="新規ラベルを登録" >
+      </label>
+      <button (click)="registerLabel()" [disabled]="">ラベルを追加</button>
+  </form>
+
   <form [formGroup]="taskForm">
     <label>
       タイトル <input formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクタイトル" >
     </label>
     <label>
-      ラベル <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="ラベル">
+      ラベル
+      <select formControlName="taskLabelControl">
+          <option *ngFor="let labelItem of labels" [value]="labelItem.taskLabel" name="taskLabel">
+              {{ labelItem.taskLabel }}
+          </option>
+      </select>
     </label>
     <label>      
       開始日 <input formControlName="startDateControl" type="date" name="startDate" placeholder="開始日">

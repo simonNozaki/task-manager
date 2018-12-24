@@ -19,8 +19,8 @@ export class SignoutService {
      * サインアウトを実施します。
      */
     public signout(): void {
-        if(this.isSignedin) {
-            this.commonDeliveryService.initialize();
+        if(this.isSignedin()) {
+            this.commonDeliveryService.finalize();
         };
     };
 

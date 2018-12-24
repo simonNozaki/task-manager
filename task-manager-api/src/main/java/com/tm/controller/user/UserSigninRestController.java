@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
+import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.consts.log.LogCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Users;
@@ -51,7 +52,7 @@ public class UserSigninRestController extends BaseRestController {
         //------------------------------------
         Errors errors = InputInspector.of(req)
                             .logInput(req)
-                            .hasNullValue(LogCode.TMURCM10001.getCode())
+                            .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
                             .violateMaxLength(req.getEmail(), AppConst.USER_EMAIL_MAX, LogCode.TMURCM10013.getCode())
                             .violateMaxLength(req.getPassword(), AppConst.USER_PASSWORD_MAX, LogCode.TMURCM10014.getCode())
                             .build();

@@ -1,7 +1,7 @@
 package com.tm.consts;
 
 /**
- * アプリ共通の定義クラスです.
+ * アプリ共通定数クラス。
  */
 public class AppConst {
 
@@ -50,9 +50,9 @@ public class AppConst {
 	public static final int TASK_TITLE_MAX = 50;
 
 	/**
-	 * タスクラベル, 20桁
+	 * タスクラベル, 50桁
 	 */
-	public static final int TASK_LABEL_MAX = 20;
+	public static final int TASK_LABEL_MAX = 50;
 
 	/**
 	 * 完了フラグ, 1桁
