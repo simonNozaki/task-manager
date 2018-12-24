@@ -30,7 +30,7 @@ export class CommonDeliveryService {
     /**
      * 利用者IDをnullで初期化します。
      */
-    public initialize(): void {
+    public finalize(): void {
         this.userId.next(null);
     }
 

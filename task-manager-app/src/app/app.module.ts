@@ -13,15 +13,15 @@ import { SignupService } from './service/signup.service';
 import { CommonDeliveryService } from './service/common-delivery.service';
 import { SigninComponent } from './component/user/signin/signin.component';
 import { SigninService } from './service/signin.service';
-import { SignoutComponent } from './component/user/signout/signout.component';
+import { TaskLabelService } from './service/task-label.service';
+import { SignoutService } from './service/signout.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     SignupComponent,
-    SigninComponent,
-    SignoutComponent
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +33,11 @@ import { SignoutComponent } from './component/user/signout/signout.component';
   ],
   providers: [ 
     TaskService,
+    TaskLabelService,
     SignupService,
-    CommonDeliveryService,
-    SigninService
+    SigninService,
+    SignoutService,
+    CommonDeliveryService
     // ,
     // {
     //   provide: HTTP_INTERCEPTORS,

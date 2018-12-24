@@ -6,10 +6,35 @@ export module ServiceConst {
   //-----------------------------
   //APIURLの基本コンポーネント定義
   //-----------------------------
+  
+  /**
+   * ドメイン
+   */
   export const BASE_URL = 'http://localhost:18080/';
+  
+  /**
+   * コンテキストパス
+   */
   export const BASE_API_VERSION = 'api/v1';
+  
+  /**
+   * 処理大項目：タスク
+   */
   export const BASE_URL_FUNC = '/task';
+  
+  /**
+   * 処理大項目：利用者
+   */
   export const BASE_URL_USER = '/user';
+
+  /**
+   * 処理中項目：タスクラベル
+   */
+  export const BASE_URL_TASK_LABEL_FUNC = '/label';
+  
+  /**
+   * スラッシュ
+   */
   export const BASE_SLASH = '/';
 
   //-----------------------------
@@ -57,6 +82,11 @@ export module ServiceConst {
    * タスクの完了
    */
   export const URL_TASK_COMPLETE = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + '/complete';
+
+  /**
+   * タスクラベル、取得および登録：/task/label
+   */
+  export const URL_TASK_LABEL = BASE_URL + BASE_API_VERSION + BASE_URL_FUNC + BASE_URL_TASK_LABEL_FUNC;
 
   /**
    * 利用者の新規登録

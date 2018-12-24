@@ -21,6 +21,16 @@ export module TaskManagerCode {
      */
     export const TASK_COMPLETED_FLAG_DELETED = "2";
 
+    /**
+     * タスクラベル利用フラグ：0、登録
+     */
+    export const TASK_LABEL_REGISTRED = "0";
+
+    /**
+     * タスクラベル利用フラグ：1、削除済み
+     */
+    export const TASK_LABEL_DELETED = "1";
+
     //----------------------------
     // 利用者コード定義
     //----------------------------
