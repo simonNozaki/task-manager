@@ -1,5 +1,5 @@
 -- DB操作ユーザを作成
--- CREATE ROLE localuser WITH LOGIN PASSWORD '21405apple';
+CREATE ROLE localuser WITH LOGIN PASSWORD '21405apple';
 
 -- テーブルを作成
 create table  IF NOT EXISTS users(
