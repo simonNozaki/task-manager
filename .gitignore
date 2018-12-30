@@ -3,3 +3,9 @@
 /.recommenders/
 /task-manager-app/.vscode
 task-manager-api/task-manager-logs/
+
+task-manager-api/bin/
+
+task-manager-api/.classpath
+
+task-manager-api/.gradle/
