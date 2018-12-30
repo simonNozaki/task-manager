@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.tm.config.AppLogger;
 import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.consts.log.LogCode;
+import com.tm.dto.bean.error.GeneralError;
 import com.tm.dto.common.Errors;
 
 /**
@@ -33,8 +35,9 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
      */
 	@ExceptionHandler(TaskManagerErrorRuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-	public void handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e) {
+	public ResponseEntity<Object> handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e, WebRequest request) {
 	    AppLogger.error(LogCode.TMFWCM90000, e, getCalledSource().get("class"), getCalledSource().get("method"));
+	    return super.handleExceptionInternal(e, setHandledErrors(TaskManagerErrorCode.ERR990001.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
 	}
 
 	/**
@@ -51,12 +54,25 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
 	}
 
 	/**
+	 * リクエストのJSONマッピング例外を処理します。
+	 * @param ex - JsonMappingException
+	 * @param request
+	 * @return エラーオブジェクト
+	 */
+	@ExceptionHandler(JsonMappingException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<Object> handleJsonMappingException(JsonMappingException ex, WebRequest request){
+	    AppLogger.error(LogCode.TMFWCM90000, ex, getCalledSource().get("class"), getCalledSource().get("method"));
+        return super.handleExceptionInternal(ex, setHandledErrors(TaskManagerErrorCode.ERR999999.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+	}
+
+	/**
 	 * 補足しきれなかった、全ての実行時例外を補足して処理します。
 	 * @param ex
 	 * @param request
-	 * @return
+	 * @return エラーオブジェクト
 	 */
-	@ExceptionHandler
+	@ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
 	    AppLogger.error(LogCode.TMFWCM90000, ex, getCalledSource().get("class"), getCalledSource().get("method"));
         return super.handleExceptionInternal(ex, setHandledErrors(TaskManagerErrorCode.ERR999999.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
@@ -89,12 +105,10 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
 	 * @param errorCode 補足したエラーのエラーコード
 	 * @return Errors エラーコードセット
 	 */
-	private Errors setHandledErrors(String errorCode) {
-	    Errors errors = new Errors();
+	private GeneralError setHandledErrors(String errorCode) {
 	    List<String> codes = new ArrayList<>();
 	    codes.add(errorCode);
-	    errors.setCodes(codes);
-	    return errors;
+	    return new GeneralError(new Errors(codes));
 	}
 
 

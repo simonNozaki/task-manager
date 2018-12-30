@@ -2,9 +2,11 @@ package com.tm.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
@@ -130,13 +132,21 @@ public final class InputInspector<T> {
         }
 
 		/**
-		 * エラーを構築します.
-		 * @return Errors
+		 * エラーを昇順に構築します。
+		 * @return Errors エラー情報
 		 */
 		public Errors build() {
-			return this.errors;
+		    if (!ObjectUtil.isNullOrEmpty(this.errors)) {
+		        List<String> sortedCodes = ObjectUtil.getStream(this.errors.getCodes())
+		                .sorted(Comparator.comparing((String code) -> {
+		                    return code;
+		                })
+		                    .reversed())
+		                .collect(Collectors.toList());
+		        this.errors = new Errors(sortedCodes);
+		    }
+		    return this.errors;
 		}
-
 	}
 
 }

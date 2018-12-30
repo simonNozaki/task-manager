@@ -48,6 +48,7 @@ public class TaskFetchRestController extends BaseRestController {
 		//------------------------------------
 		Errors errors = InputInspector.of(userId)
                         .logInput(arrangeLoggingString(userId))
+                        .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
                         .violateSpecificLength(userId, AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                         .build();
 

@@ -86,6 +86,11 @@ public enum TaskManagerErrorCode {
     ERR990001("ERR990001"),
 
     /**
+     * リクエストのJavaオブジェクトマッピング失敗
+     */
+    ERR990002("ERR990002"),
+
+    /**
      * システムエラー、内部サーバエラー
      */
     ERR999999("ERR999999");

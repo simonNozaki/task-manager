@@ -17,7 +17,8 @@ public interface TaskLabelFetchService {
      * 利用者が保持するタスクのラベルを取得します。
      * @param userId - 利用者ID
      * @return ServiceOut - タスクラベルの一覧
+     * @throws Exception
      */
-    public ServiceOut<List<TaskLabel>> fetch(String userId);
+    public ServiceOut<List<TaskLabel>> fetch(String userId) throws Exception;
 
 }
