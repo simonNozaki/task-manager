@@ -21,7 +21,6 @@ import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;
 import com.tm.dto.bean.task.TaskRegistResponseDto;
 import com.tm.dto.common.Errors;
-import com.tm.dto.common.ServiceOut;
 import com.tm.service.task.TaskRegisterService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -52,7 +51,7 @@ public class TaskRestController extends BaseRestController {
 		//------------------------------------
 		Errors errors = InputInspector.of(task)
 		                    .logInput(task)
-		                    .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
+		                    .hasNullValue(TaskManagerErrorCode.ERR220001.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskTitle()), AppConst.TASK_TITLE_MAX, TaskManagerErrorCode.ERR220002.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, TaskManagerErrorCode.ERR230001.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskNote()), AppConst.TASK_NOTE_MAX, TaskManagerErrorCode.ERR240001.getCode())
@@ -76,20 +75,17 @@ public class TaskRestController extends BaseRestController {
 		}
 
 		//------------------------------------
-		// サービスクラスの実行
+		// サービスクラスの実行およびレスポンス処理
 		//------------------------------------
-		ServiceOut<Task> registResult = registTaskService.registerTask(task);
-
-		//------------------------------------
-		// レスポンス処理
-		//------------------------------------
-		return responseProcessBuilder().of(TaskRegistResponseDto::new)
-		        .logOutput(registResult.getValue())
-				.operate((TaskRegistResponseDto res) -> {
-					res.setTaskId(registResult.getValue().getTaskId());
-					res.setTaskTitle(registResult.getValue().getTaskTitle());
-					return res;
-				})
-				.apply();
+		return responseProcessBuilder().executeService(registTaskService.registerTask(task))
+		    .map((Task result, Errors error) -> {
+		        TaskRegistResponseDto res = new TaskRegistResponseDto();
+		        res.setTaskId(result.getTaskId());
+		        res.setTaskTitle(result.getTaskTitle());
+		        res.setErrors(error);
+		        return res;
+		    })
+		    .log()
+		    .apply();
 	}
 }
