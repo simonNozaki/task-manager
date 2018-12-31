@@ -52,4 +52,67 @@ public class LoggerConst {
      */
     public static final String LOG_PREFIX_TRACE = "     ";
 
+    //------------------------------------
+    // MDCキー
+    //------------------------------------
+
+    /**
+     * MDCキー、クラス名
+     */
+    public static final String CLASS_NAME = "className";
+
+    /**
+     * MDCキー、メソッド名
+     */
+    public static final String METHOD_NAME = "methodName";
+
+    /**
+     * MDCキー、ログコード
+     */
+    public static final String LOG_CODE = "logCode";
+
+    /**
+     * MDCキー、ログメッセージ
+     */
+    public static final String LOG_MESSAGE = "logMessage";
+
+    /**
+     * MDCキー、JSONボディ
+     */
+    public static final String JSON_BODY = "jsonBody";
+
+    //------------------------------------
+    // logback出力文字列定数
+    //------------------------------------
+
+    /**
+     * エラースタックトレース
+     */
+    public static final String ERR_STACK_TRACE = "errStackTrace";
+
+    /**
+     * 電文ログ開始
+     */
+    public static final String STACKTRACE_START = "----------------------Telegram Trace Start----------------------";
+
+    /**
+     * 電文ログ終了
+     */
+    public static final String STACKTRACE_END = "----------------------Telegram Trace End----------------------";
+
+    /**
+     * 例外スタックトレース開始
+     */
+    public static final String ERR_STACKTRACE_START = "[Handled Exception Start]";
+
+    /**
+     * 例外スタックトレース終了
+     */
+    public static final String ERR_STACKTRACE_END = "[Handled Exception End]";
+
+    /**
+     * ログファイル改行コード、\n
+     */
+    public static final String STR_NEWLINE = "\n";
+
 }

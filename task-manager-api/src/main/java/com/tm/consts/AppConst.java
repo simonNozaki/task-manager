@@ -1,12 +1,12 @@
 package com.tm.consts;
 
 /**
- * アプリ共通の定義クラスです.
+ * アプリ共通定数クラス。
  */
 public class AppConst {
 
 	//------------------------------
-	// 完了フラグ
+	// タスク完了フラグ
 	//------------------------------//
 	/**
 	 * 未完了, 0
@@ -24,6 +24,19 @@ public class AppConst {
 	public static final String TASK_COMPLETED_FLAG_DELETED = "2";
 
 	//------------------------------
+    // タスクラベル利用フラグ
+    //------------------------------//
+    /**
+     * タスクラベル：登録済み, 0
+     */
+    public static final String TASK_LABEL_USED_FLAG_REGISTERED = "0";
+
+    /**
+     * タスクラベル：削除済み, 1
+     */
+    public static final String TASK_LABEL_USED_FLAG_DELETED = "2";
+
+	//------------------------------
 	// 入力桁数
 	//------------------------------
 	/**
@@ -37,9 +50,9 @@ public class AppConst {
 	public static final int TASK_TITLE_MAX = 50;
 
 	/**
-	 * タスクラベル, 20桁
+	 * タスクラベル, 50桁
 	 */
-	public static final int TASK_LABEL_MAX = 20;
+	public static final int TASK_LABEL_MAX = 50;
 
 	/**
 	 * 完了フラグ, 1桁

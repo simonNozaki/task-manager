@@ -39,4 +39,13 @@ public class IdCounter {
         return CommonUtilConst.USER_ID_PREFIX + RandomStringUtils.randomAlphanumeric(digits);
     }
 
+    /**
+     * 指定された桁数とプレフィックスを組み合わせてランダムなタスクラベルIDを生成します
+     * @param digits プレフィックス以外の文字列桁数
+     * @return ID タスクラベルID
+     */
+    public static String assignIdForTaskLabel(int digits) {
+        return CommonUtilConst.TASK_LABEL_ID_PREFIX + RandomStringUtils.randomAlphanumeric(digits);
+    }
+
 }

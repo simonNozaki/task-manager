@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
-import com.tm.consts.log.LogCode;
+import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;
 import com.tm.dto.bean.task.TaskRegistResponseDto;
 import com.tm.dto.common.Errors;
 import com.tm.dto.common.ServiceOut;
-import com.tm.service.task.RegistTaskService;
+import com.tm.service.task.TaskRegisterService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
 
@@ -32,10 +32,10 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
-public class TaskRegistRestController extends BaseRestController {
+public class TaskRestController extends BaseRestController {
 
 	@Autowired
-	private RegistTaskService registTaskService;
+	private TaskRegisterService registTaskService;
 
 	/** 新規タスクを登録します.
 	 * @param TaskRegistRequestDto task
@@ -52,22 +52,26 @@ public class TaskRegistRestController extends BaseRestController {
 		//------------------------------------
 		Errors errors = InputInspector.of(task)
 		                    .logInput(task)
-                            .hasNullValue(LogCode.TMTKCM10001.getCode())
-                            .violateMaxLength(task.getTaskTitle(), AppConst.TASK_TITLE_MAX, LogCode.TMTKCM10011.getCode())
-                            .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, LogCode.TMTKCM10012.getCode())
-                            .violateMaxLength(Optional.ofNullable(task.getTaskNote()), AppConst.TASK_NOTE_MAX, LogCode.TMTKCM10014.getCode())
-                            .violateSpecificLength(Optional.ofNullable(task.getUserId()), AppConst.USER_ID_LENGTH, LogCode.TMURCM10011.getCode())
+		                    .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
+                            .violateMaxLength(Optional.ofNullable(task.getTaskTitle()), AppConst.TASK_TITLE_MAX, TaskManagerErrorCode.ERR220002.getCode())
+                            .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, TaskManagerErrorCode.ERR230001.getCode())
+                            .violateMaxLength(Optional.ofNullable(task.getTaskNote()), AppConst.TASK_NOTE_MAX, TaskManagerErrorCode.ERR240001.getCode())
+//                            .violateSpecificLength(Optional.ofNullable(task.getUserId()), AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                             .build();
 
-		//------------------------------------
-		// エラーがある場合レスポンス作成処理
-		//------------------------------------
+        //------------------------------------
+        // エラーがある場合レスポンス作成処理
+        //------------------------------------
 		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
-			return responseProcessBuilder().of(TaskRegistResponseDto::new)
+            return responseProcessBuilder().of(TaskRegistResponseDto::new)
 					.operate((TaskRegistResponseDto res) -> {
+					    Optional.ofNullable(task.getTaskTitle()).ifPresent((String taskTitle) -> {
+					        res.setTaskTitle(taskTitle);
+					    });
 						res.setErrors(errors);
 						return res;
 					})
+					.logOutput(errors)
 					.apply();
 		}
 

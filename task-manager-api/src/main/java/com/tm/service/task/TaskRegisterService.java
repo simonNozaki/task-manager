@@ -10,7 +10,7 @@ import com.tm.dto.common.ServiceOut;
  * タスク登録サービスのインターフェースクラスです.
  */
 @Service
-public interface RegistTaskService {
+public interface TaskRegisterService {
 
 	/**
 	 * 新規タスクを登録します。

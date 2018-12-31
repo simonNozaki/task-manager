@@ -24,8 +24,8 @@ public class StringUtil {
 	 * @param int max
 	 * @return boolean
 	 */
-	public static boolean isEqualToSpecificLength(String target, int max) {
-		if (target.length() != max) {
+	public static boolean isNotEqualToSpecificLength(String target, int length) {
+		if (target.length() != length) {
 			return true;
 		}
 		return false;
