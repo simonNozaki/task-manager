@@ -15,6 +15,7 @@ import com.tm.dto.common.ServiceOut;
 import com.tm.service.framework.BaseService;
 import com.tm.service.task.TaskRegisterService;
 import com.tm.util.IdCounter;
+import com.tm.util.ObjectUtil;
 
 /**
  * タスク登録サービスの実装クラスです.
@@ -32,14 +33,14 @@ public class TaskRegisterServiceImpl extends BaseService implements TaskRegister
 
 		// プロパティをコピーして、必要な値を設定します。
 		BeanUtils.copyProperties(task, source);
-		source.setTaskId(IdCounter.assignIdForTask(new Date(), "yymmdd", 4));
+		source.setTaskId(IdCounter.assignIdForTask(new Date(), "yyMMdd", 4));
 		source.setCompletedFlag(AppConst.TASK_COMPLETED_FLAG_NOT_COMPLETED);
 
 		// DAOクラスの実行
 		Task registedTask = taskRepository.register(source);
 
 		// レスポンスチェック
-		if (registedTask == null) {
+		if (ObjectUtil.isNullOrEmpty(registedTask)) {
 		    return doPipeServiceOut()
                     .setNormalResult(new Task())
                     .setError(TaskManagerErrorCode.ERR999999.getCode())

@@ -137,4 +137,46 @@ public class TaskLabelRestControllerTest extends BaseControllerTestUtil{
               .andExpect(jsonPath("$.errors.codes[0]").value("ERR910001"));
     }
 
+    /**
+     * 異常系、利用者IDとラベル名の不正ミックス
+     * 005
+     * @throws Exception
+     */
+    @Test
+    public void test005() throws Exception {
+        String testMethodName = new Throwable().getStackTrace()[0].getMethodName();
+        String body = super.readForObject(testMethodName + ".json");
+
+        // POSTリクエストの実施
+        ResultActions result = mockMvc.perform(post(targetUrl)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(body));
+
+        // 結果の検証
+        result.andExpect(status().is(HttpStatus.CREATED.value()))
+              .andExpect(jsonPath("$.errors.codes[0]").value("ERR110003"))
+              .andExpect(jsonPath("$.errors.codes[1]").value("ERR230001"));
+    }
+
+    /**
+     * 異常系、システムエラー
+     * 006
+     * @throws Exception
+     */
+    @Test
+    public void test006() throws Exception {
+        String testMethodName = new Throwable().getStackTrace()[0].getMethodName();
+        String body = super.readForObject(testMethodName + ".json");
+
+        // POSTリクエストの実施
+        ResultActions result = mockMvc.perform(post(targetUrl)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(body));
+
+        // 結果の検証
+        result.andExpect(status().is(HttpStatus.INTERNAL_SERVER_ERROR.value()))
+            .andExpect(jsonPath("$.errors.codes[0]").value("ERR999999"))
+            .andExpect(jsonPath("$.labels").doesNotExist());
+    }
+
 }

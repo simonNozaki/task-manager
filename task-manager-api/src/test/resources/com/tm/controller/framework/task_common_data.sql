@@ -1,8 +1,7 @@
 -- タスク処理Controller共通データソースFile
 
 -- Users、1ユーザデフォルトで作成
-INSERT INTO public.users(
-            user_id, user_name, email, password, used_flag)
+INSERT INTO public.users(user_id, user_name, email, password, used_flag)
     VALUES ('TM00000001', 'test user', 'test@example.com', 'testtest', '0');
 
 -- task

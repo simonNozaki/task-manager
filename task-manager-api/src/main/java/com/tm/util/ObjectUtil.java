@@ -1,6 +1,7 @@
 package com.tm.util;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -15,12 +16,12 @@ public final class ObjectUtil {
 	 */
 	public static <T> boolean isNullOrEmpty(T input) {
 		// 入力がnullのケース
-		if (input == null) {
+		if (Objects.isNull(input)) {
 			return true;
 		}
 
 		// 入力が空のケース
-		if(input.equals("")) {
+		if(Objects.equals(input, "")) {
 			return true;
 		}
 

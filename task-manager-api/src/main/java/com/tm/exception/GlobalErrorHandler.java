@@ -37,7 +37,7 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
     @ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<Object> handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e, WebRequest request) {
 	    AppLogger.error(LogCode.TMFWCM90000, e, getCalledSource().get("class"), getCalledSource().get("method"));
-	    return super.handleExceptionInternal(e, setHandledErrors(TaskManagerErrorCode.ERR990001.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+	    return super.handleExceptionInternal(e, setHandledErrors(TaskManagerErrorCode.ERR999999.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
 	}
 
 	/**
@@ -45,12 +45,12 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
 	 * @param HttpRequestMethodNotSupportedException e
 	 * @return Errors
 	 */
-	@Override
-	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-	@ResponseBody
+    @Override
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ResponseBody
 	protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		AppLogger.error(LogCode.TMFWCM90000, e, getCalledSource().get("class"), getCalledSource().get("method"));
-        return super.handleHttpRequestMethodNotSupported(e, headers, status, request);
+		return super.handleExceptionInternal(e, setHandledErrors(TaskManagerErrorCode.ERR990001.getCode()), null, HttpStatus.METHOD_NOT_ALLOWED, request);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
     @ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<Object> handleJsonMappingException(JsonMappingException ex, WebRequest request){
 	    AppLogger.error(LogCode.TMFWCM90000, ex, getCalledSource().get("class"), getCalledSource().get("method"));
-        return super.handleExceptionInternal(ex, setHandledErrors(TaskManagerErrorCode.ERR999999.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return super.handleExceptionInternal(ex, setHandledErrors(TaskManagerErrorCode.ERR990002.getCode()), null, HttpStatus.BAD_REQUEST, request);
 	}
 
 	/**

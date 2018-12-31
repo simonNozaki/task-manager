@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tm.consts.AppConst;
+import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.consts.log.LogCode;
 import com.tm.dao.repository.TaskRepository;
 import com.tm.dto.Task;
@@ -31,7 +32,7 @@ public class TaskCompleteServiceImpl extends BaseService implements TaskComplete
         if (ObjectUtil.isNullOrEmpty(updatedResult) || updatedResult == 0) {
             return doPipeServiceOut()
                      .setNormalResult(req.getTaskId())
-                     .setError(LogCode.TMTKCM90001.getCode())
+                     .setError(TaskManagerErrorCode.ERR999999.getCode())
                      .build();
         }
 
@@ -42,7 +43,7 @@ public class TaskCompleteServiceImpl extends BaseService implements TaskComplete
         if (ObjectUtil.isNullOrEmpty(insertedTask)) {
             return doPipeServiceOut()
                      .setNormalResult(req.getTaskId())
-                     .setError(LogCode.TMTKCM90001.getCode())
+                     .setError(TaskManagerErrorCode.ERR999999.getCode())
                      .build();
         }
 

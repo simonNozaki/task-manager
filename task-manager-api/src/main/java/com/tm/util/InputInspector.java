@@ -40,14 +40,23 @@ public final class InputInspector<T> {
 	public static final class Inspector<T> {
 
 		T value;
+
 		Errors errors;
 
-		// デフォルトコンストラクタ禁止
+		/**
+		 * デフォルトコンストラクタ
+		 * @param value コンストラクタ引数
+		 */
 		private Inspector(T value) {
 			this.value = value;
 			this.errors = new Errors();
 		}
 
+		/**
+		 * デフォルトコンストラクタ
+		 * @param value コンストラクタ引数
+		 * @param errors エラー引数
+		 */
 		private Inspector(T value, Errors errors) {
 		    this.value = value;
 		    if (ObjectUtil.isNullOrEmpty(this.errors)) {
@@ -63,8 +72,7 @@ public final class InputInspector<T> {
 		 * @throws IOException
 		 */
 		public <V> Inspector<T> logInput(V input) throws IOException {
-		    ObjectMapper mapper = new ObjectMapper();
-	        AppLogger.traceTelegram(LogCode.TMFWCM80001, this.getClass(), new Object(){}.getClass().getEnclosingMethod().getName(), mapper.writeValueAsString(input));
+	        AppLogger.traceTelegram(LogCode.TMFWCM80001, this.getClass(), new Object(){}.getClass().getEnclosingMethod().getName(), new ObjectMapper().writeValueAsString(input));
 		    return new Inspector<T>(value);
 		}
 
@@ -72,10 +80,10 @@ public final class InputInspector<T> {
 		 * 入力がnullもしくは空の場合、エラーコードを設定します.
 		 * @param value
 		 * @return Inspector<T>
+		 * @throws Exception
 		 */
-		public Inspector<T> hasNullValue(String code) {
-			Predicate<T> predicate = (T value) -> ObjectUtil.isNullOrEmpty(value);
-			return this.satisfyPredicateWithInput(value, predicate, code);
+		public Inspector<T> hasNullValue(String code){
+			return this.satisfyPredicateWithInput(this.value, (T inputValue) -> ObjectUtil.isNullOrEmpty(this.value), code);
 		}
 
 		/**
@@ -86,18 +94,23 @@ public final class InputInspector<T> {
 		 * @return
 		 */
 		public <V> Inspector<T> violateMaxLength(V target, int max, String code) {
-		    Predicate<V> predicate = (V inputValue) -> StringUtil.isOverSpecificLength(target.toString(), max);
-		    return this.satisfyPredicateWithInput(target, predicate, code);
+		    if (ObjectUtil.isNullOrEmpty(target)) {
+                return new Inspector<T>(this.value, this.errors);
+            }
+		    return this.satisfyPredicateWithInput(target, (V inputValue) -> StringUtil.isOverSpecificLength(target.toString(), max), code);
 		}
 
 		/**
-		 * 桁数チェックを行い、指定された文字長でなければエラーコードを設定します.
+		 * 桁数チェックを行い、指定された文字長でなければエラーコードを設定します。
 		 * @param String target
 		 * @param int max
 		 * @param String code
 		 * @return
 		 */
 		public <V> Inspector<T> violateSpecificLength(V target, int length, String code) {
+		    if (ObjectUtil.isNullOrEmpty(target)) {
+		        return new Inspector<T>(this.value, this.errors);
+		    }
 			return this.satisfyPredicateWithInput(target, (V inputValue) -> StringUtil.isNotEqualToSpecificLength(target.toString(), length), code);
 		}
 
@@ -120,9 +133,7 @@ public final class InputInspector<T> {
          * @return Inspector<T>
          */
         public <V> Inspector<T> satisfyPredicateWithInput(V input, Predicate<V> predicate, String code) {
-            if (input == null) {
-                return new Inspector<T>(this.value, this.errors);
-            } else if (predicate.test(input)) {
+            if (predicate.test(input)) {
                 // エラーコードのリストがない場合はリストを初期化する
                 List<String> codes = Optional.ofNullable(this.errors.getCodes()).orElse(new ArrayList<>());
                 codes.add(code);
@@ -134,14 +145,14 @@ public final class InputInspector<T> {
 		/**
 		 * エラーを昇順に構築します。
 		 * @return Errors エラー情報
+		 * @throws Exception
 		 */
-		public Errors build() {
+		public Errors build(){
 		    if (!ObjectUtil.isNullOrEmpty(this.errors)) {
 		        List<String> sortedCodes = ObjectUtil.getStream(this.errors.getCodes())
 		                .sorted(Comparator.comparing((String code) -> {
 		                    return code;
-		                })
-		                    .reversed())
+		                }))
 		                .collect(Collectors.toList());
 		        this.errors = new Errors(sortedCodes);
 		    }
