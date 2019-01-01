@@ -36,7 +36,7 @@ public class TaskFetchRestController extends BaseRestController {
 	/** 利用者に紐づくタスクの一覧を取得します.
 	 * @param String userId
 	 * @return FetchTaskResponseDto
-	 * @throwsException
+	 * @throws Exception
 	 */
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_FETCH, method = RequestMethod.GET)
 	@ResponseBody
@@ -48,6 +48,7 @@ public class TaskFetchRestController extends BaseRestController {
 		//------------------------------------
 		Errors errors = InputInspector.of(userId)
                         .logInput(arrangeLoggingString(userId))
+                        .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
                         .violateSpecificLength(userId, AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                         .build();
 
@@ -57,28 +58,25 @@ public class TaskFetchRestController extends BaseRestController {
 		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
 			return responseProcessBuilder().of(TaskFetchResponseDto::new)
                         .operate((TaskFetchResponseDto res) -> {
-                        errors.setId(userId);
-                        res.setErrors(errors);
-                        return res;
+                            errors.setId(userId);
+                            res.setErrors(errors);
+                            return res;
                         })
                         .apply();
 		}
 
-		//------------------------------------
-		// サービスクラスの実行
-		//------------------------------------
-		List<Task> taskList = fetchTaskService.fetchTask(userId);
-
-		//------------------------------------
-		// レスポンス処理
-		//------------------------------------
-		return responseProcessBuilder().of(TaskFetchResponseDto::new)
-        		        .logOutput(taskList)
-                        .operate((TaskFetchResponseDto dto) -> {
-                            dto.setTasks(taskList);
-                            return dto;
-                        })
-                        .apply();
+        //------------------------------------
+        // サービスクラスの実行およびレスポンス処理
+        //------------------------------------
+        return responseProcessBuilder().executeService(fetchTaskService.fetchTask(userId))
+            .map((List<Task> tasks, Errors error) -> {
+                TaskFetchResponseDto res = new TaskFetchResponseDto();
+                res.setTasks(tasks);
+                res.setErrors(error);
+                return res;
+            })
+            .log()
+            .apply();
 	}
 
 	/**

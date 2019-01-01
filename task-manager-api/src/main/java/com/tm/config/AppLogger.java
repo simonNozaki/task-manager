@@ -12,6 +12,7 @@ import org.slf4j.MarkerFactory;
 import com.tm.config.logger.AppErrorLogger;
 import com.tm.config.logger.AppTelegramLogger;
 import com.tm.config.logger.AppTraceLogger;
+import com.tm.config.logger.AppWarnLogger;
 import com.tm.consts.log.LogCode;
 import com.tm.consts.log.LoggerConst;
 
@@ -36,6 +37,11 @@ public class AppLogger {
 	 * ロガーインスタンス、エラーログ用
 	 */
 	private static final Logger appErrorINSTANCE = LoggerFactory.getLogger(AppErrorLogger.class.getCanonicalName());
+
+    /**
+     * ロガーインスタンス、警告ログ用
+     */
+    private static final Logger appWarnINSTANCE = LoggerFactory.getLogger(AppWarnLogger.class.getCanonicalName());
 
 	/**
 	 * ログレベルに応じたログ出力を実施します。<br>

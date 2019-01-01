@@ -16,6 +16,7 @@ public interface TaskLabelRegisterService {
      * タスクのラベルを新規登録します。
      * @param TaskLabelRegisterRequestDto 登録対象ラベル
      * @return ServiceOut<TaskLabel> タスクラベル登録Serviceの処理結果
+     * @throws Exception
      */
-    public ServiceOut<TaskLabel> register(TaskLabelRegisterRequestDto label);
+    public ServiceOut<TaskLabel> register(TaskLabelRegisterRequestDto label) throws Exception;
 }

@@ -14,6 +14,7 @@ import com.tm.dto.bean.user.UserRegistRequestDto;
 import com.tm.dto.common.ServiceOut;
 import com.tm.service.framework.BaseService;
 import com.tm.service.user.UserRegistService;
+import com.tm.util.CryptoUtil;
 import com.tm.util.IdCounter;
 import com.tm.util.ObjectUtil;
 
@@ -40,6 +41,7 @@ public class UserRegistServiceImpl extends BaseService implements UserRegistServ
 		Users newUser = new Users();
 		BeanUtils.copyProperties(user, newUser);
 		newUser.setUserId(IdCounter.assignIdForUser(8));
+		newUser.setPassword(CryptoUtil.encode(user.getPassword()));
 
 		// DBにオブジェクトを登録
 		Users result = userRepository.registerUser(newUser);

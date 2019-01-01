@@ -63,6 +63,7 @@ public class TaskLabelRestController extends BaseRestController {
                         res.setErrors(errors);
                         return res;
                     })
+                    .logOutput(errors)
                     .apply();
         }
 

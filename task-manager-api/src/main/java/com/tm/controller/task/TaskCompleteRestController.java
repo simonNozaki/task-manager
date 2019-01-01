@@ -1,5 +1,7 @@
 package com.tm.controller.task;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,12 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
-import com.tm.consts.log.LogCode;
+import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.bean.task.TaskCompleteRequestDto;
 import com.tm.dto.bean.task.TaskCompleteResponseDto;
 import com.tm.dto.common.Errors;
-import com.tm.dto.common.ServiceOut;
 import com.tm.service.task.TaskCompleteService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -42,8 +43,9 @@ public class TaskCompleteRestController extends BaseRestController {
         // 入力内容の検査
         //------------------------------------
         Errors errors = InputInspector.of(req)
-                .hasNullValue(LogCode.TMTKCM10001.getCode())
-                .violateSpecificLength(req.getTaskId(), AppConst.TASK_ID_LENGTH, LogCode.TMTKCM10015.getCode())
+                .logInput(req)
+                .hasNullValue(TaskManagerErrorCode.ERR210001.getCode())
+                .violateSpecificLength(req.getTaskId(), AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.getCode())
                 .build();
 
         //------------------------------------
@@ -52,26 +54,27 @@ public class TaskCompleteRestController extends BaseRestController {
         if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
             return responseProcessBuilder().of(TaskCompleteResponseDto::new)
                     .operate((TaskCompleteResponseDto res) -> {
+                        Optional.ofNullable(req.getTaskId()).ifPresent((String taskId) -> {
+                            res.setTaskId(taskId);
+                        });
                         res.setErrors(errors);
                         return res;
                     })
+                    .logOutput(errors)
                     .apply();
         }
 
         //------------------------------------
-        // サービスクラスの実行
+        // サービスクラスの実行およびレスポンス処理
         //------------------------------------
-        ServiceOut<String> result = taskCompleteServcie.execute(req);
-
-        //------------------------------------
-        // レスポンス処理
-        //------------------------------------
-        return responseProcessBuilder().of(TaskCompleteResponseDto::new)
-                .operate((TaskCompleteResponseDto dto) -> {
-                    dto.setTaskId(result.getValue());
-                    dto.setErrors(result.getErrors());
-                    return dto;
-                })
-                .apply();
+        return responseProcessBuilder().executeService(taskCompleteServcie.execute(req))
+            .map((String taskId, Errors error) -> {
+                TaskCompleteResponseDto res = new TaskCompleteResponseDto();
+                res.setTaskId(taskId);
+                res.setErrors(error);
+                return res;
+            })
+            .log()
+            .apply();
     }
 }

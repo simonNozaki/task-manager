@@ -34,6 +34,10 @@ configurations {
 	mybatisGenerator
 }
 
+//----------------------------------------------------
+// Maven依存ライブラリ
+//----------------------------------------------------
+
 dependencies {
 	/**
 	*Spring boot
@@ -42,6 +46,14 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.15.RELEASE'
 	runtime('org.springframework.boot:spring-boot-devtools')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
+	/**
+	* Spring Security
+	*/
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.10.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.10.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.10.RELEASE'
+
 
 	/**
 	* Mybatis
@@ -99,14 +111,18 @@ task mybatisGenerator {
 
 mybatisGenerator.group = 'mybatis'
 
+//----------------------------------------------------
+// Flyway設定
+//----------------------------------------------------
+
 /**
-* Flyway migration のタスクです.
+* Flyway migration のタスク。ローカルの開発環境用。
 */
 flyway {
 	driver='org.postgresql.Driver'
     url = 'jdbc:postgresql://localhost:5532/task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
-    user = 'localuser'
-    password = '21405apple'
+    user = 'taskmanageruser'
+    password = 'taskmanageruser'
     baselineVersion = 1
 	baselineDescription = 'マイグレーション初版です.';
 }
@@ -118,4 +134,16 @@ task getHomeDir {
     doLast {
         println gradle.gradleHomeDir
     }
+}
+
+/**
+* Flyway Migrationタスク、UTDB用。
+*/
+task migrateUtdb(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
+    driver='org.postgresql.Driver'
+    url = 'jdbc:postgresql://localhost:15532/ut_task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
+    user = 'taskmanageruser'
+    password = 'taskmanageruser'
+    baselineVersion = 1
+    baselineDescription = 'マイグレーション初版です.'
 }

@@ -1,0 +1,16 @@
+{
+    "labels" : [
+        {
+            "labelId" : "TL00000001",
+            "taskLabel" : "stub label1",
+            "usedFlag" : "0",
+            "userId" : "TM00000001"
+        },
+        {
+            "labelId" : "TL00000002",
+            "taskLabel" : "stub label2",
+            "usedFlag" : "0",
+            "userId" : "TM00000001"
+        }
+    ]
+}

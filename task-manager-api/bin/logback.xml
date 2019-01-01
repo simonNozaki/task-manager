@@ -41,7 +41,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} 詳細 ... %X{errStackTrace} %n</pattern>
 		</encoder>
 	</appender>
 
@@ -64,7 +64,7 @@
 	<logger name="com.tm.config.logger.AppTraceLogger" level="${console.level}">
 		<appender-ref ref="APP_TRACE_LOG" />
 	</logger>
-	<logger name="com.tm.config.logger.AppErrorLogger" level="error">
+	<logger name="com.tm.config.logger.AppErrorLogger" level="ERROR">
 		<appender-ref ref="APP_ERR_LOG" />
 	</logger>
 	<logger name="com.tm.config.logger.AppTelegramLogger" level="${console.level}">

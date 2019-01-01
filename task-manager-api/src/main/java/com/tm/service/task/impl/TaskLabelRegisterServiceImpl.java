@@ -29,7 +29,7 @@ public class TaskLabelRegisterServiceImpl extends BaseService implements TaskLab
      * @return ServiceOut<TaskLabel> タスクラベル登録Serviceの処理結果
      */
     @Override
-    public ServiceOut<TaskLabel> register(TaskLabelRegisterRequestDto label) {
+    public ServiceOut<TaskLabel> register(TaskLabelRegisterRequestDto label) throws Exception{
         // 登録データの初期化
         TaskLabel source = new TaskLabel();
 
