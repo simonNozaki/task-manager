@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule, MatFormFieldModule, MatMenuModule  } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { TaskComponent } from './component/task/task.component';
@@ -29,7 +31,14 @@ import { SignoutService } from './service/signout.service';
     WebModule,
     WebRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatCheckboxModule
   ],
   providers: [ 
     TaskService,
