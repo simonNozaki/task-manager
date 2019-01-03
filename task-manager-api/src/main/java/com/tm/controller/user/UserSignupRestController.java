@@ -1,7 +1,5 @@
 package com.tm.controller.user;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +19,6 @@ import com.tm.dto.Users;
 import com.tm.dto.bean.user.UserRegistRequestDto;
 import com.tm.dto.bean.user.UserRegistResponseDto;
 import com.tm.dto.common.Errors;
-import com.tm.dto.common.ServiceOut;
 import com.tm.service.user.UserRegistService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -51,7 +48,6 @@ public class UserSignupRestController extends BaseRestController{
 		//------------------------------------
 		Errors errors = InputInspector.of(user)
 		                    .logInput(user)
-                            .hasNullValue(LogCode.TMURCM10001.getCode())
                             .violateMaxLength(user.getUserName(), AppConst.USER_NAME_MAX, LogCode.TMURCM10012.getCode())
                             .violateMaxLength(user.getEmail(), AppConst.USER_EMAIL_MAX, LogCode.TMURCM10013.getCode())
                             .violateMaxLength(user.getPassword(), AppConst.USER_PASSWORD_MAX, LogCode.TMURCM10014.getCode())
@@ -68,23 +64,18 @@ public class UserSignupRestController extends BaseRestController{
 		}
 
 		//------------------------------------
-		// サービスクラスの実行
+		// サービスクラスの実行およびレスポンス処理
 		//------------------------------------
-		ServiceOut<Users> result = userRegistService.execute(user);
+		return responseProcessBuilder().executeService(userRegistService.execute(user))
+		    .map((Users target, Errors error) -> {
+		    	UserRegistResponseDto res = new UserRegistResponseDto();
+		    	res.setErrors(error);
+		    	res.setUserId(target.getUserId());
+		    	res.setUserName(target.getUserName());
+		    	return res;
+		    })
+		    .log()
+		    .apply();
 
-		//------------------------------------
-		// レスポンス処理
-		//------------------------------------
-		return responseProcessBuilder().of(UserRegistResponseDto::new)
-				  .operate((UserRegistResponseDto res) -> {
-  				      Optional.ofNullable(result.getErrors()).ifPresent((Errors errs) -> res.setErrors(errs));
-				      Optional.ofNullable(result.getValue()).ifPresent((Users users) -> {
-				          res.setUserId(users.getUserId());
-				          res.setUserName(user.getUserName());
-				      });
-					  return res;
-				  })
-				  .logOutput(result)
-				  .apply();
 	}
 }
