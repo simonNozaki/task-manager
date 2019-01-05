@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
 import com.tm.consts.error.TaskManagerErrorCode;
-import com.tm.consts.log.LogCode;
 import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.Users;
 import com.tm.dto.bean.user.UserAuthenticationRequestDto;
 import com.tm.dto.bean.user.UserAuthenticationResponseDto;
 import com.tm.dto.common.Errors;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 import com.tm.service.user.UserAuthenticationService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -45,7 +45,7 @@ public class UserSigninRestController extends BaseRestController {
     @RequestMapping(value = CtrlConst.FUNC_USERS + CtrlConst.MAP_SIGNIN, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public UserAuthenticationResponseDto signin(@RequestBody UserAuthenticationRequestDto req) throws Exception {
         //------------------------------------
         // 入力内容の検査
@@ -53,17 +53,15 @@ public class UserSigninRestController extends BaseRestController {
         Errors errors = InputInspector.of(req)
                             .logInput(req)
                             .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
-                            .violateMaxLength(req.getEmail(), AppConst.USER_EMAIL_MAX, LogCode.TMURCM10013.getCode())
-                            .violateMaxLength(req.getPassword(), AppConst.USER_PASSWORD_MAX, LogCode.TMURCM10014.getCode())
+                            .violateMaxLength(req.getEmail(), AppConst.USER_EMAIL_MAX, TaskManagerErrorCode.ERR130002.getCode())
+                            .violateMaxLength(req.getPassword(), AppConst.USER_PASSWORD_MAX, TaskManagerErrorCode.ERR140002.getCode())
                             .build();
 
         //------------------------------------
         // エラーがある場合レスポンス作成処理
         //------------------------------------
         if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
-            return responseProcessBuilder().of(UserAuthenticationResponseDto::new)
-                        .operate(res -> {res.setErrors(errors); return res;})
-                        .apply();
+        	throw new TaskManagerErrorRuntimeException(errors);
         }
 
         //------------------------------------

@@ -1,11 +1,7 @@
 package com.tm.controller.user;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,13 +20,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.tm.controller.framework.BaseControllerTestUtil;
 import com.tm.dao.repository.UserRepository;
-import com.tm.dto.Users;
-import com.tm.dto.UsersExample;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("unit")
-public class UserSignupRestControllerTest extends BaseControllerTestUtil {
+public class UserSigninRestControllerTest extends BaseControllerTestUtil {
 
 	@Autowired
     UserRepository userRepository;
@@ -40,8 +34,7 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
 
     private MockMvc mockMvc;
 
-    private String targetUrl = "http://localhost:18080/api/v1/user/signup";
-
+    private String targetUrl = "http://localhost:18080/api/v1/user/signin";
 
     /**
      * モックの原型をインジェクションして、データソースを初期化
@@ -52,8 +45,7 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
     }
 
     /**
-     * 正常系、有効な利用者情報でデータが登録できることを確認する
-     * @throws Exception
+     * 正常系、有効な利用者情報で認証できることを確認する
      * 001
      */
     @Test
@@ -67,15 +59,12 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(body));
 
-        UsersExample ex = new UsersExample();
-        ex.createCriteria().andEmailEqualTo("ok@mock.com");
-        List<Users> target = userRepository.selectByExample(ex);
-
-        // アサーション
-        assertThat(target.size(), is(1));
-
-        result.andExpect(status().is(HttpStatus.CREATED.value()))
-              .andExpect(jsonPath("$.userName").value("stubuser"));
+        // アサーションの実施
+        result.andExpect(status().is(HttpStatus.OK.value()))
+              .andExpect(jsonPath("$.userId").value("TM00000001"))
+              .andExpect(jsonPath("$.userName").value("test user"))
+              .andExpect(jsonPath("$.email").value("test@example.com"))
+              .andExpect(jsonPath("$.errors").doesNotExist());
     }
 
     /**
@@ -91,7 +80,8 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
         ResultActions result = mockMvc.perform(post(targetUrl)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(body));
-        // アサーション
+
+        // アサーションの実施
         result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
               .andExpect(jsonPath("$.errors.codes[0]").value("ERR130002"));
     }
@@ -109,13 +99,14 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
         ResultActions result = mockMvc.perform(post(targetUrl)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(body));
-        // アサーション
+
+        // アサーションの実施
         result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
               .andExpect(jsonPath("$.errors.codes[0]").value("ERR140002"));
     }
 
     /**
-     * 異常系、規定の長さでない利用フラグを弾く
+     * 異常系、入力不正のミックス
      * 004
      */
     @Test
@@ -127,13 +118,15 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
         ResultActions result = mockMvc.perform(post(targetUrl)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(body));
-        // アサーション
+
+        // アサーションの実施
         result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
-              .andExpect(jsonPath("$.errors.codes[0]").value("ERR150003"));
+              .andExpect(jsonPath("$.errors.codes[0]").value("ERR130002"))
+              .andExpect(jsonPath("$.errors.codes[1]").value("ERR140002"));
     }
 
     /**
-     * 異常系、定義されていないフラグを弾く
+     * 異常系、対象利用者不在
      * 005
      */
     @Test
@@ -145,73 +138,18 @@ public class UserSignupRestControllerTest extends BaseControllerTestUtil {
         ResultActions result = mockMvc.perform(post(targetUrl)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(body));
-        // アサーション
+
+        // アサーションの実施
         result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
-              .andExpect(jsonPath("$.errors.codes[0]").value("ERR150004"));
-    }
-
-    /**
-     * 異常系、規定の長さ以上の利用者名を弾く
-     * 006
-     */
-    @Test
-    public void test006() throws Exception {
-    	String testMethodName = new Throwable().getStackTrace()[0].getMethodName();
-        String body = super.readForObject(testMethodName + ".json");
-
-        // POSTリクエストの実施
-        ResultActions result = mockMvc.perform(post(targetUrl)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(body));
-        // アサーション
-        result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
-              .andExpect(jsonPath("$.errors.codes[0]").value("ERR120002"));
-    }
-
-    /**
-     * 異常系、不正のミックス
-     * 007
-     */
-    @Test
-    public void test007() throws Exception {
-    	String testMethodName = new Throwable().getStackTrace()[0].getMethodName();
-        String body = super.readForObject(testMethodName + ".json");
-
-        // POSTリクエストの実施
-        ResultActions result = mockMvc.perform(post(targetUrl)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(body));
-        // アサーション
-        result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
-              .andExpect(jsonPath("$.errors.codes[0]").value("ERR130002"))
-              .andExpect(jsonPath("$.errors.codes[1]").value("ERR140002"))
-              .andExpect(jsonPath("$.errors.codes[2]").value("ERR150003"));
-    }
-
-    /**
-     * 異常系、重複して同じ利用者を登録できないこと
-     * 008
-     */
-    @Test
-    public void test008() throws Exception {
-    	String testMethodName = new Throwable().getStackTrace()[0].getMethodName();
-        String body = super.readForObject(testMethodName + ".json");
-
-        // POSTリクエストの実施
-        ResultActions result = mockMvc.perform(post(targetUrl)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(body));
-        // アサーション
-        result.andExpect(status().is(HttpStatus.BAD_REQUEST.value()))
-              .andExpect(jsonPath("$.errors.codes[0]").value("ERR130004"));
+              .andExpect(jsonPath("$.errors.codes[0]").value("ERR160001"));
     }
 
     /**
      * 異常系、システムエラー（ここではDB接続できないケース）
-     * 009
+     * 006
      */
     @Test
-    public void test009() throws Exception {
+    public void test006() throws Exception {
         String testMethodName = new Throwable().getStackTrace()[0].getMethodName();
         String body = super.readForObject(testMethodName + ".json");
 

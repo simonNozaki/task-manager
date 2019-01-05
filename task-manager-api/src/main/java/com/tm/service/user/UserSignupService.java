@@ -10,7 +10,7 @@ import com.tm.dto.common.ServiceOut;
  * 利用者登録Service。
  */
 @Service
-public interface UserRegistService {
+public interface UserSignupService {
 
 	/**
 	 * 実行メソッド。

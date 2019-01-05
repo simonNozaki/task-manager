@@ -1,8 +1,9 @@
 -- タスク処理Controller共通データソースFile
 
 -- Users、1ユーザデフォルトで作成
+-- pass : stubstub
 INSERT INTO public.users(user_id, user_name, email, password, used_flag)
-    VALUES ('TM00000001', 'test user', 'test@example.com', 'testtest', '0');
+    VALUES ('TM00000001', 'test user', 'test@example.com', '$2a$10$x7HcJvFPjTkpxSvR0upo0e0RpmHDNQt1EM4Ybfsr/erGRC9JfkYqO', '0');
 
 -- task
 INSERT INTO public.task(task_id, task_title, task_label, start_date, deadline, completed_flag, user_id, task_note)

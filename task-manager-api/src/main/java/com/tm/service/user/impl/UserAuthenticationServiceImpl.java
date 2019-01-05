@@ -1,5 +1,6 @@
 package com.tm.service.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +12,9 @@ import com.tm.dao.repository.UserRepository;
 import com.tm.dto.Users;
 import com.tm.dto.UsersExample;
 import com.tm.dto.bean.user.UserAuthenticationRequestDto;
+import com.tm.dto.common.Errors;
 import com.tm.dto.common.ServiceOut;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 import com.tm.service.framework.BaseService;
 import com.tm.service.user.UserAuthenticationService;
 import com.tm.util.CryptoUtil;
@@ -46,21 +49,11 @@ public class UserAuthenticationServiceImpl extends BaseService implements UserAu
                 })
                 .collect(Collectors.toList());
 
-
         // レスポンスチェック、ターゲット利用者不在
         if (ObjectUtil.isNullOrEmpty(authenticatedUser)) {
-            return doPipeServiceOut()
-                    .setNormalResult(new Users())
-                    .setError(TaskManagerErrorCode.ERR999999.getCode())
-                    .build();
-        }
-
-        // レスポンスが1件異常、つまり複数該当してしまう場合は不能として業務エラーとする
-        if (authenticatedUser.size() > 1) {
-            return doPipeServiceOut()
-                    .setNormalResult(new Users())
-                    .setError(TaskManagerErrorCode.ERR999999.getCode())
-                    .build();
+        	List<String> codes = new ArrayList<>();
+            codes.add(TaskManagerErrorCode.ERR160001.getCode());
+            throw new TaskManagerErrorRuntimeException(new Errors(codes));
         }
 
         // 正常結果を返却
