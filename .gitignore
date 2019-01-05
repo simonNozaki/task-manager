@@ -6,6 +6,14 @@ task-manager-api/task-manager-logs/
 
 task-manager-api/bin/
 
+task-manager-api/build
+
 task-manager-api/.classpath
 
 task-manager-api/.gradle/
+
+task-manager-api/.settings
+
+.metadata/
+
+RemoteSystemsTempFiles

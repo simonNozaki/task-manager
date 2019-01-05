@@ -80,6 +80,8 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.1'
 
+	 // lib フォルダ以下、サブフォルダも含めて全 jar ファイルを指定
+    compile fileTree(dir: '/Users/SimonNozaki/.gradle/caches/modules-2/files-2.1', include: '**/*.jar')
 
 	/**
 	* Test Tools
@@ -119,10 +121,19 @@ mybatisGenerator.group = 'mybatis'
 flyway {
 	driver='org.postgresql.Driver'
     url = 'jdbc:postgresql://localhost:5532/task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
-    user = 'localuser'
-    password = '21405apple'
+    user = 'taskmanageruser'
+    password = 'taskmanageruser'
     baselineVersion = 1
 	baselineDescription = 'マイグレーション初版です.';
+}
+
+/**
+* Gradleの親ディレクトリを検出します.
+*/
+task getHomeDir {
+    doLast {
+        println gradle.gradleHomeDir
+    }
 }
 
 /**
@@ -134,5 +145,5 @@ task migrateUtdb(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
     user = 'taskmanageruser'
     password = 'taskmanageruser'
     baselineVersion = 1
-	baselineDescription = 'マイグレーション初版です.';
+    baselineDescription = 'マイグレーション初版です.'
 }

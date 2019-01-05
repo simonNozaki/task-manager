@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { ServiceConst } from '../../../const/service-const';
 import { ObjectUtil } from '../../../util/object.util';
 import { CommonDeliveryService } from '../../../service/common-delivery.service';
+import { CustomInputChecker } from '../../../util/custom-input-checker';
+import { StringUtil } from '../../../util/string-util';
 
 /**
  * 利用者サインアップコンポーネントクラス。
@@ -50,7 +52,8 @@ export class SignupComponent implements OnInit {
      */
     public signupForm: FormGroup = new FormGroup({
         userNameControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_NAME_MAX_LENGTH)]),
-        emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH)]),
+        emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH), 
+            CustomInputChecker.matchFormat(StringUtil.REGEX_FORMAT_EMAIL)]),
         passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH)])
     })
 
@@ -61,15 +64,15 @@ export class SignupComponent implements OnInit {
         if (!this.violateRistriction()) {
             // リクエストの生成
             var req: UserSignupRequestDto = new UserSignupRequestDto();
-            req.setUserName(this.signupForm.get("userNameControl").value);
-            req.setEmail(this.signupForm.get("emailControl").value);
-            req.setPassword(this.signupForm.get("passwordControl").value);
-            req.setUsedFlag(TaskManagerCode.USER_USED_FLAG_USED);
+            req.userName = this.signupForm.get("userNameControl").value;
+            req.email = this.signupForm.get("emailControl").value;
+            req.password = this.signupForm.get("passwordControl").value;
+            req.usedFlag = TaskManagerCode.USER_USED_FLAG_USED;
 
             // Serviceクラスを実行します。
             this.signupService.signup(req).subscribe((res: UserSignupResponseDto) => {
                 console.log(JSON.stringify(res));
-                // すでに使われているメールアドレスの場合は、エラーメッセージを表示して何もしない
+                // すでに使われているメールアドレスの場 合は、エラーメッセージを表示して何もしない
                 if (!ObjectUtil.isNullOrUndefined(res.errors)) {
                     this.checkedResult = AppConst.USER_ALREADY_REGISTERD;
                     console.log(this.checkedResult);

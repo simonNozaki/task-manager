@@ -8,6 +8,9 @@ import { UserSigninRequestDto } from '../../../dto/interface/user-signin-request
 import { UserSigninResponseDto } from '../../../dto/interface/user-signin-response.dto';
 import { ObjectUtil } from '../../../util/object.util';
 import { ServiceConst } from '../../../const/service-const';
+import { CustomInputChecker } from '../../../util/custom-input-checker';
+import { StringUtil } from '../../../util/string-util';
+
 
 /**
  * 利用者認証コンポーネントクラス。
@@ -35,7 +38,8 @@ export class SigninComponent implements OnInit {
      * 利用者認証フォームグループ
      */
     public signinForm: FormGroup = new FormGroup({
-        emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH)]),
+        emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH),
+            CustomInputChecker.matchFormat(StringUtil.REGEX_FORMAT_EMAIL)]),
         passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH)])
     });
 

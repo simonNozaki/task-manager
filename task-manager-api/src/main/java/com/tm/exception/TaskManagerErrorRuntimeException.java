@@ -1,6 +1,6 @@
 package com.tm.exception;
 
-import java.util.List;
+import com.tm.dto.common.Errors;
 
 /**
  * APIの業務エラー例外クラス。
@@ -35,8 +35,9 @@ public class TaskManagerErrorRuntimeException extends RuntimeException {
      * デフォルトコンストラクタ。エラーコードリストを引数に取ります。
      * @param List<?> errorsList
      */
-    public TaskManagerErrorRuntimeException(List<?> errorsList) {
-        this.errorsList = errorsList;
+    public TaskManagerErrorRuntimeException(Errors errors) {
+    	super();
+        this.errors = errors;
     }
 
     /**
@@ -47,7 +48,7 @@ public class TaskManagerErrorRuntimeException extends RuntimeException {
     /**
      * エラーコードリスト。リストオブジェクト。
      */
-    private List<?> errorsList;
+    private Errors errors;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -55,11 +56,11 @@ public class TaskManagerErrorRuntimeException extends RuntimeException {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
-    public List<?> getErrorsList() {
-        return errorsList;
+    public Errors getErrors() {
+        return errors;
     }
-    public void setErrorsList(List<?> errorsList) {
-        this.errorsList = errorsList;
+    public void setErrorsList(Errors errors) {
+        this.errors = errors;
     }
 
 }

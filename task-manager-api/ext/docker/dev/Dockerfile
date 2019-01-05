@@ -9,8 +9,8 @@
 FROM postgres:9.6.10
 
 # 初期ユーザの設定
-ENV POSTGRES_USER=localuser
-ENV POSTGRES_PASSWORD=21405apple
+ENV POSTGRES_USER=taskmanageruser
+ENV POSTGRES_PASSWORD=taskmanageruser
 ENV POSTGRES_DB=task_base
 
 # 待受ポート設定

@@ -34,10 +34,10 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
      * @param TaskManagerErrorRuntimeException e
      */
 	@ExceptionHandler(TaskManagerErrorRuntimeException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    //@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ResponseEntity<Object> handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e, WebRequest request) {
 	    AppLogger.error(LogCode.TMFWCM90000, e, getCalledSource().get("class"), getCalledSource().get("method"));
-	    return super.handleExceptionInternal(e, setHandledErrors(TaskManagerErrorCode.ERR999999.getCode()), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+	    return super.handleExceptionInternal(e, new GeneralError(e.getErrors()), null, HttpStatus.BAD_REQUEST, request);
 	}
 
 	/**

@@ -18,10 +18,10 @@ import com.tm.dto.common.ServiceOut;
  */
 public class BaseRestController {
 
-	/**
-	 * レスポンス共通プロセッサクラスです.レスポンス生成に必要な機能を提供します.
-	 */
-	protected static final class ResponseProcessor<T> {
+	  /**
+	   * レスポンス共通プロセッサクラスです.レスポンス生成に必要な機能を提供します.
+	   */
+	  protected static final class ResponseProcessor<T> {
 
 	  private T value;
 

@@ -3,6 +3,8 @@
     <a routerLink="/">トップページ</a>
     <a routerLink="/signup">サインアップ</a>
     <a routerLink="/signin">サインイン</a>
-    <a href="#" (onclick)="signout()">ログアウト</a>
+    <div *ngIf="isSignedin()">
+        <a href="#" (onclick)="signout()">サインアウト</a>
+    </div>
 </nav>
 <router-outlet></router-outlet>

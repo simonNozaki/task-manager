@@ -28,7 +28,7 @@ export class SignoutService {
      * 認証状態をチェックします。
      * @returns signedinFlag: boolean 認証フラグの状態
      */
-    private isSignedin(): boolean {
+    public isSignedin(): boolean {
         this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
             if (ObjectUtil.isNullOrUndefined(userId)) {
                 this.signedinFlag = false;

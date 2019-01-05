@@ -29,7 +29,7 @@ public class CryptoUtil {
      * @return String ハッシュにしたパスワード文字列
      */
     public static String encode(String password) {
-        return passwordEncoder.encode(password);
+        return new BCryptPasswordEncoder().encode(password);
     }
 
     /**
@@ -39,7 +39,7 @@ public class CryptoUtil {
      * @return 真偽値、デフォルトはfalse
      */
     public static boolean match(String rawPassword, String encodedPassword) {
-        if (passwordEncoder.matches(rawPassword, encodedPassword)) {
+        if (new BCryptPasswordEncoder().matches(rawPassword, encodedPassword)) {
             return true;
         }
         return false;

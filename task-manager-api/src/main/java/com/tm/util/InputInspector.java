@@ -121,7 +121,7 @@ public final class InputInspector<T> {
 		 * @return Inspector<T>
 		 */
 		public Inspector<T> evaluateCustomCondition(Predicate<T> predicate, String code) {
-			return this.satisfyPredicateWithInput(value, predicate, code);
+			return this.satisfyPredicateWithInput(this.value, predicate, code);
 		}
 
         /**
@@ -150,9 +150,7 @@ public final class InputInspector<T> {
 		public Errors build(){
 		    if (!ObjectUtil.isNullOrEmpty(this.errors)) {
 		        List<String> sortedCodes = ObjectUtil.getStream(this.errors.getCodes())
-		                .sorted(Comparator.comparing((String code) -> {
-		                    return code;
-		                }))
+		                .sorted(Comparator.comparing((String code) -> code))
 		                .collect(Collectors.toList());
 		        this.errors = new Errors(sortedCodes);
 		    }

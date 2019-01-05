@@ -38,46 +38,46 @@ export class RegistTaskRequest {
    */
   private taskNote: string;
 
-  public getTaskTitle () {
+  public getTaskTitle (): string {
     return this.taskTitle;
   }
-  public setTaskTitle (taskTitle: string) {
+  public setTaskTitle (taskTitle: string): void {
     this.taskTitle = taskTitle;
   }
-  public getTaskLabel () {
+  public getTaskLabel (): string {
     return this.taskLabel;
   }
-  public setTaskLabel (taskLabel: string) {
+  public setTaskLabel (taskLabel: string): void {
     this.taskLabel = taskLabel;
   }
-  public getStartDate () {
+  public getStartDate (): Date {
     return this.startDate;
   }
-  public setStartDate (startDate: Date) {
+  public setStartDate (startDate: Date): void {
     this.startDate = startDate;
   }
-  public getDeadline () {
+  public getDeadline (): Date {
     return this.deadline;
   }
-  public setDeadline (deadline: Date) {
+  public setDeadline (deadline: Date): void {
     this.deadline = deadline;
   }
-  public getCompletedFlag () {
+  public getCompletedFlag (): string {
     return this.completedFlag;
   }
-  public setCompletedFlag (completedFlag: string) {
+  public setCompletedFlag (completedFlag: string): void {
     this.completedFlag = completedFlag;
   }
-  public getUserId () {
+  public getUserId (): string {
     return this.userId;
   }
-  public setUserId (userId: string) {
+  public setUserId (userId: string): void {
     this.userId = userId;
   }
-  public getTaskNote () {
+  public getTaskNote (): string {
     return this.taskNote;
   }
-  public setTaskNote (taskNote: string) {
+  public setTaskNote (taskNote: string): void {
     this.taskNote = taskNote;
   }
 }

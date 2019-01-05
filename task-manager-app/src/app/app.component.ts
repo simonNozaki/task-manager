@@ -18,6 +18,10 @@ export class AppComponent {
      */
     constructor(private signoutService: SignoutService, private router: Router) {}
 
+    public isSignedin(): boolean {
+        return this.signoutService.isSignedin();
+    }
+
     /**
      * ログアウトを実施して、トップページにリダイレクトします。
      */

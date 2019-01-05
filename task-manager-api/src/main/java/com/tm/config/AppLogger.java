@@ -34,9 +34,9 @@ public class AppLogger {
 	private static final Logger appTelegramINSTANCE = LoggerFactory.getLogger(AppTelegramLogger.class.getCanonicalName());
 
 	/**
-     * ロガーインスタンス、エラーログ用
-     */
-    private static final Logger appErrorINSTANCE = LoggerFactory.getLogger(AppErrorLogger.class.getCanonicalName());
+	 * ロガーインスタンス、エラーログ用
+	 */
+	private static final Logger appErrorINSTANCE = LoggerFactory.getLogger(AppErrorLogger.class.getCanonicalName());
 
     /**
      * ロガーインスタンス、警告ログ用

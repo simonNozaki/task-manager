@@ -13,7 +13,7 @@ import { UserSigninRequestDto } from '../dto/interface/user-signin-request.dto';
 @Injectable()
 export class SigninService {
 
-  /**
+    /**
      * デフォルトコンストラクタ。
      */
     constructor(private http: HttpClient) { }
