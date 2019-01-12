@@ -4,7 +4,7 @@ import { FetchTaskResponseDto } from '../../dto/interface/fetch-task-response';
 import { Task } from '../../entity/task';
 import { TaskManagerCode } from '../../codedef/task-manager-code';
 import { RegistTaskRequest } from '../../dto/interface/regist-task-request';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { AppConst } from '../../const/app.const';
 import { ObjectUtil } from '../../util/object.util';
 import { TaskCompleteRequestDto } from '../../dto/interface/task-complete-request.dto';
@@ -19,6 +19,7 @@ import { TaskLabelFetchResponseDto } from '../../dto/interface/task-label-fetch-
 import { RegistTaskResponse } from '../../dto/interface/regist-task-response';
 import { TaskLabelRegisterRequestDto } from '../../dto/interface/task-label-register-request.dto';
 import { TaskLabelRegisterResponseDto } from '../../dto/interface/task-label-register-response.dto';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 /**
  * タスクの業務処理コンポーネント
@@ -77,8 +78,8 @@ export class TaskComponent implements OnInit {
      * タスク登録のフォームグループ
      */
     public taskForm: FormGroup = new FormGroup({
-        taskTitleControl: new FormControl(null, Validators.required),
-        taskLabelControl: new FormControl("", Validators.maxLength(AppConst.TASK_LABEL_MAX_LENGTH)),
+        taskTitleControl: new FormControl(null, [Validators.required, Validators.maxLength(AppConst.TASK_TITLE_MAX_LENGTH)]),
+        taskLabelControl: new FormControl(""),
         startDateControl: new FormControl(null),
         deadlineControl: new FormControl(null),
         taskNoteControl: new FormControl("", Validators.maxLength(AppConst.TASK_NOTE_MAX_LENGTH))
@@ -88,7 +89,7 @@ export class TaskComponent implements OnInit {
      * タスクラベル登録フォームグループ
      */
     public taskLabelForm: FormGroup = new FormGroup({
-        taskLabelControl: new FormControl(null, Validators.required)
+        taskLabelControl: new FormControl(null, [Validators.required, Validators.maxLength(AppConst.TASK_LABEL_MAX_LENGTH)])
     });
   
     /** 
@@ -149,20 +150,29 @@ export class TaskComponent implements OnInit {
      * @returns boolean
      */
     public violateRistriction(): boolean {
+        var taskTitle: AbstractControl = this.taskForm.get("taskTitleControl");
         // タスクタイトル。必須入力チェック
-        if (this.taskForm.get('taskTitleControl').hasError('required')) {
+        if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
             this.checkedResult = AppConst.TASK_TITLE_REQUIRED_VIOLATED;
+            return true;
+        } else if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
+            this.checkedResult = AppConst.TASK_TITLE_LENGTH_VIOLATED;
             return true;
         }
 
-        // タスクラベル。20桁以内であることをチェックする
-        if (this.taskForm.get('taskLabelControl').hasError('maxlength')) {
+        var label: AbstractControl = this.taskLabelForm.get("taskLabelControl");
+        // タスクラベル。20桁以内であることをチェックする、ラベルの最大文字列は登録段階でのみ弾く
+        if (label.hasError('required') && (label.dirty || label.touched)) {
+            this.checkedResult =  AppConst.TASK_LABEL_REQUIRED_VIOLATED;
+            return true;
+        } else if (label.hasError('maxlength') && (label.dirty || label.touched)) {
             this.checkedResult =  AppConst.TASK_LABEL_LENGTH_VIOLATED;
             return true;
         }
 
+        var note: AbstractControl = this.taskForm.get("taskNoteControl");
         // タスクメモ。200文字以内であることをチェックする
-        if (this.taskForm.get('taskNoteControl').hasError('maxlength')) {
+        if (note.hasError('maxlength') && (note.dirty || note.touched)) {
             this.checkedResult =  AppConst.TASK_NOTE_LENGTH_VIOLATED;
             return true;
         }

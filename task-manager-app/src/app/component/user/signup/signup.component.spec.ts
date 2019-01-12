@@ -80,11 +80,7 @@ describe('SignupComponent', () => {
           expect(component).toBeTruthy();
         });
   
-        /**
-        * 正常系、有効なメールアドレス、パスワードで利用者データが作成されること
-        * 3-1
-        */
-        it('3-1', () => {
+        it('3-1, 有効なメールアドレス、パスワード、利用者名', () => {
             component.ngOnInit();
             signupService.signup(StubUsersSignupRequest[0]).subscribe(res => {
                 expect(res).toEqual(StubUsersSignupResponse[0]);
@@ -93,14 +89,72 @@ describe('SignupComponent', () => {
             expect(req.request.method).toBe("POST");
             req.flush(StubUsersSignupResponse[0]);
         });
-
-        /**
-         * 異常系、 
-         */
-        it("3-2", () => {
-            component.ngOnInit();
-        });
-         
     })
     
+    describe('異常系 : ', () => {
+        
+        it("3-2, メールアドレス：入力なし", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[1].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[0].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[0].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-3, メールアドレス：メールアドレス形式でない文字列", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[2].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[2].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[2].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-4, メールアドレス：規定の文字数を超えた文字列", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[3].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[3].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[3].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-5, メールアドレス：半角英数字以外の文字を含む", () => {
+            component.signupForm.controls['userNameControl'].setValue(StubUsersSignupRequest[4].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[4].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[4].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-6, パスワード：入力なし", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[0].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[1].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[0].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-7, パスワード：規定の文字数を超えた文字列", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[5].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[5].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[5].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-8, パスワード：半角英数字以外の文字を含む", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[6].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[6].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[6].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-9, 名前：入力なし", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[0].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[0].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[1].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+        it("3-10, 名前：規定の文字数を超えた文字列", () => {
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[7].email);
+            component.signupForm.controls['emailControl'].setValue(StubUsersSignupRequest[7].email);
+            component.signupForm.controls['passwordControl'].setValue(StubUsersSignupRequest[7].password);
+            
+            expect(component.signupForm.valid).toBeFalsy();
+        });
+    });        
 });

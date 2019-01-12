@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AppConst } from '../../../const/app.const';
 import { SignupService } from '../../../service/signup.service';
 import { UserSignupRequestDto } from '../../../dto/interface/user-signup-request.dto';
@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { ServiceConst } from '../../../const/service-const';
 import { ObjectUtil } from '../../../util/object.util';
 import { CommonDeliveryService } from '../../../service/common-delivery.service';
-import { CustomInputChecker } from '../../../util/custom-input-checker';
 import { StringUtil } from '../../../util/string-util';
 
 /**
@@ -53,8 +52,9 @@ export class SignupComponent implements OnInit {
     public signupForm: FormGroup = new FormGroup({
         userNameControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_NAME_MAX_LENGTH)]),
         emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH), 
-            CustomInputChecker.matchFormat(StringUtil.REGEX_FORMAT_EMAIL)]),
-        passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH)])
+            Validators.email, Validators.pattern(StringUtil.REGEX_FORMAT_HALF_SIZE)]),
+        passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH),
+            Validators.pattern(StringUtil.REGEX_FORMAT_HALF_SIZE)])
     })
 
     /**
@@ -93,33 +93,44 @@ export class SignupComponent implements OnInit {
      * @returns boolean
      */
     public violateRistriction(): boolean{
+        var userName: AbstractControl = this.signupForm.get("userNameControl");
         // 名前の入力チェック。
-        if (this.signupForm.get('userNameControl').hasError('required')) {
+        if (userName.hasError('required') && (userName.dirty || userName.touched)) {
           this.checkedResult = AppConst.USER_SIGNUP_USERNAME_REQUIRED_VIOLATED;
           return true;
-        } else if (this.signupForm.get('userNameControl').hasError('maxlength')) {
+        } else if (userName.hasError('maxlength') && (userName.dirty || userName.touched)) {
           this.checkedResult = AppConst.USER_SIGNUP_USERNAME_LENGTH_VIOLATED;
           return true;
         }
 
+        var email: AbstractControl = this.signupForm.get("emailControl");
         // メールアドレスの入力チェック。
-        if (this.signupForm.get('emailControl').hasError('required')) {
+        if (email.hasError('required') && (email.dirty || email.touched)) {
           this.checkedResult = AppConst.USER_SIGNUP_EMAIL_REQUIRED_VIOLATED;
           return true;
-        } else if (this.signupForm.get('emailControl').hasError('maxlength')) {
+        } else if (email.hasError('maxlength') && (email.dirty || email.touched)) {
           this.checkedResult = AppConst.USER_SIGNUP_EMAIL_LENGTH_VIOLATED;
           return true;
+        } else if (email.hasError('email') && (email.dirty || email.touched)) {
+            this.checkedResult = AppConst.USER_EMAIL_NOT_HALF_SIZED;
+            return true;
+        } else if (email.hasError('pattern') && (email.dirty || email.touched)) {
+            this.checkedResult = AppConst.USER_SIGNUP_EMAIL_INVALID_FORMAT;
+            return true;
         }
 
-        // メールアドレスの入力チェック。
-        if (this.signupForm.get('passwordControl').hasError('required')) {
+        var password: AbstractControl = this.signupForm.get("passwordControl");
+        // パスワードの入力チェック。
+        if (password.hasError('required') && (password.touched || password.dirty)) {
           this.checkedResult = AppConst.USER_SIGNUP_PASSWORD_REQUIRED_VIOLATED;
           return true;
-        } else if (this.signupForm.get('passwordControl').hasError('maxlength')) {
+        } else if (password.hasError('maxlength') && (password.touched || password.dirty)) {
           this.checkedResult = AppConst.USER_SIGNUP_PASSWORD_LENGTH_VIOLATED;
           return true;
+        } else if (password.hasError('pattern') && (password.touched || password.dirty)) {
+            this.checkedResult = AppConst.USER_PASSWORD_NOT_HALF_SIZED;
+            return true;
         }
-
         return false;
     }
 

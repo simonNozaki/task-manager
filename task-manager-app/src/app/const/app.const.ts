@@ -7,9 +7,14 @@ export module AppConst {
     // バリデーション定義
     //-----------------------------
     /**
-     * タスクラベル、20桁
+     * タスクタイトル、100桁
      */
-    export const TASK_LABEL_MAX_LENGTH: number = 20;
+    export const TASK_TITLE_MAX_LENGTH: number = 100;
+
+    /**
+     * タスクラベル、50桁
+     */
+    export const TASK_LABEL_MAX_LENGTH: number = 50;
 
     /**
      * 完了フラグ、1桁
@@ -50,9 +55,19 @@ export module AppConst {
     export const TASK_TITLE_REQUIRED_VIOLATED: string = "タイトルが入力されていません。タイトルは必須です。";
 
     /**
-     * ラベルが長すぎます。20文字までです。
+     * ラベル名が入力されていません。ラベル名は必須入力です。
      */
-    export const TASK_LABEL_LENGTH_VIOLATED: string = "ラベルが長すぎます。20文字までです。";
+    export const TASK_LABEL_REQUIRED_VIOLATED: string = "ラベル名が入力されていません。ラベル名は必須入力です。";
+
+    /**
+     * タイトルが長すぎます。100文字までです。
+     */
+    export const TASK_TITLE_LENGTH_VIOLATED: string = "タイトルが長すぎます。100文字までです。";
+
+    /**
+     * ラベルが長すぎます。50文字までです。
+     */
+    export const TASK_LABEL_LENGTH_VIOLATED: string = "ラベルが長すぎます。50文字までです。";
 
     /**
      * 完了フラグが1桁ではありません。
@@ -80,6 +95,11 @@ export module AppConst {
     export const USER_SIGNUP_EMAIL_REQUIRED_VIOLATED: string = "メールアドレスが入力されていません。メールアドレスは必須入力です。";
 
     /**
+     * 入力された文字列はメールアドレス形式ではありません。
+     */
+    export const USER_SIGNUP_EMAIL_INVALID_FORMAT: string = "入力された文字列はメールアドレス形式ではありません。";
+
+    /**
      * メールアドレスが長すぎます。メールアドレスは100文字までです。
      */
     export const USER_SIGNUP_EMAIL_LENGTH_VIOLATED: string = "メールアドレスが長すぎます。メールアドレスは100文字までです。";
@@ -93,6 +113,16 @@ export module AppConst {
      * パスワードが長すぎます。パスワードは100文字までです。
      */
     export const USER_SIGNUP_PASSWORD_LENGTH_VIOLATED: string = "パスワードが長すぎます。パスワードは100文字までです。";
+
+    /**
+     * メールアドレスは半角英数字のみ使用してください。
+     */
+    export const USER_EMAIL_NOT_HALF_SIZED: string = "メールアドレスは半角英数字のみ使用してください。";
+
+    /**
+     * パスワードは半角英数字のみ使用してください。
+     */
+    export const USER_PASSWORD_NOT_HALF_SIZED: string = "パスワードは半角英数字のみ使用してください。";
 
     /**
      * 入力されたパスワードはすでに利用されています。

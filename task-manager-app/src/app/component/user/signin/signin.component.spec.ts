@@ -112,7 +112,51 @@ describe('SigninComponent', () => {
           expect(component.signinForm.valid).toBeTruthy();
           expect(location.path()).toBe('/task');
       }));
+  });
 
+  describe("異常系 : ", ()=>{
+      it("2-2, メールアドレス入力なし", fakeAsync(() => {
+          component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[1].email);
+          component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[0].password);
+
+          expect(component.signinForm.valid).toBeFalsy();
+      }));
+      it("2-3, メールアドレス形式でない", fakeAsync(() => {
+          component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[2].password);
+          component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[2].password);
+
+          expect(component.signinForm.valid).toBeFalsy();
+      }));
+      it("2-4, メールアドレス：規定の文字数を超えた文字列", fakeAsync(() => {
+        component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[4].email);
+        component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[4].password);
+
+        expect(component.signinForm.valid).toBeFalsy();
+      }));
+      it("2-5, メールアドレス：半角英数字以外の文字を含む", fakeAsync(() => {
+        component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[3].email);
+        component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[3].password);
+
+        expect(component.signinForm.valid).toBeFalsy();
+      }));
+      it("2-6, パスワード:入力なし", fakeAsync(() => {
+        component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[1].email);
+        component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[1].password);
+
+        expect(component.signinForm.valid).toBeFalsy();
+      }));
+      it("2-7, パスワード：規定の文字数を超えた文字列", fakeAsync(() => {
+        component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[1].email);
+        component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[1].password);
+
+        expect(component.signinForm.valid).toBeFalsy();
+      }));
+      it("2-8, パスワード：半角英数字以外の文字を含む", fakeAsync(() => {
+        component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[6].email);
+        component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[6].password);
+
+        expect(component.signinForm.valid).toBeFalsy();
+      }));
   });
 
 });

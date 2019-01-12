@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AppConst } from '../../../const/app.const';
 import { Router } from '@angular/router';
 import { SigninService } from '../../../service/signin.service';
@@ -8,7 +8,6 @@ import { UserSigninRequestDto } from '../../../dto/interface/user-signin-request
 import { UserSigninResponseDto } from '../../../dto/interface/user-signin-response.dto';
 import { ObjectUtil } from '../../../util/object.util';
 import { ServiceConst } from '../../../const/service-const';
-import { CustomInputChecker } from '../../../util/custom-input-checker';
 import { StringUtil } from '../../../util/string-util';
 
 
@@ -39,8 +38,9 @@ export class SigninComponent implements OnInit {
      */
     public signinForm: FormGroup = new FormGroup({
         emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH),
-            CustomInputChecker.matchFormat(StringUtil.REGEX_FORMAT_EMAIL)]),
-        passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH)])
+            Validators.email, Validators.pattern(StringUtil.REGEX_FORMAT_HALF_SIZE)]),
+        passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH),
+            Validators.pattern(StringUtil.REGEX_FORMAT_HALF_SIZE)])
     });
 
     /**
@@ -77,21 +77,32 @@ export class SigninComponent implements OnInit {
      * @returns boolean
      */
     public violateRistriction(): boolean{
+        var email: AbstractControl = this.signinForm.get("emailControl");
         // メールアドレスの入力チェック。
-        if (this.signinForm.get('emailControl').hasError('required')) {
+        if (email.hasError('required') && (email.dirty || email.touched)) {
             this.checkedResult = AppConst.USER_SIGNUP_EMAIL_REQUIRED_VIOLATED;
             return true;
-        } else if (this.signinForm.get('emailControl').hasError('maxlength')) {
+        } else if (email.hasError('maxlength') && (email.dirty || email.touched)) {
             this.checkedResult = AppConst.USER_SIGNUP_EMAIL_LENGTH_VIOLATED;
+            return true;
+        } else if (email.hasError("email") && (email.dirty || email.touched)) {
+            this.checkedResult = AppConst.USER_SIGNUP_EMAIL_INVALID_FORMAT;
+            return true;
+        } else if (email.hasError("pattern") && (email.dirty || email.touched)) {
+            this.checkedResult = AppConst.USER_EMAIL_NOT_HALF_SIZED;
             return true;
         }
 
-        // メールアドレスの入力チェック。
-        if (this.signinForm.get('passwordControl').hasError('required')) {
+        var password: AbstractControl = this.signinForm.get("passwordControl");
+        // パスワードの入力チェック。
+        if (password.hasError('required') && (password.dirty || password.touched)) {
             this.checkedResult = AppConst.USER_SIGNUP_PASSWORD_REQUIRED_VIOLATED;
             return true;
-        } else if (this.signinForm.get('passwordControl').hasError('maxlength')) {
+        } else if (password.hasError('maxlength') && (password.dirty || password.touched)) {
             this.checkedResult = AppConst.USER_SIGNUP_PASSWORD_LENGTH_VIOLATED;
+            return true;
+        } else if (password.hasError('pattern') && (password.dirty || password.touched)) {
+            this.checkedResult = AppConst.USER_PASSWORD_NOT_HALF_SIZED;
             return true;
         }
         return false;

@@ -12,8 +12,7 @@ export class CustomInputChecker {
      */
     public static  matchFormat(regex: RegExp): ValidatorFn {
         return (control: AbstractControl): {[key: string]: any} | null => {
-            const forbidden = regex.test(control.value);
-            return forbidden ? { "無効なメールアドレス形式です : " : { value : control.value } } : null;
+            return regex.test(control.value) ? { "無効なメールアドレス形式です : " : { regexViolation: control.value } } : null;
         }
     }
 }
