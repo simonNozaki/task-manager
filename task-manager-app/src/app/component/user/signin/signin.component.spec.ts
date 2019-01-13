@@ -29,6 +29,7 @@ import { StubUsersSigninRequest } from '../../../stub/stub-users-signin-request'
 import { SigninServiceStub } from '../../../stub/user/signin-service-stub';
 import { ConnectionBackend } from '@angular/http';
 import { of } from 'rxjs/observable/of';
+import { AppConst } from '../../../const/app.const';
 
 /**
  * 利用者認証コンポーネントのテストスイート
@@ -44,6 +45,7 @@ describe('SigninComponent', () => {
   let API_URL = "http://localhost:18080/api/v1/user/signin";
   let injector = getTestBed();
   let debugElement: DebugElement;
+  let nativeElement: Document;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -68,6 +70,7 @@ describe('SigninComponent', () => {
           commondeliveryService = TestBed.get(CommonDeliveryService);
           httpMock = injector.get(HttpTestingController);
           debugElement = fixture.debugElement;
+          nativeElement = fixture.debugElement.nativeElement;
       });
   }));
 
@@ -114,12 +117,14 @@ describe('SigninComponent', () => {
       }));
   });
 
+  // TODO: エラーメッセージの表示をちょうどよくしてからテスト再実行
   describe("異常系 : ", ()=>{
       it("2-2, メールアドレス入力なし", fakeAsync(() => {
           component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[1].email);
           component.signinForm.controls['passwordControl'].setValue(StubUsersSigninRequest[0].password);
 
           expect(component.signinForm.valid).toBeFalsy();
+          //expect(nativeElement.querySelector("p").textContent).toContain(AppConst.USER_SIGNUP_EMAIL_REQUIRED_VIOLATED);
       }));
       it("2-3, メールアドレス形式でない", fakeAsync(() => {
           component.signinForm.controls['emailControl'].setValue(StubUsersSigninRequest[2].password);

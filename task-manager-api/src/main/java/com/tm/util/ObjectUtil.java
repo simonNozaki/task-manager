@@ -16,7 +16,7 @@ public final class ObjectUtil {
 	 */
 	public static <T> boolean isNullOrEmpty(T input) {
 		// 入力がnullのケース
-		if (Objects.isNull(input)) {
+		if (input == null) {
 			return true;
 		}
 

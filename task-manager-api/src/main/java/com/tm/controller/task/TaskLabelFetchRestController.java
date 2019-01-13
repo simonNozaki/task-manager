@@ -19,6 +19,7 @@ import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.TaskLabel;
 import com.tm.dto.bean.task.TaskLabelFetchResponseDto;
 import com.tm.dto.common.Errors;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 import com.tm.service.task.TaskLabelFetchService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -48,7 +49,7 @@ public class TaskLabelFetchRestController extends BaseRestController {
         //------------------------------------
         Errors errors = InputInspector.of(userId)
                         .logInput(arrangeLoggingString(userId))
-                        .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
+                        .hasNullValue(TaskManagerErrorCode.ERR110001.getCode())
                         .violateSpecificLength(userId, AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                         .build();
 
@@ -56,14 +57,7 @@ public class TaskLabelFetchRestController extends BaseRestController {
         // エラーがある場合レスポンス作成処理
         //------------------------------------
         if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
-            return responseProcessBuilder().of(TaskLabelFetchResponseDto::new)
-                        .operate((TaskLabelFetchResponseDto res) -> {
-                            errors.setId(userId);
-                            res.setErrors(errors);
-                            return res;
-                        })
-                        .logOutput(errors)
-                        .apply();
+        	throw new TaskManagerErrorRuntimeException(errors);
         }
 
         //------------------------------------

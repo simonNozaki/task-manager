@@ -52,7 +52,8 @@ public class UserSigninRestController extends BaseRestController {
         //------------------------------------
         Errors errors = InputInspector.of(req)
                             .logInput(req)
-                            .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
+                            .isNull(req.getEmail(), TaskManagerErrorCode.ERR130001.getCode())
+                            .isNull(req.getPassword(), TaskManagerErrorCode.ERR140001.getCode())
                             .violateMaxLength(req.getEmail(), AppConst.USER_EMAIL_MAX, TaskManagerErrorCode.ERR130002.getCode())
                             .violateMaxLength(req.getPassword(), AppConst.USER_PASSWORD_MAX, TaskManagerErrorCode.ERR140002.getCode())
                             .build();

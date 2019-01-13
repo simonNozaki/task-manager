@@ -17,6 +17,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
 import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.consts.log.LogCode;
@@ -32,11 +33,14 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
     /**
      * APIのシステムエラーを処理します。
      * @param TaskManagerErrorRuntimeException e
+     * @throws Exception
+     * @throws SecurityException
      */
 	@ExceptionHandler(TaskManagerErrorRuntimeException.class)
-    //@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ResponseEntity<Object> handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e, WebRequest request) {
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<Object> handleTaskManagerErrorRuntimeException(TaskManagerErrorRuntimeException e, WebRequest request) throws SecurityException, Exception {
 	    AppLogger.error(LogCode.TMFWCM90000, e, getCalledSource().get("class"), getCalledSource().get("method"));
+	    AppLogger.traceTelegram(LogCode.TMFWCM90000, this.getClass(), new Object(){}.getClass().getEnclosingMethod().getName(), new ObjectMapper().writeValueAsString(e.getErrors()));
 	    return super.handleExceptionInternal(e, new GeneralError(e.getErrors()), null, HttpStatus.BAD_REQUEST, request);
 	}
 

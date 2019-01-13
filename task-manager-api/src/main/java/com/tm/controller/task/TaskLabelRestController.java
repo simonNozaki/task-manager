@@ -19,6 +19,7 @@ import com.tm.dto.TaskLabel;
 import com.tm.dto.bean.task.TaskLabelRegisterRequestDto;
 import com.tm.dto.bean.task.TaskLabelRegisterResponseDto;
 import com.tm.dto.common.Errors;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 import com.tm.service.task.TaskLabelRegisterService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -49,7 +50,9 @@ public class TaskLabelRestController extends BaseRestController {
         //------------------------------------
         Errors errors = InputInspector.of(label)
                             .logInput(label)
-                            .hasNullValue(TaskManagerErrorCode.ERR910001.getCode())
+                            .isNull(label.getUserId(), TaskManagerErrorCode.ERR110001.getCode())
+                            .isNull(label.getTaskLabel(), TaskManagerErrorCode.ERR230003.getCode())
+                            .isNull(label.getUsedFlag(), TaskManagerErrorCode.ERR270001.getCode())
                             .violateMaxLength(label.getTaskLabel(), AppConst.TASK_LABEL_MAX, TaskManagerErrorCode.ERR230001.getCode())
                             .violateSpecificLength(label.getUserId(), AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                             .build();
@@ -58,13 +61,7 @@ public class TaskLabelRestController extends BaseRestController {
         // エラーがある場合レスポンス作成処理
         //------------------------------------
         if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
-            return responseProcessBuilder().of(TaskLabelRegisterResponseDto::new)
-                    .operate((TaskLabelRegisterResponseDto res) -> {
-                        res.setErrors(errors);
-                        return res;
-                    })
-                    .logOutput(errors)
-                    .apply();
+        	throw new TaskManagerErrorRuntimeException(errors);
         }
 
         //------------------------------------

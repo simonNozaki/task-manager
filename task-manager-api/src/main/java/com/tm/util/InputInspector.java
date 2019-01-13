@@ -87,6 +87,16 @@ public final class InputInspector<T> {
 		}
 
 		/**
+		 * プロパティの空チェック。空文字もしくはnullの場合エラーコードを設定します。
+		 * @param subject 被検査対象
+		 * @param code エラーコード
+		 * @return Inspector
+		 */
+		public <V> Inspector<T> isNull(V subject, String code){
+			return this.satisfyPredicateWithInput(subject, (V inputValue) -> ObjectUtil.isNullOrEmpty(subject), code);
+		}
+
+		/**
 		 * 桁数チェックを行い、上限を超えていればエラーコードを設定します。
 		 * @param String target
 		 * @param int max
@@ -111,7 +121,7 @@ public final class InputInspector<T> {
 		    if (ObjectUtil.isNullOrEmpty(target)) {
 		        return new Inspector<T>(this.value, this.errors);
 		    }
-			return this.satisfyPredicateWithInput(target, (V inputValue) -> StringUtil.isNotEqualToSpecificLength(target.toString(), length), code);
+			return this.satisfyPredicateWithInput(target, (V inputValue) -> !StringUtil.isPaticularLength(target, length), code);
 		}
 
 		/**

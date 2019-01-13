@@ -68,15 +68,4 @@ public class RestControllerInterceptor extends HandlerInterceptorAdapter{
         return handler.getClass().getName();
     }
 
-    /**
-     * ログメッセージ生成
-     */
-    private String createMessage(Object obj) {
-
-        HandlerMethod hm = (HandlerMethod) obj;
-
-        return hm.getShortLogMessage();
-
-    }
-
 }

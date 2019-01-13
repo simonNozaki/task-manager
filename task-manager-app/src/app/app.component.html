@@ -2,7 +2,9 @@
     <a routerLink="/task">タスク</a>
     <a routerLink="/">トップページ</a>
     <a routerLink="/signup">サインアップ</a>
-    <a routerLink="/signin">サインイン</a>
+    <div *ngIf="!isSignedin()">
+        <a routerLink="/signin">サインイン</a>
+    </div>
     <div *ngIf="isSignedin()">
         <a href="#" (onclick)="signout()">サインアウト</a>
     </div>

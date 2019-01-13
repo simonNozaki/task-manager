@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
      */
     public signinForm: FormGroup = new FormGroup({
         emailControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_EMAIL_MAX_LENGTH),
-            Validators.email, Validators.pattern(StringUtil.REGEX_FORMAT_HALF_SIZE)]),
+            Validators.email]),
         passwordControl: new FormControl("", [Validators.required, Validators.maxLength(AppConst.USER_PASSWORD_MAX_LENGTH),
             Validators.pattern(StringUtil.REGEX_FORMAT_HALF_SIZE)])
     });
@@ -87,9 +87,6 @@ export class SigninComponent implements OnInit {
             return true;
         } else if (email.hasError("email") && (email.dirty || email.touched)) {
             this.checkedResult = AppConst.USER_SIGNUP_EMAIL_INVALID_FORMAT;
-            return true;
-        } else if (email.hasError("pattern") && (email.dirty || email.touched)) {
-            this.checkedResult = AppConst.USER_EMAIL_NOT_HALF_SIZED;
             return true;
         }
 

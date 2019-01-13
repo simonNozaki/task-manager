@@ -80,6 +80,11 @@ export module AppConst {
     export const TASK_NOTE_LENGTH_VIOLATED: string = "タスクのメモが長すぎます。メモは200文字までです。";
 
     /**
+     * 日付の設定に不備があります。終了日を開始日より後に設定してください。
+     */
+    export const DEADLINE_SET_BEFORE_START_DATE: string = "日付の設定に不備があります。終了日を開始日より後に設定してください。";
+
+    /**
      * 名前が入力されていません。名前は必須入力です。
      */
     export const USER_SIGNUP_USERNAME_REQUIRED_VIOLATED: string = "名前が入力されていません。名前は必須入力です。";

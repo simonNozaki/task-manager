@@ -1,7 +1,5 @@
 package com.tm.controller.task;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +18,7 @@ import com.tm.controller.framework.BaseRestController;
 import com.tm.dto.bean.task.TaskCompleteRequestDto;
 import com.tm.dto.bean.task.TaskCompleteResponseDto;
 import com.tm.dto.common.Errors;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 import com.tm.service.task.TaskCompleteService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -44,7 +43,7 @@ public class TaskCompleteRestController extends BaseRestController {
         //------------------------------------
         Errors errors = InputInspector.of(req)
                 .logInput(req)
-                .hasNullValue(TaskManagerErrorCode.ERR210001.getCode())
+                .isNull(req.getTaskId(), TaskManagerErrorCode.ERR210001.getCode())
                 .violateSpecificLength(req.getTaskId(), AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.getCode())
                 .build();
 
@@ -52,16 +51,7 @@ public class TaskCompleteRestController extends BaseRestController {
         // エラーがある場合レスポンス作成処理
         //------------------------------------
         if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
-            return responseProcessBuilder().of(TaskCompleteResponseDto::new)
-                    .operate((TaskCompleteResponseDto res) -> {
-                        Optional.ofNullable(req.getTaskId()).ifPresent((String taskId) -> {
-                            res.setTaskId(taskId);
-                        });
-                        res.setErrors(errors);
-                        return res;
-                    })
-                    .logOutput(errors)
-                    .apply();
+        	throw new TaskManagerErrorRuntimeException(errors);
         }
 
         //------------------------------------

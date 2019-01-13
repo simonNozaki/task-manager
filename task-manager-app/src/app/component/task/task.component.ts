@@ -19,7 +19,7 @@ import { TaskLabelFetchResponseDto } from '../../dto/interface/task-label-fetch-
 import { RegistTaskResponse } from '../../dto/interface/regist-task-response';
 import { TaskLabelRegisterRequestDto } from '../../dto/interface/task-label-register-request.dto';
 import { TaskLabelRegisterResponseDto } from '../../dto/interface/task-label-register-response.dto';
-import { not } from '@angular/compiler/src/output/output_ast';
+import { DateUtil } from '../../util/date-util';
 
 /**
  * タスクの業務処理コンポーネント
@@ -150,8 +150,8 @@ export class TaskComponent implements OnInit {
      * @returns boolean
      */
     public violateRistriction(): boolean {
-        var taskTitle: AbstractControl = this.taskForm.get("taskTitleControl");
         // タスクタイトル。必須入力チェック
+        var taskTitle: AbstractControl = this.taskForm.get("taskTitleControl");
         if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
             this.checkedResult = AppConst.TASK_TITLE_REQUIRED_VIOLATED;
             return true;
@@ -160,8 +160,8 @@ export class TaskComponent implements OnInit {
             return true;
         }
 
-        var label: AbstractControl = this.taskLabelForm.get("taskLabelControl");
         // タスクラベル。20桁以内であることをチェックする、ラベルの最大文字列は登録段階でのみ弾く
+        var label: AbstractControl = this.taskLabelForm.get("taskLabelControl");
         if (label.hasError('required') && (label.dirty || label.touched)) {
             this.checkedResult =  AppConst.TASK_LABEL_REQUIRED_VIOLATED;
             return true;
@@ -170,10 +170,18 @@ export class TaskComponent implements OnInit {
             return true;
         }
 
-        var note: AbstractControl = this.taskForm.get("taskNoteControl");
         // タスクメモ。200文字以内であることをチェックする
+        var note: AbstractControl = this.taskForm.get("taskNoteControl");
         if (note.hasError('maxlength') && (note.dirty || note.touched)) {
             this.checkedResult =  AppConst.TASK_NOTE_LENGTH_VIOLATED;
+            return true;
+        }
+
+        // 終了日。開始日との関係が正常であることを確認する
+        var deadline: string = this.taskForm.get("deadlineControl").value;
+        var startdate: string = this.taskForm.get("startDateControl").value;
+        if(!ObjectUtil.isNullOrUndefined(deadline) && DateUtil.isForwardFromComparison(deadline, startdate)) {
+            this.checkedResult = AppConst.DEADLINE_SET_BEFORE_START_DATE;
             return true;
         }
 

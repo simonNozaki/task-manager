@@ -21,6 +21,7 @@ import com.tm.dto.Task;
 import com.tm.dto.bean.task.TaskRegistRequestDto;
 import com.tm.dto.bean.task.TaskRegistResponseDto;
 import com.tm.dto.common.Errors;
+import com.tm.exception.TaskManagerErrorRuntimeException;
 import com.tm.service.task.TaskRegisterService;
 import com.tm.util.InputInspector;
 import com.tm.util.ObjectUtil;
@@ -44,35 +45,26 @@ public class TaskRestController extends BaseRestController {
 	@RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_REGIST, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
-	@ResponseStatus(HttpStatus.ACCEPTED)
+	@ResponseStatus(HttpStatus.CREATED)
 	public TaskRegistResponseDto register(@RequestBody TaskRegistRequestDto task) throws Exception {
 		//------------------------------------
 		// 入力内容の検査
 		//------------------------------------
 		Errors errors = InputInspector.of(task)
 		                    .logInput(task)
-		                    .hasNullValue(TaskManagerErrorCode.ERR220001.getCode())
+		                    .isNull(task.getTaskTitle(), TaskManagerErrorCode.ERR220001.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskTitle()), AppConst.TASK_TITLE_MAX, TaskManagerErrorCode.ERR220002.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, TaskManagerErrorCode.ERR230001.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskNote()), AppConst.TASK_NOTE_MAX, TaskManagerErrorCode.ERR240001.getCode())
-//                            .violateSpecificLength(Optional.ofNullable(task.getUserId()), AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
+                            .violateSpecificLength(task.getUserId(), AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                             .build();
 
         //------------------------------------
         // エラーがある場合レスポンス作成処理
         //------------------------------------
-		if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
-            return responseProcessBuilder().of(TaskRegistResponseDto::new)
-					.operate((TaskRegistResponseDto res) -> {
-					    Optional.ofNullable(task.getTaskTitle()).ifPresent((String taskTitle) -> {
-					        res.setTaskTitle(taskTitle);
-					    });
-						res.setErrors(errors);
-						return res;
-					})
-					.logOutput(errors)
-					.apply();
-		}
+        if(!ObjectUtil.isNullOrEmpty(errors.getCodes())) {
+            throw new TaskManagerErrorRuntimeException(errors);
+        }
 
 		//------------------------------------
 		// サービスクラスの実行およびレスポンス処理
