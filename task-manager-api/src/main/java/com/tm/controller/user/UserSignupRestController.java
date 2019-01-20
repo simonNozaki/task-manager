@@ -1,5 +1,7 @@
 package com.tm.controller.user;
 
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,7 +56,7 @@ public class UserSignupRestController extends BaseRestController{
                             .violateMaxLength(user.getPassword(), AppConst.USER_PASSWORD_MAX, TaskManagerErrorCode.ERR140002.getCode())
                             .violateSpecificLength(user.getUsedFlag(), AppConst.USER_FLAG_LENGTH, TaskManagerErrorCode.ERR150003.getCode())
                             .evaluateCustomCondition((UserRegistRequestDto subject) -> {
-                            	return subject.getUsedFlag() == AppConst.USER_USED_FLAG_REGISTERED || subject.getUsedFlag() == AppConst.USER_USED_FLAG_DELETED;
+                            	return this.matchUserUsedFlag(subject.getUsedFlag());
                             }, TaskManagerErrorCode.ERR150004.getCode())
                             .build();
 
@@ -80,4 +82,16 @@ public class UserSignupRestController extends BaseRestController{
 		    .apply();
 
 	}
+
+	/**
+	 * 利用者フラグの存在チェックを実施します。
+	 * @param subject 検査対象
+	 * @return 定義されているフラグ情報であればtrueを返却します。
+	 */
+	private boolean matchUserUsedFlag(String subject) {
+        return Stream.of(AppConst.USER_USED_FLAG_DELETED, AppConst.USER_USED_FLAG_REGISTERED)
+                .anyMatch((String flag) -> {
+                   return subject.equals(flag);
+                });
+    }
 }

@@ -1,5 +1,7 @@
 package com.tm.controller.task;
 
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -52,9 +54,13 @@ public class TaskLabelRestController extends BaseRestController {
                             .logInput(label)
                             .isNull(label.getUserId(), TaskManagerErrorCode.ERR110001.getCode())
                             .isNull(label.getTaskLabel(), TaskManagerErrorCode.ERR230003.getCode())
-                            .isNull(label.getUsedFlag(), TaskManagerErrorCode.ERR270001.getCode())
+                            .isNull(label.getUsedFlag(), TaskManagerErrorCode.ERR280001.getCode())
                             .violateMaxLength(label.getTaskLabel(), AppConst.TASK_LABEL_MAX, TaskManagerErrorCode.ERR230001.getCode())
                             .violateSpecificLength(label.getUserId(), AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
+                            .violateSpecificLength(label.getUsedFlag(), AppConst.USER_FLAG_LENGTH, TaskManagerErrorCode.ERR280003.getCode())
+                            .evaluateCustomCondition((TaskLabelRegisterRequestDto subject) -> {
+                                return this.matchLabelUsedFlag(label.getUsedFlag());
+                            }, TaskManagerErrorCode.ERR280004.getCode())
                             .build();
 
         //------------------------------------
@@ -77,6 +83,18 @@ public class TaskLabelRestController extends BaseRestController {
                    })
                    .log()
                    .apply();
+    }
+
+    /**
+     * ラベル利用フラグが定義されたものであることを判定します。
+     * @param subject
+     * @return 定義された文字列であればtrueを返します。
+     */
+    private boolean matchLabelUsedFlag(String subject) {
+        return Stream.of(AppConst.TASK_LABEL_USED_FLAG_REGISTERED, AppConst.TASK_LABEL_USED_FLAG_DELETED)
+                .anyMatch((String flag) -> {
+                   return subject.equals(flag);
+                });
     }
 
 }

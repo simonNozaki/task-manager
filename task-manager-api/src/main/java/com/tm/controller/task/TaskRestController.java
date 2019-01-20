@@ -53,6 +53,7 @@ public class TaskRestController extends BaseRestController {
 		Errors errors = InputInspector.of(task)
 		                    .logInput(task)
 		                    .isNull(task.getTaskTitle(), TaskManagerErrorCode.ERR220001.getCode())
+		                    .isNull(task.getUserId(), TaskManagerErrorCode.ERR110001.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskTitle()), AppConst.TASK_TITLE_MAX, TaskManagerErrorCode.ERR220002.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskLabel()), AppConst.TASK_LABEL_MAX, TaskManagerErrorCode.ERR230001.getCode())
                             .violateMaxLength(Optional.ofNullable(task.getTaskNote()), AppConst.TASK_NOTE_MAX, TaskManagerErrorCode.ERR240001.getCode())
@@ -80,4 +81,5 @@ public class TaskRestController extends BaseRestController {
 		    .log()
 		    .apply();
 	}
+
 }
