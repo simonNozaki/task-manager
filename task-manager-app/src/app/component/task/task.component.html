@@ -1,7 +1,10 @@
 <div id="task-manager-task-container">
     <!-- タグコンテナ -->
     <div id="task-manager-task-label-container">
-        <ul>
+        <ul class="mt-50">
+            <li>
+                すべて
+            </li>
             <li *ngFor="let labelItem of labels" class="mt-20">
                 {{ labelItem.taskLabel }}
             </li>
@@ -9,8 +12,8 @@
 
         <!-- タグ登録フォームコンテナ -->
         <form [formGroup]="taskLabelForm" id="task-manager-task-label-form-container">
-            <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="新規ラベルを登録" >
-            <button (click)="registerLabel()" [disabled]="">ラベルを追加</button>
+            <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="タグを入力" >
+            <button class="mt-20" (click)="registerLabel()" [disabled]="">タグくを追加</button>
             <!-- 入力チェックエラー表示 -->
             <div *ngIf="violateRistriction()" id="task-manager-task-label-error">
                 <p>
@@ -24,6 +27,7 @@
     <div id="task-manager-task-card-container-space">
         <!-- タスクカードコンテナ -->
         <div id="task-manager-task-card-container">
+              <!-- 切り替えswitch -->
               <div id="task-manager-task-switch-box">
                   <div class="task-manager-task-switch-item">
                       <a routerLink="/task">list</a>
@@ -33,17 +37,18 @@
                   </div>
               </div>
               
+              <!-- タスクカード -->
               <div id="task-manager-task-cards">
                   <ul>
-                      <li>
-
+                      <li *ngFor="let task of tasks">
+                        <button (click)="complete(task.taskId)" ></button>
+                        {{ task.taskTitle }}
+                        {{ task.taskLabel }}
+                        {{ task.taskNote }}
                       </li>
                   </ul>
               </div>
-              {{ task.taskTitle }}
-              {{ task.taskLabel }}
-              {{ task.taskNote }}
-              <button (click)="complete(task.taskId)" ></button>
+              
         </div>
       
         <!-- タスク登録フォームコンテナ -->

@@ -19,6 +19,10 @@ a {
     text-decoration: none;
 }
 
+html {
+    height: 100%;
+}
+
 /* フォント共通設定 */
 body {
     margin: 0;

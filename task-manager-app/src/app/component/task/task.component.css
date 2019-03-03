@@ -20,7 +20,7 @@
 
 /* タグリスト表示 */
 #task-manager-task-label-container ul{
-    margin: 0 auto;
+    height: 430px;
     padding: 0;
 }
 
@@ -28,6 +28,12 @@
     margin: 20px 0 0 0;
     padding: 0;
     text-align: center;
+}
+
+/* タグ登録フォーム */
+#task-manager-task-label-form-container {
+    border-top: #bdbdbd;
+    width: 100%;
 }
 
 /* タグ登録 */
@@ -92,4 +98,19 @@
 /* 表示切り替えswitch、ホバー */
 .task-manager-task-switch-item:hover{
     background-color: #6effe8;
+}
+
+
+/* ----------------------
+ * タスクカード
+ * ----------------------*/
+#task-manager-task-cards ul{
+    margin: 0 50px;
+    padding: 0;
+}
+
+#task-manager-task-cards li{
+    margin-top: 20px;
+    height: 50px;
+    background-color: #bdbdbd;
 }
