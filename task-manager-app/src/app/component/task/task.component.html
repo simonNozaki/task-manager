@@ -1,72 +1,71 @@
-<div>
-  <div>
-    タスクのリスト
-    <table>
-      <tr>
-        <th>タイトル</th>
-        <th>タスクラベル</th>
-        <th>タスクメモ</th>
-        <th></th>
-      </tr>
-      <tr *ngFor="let task of tasks">
-        <td>{{ task.taskTitle }}</td>
-        <td>{{ task.taskLabel }}</td>
-        <td>{{ task.taskNote }}</td>
-        <button (click)="complete(task.taskId)" ></button>
-      </tr>
-      <tr>
-        <td>{{ taskForm.get("taskTitleControl").value }}</td>
-        <td>{{ taskForm.get("taskLabelControl").value }}</td>
-        <td>{{ taskForm.get("taskNoteControl").value }}</td>
-      </tr>
-      <tr>
-        <td>{{ taskForm.get("taskTitleControl").value }}</td>
-        <td>{{ taskForm.get("taskLabelControl").value }}</td>
-        <td>{{ taskForm.get("taskNoteControl").value }}</td>
-      </tr>
-    </table>
-  </div>
+<div id="task-manager-task-container">
+    <!-- タグコンテナ -->
+    <div id="task-manager-task-label-container">
+        <ul>
+            <li *ngFor="let labelItem of labels" class="mt-20">
+                {{ labelItem.taskLabel }}
+            </li>
+        </ul>
 
-  <form [formGroup]="taskLabelForm">
-      <label>
-          新規ラベル <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="新規ラベルを登録" >
-      </label>
-      <button (click)="registerLabel()" [disabled]="">ラベルを追加</button>
-  </form>
-
-  <form [formGroup]="taskForm">
-    <label>
-      タイトル <input formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクタイトル" >
-    </label>
-    <label>
-      ラベル
-      <select formControlName="taskLabelControl">
-          <option *ngFor="let labelItem of labels" [value]="labelItem.taskLabel" name="taskLabel">
-              {{ labelItem.taskLabel }}
-          </option>
-      </select>
-    </label>
-    <label>      
-      開始日 <input formControlName="startDateControl" type="date" name="startDate" placeholder="開始日">
-    </label>
-    <label>
-      期限日 <input formControlName="deadlineControl" type="date" name="deadline" placeholder="終了日を入力">
-    </label>
-    <label>
-      メモ<input formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
-    </label>
-
-    <button (click)="registTask()" [disabled]="">追加</button>
-
-  </form>
-
-  <div>
-    <div *ngIf="violateRistriction()">
-      <p>
-        {{ checkedResult }}
-      </p>
+        <!-- タグ登録フォームコンテナ -->
+        <form [formGroup]="taskLabelForm" id="task-manager-task-label-form-container">
+            <input formControlName="taskLabelControl" type="text" name="taskLabel" placeholder="新規ラベルを登録" >
+            <button (click)="registerLabel()" [disabled]="">ラベルを追加</button>
+            <!-- 入力チェックエラー表示 -->
+            <div *ngIf="violateRistriction()" id="task-manager-task-label-error">
+                <p>
+                    {{ labelCheckedResult }}
+                </p>
+          </div>
+        </form>    
     </div>
-  </div>
-  
-  
+
+    <!-- タスクカードコンテナスペース -->
+    <div id="task-manager-task-card-container-space">
+        <!-- タスクカードコンテナ -->
+        <div id="task-manager-task-card-container">
+              <div id="task-manager-task-switch-box">
+                  <div class="task-manager-task-switch-item">
+                      <a routerLink="/task">list</a>
+                  </div>
+                  <div class="task-manager-task-switch-item">
+                      <a routerLink="#">graph</a>
+                  </div>
+              </div>
+              
+              <div id="task-manager-task-cards">
+                  <ul>
+                      <li>
+
+                      </li>
+                  </ul>
+              </div>
+              {{ task.taskTitle }}
+              {{ task.taskLabel }}
+              {{ task.taskNote }}
+              <button (click)="complete(task.taskId)" ></button>
+        </div>
+      
+        <!-- タスク登録フォームコンテナ -->
+        <form [formGroup]="taskForm">
+          <input formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクタイトル" >
+          <select formControlName="taskLabelControl">
+            <option *ngFor="let labelItem of labels" [value]="labelItem.taskLabel" name="taskLabel">
+              {{ labelItem.taskLabel }}
+            </option>
+          </select>
+          <input formControlName="startDateControl" type="date" name="startDate" placeholder="開始日">
+          <input formControlName="deadlineControl" type="date" name="deadline" placeholder="終了日を入力">
+          <input formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
+          <button (click)="registTask()" [disabled]="">追加</button>
+
+          <!-- 入力チェックエラー表示 -->
+          <div *ngIf="violateRistriction()">
+              <p>
+                  {{ checkedResult }}
+              </p>
+          </div>
+        </form>
+    </div>
+
 </div>

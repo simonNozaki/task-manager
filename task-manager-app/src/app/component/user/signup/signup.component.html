@@ -1,23 +1,22 @@
 <div>
-    <form [formGroup]="signupForm">
-        <label>
-            名前 <input formControlName="userNameControl" type="text" name="userName" placeholder="名前" >
-        </label>
-        <label>
-            メールアドレス <input formControlName="emailControl" type="text" name="email" placeholder="メールアドレス" >
-        </label>
-        <label>
-            パスワード <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
-        </label>
 
+    <!-- 画面見出し -->
+    <h1 id="task-manager-signup-title">
+        TaskManagerを新しく始める
+    </h1>
+
+    <!-- 入力フォームコンテナ -->
+    <form [formGroup]="signupForm" id="task-manager-signup-item-container">
+        <input formControlName="userNameControl" type="text" name="userName" placeholder="名前" >
+        <input formControlName="emailControl" type="text" name="email" placeholder="メールアドレス" >
+        <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
         <button (click)="signup()" [disabled]="">サインアップ</button>
 
+        <!-- 入力チェックエラー -->
+        <div *ngIf="violateRistriction()" id="task-manager-signup-error">
+            <p>
+                {{ checkedResult }}
+            </p>
+        </div>
     </form>
-
-    <div *ngIf="violateRistriction()">
-      <p>
-        タイトル : {{ checkedResult }}
-        ステータス : {{ signupForm.get("userNameControl").status }}
-      </p>
-    </div>
 </div>

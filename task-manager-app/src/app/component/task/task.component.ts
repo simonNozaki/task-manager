@@ -50,7 +50,7 @@ export class TaskComponent implements OnInit {
         this.commonDeliveryService.observableUserId.subscribe((userId: string) => {
             this.userId = userId;
         });
-        
+
         // 利用者IDが正常に設定されていない場合、リダイレクトしてアクセスを拒否する
         if (ObjectUtil.isNullOrUndefined(this.userId)) {
             this.router.navigateByUrl(ServiceConst.BASE_SLASH + ServiceConst.URL_WEB_USER_SIGNIN);
@@ -62,6 +62,8 @@ export class TaskComponent implements OnInit {
         // タスクラベルのリストをプロパティに設定
         this.fetchLabels(this.userId);
         this.checkedResult = "";
+
+        console.log(this.userId);
     }
 
     /**
@@ -93,9 +95,14 @@ export class TaskComponent implements OnInit {
     });
   
     /** 
-     * バリデーションチェック結果
+     * タスクチェック結果
      */
     public checkedResult: string;
+
+    /**
+     * ラベルチェック結果
+     */
+    public labelCheckedResult: string;
 
     /**
      * サービスクラスから、タスクの一覧を取得します.
@@ -163,10 +170,10 @@ export class TaskComponent implements OnInit {
         // タスクラベル。20桁以内であることをチェックする、ラベルの最大文字列は登録段階でのみ弾く
         var label: AbstractControl = this.taskLabelForm.get("taskLabelControl");
         if (label.hasError('required') && (label.dirty || label.touched)) {
-            this.checkedResult =  AppConst.TASK_LABEL_REQUIRED_VIOLATED;
+            this.labelCheckedResult =  AppConst.TASK_LABEL_REQUIRED_VIOLATED;
             return true;
         } else if (label.hasError('maxlength') && (label.dirty || label.touched)) {
-            this.checkedResult =  AppConst.TASK_LABEL_LENGTH_VIOLATED;
+            this.labelCheckedResult =  AppConst.TASK_LABEL_LENGTH_VIOLATED;
             return true;
         }
 

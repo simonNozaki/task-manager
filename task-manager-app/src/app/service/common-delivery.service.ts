@@ -12,8 +12,9 @@ export class CommonDeliveryService {
 
     /**
      * コンポーネント共通利用者ID
+     * TODO: 絶対にnullに戻す
      */
-    private userId: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    private userId: BehaviorSubject<string> = new BehaviorSubject<string>("TM00000001");
 
     /**
      * 利用者IDObservableオブジェクト

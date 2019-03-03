@@ -1,18 +1,20 @@
 <div>
-    <h1>サインイン</h1>
-    <div *ngIf="violateRistriction()">
-    </div>
-          <p>
-            {{ checkedResult }}
-          </p>
-    
-    <form [formGroup]="signinForm">
-        <label>
-            メールアドレス <input formControlName="emailControl" type="email" name="email" placeholder="メールアドレス" >
-        </label>
-        <label>
-            パスワード <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
-        </label>
-        <button (click)="signin()" [disabled]="">サインイン</button>
+    <!-- 見出しタイトル -->
+    <h1 id="task-manager-signin-title">
+        サインインしてTaskManagerを続ける
+    </h1>
+
+    <!-- 入力フォームコンテナ -->
+    <form [formGroup]="signinForm" id="task-manager-signin-item-container">
+        <input formControlName="emailControl" type="email" name="email" placeholder="メールアドレス" >
+        <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
+        <button class="mt-50" (click)="signin()" [disabled]="">サインイン</button>
+
+        <!-- 入力チェックエラー表示 -->
+        <div *ngIf="violateRistriction()" id="task-manager-signin-error">
+            <p>
+                {{ checkedResult }}
+            </p>
+        </div>
     </form>
 </div>

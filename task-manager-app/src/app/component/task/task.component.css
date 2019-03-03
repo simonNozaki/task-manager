@@ -1,0 +1,95 @@
+@import "../../app.component.css";
+
+/* ----------------------
+ * 画面全体
+ * ----------------------*/
+#task-manager-task-container{
+    display: flex;
+}
+
+
+/* ----------------------
+ * タグコンテナ
+ * ----------------------*/
+#task-manager-task-label-container{
+    width: 250px;
+    height: 100vh;
+    background-color: #fafafa;
+    text-align: center
+}
+
+/* タグリスト表示 */
+#task-manager-task-label-container ul{
+    margin: 0 auto;
+    padding: 0;
+}
+
+#task-manager-task-label-container ul li {
+    margin: 20px 0 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* タグ登録 */
+#task-manager-task-label-container input{
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #bdbdbd;
+    background-color: #fafafa;
+}
+
+#task-manager-task-label-container button{
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+    background-color: #00b686;
+}
+
+/* エラー表示 */
+#task-manager-task-label-error {
+    text-align: center;
+}
+
+/* ----------------------
+ * タスクカードコンテナ
+ * ----------------------*/
+ /* タスクカードコンテナスペース全体 */
+#task-manager-task-card-container-space{
+    flex: 1;
+}
+
+/* タスクカードコンテナ */
+#task-manager-task-card-container{
+    width: 800px;
+    height: 550px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 0;
+    background-color: #fafafa;
+}
+
+/* 表示切り替えswitch, flexboxの親要素にする */
+#task-manager-task-switch-box{
+    margin: 0 auto;
+    padding: 0;
+    height: 40px;
+    display: flex;
+}
+
+.task-manager-task-switch-item{
+    margin: 0 auto;
+    padding: 0;
+    flex: 50%;
+    text-align: center;
+}
+
+/* 表示切り替えswitch、ホバー */
+.task-manager-task-switch-item:hover{
+    background-color: #6effe8;
+}

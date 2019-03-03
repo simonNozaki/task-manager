@@ -1,0 +1,98 @@
+/* ----------------------
+ * 共通
+ ----------------------*/
+
+/* 枠線反映しない */
+input, button {
+    border-style: none;
+}
+
+/* リスト表示しない */
+ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* リンクの装飾を無効化 */
+a {
+    text-decoration: none;
+}
+
+/* フォント共通設定 */
+body {
+    margin: 0;
+    height: 100%;
+    font-family: NotoSansCJKjp, メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+/* ----------------------
+ * ヘッダーナビゲーション
+ * ----------------------/
+/* 共通ヘッダー */
+#task-manager-common-header {
+    width: 100%;
+    height: 50px;
+    background-color: #1de9b6;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* ヘッダー内リンク */
+#task-manager-common-header ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+#task-manager-common-header ul li {
+    display: inline-block;
+    font-size: 24px;
+    text-align: right;
+}
+
+/* 共通ヘッダータイトル */
+#task-manager-common-header-title{
+    height: 40px;
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+    text-align: left;
+    padding: 0px;
+    margin: 0 0 0 20px;
+}
+
+/* ----------------------
+ * 使い回しパーツ
+ * ----------------------/
+
+/* マージン */
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+/* パディング */
+.pt-50 {
+    padding-top: 50px;
+}
+
+.pl-20 {
+    padding-left: 20px;
+}

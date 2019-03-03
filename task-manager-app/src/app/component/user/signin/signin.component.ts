@@ -29,7 +29,7 @@ export class SigninComponent implements OnInit {
     }
 
     /** 
-     * バリデーションチェック結果
+     * タスクチェック結果
      */
     public checkedResult: string;
 

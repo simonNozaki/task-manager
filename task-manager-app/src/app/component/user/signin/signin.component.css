@@ -1,0 +1,66 @@
+@import "../../../app.component.css";
+
+/* ----------------------
+ * 画面見出し
+ * ---------------------*/
+
+#task-manager-signin-title {
+    margin: 50px 0 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+#task-manager-signin-title h1{
+    display: inline-block;
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+
+/* ----------------------
+ * 入力フォームコンテナ
+ * ----------------------*/
+#task-manager-signin-item-container{
+    width: 576px;
+    height: 420px;
+    border-radius: 10px;
+    background-color: #fafafa;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#task-manager-signin-item-container input{
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+    letter-spacing: normal;
+    color: #bdbdbd;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fafafa;
+}
+
+#task-manager-signin-item-container button{
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+    letter-spacing: normal;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #00b686;
+}
+
+/* ----------------------
+ * 入力チェックエラー
+ * ----------------------*/
+#task-manager-signin-error {
+    text-align: center;
+}
