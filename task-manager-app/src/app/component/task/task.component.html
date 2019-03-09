@@ -42,9 +42,10 @@
                   <ul>
                       <li *ngFor="let task of tasks">
                         <button (click)="complete(task.taskId)" ></button>
-                        {{ task.taskTitle }}
-                        {{ task.taskLabel }}
-                        {{ task.taskNote }}
+                        <p id="task-manager-task-cards-title"> {{ task.taskTitle }} </p>
+                        <p id="task-manager-task-cards-period"> {{ task.startDate }} - {{ task.deadline }} </p>
+                        <p id="task-manager-task-cards-label"> {{ task.taskLabel }} </p>
+                        <p id="task-manager-task-cards-note"> {{ task.taskNote }} </p>        
                       </li>
                   </ul>
               </div>

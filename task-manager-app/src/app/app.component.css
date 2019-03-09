@@ -19,13 +19,14 @@ a {
     text-decoration: none;
 }
 
+/* 画面全体 */
 html {
     height: 100%;
 }
 
-/* フォント共通設定 */
+/* フォント共通 */
 body {
-    margin: 0;
+    
     height: 100%;
     font-family: NotoSansCJKjp, メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
@@ -37,7 +38,7 @@ body {
 #task-manager-common-header {
     width: 100%;
     height: 50px;
-    background-color: #1de9b6;
+    background-color: #1ef5bf;
     padding: 0px;
     margin: 0px;
 }

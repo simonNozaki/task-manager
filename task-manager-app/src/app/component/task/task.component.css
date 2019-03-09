@@ -104,6 +104,7 @@
 /* ----------------------
  * タスクカード
  * ----------------------*/
+/* カード本体 */
 #task-manager-task-cards ul{
     margin: 0 50px;
     padding: 0;
@@ -113,4 +114,31 @@
     margin-top: 20px;
     height: 50px;
     background-color: #bdbdbd;
+}
+
+#task-manager-task-cards li > *{
+    height: 20px;
+    margin: 0;
+    display: inline-block;
+}
+
+#task-manager-task-cards-title {
+    width: 500px;
+    font-size: 20px;
+    letter-spacing: normal;
+    color: #000000;  
+}
+
+#task-manager-task-cards-label {
+    width: 200px;
+    border-radius: 10px;
+    background-color: #6effe8;
+    font-size: 14px;
+    letter-spacing: normal;
+    color: #000000;
+    text-align: center;
+}
+
+#task-manager-task-cards-note {
+    
 }
