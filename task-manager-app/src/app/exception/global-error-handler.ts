@@ -1,6 +1,7 @@
 import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { AppConst } from "../const/app.const";
 
 /**
  * サービスクラス共通エラーハンドラ
@@ -15,12 +16,10 @@ export class GlobalErrorHandler {
     public static handleError(error: HttpErrorResponse): ErrorObservable {
 
         if (error.error instanceof ErrorEvent) {
-          console.error('Errorが発生しました. : ', error.error.message);
+          console.error(AppConst.GLOBAL_ERROR_MESSAGE + error.error.message);
         } 
 
-        console.error(
-        `API : ステータスコードを返却しました. ${error.status}, ` +
-        `エラーメッセージ : ${error.error}`);
+        console.error(AppConst.GLOBAL_ERROR_STATUS_CODE + error.status + AppConst.GLOBAL_ERROR_STATUS_MESSAGE + error.error);
         
         return Observable.throw(error.error.message);
     }

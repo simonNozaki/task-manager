@@ -1,3 +1,5 @@
+@import "../assets/stylesheet/common-variables.scss";
+
 /* ----------------------
  * 共通
  ----------------------*/
@@ -5,6 +7,7 @@
 /* 枠線反映しない */
 input, button {
     border-style: none;
+    border-radius: 5px;
 }
 
 /* リスト表示しない */
@@ -17,6 +20,7 @@ ul li {
 /* リンクの装飾を無効化 */
 a {
     text-decoration: none;
+    color: $FONT_COLOR_DEFAULT;
 }
 
 /* 画面全体 */
@@ -29,6 +33,34 @@ body {
     
     height: 100%;
     font-family: NotoSansCJKjp, メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+/* ----------------------
+ * 共通スタイル変数
+ * ----------------------*/
+
+/* 背景色グレー1番 */
+$BACKGROUND_COLOR_LIGHTGRAY: #fafafa;
+
+/* 背景色グレー2番 */
+$BACKGROUND_COLOR_DARKGRAY: #bdbdbd;
+
+/* 背景色緑1番 */
+$BACKGROUND_COLOR_LIGHTGREEN: #6effe8;
+
+/* 背景色緑2番 */
+$BACKGROUND_COLOR_GREEN: #1ef5bf;
+
+/* 背景色緑3番 */
+$BACKGROUND_COLOR_DARKGREEN: #00b686;
+
+/* 基本フォント色 */
+$FONT_COLOR_DEFAULT: #000000;
+
+/* 入力チェックエラー共通 */
+.base-error-message-style {
+    text-align: center;
+    color: red;
 }
 
 /* ----------------------
@@ -52,7 +84,7 @@ body {
 
 #task-manager-common-header ul li {
     display: inline-block;
-    font-size: 24px;
+    font-size: 20px;
     text-align: right;
 }
 
@@ -96,6 +128,10 @@ body {
 /* パディング */
 .pt-50 {
     padding-top: 50px;
+}
+
+.pt-20 {
+    padding-top: 20px;
 }
 
 .pl-20 {

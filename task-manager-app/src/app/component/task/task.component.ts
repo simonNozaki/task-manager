@@ -27,7 +27,7 @@ import { DateUtil } from '../../util/date-util';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
 

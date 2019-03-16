@@ -8,7 +8,7 @@
     <form [formGroup]="signinForm" id="task-manager-signin-item-container">
         <input formControlName="emailControl" type="email" name="email" placeholder="メールアドレス" >
         <input formControlName="passwordControl" type="password" name="password" placeholder="パスワード" >
-        <button class="mt-50" (click)="signin()" [disabled]="">サインイン</button>
+        <button (click)="signin()" [disabled]="">サインイン</button>
 
         <!-- 入力チェックエラー表示 -->
         <div *ngIf="violateRistriction()" id="task-manager-signin-error">

@@ -1,4 +1,4 @@
-@import "../../app.component.css";
+@import "../../app.component.scss";
 
 /* ----------------------
  * 画面全体
@@ -7,6 +7,16 @@
     display: flex;
 }
 
+/* 登録ボタン共通仕様 */
+.common-button-submit {
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+    background-color: #00b686;
+}
 
 /* ----------------------
  * タグコンテナ
@@ -25,9 +35,15 @@
 }
 
 #task-manager-task-label-container ul li {
-    margin: 20px 0 0 0;
-    padding: 0;
+    // margin: 20px 0 0 0;
+    margin: 0 auto;
+    padding: 10px 0;
     text-align: center;
+}
+
+/* タグを選ぶと色が変わる */
+#task-manager-task-label-container li:hover{
+    background-color: $BACKGROUND_COLOR_DARKGRAY;
 }
 
 /* タグ登録フォーム */
@@ -48,18 +64,12 @@
 }
 
 #task-manager-task-label-container button{
-    width: 200px;
-    height: 40px;
-    font-size: 18px;
-    letter-spacing: normal;
-    text-align: center;
-    color: #000;
-    background-color: #00b686;
+    @extend .common-button-submit;
 }
 
 /* エラー表示 */
 #task-manager-task-label-error {
-    text-align: center;
+    @extend .base-error-message-style;
 }
 
 /* ----------------------
@@ -68,6 +78,7 @@
  /* タスクカードコンテナスペース全体 */
 #task-manager-task-card-container-space{
     flex: 1;
+    height: 80%;
 }
 
 /* タスクカードコンテナ */
@@ -95,15 +106,10 @@
     text-align: center;
 }
 
-/* 表示切り替えswitch、ホバー */
-.task-manager-task-switch-item:hover{
-    background-color: #6effe8;
-}
-
-
 /* ----------------------
  * タスクカード
  * ----------------------*/
+
 /* カード本体 */
 #task-manager-task-cards ul{
     margin: 0 50px;
@@ -113,7 +119,9 @@
 #task-manager-task-cards li{
     margin-top: 20px;
     height: 50px;
-    background-color: #bdbdbd;
+    // background-color: #bdbdbd;
+    background-color: #ffffff;
+    border-bottom: 1px solid  #bdbdbd;
 }
 
 #task-manager-task-cards li > *{
@@ -122,14 +130,14 @@
     display: inline-block;
 }
 
-#task-manager-task-cards-title {
+.task-manager-task-cards-title {
     width: 500px;
     font-size: 20px;
     letter-spacing: normal;
     color: #000000;  
 }
 
-#task-manager-task-cards-label {
+.task-manager-task-cards-label {
     width: 200px;
     border-radius: 10px;
     background-color: #6effe8;
@@ -139,6 +147,13 @@
     text-align: center;
 }
 
-#task-manager-task-cards-note {
-    
+/* タスク登録ボタン */
+#task-manager-task-submit-button{
+    @extend .common-button-submit;
+    width: 100%;
+}
+
+/* タスク登録エラー表示 */
+#task-manager-task-error {
+    @extend .base-error-message-style;
 }

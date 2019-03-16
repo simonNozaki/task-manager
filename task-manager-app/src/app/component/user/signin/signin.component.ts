@@ -17,7 +17,7 @@ import { StringUtil } from '../../../util/string-util';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
 

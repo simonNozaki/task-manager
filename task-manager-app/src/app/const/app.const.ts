@@ -139,4 +139,23 @@ export module AppConst {
      */
     export const USER_INFO_INVALID: string = "入力された利用者情報は存在しません。メールアドレス、もしくはパスワードが正しいことを確認してください。";
 
+    //-----------------------------
+    // 共通エラーメッセージ
+    //-----------------------------
+
+    /**
+     * API通信中にエラーが発生しました : 
+     */
+    export const GLOBAL_ERROR_MESSAGE: string = "API通信中にエラーが発生しました : ";
+
+    /**
+     * HTTPステータスコード : 
+     */
+    export const GLOBAL_ERROR_STATUS_CODE: string = "HTTPステータスコード : ";
+
+    /**
+     * HTTPエラーメッセージ : 
+     */
+    export const GLOBAL_ERROR_STATUS_MESSAGE: string = "HTTPエラーメッセージ : ";
+
 }

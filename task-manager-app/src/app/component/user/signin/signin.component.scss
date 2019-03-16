@@ -1,4 +1,5 @@
-@import "../../../app.component.css";
+@import "../../../app.component.scss";
+@import "../../../../assets/stylesheet/common-variables.scss";
 
 /* ----------------------
  * 画面見出し
@@ -62,5 +63,5 @@
  * 入力チェックエラー
  * ----------------------*/
 #task-manager-signin-error {
-    text-align: center;
+    @extend .base-error-message-style;
 }

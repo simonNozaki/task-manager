@@ -1,0 +1,27 @@
+/* ----------------------
+ * 共通スタイル変数
+ * ----------------------*/
+
+/* 背景色グレー1番 */
+$BACKGROUND_COLOR_LIGHTGRAY: #fafafa;
+
+/* 背景色グレー2番 */
+$BACKGROUND_COLOR_DARKGRAY: #bdbdbd;
+
+/* 背景色緑1番 */
+$BACKGROUND_COLOR_LIGHTGREEN: #6effe8;
+
+/* 背景色緑2番 */
+$BACKGROUND_COLOR_GREEN: #1ef5bf;
+
+/* 背景色緑3番 */
+$BACKGROUND_COLOR_DARKGREEN: #00b686;
+
+/* 基本フォント色 */
+$FONT_COLOR_DEFAULT: #000000;
+
+/* 入力チェックエラー共通 */
+.base-error-message-style {
+    text-align: center;
+    color: red;
+}
