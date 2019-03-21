@@ -129,7 +129,7 @@ export class TaskComponent implements OnInit {
             registTaskRequestDto.setTaskTitle(this.taskForm.get("taskTitleControl").value);
             registTaskRequestDto.setTaskLabel(this.taskForm.get("taskLabelControl").value);
             if (ObjectUtil.isNullOrUndefined(this.taskForm.get("startDateControl").value)) {
-                registTaskRequestDto.setStartDate(new Date());
+                registTaskRequestDto.setStartDate(DateUtil.formatDateYMDWithSlash(new Date()));
             } else { 
                 registTaskRequestDto.setStartDate(this.taskForm.get("startDateControl").value);
             }
@@ -148,6 +148,8 @@ export class TaskComponent implements OnInit {
             newTask.setTaskTitle(registTaskRequestDto.getTaskTitle());
             newTask.setTaskLabel(registTaskRequestDto.getTaskLabel());
             newTask.setTaskNote(registTaskRequestDto.getTaskNote());
+            newTask.setStartDate(registTaskRequestDto.getStartDate());
+            newTask.setDeadline(registTaskRequestDto.getDeadline());
             this.tasks.push(newTask);
         }
     }

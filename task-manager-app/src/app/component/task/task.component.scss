@@ -7,9 +7,8 @@
     display: flex;
 }
 
-/* 登録ボタン共通仕様 */
+/* 登録ボタン共通仕様。幅は利用箇所で指定する */
 .common-button-submit {
-    width: 200px;
     height: 40px;
     font-size: 18px;
     letter-spacing: normal;
@@ -32,6 +31,7 @@
 #task-manager-task-label-container ul{
     height: 430px;
     padding: 0;
+    overflow: auto;
 }
 
 #task-manager-task-label-container ul li {
@@ -65,6 +65,7 @@
 
 #task-manager-task-label-container button{
     @extend .common-button-submit;
+    width: 200px;
 }
 
 /* エラー表示 */
@@ -147,13 +148,12 @@
     text-align: center;
 }
 
+.task-manager-task-cards-period {
+    width: 220px;
+}
+
 /* タスク登録ボタン */
 #task-manager-task-submit-button{
     @extend .common-button-submit;
     width: 100%;
-}
-
-/* タスク登録エラー表示 */
-#task-manager-task-error {
-    @extend .base-error-message-style;
 }

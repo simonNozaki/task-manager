@@ -16,10 +16,10 @@ export class GlobalErrorHandler {
     public static handleError(error: HttpErrorResponse): ErrorObservable {
 
         if (error.error instanceof ErrorEvent) {
-          console.error(AppConst.GLOBAL_ERROR_MESSAGE + error.error.message);
+          console.error(AppConst.GLOBAL_ERROR_MESSAGE + error.error.message + AppConst.STR_NEW_LINE);
         } 
 
-        console.error(AppConst.GLOBAL_ERROR_STATUS_CODE + error.status + AppConst.GLOBAL_ERROR_STATUS_MESSAGE + error.error);
+        console.error(AppConst.GLOBAL_ERROR_STATUS_CODE + error.status + AppConst.GLOBAL_ERROR_STATUS_MESSAGE + error.error + AppConst.STR_NEW_LINE);
         
         return Observable.throw(error.error.message);
     }

@@ -16,7 +16,7 @@ export class RegistTaskRequest {
   /** 
    * 開始日
    */
-  private startDate: Date;
+  private startDate: Date | string;
   
   /** 
    * 期限日
@@ -50,10 +50,10 @@ export class RegistTaskRequest {
   public setTaskLabel (taskLabel: string): void {
     this.taskLabel = taskLabel;
   }
-  public getStartDate (): Date {
+  public getStartDate (): Date | string {
     return this.startDate;
   }
-  public setStartDate (startDate: Date): void {
+  public setStartDate (startDate: Date | string): void {
     this.startDate = startDate;
   }
   public getDeadline (): Date {

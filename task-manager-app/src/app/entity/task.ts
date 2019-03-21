@@ -21,12 +21,12 @@ export class Task {
   /** 
    * 開始日
    */
-  public startDate: Date;
+  public startDate: Date | string;
   
   /** 
    * 期限日
    */
-  public deadline: Date;
+  public deadline: Date | string;
   
   /** 
    * 完了フラグ 
@@ -61,16 +61,16 @@ export class Task {
   public setTaskLabel(taskLabel: string) {
     this.taskLabel = taskLabel;
   }
-  public getStartDate(): Date {
+  public getStartDate(): Date | string {
     return this.startDate;
   }
-  public setStartDate(startDate: Date) {
+  public setStartDate(startDate: Date | string) {
     this.startDate = startDate;
   }
-  public getDeadline(): Date {
+  public getDeadline(): Date | string {
     return this.deadline;
   }
-  public setDeadline(deadline: Date) {
+  public setDeadline(deadline: Date | string) {
     this.deadline = deadline;
   }
   public getCompletedFlag(): string {

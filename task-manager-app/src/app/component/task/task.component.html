@@ -41,7 +41,7 @@
                 <li *ngFor="let task of tasks">
                     <button (click)="complete(task.taskId)" ></button>
                     <p class="task-manager-task-cards-title"> {{ task.taskTitle }} </p>
-                    <p class="task-manager-task-cards-period"> {{ task.startDate }} - {{ task.deadline }} </p>
+                    <p class="task-manager-task-cards-period"> {{ task.startDate }} ~ {{ task.deadline }} </p>
                     <p class="task-manager-task-cards-label"> {{ task.taskLabel }} </p>
                     <p class="task-manager-task-cards-note"> {{ task.taskNote }} </p>        
                 </li>
@@ -50,6 +50,9 @@
                     <form id="task-manager-task-form-container" [formGroup]="taskForm">
                         <input class="task-manager-task-cards-title" formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクをここから入力" >
                         <select class="task-manager-task-cards-label" formControlName="taskLabelControl">
+                            <option value='' disabled selected style='display:none;'>
+                                ラベルを選択
+                            </option>
                             <option *ngFor="let labelItem of labels" [value]="labelItem.taskLabel" name="taskLabel">
                                 {{ labelItem.taskLabel }}
                             </option>
@@ -64,9 +67,8 @@
             <!-- 登録ボタン -->
             <button id="task-manager-task-submit-button" class="mt-20" (click)="registTask()" [disabled]="">タスクを追加</button>
         </div>
-
+        <!-- 入力チェックエラー表示 -->
+        <div *ngIf="violateRistriction()" class="base-error-message-style"> {{ checkedResult }} </div>
     </div>
-    <!-- 入力チェックエラー表示 -->
-    <div *ngIf="violateRistriction()" id="task-manager-task-error"> {{ checkedResult }} </div>
 
 </div>

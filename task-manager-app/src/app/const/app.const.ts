@@ -3,6 +3,26 @@
  */
 export module AppConst {
 
+    /**
+     * 空文字
+     */
+    export const BLANK: string = "";
+
+    /**
+     * スラッシュ
+     */
+    export const SLASH: string = "/";
+
+    /**
+     * 改行コード
+     */
+    export const STR_NEW_LINE: string = "\n";
+
+    /**
+     * セミコロン
+     */
+    export const STR_SEMI_COLON: string = ";";
+
     //-----------------------------
     // バリデーション定義
     //-----------------------------
