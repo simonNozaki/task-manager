@@ -7,16 +7,6 @@
     display: flex;
 }
 
-/* 登録ボタン共通仕様。幅は利用箇所で指定する */
-.common-button-submit {
-    height: 40px;
-    font-size: 18px;
-    letter-spacing: normal;
-    text-align: center;
-    color: #000;
-    background-color: #00b686;
-}
-
 /* ----------------------
  * タグコンテナ
  * ----------------------*/
@@ -79,7 +69,8 @@
  /* タスクカードコンテナスペース全体 */
 #task-manager-task-card-container-space{
     flex: 1;
-    height: 80%;
+    // height: 80%;
+    margin: 50px 50px;
 }
 
 /* タスクカードコンテナ */
@@ -100,11 +91,18 @@
     display: flex;
 }
 
+/* 切り替えswitchデフォルト */
 .task-manager-task-switch-item{
     margin: 0 auto;
     padding: 0;
     flex: 50%;
     text-align: center;
+    @extend .base-transition-ease;
+}
+
+.task-manager-task-switch-item:hover {
+    @extend .task-manager-task-switch-item;
+    border-bottom: 1px solid $BACKGROUND_COLOR_GREEN;
 }
 
 /* ----------------------
@@ -113,7 +111,7 @@
 
 /* カード本体 */
 #task-manager-task-cards ul{
-    margin: 0 50px;
+    margin: 0 auto;
     padding: 0;
 }
 
@@ -129,6 +127,20 @@
     height: 20px;
     margin: 0;
     display: inline-block;
+}
+
+/* タスク完了ボタンのスタイル、デフォルト */
+.task-manager-task-cards-complete {
+    width: 30px;
+    height: 30px;
+    background-color: $BACKGROUND_COLOR_DARKGRAY;
+    @extend .base-transition-ease;
+}
+
+.task-manager-task-cards-complete:hover {
+    width: 30px;
+    height: 30px;
+    background-color: $BACKGROUND_COLOR_LIGHTGRAY;
 }
 
 .task-manager-task-cards-title {

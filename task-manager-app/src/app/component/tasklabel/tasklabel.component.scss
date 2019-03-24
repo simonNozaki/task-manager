@@ -1,0 +1,57 @@
+@import "../../app.component.scss";
+
+/* ----------------------
+ * タグコンテナ
+ * ----------------------*/
+ #task-manager-task-label-container{
+    width: 250px;
+    height: 100vh;
+    background-color: #fafafa;
+    text-align: center
+}
+
+/* タグリスト表示 */
+#task-manager-task-label-container ul{
+    height: 430px;
+    padding: 0;
+    overflow: auto;
+}
+
+#task-manager-task-label-container ul li {
+    // margin: 20px 0 0 0;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* タグを選ぶと色が変わる */
+#task-manager-task-label-container li:hover{
+    background-color: $BACKGROUND_COLOR_DARKGRAY;
+}
+
+/* タグ登録フォーム */
+#task-manager-task-label-form-container {
+    border-top: #bdbdbd;
+    width: 100%;
+}
+
+/* タグ登録 */
+#task-manager-task-label-container input{
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #bdbdbd;
+    background-color: #fafafa;
+}
+
+#task-manager-task-label-container button{
+    @extend .common-button-submit;
+    width: 200px;
+}
+
+/* エラー表示 */
+#task-manager-task-label-error {
+    @extend .base-error-message-style;
+}

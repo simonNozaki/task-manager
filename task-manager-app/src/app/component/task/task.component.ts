@@ -60,10 +60,9 @@ export class TaskComponent implements OnInit {
         this.fetchTasks(this.userId);
 
         // タスクラベルのリストをプロパティに設定
-        this.fetchLabels(this.userId);
+        // this.fetchLabels(this.userId);
+        this.labels = this.commonDeliveryService.userLabels;
         this.checkedResult = "";
-
-        console.log(this.userId);
     }
 
     /**
@@ -166,16 +165,6 @@ export class TaskComponent implements OnInit {
             return true;
         } else if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
             this.checkedResult = AppConst.TASK_TITLE_LENGTH_VIOLATED;
-            return true;
-        }
-
-        // タスクラベル。20桁以内であることをチェックする、ラベルの最大文字列は登録段階でのみ弾く
-        var label: AbstractControl = this.taskLabelForm.get("taskLabelControl");
-        if (label.hasError('required') && (label.dirty || label.touched)) {
-            this.labelCheckedResult =  AppConst.TASK_LABEL_REQUIRED_VIOLATED;
-            return true;
-        } else if (label.hasError('maxlength') && (label.dirty || label.touched)) {
-            this.labelCheckedResult =  AppConst.TASK_LABEL_LENGTH_VIOLATED;
             return true;
         }
 

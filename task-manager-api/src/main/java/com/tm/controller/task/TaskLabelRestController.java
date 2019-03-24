@@ -59,7 +59,7 @@ public class TaskLabelRestController extends BaseRestController {
                             .violateSpecificLength(label.getUserId(), AppConst.USER_ID_LENGTH, TaskManagerErrorCode.ERR110003.getCode())
                             .violateSpecificLength(label.getUsedFlag(), AppConst.USER_FLAG_LENGTH, TaskManagerErrorCode.ERR280003.getCode())
                             .evaluateCustomCondition((TaskLabelRegisterRequestDto subject) -> {
-                                return this.matchLabelUsedFlag(label.getUsedFlag());
+                                return !this.matchLabelUsedFlag(label.getUsedFlag());
                             }, TaskManagerErrorCode.ERR280004.getCode())
                             .build();
 
@@ -92,9 +92,9 @@ public class TaskLabelRestController extends BaseRestController {
      */
     private boolean matchLabelUsedFlag(String subject) {
         return Stream.of(AppConst.TASK_LABEL_USED_FLAG_REGISTERED, AppConst.TASK_LABEL_USED_FLAG_DELETED)
-                .anyMatch((String flag) -> {
-                   return subject.equals(flag);
-                });
+                   .anyMatch((String flag) -> {
+                       return subject.equals(flag);
+                   });
     }
 
 }

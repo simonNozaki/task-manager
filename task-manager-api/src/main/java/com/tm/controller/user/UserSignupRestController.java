@@ -56,7 +56,7 @@ public class UserSignupRestController extends BaseRestController{
                             .violateMaxLength(user.getPassword(), AppConst.USER_PASSWORD_MAX, TaskManagerErrorCode.ERR140002.getCode())
                             .violateSpecificLength(user.getUsedFlag(), AppConst.USER_FLAG_LENGTH, TaskManagerErrorCode.ERR150003.getCode())
                             .evaluateCustomCondition((UserRegistRequestDto subject) -> {
-                            	return this.matchUserUsedFlag(subject.getUsedFlag());
+                            	return !this.matchUserUsedFlag(subject.getUsedFlag());
                             }, TaskManagerErrorCode.ERR150004.getCode())
                             .build();
 

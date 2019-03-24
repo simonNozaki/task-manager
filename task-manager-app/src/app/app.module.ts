@@ -17,13 +17,15 @@ import { SigninComponent } from './component/user/signin/signin.component';
 import { SigninService } from './service/signin.service';
 import { TaskLabelService } from './service/task-label.service';
 import { SignoutService } from './service/signout.service';
+import { TasklabelComponent } from './component/tasklabel/tasklabel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    TasklabelComponent
   ],
   imports: [
     BrowserModule,

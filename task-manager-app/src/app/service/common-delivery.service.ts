@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TaskLabel } from '../entity/task-label';
 
 /**
  * 共通データ授受サービス。ルートコンポーネントと機能コンポーネント間のデータ受け渡しをサポートします。
@@ -34,5 +35,10 @@ export class CommonDeliveryService {
     public finalize(): void {
         this.userId.next(null);
     }
+
+    /**
+     * 利用者の所有するラベルの一覧
+     */
+    public userLabels: TaskLabel[];
 
 }
