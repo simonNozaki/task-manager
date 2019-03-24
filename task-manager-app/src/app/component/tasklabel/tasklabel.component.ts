@@ -71,11 +71,10 @@ export class TasklabelComponent implements OnInit {
     public fetchLabels(userId: string): void {
         this.taskLabelService.fetch(userId).subscribe((res: TaskLabelFetchResponseDto) => {
             console.log(JSON.stringify(res));
-            this.labels = res.labels;
             
             // 共通データ授受サービス内の配列に格納しておく
             this.commonDeliveryService.userLabels = res.labels;
-        })
+        });
     }
 
     /**

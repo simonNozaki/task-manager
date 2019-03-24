@@ -4,7 +4,8 @@
         <li>
             すべて
         </li>
-        <li *ngFor="let labelItem of labels" class="pt-20">
+        <!-- <li *ngFor="let labelItem of labels" class="pt-20"> -->
+        <li *ngFor="let labelItem of this.commonDeliveryService.userLabels" class="pt-20">
             {{ labelItem.taskLabel }}
         </li>
     </ul>
