@@ -73,4 +73,10 @@ public class CtrlConst {
      * サインイン
      */
     public static final String MAP_SIGNIN = "/signin";
+
+	/**
+	 * ヘルスチェック
+	 */
+	public static final String MAP_HEALTHCHECK = "/healthcheck";
+
 }

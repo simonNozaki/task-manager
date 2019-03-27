@@ -2,6 +2,7 @@ package com.tm.controller.task;
 
 import java.util.List;
 
+import com.tm.consts.AppConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tm.consts.AppConst;
 import com.tm.consts.CtrlConst;
 import com.tm.consts.error.TaskManagerErrorCode;
 import com.tm.controller.framework.BaseRestController;

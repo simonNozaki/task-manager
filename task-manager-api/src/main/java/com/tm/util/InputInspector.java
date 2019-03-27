@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tm.config.AppLogger;
 import com.tm.consts.log.LogCode;
+import com.tm.dto.bean.task.TaskDeleteRequestDto;
 import com.tm.dto.common.Errors;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 入力検査機能を提供するクラスです.
@@ -25,12 +27,19 @@ public final class InputInspector<T> {
 	private InputInspector() {}
 
 	/**
-	 * インプットの入力検査パイプラインを開始します.入力チェック操作はInspectorクラスが提供します.
+	 * インプットの入力検査パイプラインを開始します.入力チェック操作はInspectorクラスが提供します。
+	 * Kotlinソースからも利用するので、nullを許容しない
 	 * @param T input
 	 * @return InputInspector<T>
 	 */
-	public static <T> Inspector<T> of(T input) {
-		return new Inspector<T>(input);
+	@NotNull
+	public static <T> Inspector<T> of(@NotNull T input) throws IllegalArgumentException {
+		try{
+			return new Inspector<T>(input);
+		}catch (IllegalArgumentException e){
+			AppLogger.trace(LogCode.TMFWCM80001, e, new Object(){}.getClass().getEnclosingClass().getName(), new Object(){}.getClass().getEnclosingMethod().getName(), null);
+		}
+		return null;
 	}
 
 	/**

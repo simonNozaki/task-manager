@@ -3,9 +3,9 @@ package com.tm.dto.bean.task;
 import com.tm.dto.common.Errors;
 
 /**
- * タスク完了レスポンスDTO。
+ * タスク削除レスポンスDTO。
  */
-public class TaskCompleteResponseDto {
+public class TaskDeleteResponseDto {
 
     /**
      * タスクID
@@ -13,7 +13,7 @@ public class TaskCompleteResponseDto {
     private String taskId;
 
     /**
-     * Error結果
+     * エラーコード
      */
     private Errors errors;
 
@@ -29,5 +29,4 @@ public class TaskCompleteResponseDto {
     public void setErrors(Errors errors) {
         this.errors = errors;
     }
-
 }
