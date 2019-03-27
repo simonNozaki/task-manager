@@ -17,3 +17,5 @@ task-manager-api/.settings
 .metadata/
 
 RemoteSystemsTempFiles
+
+.idea
