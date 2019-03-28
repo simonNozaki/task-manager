@@ -6,6 +6,19 @@ package com.tm.consts;
 public class AppConst {
 
 	//------------------------------
+	// 文字
+	//------------------------------//
+	/**
+	 * セミコロン
+	 */
+	public static final String STR_SEMI_COLON = ";";
+
+	/**
+	 * 半角スペース
+	 */
+	public static final String STR_SPACE = " ";
+
+	//------------------------------
 	// タスク完了フラグ
 	//------------------------------//
 	/**

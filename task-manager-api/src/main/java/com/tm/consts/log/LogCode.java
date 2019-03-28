@@ -55,6 +55,16 @@ public enum LogCode {
 	 */
 	TMFWCM80004("TMFWCM80004", "エラー結果 : "),
 
+	/**
+	 * request:
+	 */
+	TMFWCM80005("TMFWCM80005", "request: "),
+
+	/**
+	 * response:
+	 */
+	TMFWCM80006("TMFWCM80006", "response: "),
+
 	//------------------------------------
 	// タスク管理
 	//------------------------------------

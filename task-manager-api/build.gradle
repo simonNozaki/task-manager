@@ -1,22 +1,22 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.15.RELEASE'
-		mybatisGeneratorVersion = '1.3.5'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'postgresql:postgresql:9.1-901.jdbc4'
-	}
+    ext {
+        springBootVersion = '1.5.15.RELEASE'
+        mybatisGeneratorVersion = '1.3.5'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'postgresql:postgresql:9.1-901.jdbc4'
+    }
 }
 
 plugins {
     id "org.flywaydb.flyway" version "5.1.4"
 
-	// Kotlin JVM対応
-	id "org.jetbrains.kotlin.jvm" version "1.3.21"
+    // Kotlin JVM対応
+    id "org.jetbrains.kotlin.jvm" version "1.3.21"
 }
 
 apply plugin: 'java'
@@ -29,12 +29,12 @@ version = '1.0.0'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 configurations {
-	providedRuntime
-	mybatisGenerator
+    providedRuntime
+    mybatisGenerator
 }
 
 //----------------------------------------------------
@@ -42,66 +42,75 @@ configurations {
 //----------------------------------------------------
 
 dependencies {
-	/**
-	*Spring boot
-	*/
-	compile('org.springframework.boot:spring-boot-starter-web')
+    /**
+     *Spring boot
+     */
+    compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.15.RELEASE'
-	runtime('org.springframework.boot:spring-boot-devtools')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 
-	/**
-	* Spring Security
-	*/
-	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.10.RELEASE'
+    /**
+     * Spring Security
+     */
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.10.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.10.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.10.RELEASE'
 
 
-	/**
-	* Mybatis
-	*/
-	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
-	compile group: 'org.mybatis.generator', name: 'mybatis-generator-maven-plugin', version: '1.3.7'
-	compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
-	mybatisGenerator group: 'org.mybatis.generator', name: 'mybatis-generator-core',
-		version: mybatisGeneratorVersion
+    /**
+     * Mybatis
+     */
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+    compile group: 'org.mybatis.generator', name: 'mybatis-generator-maven-plugin', version: '1.3.7'
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
+    mybatisGenerator group: 'org.mybatis.generator', name: 'mybatis-generator-core',
+            version: mybatisGeneratorVersion
 
-	/**
-	* flyway-gradle-plugin
-	*/
-	compile group: 'org.flywaydb', name: 'flyway-gradle-plugin', version: '5.1.4'
+    /**
+     * flyway-gradle-plugin
+     */
+    compile group: 'org.flywaydb', name: 'flyway-gradle-plugin', version: '5.1.4'
 
-	/**
-	* Logback
-	*/
-	compile 'ch.qos.logback:logback-classic:1.2.3'
+    /**
+     * Logback
+     */
+    compile 'ch.qos.logback:logback-classic:1.2.3'
 
-	/**
-	* PostgreSQL
-	*/
-	runtime('org.postgresql:postgresql')
-	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.1'
+    /**
+     * PostgreSQL
+     */
+    runtime('org.postgresql:postgresql')
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.1'
 
-	 // lib フォルダ以下、サブフォルダも含めて全 jar ファイルを指定
+    /**
+     * spring-mvc-logger
+     */
+    compile(group: 'com.github.isrsal', name: 'spring-mvc-logger', version:'0.2') {
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'log4j'
+        exclude module: 'servlet-api'
+        exclude module: 'spring-webmvc'
+    }
+
+    // lib フォルダ以下、サブフォルダも含めて全 jar ファイルを指定
     compile fileTree(dir: '/Users/SimonNozaki/.gradle/caches/modules-2/files-2.1', include: '**/*.jar')
 
-	/**
-	 * Kotlin関連ライブラリ
-	 */
-	compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: '1.3.21'
-	compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.3.21'
+    /**
+     * Kotlin関連ライブラリ
+     */
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: '1.3.21'
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.3.21'
 
+    /**
+     * Test Tools
+     */
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 
-	/**
-	* Test Tools
-	*/
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
-
-	/**
-	* Apache Commons Lang
-	*/
+    /**
+     * Apache Commons Lang
+     */
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }
 
@@ -111,11 +120,11 @@ dependencies {
 task mybatisGenerator {
     doLast {
         ant.taskdef(name: 'mbgenerator',
-        	classname: 'org.mybatis.generator.ant.GeneratorAntTask',
-        	classpath: configurations.mybatisGenerator.asPath)
+                classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+                classpath: configurations.mybatisGenerator.asPath)
         ant.mbgenerator(overwrite: true,
-        	configfile: 'src/main/resources/generatorConfig.xml',
-        	verbose: true)
+                configfile: 'src/main/resources/generatorConfig.xml',
+                verbose: true)
     }
 }
 
@@ -126,20 +135,20 @@ mybatisGenerator.group = 'mybatis'
 //----------------------------------------------------
 
 /**
-* Flyway migration のタスク。ローカルの開発環境用。
-*/
+ * Flyway migration のタスク。ローカルの開発環境用。
+ */
 flyway {
-	driver='org.postgresql.Driver'
+    driver='org.postgresql.Driver'
     url = 'jdbc:postgresql://localhost:5532/task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
     user = 'taskmanageruser'
     password = 'taskmanageruser'
     baselineVersion = 1
-	baselineDescription = 'マイグレーション初版です.';
+    baselineDescription = 'マイグレーション初版です.';
 }
 
 /**
-* Gradleの親ディレクトリを検出します.
-*/
+ * Gradleの親ディレクトリを検出します.
+ */
 task getHomeDir {
     doLast {
         println gradle.gradleHomeDir
@@ -147,8 +156,8 @@ task getHomeDir {
 }
 
 /**
-* Flyway Migrationタスク、UTDB用。
-*/
+ * Flyway Migrationタスク、UTDB用。
+ */
 task migrateUtdb(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
     driver='org.postgresql.Driver'
     url = 'jdbc:postgresql://localhost:15532/ut_task_base?autoReconnect=true&useSSL=false&characterEncoding=utf8'
