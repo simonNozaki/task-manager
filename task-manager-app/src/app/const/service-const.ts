@@ -46,6 +46,11 @@ export module ServiceConst {
   export const URL_WEB_TASK = 'task';
 
   /**
+   * タスクタイムライン表示
+   */
+  export const URL_WEB_TIMELINE: string = URL_WEB_TASK + "/timeline";
+
+  /**
    * 利用者登録画面
    */
   export const URL_WEB_USER_SIGNUP = 'signup';

@@ -42,7 +42,7 @@ export class TasklabelComponent implements OnInit {
     /**
      * タスクラベルリスト
      */
-    public labels: TaskLabel[];
+    public labels: TaskLabel[] = [];
 
     ngOnInit() {
         // サインイン時のIDを引き受ける
@@ -53,8 +53,6 @@ export class TasklabelComponent implements OnInit {
         // タスクラベルのリストをプロパティに設定
         this.fetchLabels(this.userId);
         this.checkedResult = "";
-        console.log(JSON.stringify(this.labels));
-        console.log(JSON.stringify(this.commonDeliveryService.userLabels));
     }
 
     /**
@@ -70,8 +68,6 @@ export class TasklabelComponent implements OnInit {
      */
     public fetchLabels(userId: string): void {
         this.taskLabelService.fetch(userId).subscribe((res: TaskLabelFetchResponseDto) => {
-            console.log(JSON.stringify(res));
-            
             // 共通データ授受サービス内の配列に格納しておく
             this.commonDeliveryService.userLabels = res.labels;
         });
@@ -89,7 +85,6 @@ export class TasklabelComponent implements OnInit {
 
         // 正常に登録できたら、リストに追加する
         this.taskLabelService.registerLabel(req).subscribe((res: TaskLabelRegisterResponseDto) => {
-            console.log(JSON.stringify(res));
             var label: TaskLabel = new TaskLabel();
             label.labelId = res.labelId;
             label.taskLabel = res.taskLabel;

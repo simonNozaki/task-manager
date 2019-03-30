@@ -58,7 +58,7 @@ export class TaskComponent implements OnInit {
     /**
      * タスクリスト 
      */ 
-    public tasks: Task[];
+    public tasks: Task[] = [];
 
     /**
      * タスク登録のフォームグループ
@@ -83,7 +83,11 @@ export class TaskComponent implements OnInit {
     */
     public fetchTasks(userId: string): void {
         this.taskService.fetchTask(userId).subscribe((res: FetchTaskResponseDto) => {
+                    // ローカルプロパティに設定
                     this.tasks = res.tasks;
+                    
+                    // 共通データ授受サービス内の配列に格納しておく
+                    this.commonDeliveryService.userTasks = res.tasks;
                 }
             );
     }

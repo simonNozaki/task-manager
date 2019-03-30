@@ -1,4 +1,47 @@
 <div id="task-manager-taskline-container">
-  <!-- タグコンテナ -->
-  <app-tasklabel></app-tasklabel>
+    <!-- タグコンテナ -->
+    <app-tasklabel></app-tasklabel>
+
+    <!-- タスクカードコンテナスペース -->
+    <div id="task-manager-task-timeline-container-space" class="mt-50">
+        <!-- 切り替えswitch -->
+        <div id="task-manager-task-switch-box">
+            <div class="task-manager-task-switch-item">
+                <a routerLink="/task">list</a>
+            </div>
+            <div class="task-manager-task-switch-item">
+                <a routerLink="/task/timeline">graph</a>
+            </div>
+        </div>
+
+        <!-- プロジェクト別表示リスト -->
+        <div id="task-manager-timeline-items">
+            <div *ngFor="let relation of relations">
+                <p> {{ relation.taskLabel }} </p>
+                <ul>
+                    <li *ngFor="let task of relation.tasks">
+                        <p> {{ task.taskTitle }} </p>
+                        <p> {{ task.startDate }} </p>
+                        <p> {{ task.deadline }} </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <table *ngFor="let relation of relations">
+            <thead>
+                <tr>
+                    <td> {{ relation.taskLabel }} </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of relation.tasks">
+                    <td>
+                        {{ task.taskTitle }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 </div>

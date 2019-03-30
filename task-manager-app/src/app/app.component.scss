@@ -30,7 +30,6 @@ html {
 
 /* フォント共通 */
 body {
-    
     height: 100%;
     font-family: NotoSansCJKjp, メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
@@ -84,23 +83,33 @@ $FONT_COLOR_DEFAULT: #000000;
 /* ----------------------
  * ヘッダーナビゲーション
  * ----------------------/
-/* 共通ヘッダー */
+/* ヘッダータイトル行 */
 #task-manager-common-header {
     width: 100%;
-    height: 50px;
+    height: 40px;
+    background-color: #1ef5bf;
+    padding: 0px;
+    margin: 0px;
+    border-bottom: 1px solid $BACKGROUND_COLOR_DARKGRAY;
+}
+
+/* 共通ヘッダー（リンクナビゲーション） */
+#task-manager-header-links {
+    width: 100%;
+    height: 30px;
     background-color: #1ef5bf;
     padding: 0px;
     margin: 0px;
 }
 
 /* ヘッダー内リンク */
-#task-manager-common-header ul {
+#task-manager-header-links ul {
     display: inline-block;
     padding: 0;
     margin: 0;
 }
 
-#task-manager-common-header ul li {
+#task-manager-header-links ul li {
     display: inline-block;
     font-size: 20px;
     text-align: right;
@@ -111,10 +120,6 @@ $FONT_COLOR_DEFAULT: #000000;
     height: 40px;
     font-family: Roboto;
     font-size: 30px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
     letter-spacing: normal;
     color: #000000;
     text-align: left;

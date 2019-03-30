@@ -1,0 +1,50 @@
+@import "../../app.component.scss";
+@import "../task/task.component.scss";
+
+/* ----------------------
+ * 画面全体
+ * ----------------------*/
+ #task-manager-taskline-container {
+    display: flex;
+}
+
+/* ----------------------
+ * タスクカードコンテナ
+ * ----------------------*/
+/* タスクカードコンテナスペース全体 */
+#task-manager-task-timeline-container-space {
+    flex: 1;
+    margin: 50px 50px;
+}
+
+/* タスクカードコンテナ */
+#task-manager-task-card-container{
+    width: 800px;
+    height: 550px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 0;
+    background-color: #fafafa;
+}
+
+/* 表示切り替えswitch, flexboxの親要素にする */
+#task-manager-task-switch-box{
+    margin: 0 auto;
+    padding: 0;
+    height: 40px;
+    display: flex;
+}
+
+/* 切り替えswitchデフォルト */
+.task-manager-task-switch-item{
+    margin: 0 auto;
+    padding: 0;
+    flex: 50%;
+    text-align: center;
+    @extend .base-transition-ease;
+}
+
+.task-manager-task-switch-item:hover {
+    @extend .task-manager-task-switch-item;
+    border-bottom: 1px solid $BACKGROUND_COLOR_GREEN;
+}

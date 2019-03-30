@@ -2,21 +2,22 @@
     <nav id="task-manager-common-header">
         <!-- 共通アプリタイトル -->
         <a routerLink="/" id="task-manager-common-header-title">TaskManager</a>
-        
+    </nav>
+    <nav id="task-manager-header-links">
         <!-- 共通ナビゲーションリンク -->
-        <ul id="task-manager-header-items">
-                <li *ngIf="isSignedin()">
-                    <a routerLink="/task">タスク</a>
-                </li>   
-                <li>
-                    <a routerLink="/signup">サインアップ</a>
-                </li>
-                <li *ngIf="!isSignedin()">
-                    <a routerLink="/signin">サインイン</a>
-                </li>
-                <li *ngIf="isSignedin()">
-                    <a href="#" (onclick)="signout()">サインアウト</a>
-                </li>
+        <ul class="task-manager-header-items">
+            <li *ngIf="isSignedin()">
+                <a routerLink="/task">タスク</a>
+            </li>   
+            <li>
+                <a routerLink="/signup">サインアップ</a>
+            </li>
+            <li *ngIf="!isSignedin()">
+                <a routerLink="/signin">サインイン</a>
+            </li>
+            <li *ngIf="isSignedin()">
+                <a href="#" (onclick)="signout()">サインアウト</a>
+            </li>
         </ul>
     </nav>
     <router-outlet></router-outlet>    

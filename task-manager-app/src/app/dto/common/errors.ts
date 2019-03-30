@@ -8,10 +8,10 @@ export class Errors {
    */
   public taskTitle: string;
   
-   /** 
-    * エラーコードリスト
-    */
-   public codes: string[];
+  /** 
+   * エラーコードリスト
+   */
+  public codes: string[];
 
   public getCodes(): string[] {
     return this.codes;
