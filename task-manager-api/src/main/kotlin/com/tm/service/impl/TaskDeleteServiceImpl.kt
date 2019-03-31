@@ -11,18 +11,21 @@ import com.tm.service.TaskDeleteService
 import com.tm.service.framework.BaseService
 import com.tm.util.ObjectUtil
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import java.lang.Exception
+import javax.inject.Inject
 
 /**
  * タスク削除サービス実装クラス。
  */
-class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
+@Service
+open class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
 
     /**
      * RepositoryのDI、遅延初期化でnullにしない
      */
-    @Autowired
-    lateinit var taskRepository: TaskRepository
+    @Inject
+    var taskRepository: TaskRepository? = null;
 
     /**
      * 実行メソッド
@@ -34,7 +37,7 @@ class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
     override fun delete(req: TaskDeleteRequestDto): ServiceOut<String> {
 
         // DBから該当レコードを取得
-        var target: Task = taskRepository.selectByPrimaryKey(req.taskId)
+        var target: Task = taskRepository!!.selectByPrimaryKey(req.taskId)
 
         // 削除済みが指定されていたら、エラーを返す
         if(target.completedFlag.equals(AppConst.TASK_COMPLETED_FLAG_DELETED)){
@@ -45,10 +48,10 @@ class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
         }
 
         // 該当タスクを削除
-        taskRepository.deleteByPrimaryKey(req.taskId)
+        taskRepository?.deleteByPrimaryKey(req.taskId)
 
         // 履歴テーブルに更新したタスクを登録
-        var insertedTask = taskRepository.insertUpdatedTask(req.taskId)
+        var insertedTask = taskRepository?.insertUpdatedTask(req.taskId)
 
         // レスポンスチェック
         if (ObjectUtil.isNullOrEmpty(insertedTask)) {
@@ -60,7 +63,7 @@ class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
 
         // 正常結果の返却
         return BaseService.doPipeServiceOut<Any>()
-                .setNormalResult(insertedTask.taskId)
+                .setNormalResult(insertedTask!!.taskId)
                 .build()
     }
 }

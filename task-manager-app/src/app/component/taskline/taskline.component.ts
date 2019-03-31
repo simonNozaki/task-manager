@@ -77,7 +77,7 @@ export class TasklineComponent implements OnInit {
                 var filteredTasks: Task[] = [];
                 for(var task of this.tasks){
                     if(label.taskLabel === task.taskLabel){
-                      filteredTasks.push(task);
+                        filteredTasks.push(task);
                     }
                 }
 

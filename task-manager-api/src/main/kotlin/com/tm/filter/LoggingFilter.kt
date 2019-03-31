@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicLong
 /**
  * ロギングフィルタークラス。
  */
-class LoggingFilter : OncePerRequestFilter() {
+open class LoggingFilter : OncePerRequestFilter() {
 
     private var id = AtomicLong(1)
 

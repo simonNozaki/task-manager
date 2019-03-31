@@ -32,14 +32,15 @@ class TaskDeleteRestController : BaseRestController() {
     @ResponseBody
     @CrossOrigin
     @ResponseStatus(HttpStatus.ACCEPTED)
-    fun delete(req: TaskDeleteRequestDto): TaskDeleteResponseDto {
+    @Throws(Exception::class)
+    fun delete(@RequestBody req: TaskDeleteRequestDto): TaskDeleteResponseDto {
         //------------------------------------
         // 入力内容の検査
         //------------------------------------
         var errors = InputInspector.of<TaskDeleteRequestDto>(req)
                 .logInput<TaskDeleteRequestDto>(req)
-                .isNull<String>(req.getTaskId(), TaskManagerErrorCode.ERR210001.code)
-                .violateSpecificLength<String>(req.getTaskId(), AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.code)
+                .isNull<String>(req.taskId, TaskManagerErrorCode.ERR210001.code)
+                .violateSpecificLength<String>(req.taskId, AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.code)
                 .build()
 
         //------------------------------------

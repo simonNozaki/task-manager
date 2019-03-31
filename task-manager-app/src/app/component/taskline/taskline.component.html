@@ -15,33 +15,23 @@
         </div>
 
         <!-- プロジェクト別表示リスト -->
-        <div id="task-manager-timeline-items">
-            <div *ngFor="let relation of relations">
-                <p> {{ relation.taskLabel }} </p>
-                <ul>
-                    <li *ngFor="let task of relation.tasks">
-                        <p> {{ task.taskTitle }} </p>
-                        <p> {{ task.startDate }} </p>
-                        <p> {{ task.deadline }} </p>
-                    </li>
-                </ul>
-            </div>
+        <div id="task-manager-timeline-items" *ngFor="let relation of relations">
+            <h1> {{ relation.taskLabel }} </h1>
+            <!-- タスクごとに小さい表を繰り返し表示する -->
+            <table *ngFor="let task of relation.tasks">
+                <thead>
+                    <tr>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{ task.taskTitle }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-        <table *ngFor="let relation of relations">
-            <thead>
-                <tr>
-                    <td> {{ relation.taskLabel }} </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let task of relation.tasks">
-                    <td>
-                        {{ task.taskTitle }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
     </div>
 </div>

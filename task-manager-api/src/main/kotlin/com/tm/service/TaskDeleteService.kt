@@ -2,11 +2,13 @@ package com.tm.service
 
 import com.tm.dto.bean.task.TaskDeleteRequestDto
 import com.tm.dto.common.ServiceOut
+import org.springframework.stereotype.Service
 import java.lang.Exception
 
 /**
  * タスク削除サービスクラス。
  */
+@Service
 interface TaskDeleteService {
 
     /**
