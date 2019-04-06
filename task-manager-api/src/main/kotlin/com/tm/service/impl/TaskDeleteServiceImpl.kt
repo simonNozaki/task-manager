@@ -24,7 +24,7 @@ open class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
     /**
      * RepositoryのDI、遅延初期化でnullにしない
      */
-    @Inject
+    @Autowired
     var taskRepository: TaskRepository? = null;
 
     /**
@@ -34,13 +34,13 @@ open class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
      * @throws Exception
      */
     @Throws(Exception::class)
-    override fun delete(req: TaskDeleteRequestDto): ServiceOut<String> {
+    override fun delete(req: TaskDeleteRequestDto?): ServiceOut<String> {
 
         // DBから該当レコードを取得
-        var target: Task = taskRepository!!.selectByPrimaryKey(req.taskId)
+        var target: Task = taskRepository!!.selectByPrimaryKey(req?.taskId)
 
         // 削除済みが指定されていたら、エラーを返す
-        if(target.completedFlag.equals(AppConst.TASK_COMPLETED_FLAG_DELETED)){
+        if(target.completedFlag.equals(AppConst.TASK_COMPLETED_FLAG_DELETED) && req != null){
             return BaseService.doPipeServiceOut<String>()
                     .setNormalResult(req.taskId)
                     .setError(TaskManagerErrorCode.ERR999999.code) // TODO 適切なエラーコードを設定する
@@ -48,13 +48,13 @@ open class TaskDeleteServiceImpl : BaseService(), TaskDeleteService {
         }
 
         // 該当タスクを削除
-        taskRepository?.deleteByPrimaryKey(req.taskId)
+        taskRepository?.deleteByPrimaryKey(req?.taskId)
 
         // 履歴テーブルに更新したタスクを登録
-        var insertedTask = taskRepository?.insertUpdatedTask(req.taskId)
+        var insertedTask = taskRepository?.insertUpdatedTask(req?.taskId)
 
         // レスポンスチェック
-        if (ObjectUtil.isNullOrEmpty(insertedTask)) {
+        if (ObjectUtil.isNullOrEmpty(insertedTask)  && req != null) {
             return BaseService.doPipeServiceOut<Any>()
                     .setNormalResult(req.taskId)
                     .setError(TaskManagerErrorCode.ERR999999.code)

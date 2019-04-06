@@ -2,6 +2,7 @@ buildscript {
     ext {
         springBootVersion = '1.5.15.RELEASE'
         mybatisGeneratorVersion = '1.3.5'
+        kotlin_version = '1.3.21'
     }
     repositories {
         mavenCentral()
@@ -9,6 +10,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'postgresql:postgresql:9.1-901.jdbc4'
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
     }
 }
 
@@ -16,12 +18,14 @@ plugins {
     id "org.flywaydb.flyway" version "5.1.4"
 
     // Kotlin JVM対応
-    id "org.jetbrains.kotlin.jvm" version "1.3.21"
+    id "org.jetbrains.kotlin.jvm" version '1.3.21'
+    id "org.jetbrains.kotlin.plugin.noarg" version '1.3.21'
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'idea'
 apply plugin: 'war'
 
 group = 'com.tm'
@@ -36,6 +40,35 @@ configurations {
     providedRuntime
     mybatisGenerator
 }
+
+/**
+ * 引数なしコンストラクタ宣言アノテーション
+ */
+noArg {
+    annotation("com.tm.config.Data")
+}
+
+
+//----------------------------------------------------
+// compile設定
+//----------------------------------------------------
+
+/**
+ * 対象リソースの指定
+ */
+sourceSets {
+    main.java.srcDirs += "src/main/java"
+    main.kotlin.srcDirs += "src/main/kotlin"
+    main.resources.srcDirs += "src/main/resources"
+}
+
+/**
+ * warの名前を指定
+ */
+war {
+    archiveName = 'parallel.war'
+}
+
 
 //----------------------------------------------------
 // Maven依存ライブラリ
@@ -130,6 +163,7 @@ task mybatisGenerator {
 
 mybatisGenerator.group = 'mybatis'
 
+
 //----------------------------------------------------
 // Flyway設定
 //----------------------------------------------------
@@ -149,7 +183,7 @@ flyway {
 /**
  * Gradleの親ディレクトリを検出します.
  */
-task getHomeDir {
+task getGradleHomeDir {
     doLast {
         println gradle.gradleHomeDir
     }
@@ -166,3 +200,11 @@ task migrateUtdb(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
     baselineVersion = 1
     baselineDescription = 'マイグレーション初版です.'
 }
+
+//----------------------------------------------------
+// アプリ実行
+//----------------------------------------------------
+/**
+ * gradle bootRunのプロファイル指定。
+ */
+def profiles = 'dev'

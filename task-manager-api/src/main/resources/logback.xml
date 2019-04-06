@@ -2,7 +2,7 @@
 <!DOCTYPE configuration>
 <configuration>
 
-	<property name="root.level" value="debug" />
+	<property name="root.level" value="info" />
 	<property name="console.level" value="info" />
 	<property name="logback.log.dir" value="./task-manager-logs" />
 	<property name="logback.hostname" value="localhost" />

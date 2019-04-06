@@ -33,7 +33,7 @@ public final class InputInspector<T> {
 	 * @return InputInspector<T>
 	 */
 	@NotNull
-	public static <T> Inspector<T> of(@NotNull T input) throws IllegalArgumentException {
+	public static <T> Inspector<T> of(T input) throws IllegalArgumentException {
 		try{
 			return new Inspector<T>(input);
 		}catch (IllegalArgumentException e){

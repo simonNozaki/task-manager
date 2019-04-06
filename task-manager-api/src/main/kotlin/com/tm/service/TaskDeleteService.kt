@@ -18,5 +18,5 @@ interface TaskDeleteService {
      * @throws Exception
      */
     @Throws(Exception::class)
-    fun delete(req: TaskDeleteRequestDto): ServiceOut<String>
+    fun delete(req: TaskDeleteRequestDto?): ServiceOut<String>
 }

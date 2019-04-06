@@ -16,11 +16,13 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
  * DB接続のコンフィグクラスです。
  */
 @Configuration
-@MapperScan(basePackages = DbConfig.BASE_PACKAGES
-            , sqlSessionTemplateRef = "SqlSessionTemplate")
+@MapperScan(basePackages = DbConfig.BASE_PACKAGES, sqlSessionTemplateRef = "SqlSessionTemplate")
 public class DbConfig {
 
+    // ルートパッケージクラスパス
 	public static final String BASE_PACKAGES = "com.tm.dao";
+
+	// XMLのクラスパス
     public static final String MAPPER_XML_PATH = "classpath:com/tm/dao/**/*.xml";
 
     @Primary
@@ -32,8 +34,7 @@ public class DbConfig {
 
     @Primary
     @Bean(name = "SqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactory(@Qualifier("DataSource") DataSource primaryDataSource)
-            throws Exception {
+    public SqlSessionFactory sqlSessionFactory(@Qualifier("DataSource") DataSource primaryDataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(primaryDataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_XML_PATH));
@@ -41,8 +42,7 @@ public class DbConfig {
     }
 
     @Bean(name = "SqlSessionTemplate")
-    public SqlSessionTemplate sqlSessionTemplate(
-            @Qualifier("SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+    public SqlSessionTemplate sqlSessionTemplate(@Qualifier("SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
