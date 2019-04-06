@@ -8,14 +8,15 @@
     margin: 50px 0 0 0;
     padding: 0;
     text-align: center;
-}
 
-#task-manager-signup-title h1{
-    display: inline-block;
-    font-family: Roboto;
-    font-size: 30px;
-    letter-spacing: normal;
-    color: #000000;
+    // タイトル文字列
+    h1 {
+        display: inline-block;
+        font-family: Roboto;
+        font-size: 30px;
+        letter-spacing: normal;
+        color: #000000;
+    }
 }
 
 
@@ -29,29 +30,33 @@
     background-color: #fafafa;
     margin: 0 auto;
     padding: 0;
-}
-
-#task-manager-signup-item-container input{
-    width: 300px;
-    height: 40px;
-    font-size: 20px;
-    letter-spacing: normal;
-    color: #bdbdbd;
-    display: block;
-    margin: 0 auto;
+    // 配下のinline-blockのinputを中央揃え
     text-align: center;
-    background-color: #fafafa;
-}
 
-#task-manager-signup-item-container button{
-    width: 300px;
-    height: 40px;
-    font-size: 20px;
-    letter-spacing: normal;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    background-color: #00b686;
+    // 入力フォーム
+    input {
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        letter-spacing: normal;
+        color: #bdbdbd;
+        display: inline-block;
+        margin: 50px 0 0 0;
+        // 入力フォーム内文字列を中央揃え
+        text-align: center;
+        background-color: #fafafa;
+    }
+
+    // 入力ボタン
+    button {
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        letter-spacing: normal;
+        text-align: center;
+        margin: 50px 0 0 0;
+        background-color: #00b686;
+    }
 }
 
 /* ----------------------

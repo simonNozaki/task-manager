@@ -34,30 +34,33 @@
     background-color: #fafafa;
     margin: 0 auto;
     padding: 0;
+    // 配下のinline-blockのinputを中央揃え
+    text-align: center;
+
+    input {
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        letter-spacing: normal;
+        color: #bdbdbd;
+        display: inline-block;
+        margin: 50px 0 0 0;
+        // 入力フォーム内文字列を中央揃え
+        text-align: center;
+        background-color: #fafafa;
+    }
+
+    button {
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        letter-spacing: normal;
+        text-align: center;
+        margin: 50px 0 0 0;
+        background-color: #00b686;
+    }
 }
 
-#task-manager-signin-item-container input{
-    width: 300px;
-    height: 40px;
-    font-size: 20px;
-    letter-spacing: normal;
-    color: #bdbdbd;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #fafafa;
-}
-
-#task-manager-signin-item-container button{
-    width: 300px;
-    height: 40px;
-    font-size: 20px;
-    letter-spacing: normal;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    background-color: #00b686;
-}
 
 /* ----------------------
  * 入力チェックエラー

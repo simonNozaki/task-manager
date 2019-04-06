@@ -28,10 +28,18 @@ html {
     height: 100%;
 }
 
-/* フォント共通 */
+/* 共通フォント */
 body {
     height: 100%;
     font-family: NotoSansCJKjp, メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+/* タイトル用独自定義フォント */
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local("Open Sans"), local("OpenSans"), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
 }
 
 /* ----------------------
@@ -86,33 +94,44 @@ $FONT_COLOR_DEFAULT: #000000;
 /* ヘッダータイトル行 */
 #task-manager-common-header {
     width: 100%;
-    height: 40px;
+    height: 70px;
     background-color: #1ef5bf;
     padding: 0px;
     margin: 0px;
     border-bottom: 1px solid $BACKGROUND_COLOR_DARKGRAY;
+    
+    // タイトル用フォント
+    a {
+        font-family: Product Sans;
+        font-size: 60px;
+    }
+
 }
 
 /* 共通ヘッダー（リンクナビゲーション） */
 #task-manager-header-links {
     width: 100%;
-    height: 30px;
+    height: 50px;
     background-color: #1ef5bf;
     padding: 0px;
-    margin: 0px;
-}
-
-/* ヘッダー内リンク */
-#task-manager-header-links ul {
-    display: inline-block;
-    padding: 0;
     margin: 0;
-}
-
-#task-manager-header-links ul li {
-    display: inline-block;
-    font-size: 20px;
+    // リスト要素の親に設定することで文字の並びを調整できる
     text-align: right;
+
+    // ヘッダー内リンク
+    ul {
+        display: inline-block;
+        padding: 0;
+        margin: 5px;
+    }
+
+    li {
+        display: inline-block;
+        font-size: 20px;
+        @extend .padding-leftright-10;
+        border: 1px solid $BACKGROUND_COLOR_DARKGRAY;
+        border-radius: 3px;
+    }
 }
 
 /* 共通ヘッダータイトル */
@@ -136,6 +155,14 @@ $FONT_COLOR_DEFAULT: #000000;
     margin-top: 50px;
 }
 
+.mt-20-centered {
+    margin: 20px 0 0 0;
+}
+
+.mt-50-centered {
+    margin: 50px 0 0 0;
+}
+
 .mt-20 {
     margin-top: 20px;
 }
@@ -153,8 +180,20 @@ $FONT_COLOR_DEFAULT: #000000;
     padding-top: 50px;
 }
 
+.pt-50-centered {
+    padding: 50px 0 0 0;
+}
+
 .pt-20 {
     padding-top: 20px;
+}
+
+.pr-20 {
+    padding-right: 20px;
+}
+
+.padding-leftright-10 {
+    padding: 0 10px 0 10px;
 }
 
 .pl-20 {
