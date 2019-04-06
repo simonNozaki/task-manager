@@ -104,6 +104,7 @@ $FONT_COLOR_DEFAULT: #000000;
     a {
         font-family: Product Sans;
         font-size: 60px;
+        @extend .padding-leftright-10;
     }
 
 }
@@ -132,18 +133,13 @@ $FONT_COLOR_DEFAULT: #000000;
         border: 1px solid $BACKGROUND_COLOR_DARKGRAY;
         border-radius: 3px;
     }
-}
 
-/* 共通ヘッダータイトル */
-#task-manager-common-header-title{
-    height: 40px;
-    font-family: Roboto;
-    font-size: 30px;
-    letter-spacing: normal;
-    color: #000000;
-    text-align: left;
-    padding: 0px;
-    margin: 0 0 0 20px;
+    // ヘッダー内リンク、マウスオンで変化
+    li:hover {
+        //color: $BACKGROUND_COLOR_GREEN;
+        @extend .base-transition-ease;
+        background-color: $BACKGROUND_COLOR_DARKGRAY;
+    }
 }
 
 /* ----------------------
