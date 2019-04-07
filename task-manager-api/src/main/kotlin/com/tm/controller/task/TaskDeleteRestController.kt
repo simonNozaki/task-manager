@@ -37,18 +37,12 @@ class TaskDeleteRestController : BaseRestController() {
         //------------------------------------
         // 入力内容の検査
         //------------------------------------
-        var errors = InputInspector.of<TaskDeleteRequestDto>(req)
+        InputInspector.of<TaskDeleteRequestDto>(req)
                 .logInput<TaskDeleteRequestDto>(req)
                 .isNull<String>(req?.taskId, TaskManagerErrorCode.ERR210001.code)
                 .violateSpecificLength<String>(req?.taskId, AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.code)
                 .build()
-
-        //------------------------------------
-        // エラーがある場合レスポンス作成処理
-        //------------------------------------
-        if(errors.codes.isNotEmpty()){
-            throw TaskManagerErrorRuntimeException(errors)
-        }
+                .codes.isNotEmpty()?: throw TaskManagerErrorRuntimeException()
 
         //------------------------------------
         // サービスクラスの実行およびレスポンス処理

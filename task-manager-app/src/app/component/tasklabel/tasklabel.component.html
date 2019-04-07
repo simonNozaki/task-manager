@@ -1,11 +1,11 @@
 <!-- タグコンテナ -->
 <div id="task-manager-task-label-container">
     <ul>
-        <li>
+        <li (click)="filterTasks($event, null)">
             すべて
         </li>
         <!-- <li *ngFor="let labelItem of labels" class="pt-20"> -->
-        <li *ngFor="let labelItem of this.commonDeliveryService.userLabels" class="pt-20">
+        <li *ngFor="let labelItem of this.commonDeliveryService.userLabels" class="pt-20" (click)="filterTasks($event, labelItem)">
             {{ labelItem.taskLabel }}
         </li>
     </ul>

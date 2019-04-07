@@ -8,6 +8,11 @@ import { TaskLabelRegisterRequestDto } from '../../dto/interface/task-label-regi
 import { TaskManagerCode } from '../../codedef/task-manager-code';
 import { TaskLabelRegisterResponseDto } from '../../dto/interface/task-label-register-response.dto';
 import { TaskLabelFetchResponseDto } from '../../dto/interface/task-label-fetch-response.dto';
+import { _ } from 'underscore';
+import { Task } from '../../entity/task';
+import { TaskService } from '../../service/task.service';
+import { FetchTaskResponseDto } from '../../dto/interface/fetch-task-response';
+import { ObjectUtil } from '../../util/object.util';
 
 /**
  * タスクラベル処理コンポーネント
@@ -22,27 +27,27 @@ export class TasklabelComponent implements OnInit {
     /**
      * デフォルトコンストラクタ
      */
-    constructor(private commonDeliveryService: CommonDeliveryService, private taskLabelService: TaskLabelService) { }
+    constructor(private commonDeliveryService: CommonDeliveryService, private taskLabelService: TaskLabelService, private taskService: TaskService) { }
 
     /**
      * 利用者ID
      */ 
     public userId: string;
 
-    /** 
-     * タスクチェック結果
-     */
-    public checkedResult: string;
-
     /**
      * ラベルチェック結果
      */
-    public labelCheckedResult: string;
+    public labelCheckedResult: string = null;
 
     /**
      * タスクラベルリスト
      */
     public labels: TaskLabel[] = [];
+
+    /**
+     * タスクリスト、コンポーネント内でのタスクのマスタリスト
+     */
+    public tasks: Task[] = [];
 
     ngOnInit() {
         // サインイン時のIDを引き受ける
@@ -52,7 +57,9 @@ export class TasklabelComponent implements OnInit {
 
         // タスクラベルのリストをプロパティに設定
         this.fetchLabels(this.userId);
-        this.checkedResult = "";
+
+        // タスクのリストをプロパティに指定
+        this.fetchTasks(this.userId);
     }
 
     /**
@@ -74,6 +81,14 @@ export class TasklabelComponent implements OnInit {
     }
 
     /**
+     * サービスクラスから、タスクの一覧を取得します.
+     * @param userId: string
+     */
+    public fetchTasks(userId: string): void {
+        this.taskService.fetchTask(userId).subscribe((res: FetchTaskResponseDto) => this.tasks = res.tasks);
+    }
+
+    /**
      * ラベルを新規登録します。
      */
     public registerLabel(): void {
@@ -90,7 +105,6 @@ export class TasklabelComponent implements OnInit {
             label.taskLabel = res.taskLabel;
             label.usedFlag = TaskManagerCode.TASK_LABEL_REGISTRED;
             label.userId = this.userId;
-            // this.labels.push(label);
             this.commonDeliveryService.userLabels.push(label);
         });
     }
@@ -111,6 +125,20 @@ export class TasklabelComponent implements OnInit {
         }
 
         return false;
+    }
+
+    /**
+     * ラベルでタスクをフィルターします。
+     */
+    public filterTasks(event, labelItem: TaskLabel | null): void {
+        // nullを渡されたらリストを初期化する
+        if(ObjectUtil.isNullOrUndefined(labelItem)) { 
+            this.commonDeliveryService.userTasks = this.tasks;
+        } else {
+            // 画面から受け取ったラベルに合致するタスクのリストを生成する
+            this.commonDeliveryService.userTasks = _.filter(this.tasks, (task: Task) => task.taskLabel === labelItem.taskLabel);
+        }
+
     }
 
 }

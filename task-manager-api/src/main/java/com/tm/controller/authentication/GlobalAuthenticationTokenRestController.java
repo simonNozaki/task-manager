@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.consts.AuthenticationConst;
 import com.tm.consts.CtrlConst;
@@ -15,7 +14,7 @@ import com.tm.controller.framework.BaseRestController;
 /**
  * 共通認証トークン発行RESTControllerクラス。
  */
-@RestController
+//@RestController
 public class GlobalAuthenticationTokenRestController extends BaseRestController{
 
     /**

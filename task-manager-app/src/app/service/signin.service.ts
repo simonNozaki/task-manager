@@ -33,6 +33,11 @@ export class SigninService {
 
         // POSTリクエストを実行します。
         return this.http.post<UserSigninRequestDto>(ServiceConst.URL_USER_SIGNIN, userSigninRequestDto, options)
+            .pipe((res: Observable<UserSigninResponseDto>) => {
+                // セッションの保存
+                localStorage.setItem('currentUser', JSON.stringify(res));
+                return res;
+            })
             .pipe(catchError(GlobalErrorHandler.handleError));
     }
 

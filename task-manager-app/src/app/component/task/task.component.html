@@ -22,7 +22,7 @@
         <!-- タスクカード -->
         <div id="task-manager-task-cards">
             <ul>
-                <li *ngFor="let task of tasks">
+                <li *ngFor="let task of this.commonDeliveryService.userTasks">
                     <!-- 完了ボタン -->
                     <button class="task-manager-task-cards-complete" (click)="complete(task.taskId)" ></button>
                     <p class="task-manager-task-cards-title"> {{ task.taskTitle }} </p>
@@ -38,6 +38,7 @@
                             <option value='' disabled selected style='display:none;'>
                                 ラベルを選択
                             </option>
+                            <option></option>
                             <option *ngFor="let labelItem of this.commonDeliveryService.userLabels" [value]="labelItem.taskLabel" name="taskLabel">
                                 {{ labelItem.taskLabel }}
                             </option>

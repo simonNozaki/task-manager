@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../service/task.service';
 import { FetchTaskResponseDto } from '../../dto/interface/fetch-task-response';
 import { Task } from '../../entity/task';
-import { TaskManagerCode } from '../../codedef/task-manager-code';
 import { RegistTaskRequest } from '../../dto/interface/regist-task-request';
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { AppConst } from '../../const/app.const';
@@ -79,17 +78,9 @@ export class TaskComponent implements OnInit {
     /**
      * サービスクラスから、タスクの一覧を取得します.
      * @param userId: string
-     * @returns Task[]
     */
     public fetchTasks(userId: string): void {
-        this.taskService.fetchTask(userId).subscribe((res: FetchTaskResponseDto) => {
-                    // ローカルプロパティに設定
-                    this.tasks = res.tasks;
-                    
-                    // 共通データ授受サービス内の配列に格納しておく
-                    this.commonDeliveryService.userTasks = res.tasks;
-                }
-            );
+        this.taskService.fetchTask(userId).subscribe((res: FetchTaskResponseDto) => this.commonDeliveryService.userTasks = res.tasks);
     }
 
     /**
@@ -103,7 +94,9 @@ export class TaskComponent implements OnInit {
             var registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
             // 登録リクエストDTOの生成
             registTaskRequestDto.setTaskTitle(this.taskForm.get("taskTitleControl").value);
-            registTaskRequestDto.setTaskLabel(this.taskForm.get("taskLabelControl").value);
+            this.taskForm.get("taskLabelControl").value != "" ? registTaskRequestDto.setTaskLabel(this.taskForm.get("taskLabelControl").value)
+                : registTaskRequestDto.setTaskLabel(null)
+            // registTaskRequestDto.setTaskLabel(this.taskForm.get("taskLabelControl").value);
             if (ObjectUtil.isNullOrUndefined(this.taskForm.get("startDateControl").value)) {
                 registTaskRequestDto.setStartDate(DateUtil.formatDateYMDWithSlash(new Date()));
             } else { 
@@ -111,7 +104,7 @@ export class TaskComponent implements OnInit {
             }
             registTaskRequestDto.setDeadline(this.taskForm.get("deadlineControl").value);
             registTaskRequestDto.setTaskNote(this.taskForm.get("taskNoteControl").value);
-            registTaskRequestDto.setCompletedFlag(TaskManagerCode.TASK_COMPLETED_FLAG_REGISTED);
+            // registTaskRequestDto.setCompletedFlag(TaskManagerCode.TASK_COMPLETED_FLAG_REGISTED);
             registTaskRequestDto.setUserId(this.userId);
 
             // サービスクラスを実行します。
@@ -126,7 +119,7 @@ export class TaskComponent implements OnInit {
             newTask.setTaskNote(registTaskRequestDto.getTaskNote());
             newTask.setStartDate(registTaskRequestDto.getStartDate());
             newTask.setDeadline(registTaskRequestDto.getDeadline());
-            this.tasks.push(newTask);
+            this.commonDeliveryService.userTasks.push(newTask);
         }
     }
 
@@ -140,7 +133,9 @@ export class TaskComponent implements OnInit {
         if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
             this.checkedResult = AppConst.TASK_TITLE_REQUIRED_VIOLATED;
             return true;
-        } else if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
+        }
+
+        if (taskTitle.hasError('maxlength') && (taskTitle.dirty || taskTitle.touched)) {
             this.checkedResult = AppConst.TASK_TITLE_LENGTH_VIOLATED;
             return true;
         }
@@ -177,11 +172,11 @@ export class TaskComponent implements OnInit {
         this.taskService.complete(taskCompleteRequestDto).subscribe((res: TaskCompleteResponseDto) => {
             if (!ObjectUtil.isNullOrUndefined(res.taskId)) {
                   // 完了したタスクを抽出
-                  var completedTask: Task = _.where(this.tasks, {taskId : res.taskId});
+                  var completedTask: Task = _.where(this.commonDeliveryService.userTasks, {taskId : res.taskId});
                   // 完了したタスクのINDEXを取得
-                  var index: number = _.indexOf(this.tasks, completedTask);
+                  var index: number = _.indexOf(this.commonDeliveryService.userTasks, completedTask);
                   // タスクのリストから削除
-                  this.tasks.splice(index, 1);
+                  this.commonDeliveryService.userTasks.splice(index, 1);
             }
         });
     }

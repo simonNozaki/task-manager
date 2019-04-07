@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse } fr
 import { Observable } from 'rxjs';
 
 /**
- * HTTP共通インたセプタークラス。
+ * HTTP共通インターセプタークラス。
  */
 @Injectable()
 export class XhrGlobalInterceptor implements HttpInterceptor {
@@ -19,12 +19,18 @@ export class XhrGlobalInterceptor implements HttpInterceptor {
         });
 
         // レスポンス内容をコンソールに表示する
-        next.handle(req).do((event: any) => {
-            if (event instanceof HttpResponse) {
-                console.log(JSON.stringify(event.body))
-            }
-        })
+        // next.handle(req).do((event: any) => {
+        //     if (event instanceof HttpResponse) {
+        //         console.log(JSON.stringify(event.body))
+        //     }
+        // })
 
-        return next.handle(req);
+        // 動かないときはreqに戻す
+        return next.handle(req).catch((error, caught) => {
+            if(error.status === 401) {
+
+            } 
+            return Observable.throw(error);
+        }) as any;
     }
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule, MatFormFieldModule, MatMenuModule  } from '@angular/material';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { TaskComponent } from './component/task/task.component';
@@ -50,7 +51,8 @@ import { TasklineComponent } from './component/taskline/taskline.component';
     SignupService,
     SigninService,
     SignoutService,
-    CommonDeliveryService
+    CommonDeliveryService,
+    CookieService
     // ,
     // {
     //   provide: HTTP_INTERCEPTORS,
