@@ -28,12 +28,12 @@
                     <p class="task-manager-task-cards-title"> {{ task.taskTitle }} </p>
                     <p class="task-manager-task-cards-period"> {{ task.startDate }} ~ {{ task.deadline }} </p>
                     <p class="task-manager-task-cards-label"> {{ task.taskLabel }} </p>
-                    <p class="task-manager-task-cards-note"> {{ task.taskNote }} </p>        
+                    <p> {{ task.taskNote }} </p>        
                 </li>
                 <li>
                     <!-- タスク登録フォームコンテナ -->
                     <form id="task-manager-task-form-container" [formGroup]="taskForm">
-                        <input class="task-manager-task-cards-title" formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクをここから入力" >
+                        <input class="task-manager-task-cards-title" formControlName="taskTitleControl" type="text" name="taskTitle" placeholder="タスクを入力 ..." >
                         <select class="task-manager-task-cards-label" formControlName="taskLabelControl">
                             <option value='' disabled selected style='display:none;'>
                                 ラベルを選択
@@ -46,9 +46,8 @@
                         <input formControlName="startDateControl" type="date" name="startDate" placeholder="開始日">
                          - 
                         <input formControlName="deadlineControl" type="date" name="deadline" placeholder="終了日を入力">
-                        <input formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
+                        <input class="task-manager-task-cards-note" formControlName="taskNoteControl" type="text" name="taskNote" placeholder="メモ">
                     </form>
-                </li>
             </ul>
             <!-- 登録ボタン -->
             <button id="task-manager-task-submit-button" class="mt-20" (click)="registTask()" [disabled]="">タスクを追加</button>

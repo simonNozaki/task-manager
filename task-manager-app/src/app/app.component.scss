@@ -136,7 +136,6 @@ $FONT_COLOR_DEFAULT: #000000;
 
     // ヘッダー内リンク、マウスオンで変化
     li:hover {
-        //color: $BACKGROUND_COLOR_GREEN;
         @extend .base-transition-ease;
         background-color: $BACKGROUND_COLOR_DARKGRAY;
     }

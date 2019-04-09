@@ -90,7 +90,7 @@ export class TaskComponent implements OnInit {
     */
     public registTask(): void {
         // 入力チェックを違反していない場合、タスク登録処理を実行します
-        if (!this.violateRistriction()) {
+        if (this.isNotNull() && !this.violateRistriction()) {
             var registTaskRequestDto: RegistTaskRequest = new RegistTaskRequest();
             // 登録リクエストDTOの生成
             registTaskRequestDto.setTaskTitle(this.taskForm.get("taskTitleControl").value);
@@ -124,13 +124,25 @@ export class TaskComponent implements OnInit {
     }
 
     /**
+     * 入力必須項目に値が入っていることを確認します。
+     * @returns boolean
+     */
+    private isNotNull(): boolean {
+        if(ObjectUtil.isNullOrUndefined(this.taskForm.get("taskTitleControl").value)){
+            this.checkedResult = AppConst.TASK_TITLE_REQUIRED_VIOLATED;
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 入力チェックに適合していることをチェックします。
      * @returns boolean
      */
     public violateRistriction(): boolean {
         // タスクタイトル。必須入力チェック
         var taskTitle: AbstractControl = this.taskForm.get("taskTitleControl");
-        if (taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
+        if (ObjectUtil.isNullOrUndefined(this.taskForm.get("taskTitleControl").value) && taskTitle.hasError('required') && (taskTitle.dirty || taskTitle.touched)) {
             this.checkedResult = AppConst.TASK_TITLE_REQUIRED_VIOLATED;
             return true;
         }

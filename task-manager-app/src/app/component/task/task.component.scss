@@ -38,11 +38,11 @@
         width: 30px;
         height: 30px;
     }
-}
 
-.task-manager-task-switch-item:hover {
-    @extend .task-manager-task-switch-item;
-    border-bottom: 1px solid $BACKGROUND_COLOR_GREEN;
+    &:hover {
+        @extend .task-manager-task-switch-item;
+        border-bottom: 1px solid $BACKGROUND_COLOR_GREEN;
+    }
 }
 
 /* ----------------------
@@ -75,12 +75,12 @@
     height: 30px;
     background-color: $BACKGROUND_COLOR_DARKGRAY;
     @extend .base-transition-ease;
-}
 
-.task-manager-task-cards-complete:hover {
-    width: 30px;
-    height: 30px;
-    background-color: $BACKGROUND_COLOR_LIGHTGRAY;
+    &:hover {
+        width: 30px;
+        height: 30px;
+        background-color: $BACKGROUND_COLOR_LIGHTGRAY;
+    }
 }
 
 .task-manager-task-cards-title {
@@ -102,6 +102,13 @@
 
 .task-manager-task-cards-period {
     width: 220px;
+}
+
+.task-manager-task-cards-note {
+    width: 300px;
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #bdbdbd;
 }
 
 /* タスク登録ボタン */
