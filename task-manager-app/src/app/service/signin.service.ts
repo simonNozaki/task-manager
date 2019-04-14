@@ -35,7 +35,7 @@ export class SigninService {
         return this.http.post<UserSigninRequestDto>(ServiceConst.URL_USER_SIGNIN, userSigninRequestDto, options)
             .pipe((res: Observable<UserSigninResponseDto>) => {
                 // セッションの保存
-                localStorage.setItem('currentUser', JSON.stringify(res));
+                res.subscribe((res: UserSigninResponseDto) => localStorage.setItem('id', res.userId));
                 return res;
             })
             .pipe(catchError(GlobalErrorHandler.handleError));

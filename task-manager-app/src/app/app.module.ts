@@ -20,6 +20,7 @@ import { TaskLabelService } from './service/task-label.service';
 import { SignoutService } from './service/signout.service';
 import { TasklabelComponent } from './component/tasklabel/tasklabel.component';
 import { TasklineComponent } from './component/taskline/taskline.component';
+import { IntroductionComponent } from './introduction/introduction/introduction.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TasklineComponent } from './component/taskline/taskline.component';
     SignupComponent,
     SigninComponent,
     TasklabelComponent,
-    TasklineComponent
+    TasklineComponent,
+    IntroductionComponent
   ],
   imports: [
     BrowserModule,

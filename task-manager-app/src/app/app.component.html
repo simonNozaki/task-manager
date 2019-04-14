@@ -1,8 +1,8 @@
-<div>
+<!-- ヘッダー -->
+<header>
     <nav id="task-manager-common-header">
         <!-- 共通アプリタイトル -->
         <a routerLink="/" id="task-manager-common-header-title">
-            <!-- <img src="../assets/images/parallel-logo.png" alt="parallel-logo-image"> -->
             Parallel
         </a>
     </nav>
@@ -10,18 +10,18 @@
         <!-- 共通ナビゲーションリンク -->
         <ul class="task-manager-header-items">
             <li *ngIf="isSignedin()">
-                <a routerLink="/task">タスク</a>
-            </li>   
+                <a routerLink="/task">管理する</a>
+            </li>
             <li>
-                <a routerLink="/signup">サインアップ</a>
+                <a routerLink="/signup">新しく始める</a>
             </li>
             <li *ngIf="!isSignedin()">
-                <a routerLink="/signin">サインイン</a>
+                <a routerLink="/signin">ログインする</a>
             </li>
             <li *ngIf="isSignedin()">
-                <a href="#" (onclick)="signout()">サインアウト</a>
+                <a href="#" (onclick)="signout()">ログアウトする</a>
             </li>
         </ul>
     </nav>
     <router-outlet></router-outlet>
-</div>
+</header>

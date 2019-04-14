@@ -41,6 +41,11 @@ export module ServiceConst {
   // 画面URL定義
   //-----------------------------
   /**
+   * トップページ
+   */
+  export const URL_WEB_MAIN = "";
+
+  /**
    * タスク一覧画面
    */
   export const URL_WEB_TASK = 'task';

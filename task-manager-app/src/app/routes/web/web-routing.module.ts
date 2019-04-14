@@ -6,8 +6,10 @@ import { SignupComponent } from '../../component/user/signup/signup.component';
 import { SigninComponent } from '../../component/user/signin/signin.component';
 import { CommonModule } from '@angular/common';
 import { TasklineComponent } from '../../component/taskline/taskline.component';
+import { IntroductionComponent } from '../../introduction/introduction/introduction.component';
 
 const routes: Routes = [ 
+    { path: ServiceConst.URL_WEB_MAIN, component: IntroductionComponent },
     { path: ServiceConst.URL_WEB_TASK, component: TaskComponent },
     { path: ServiceConst.URL_WEB_USER_SIGNUP, component: SignupComponent},
     { path: ServiceConst.URL_WEB_USER_SIGNIN, component: SigninComponent},
