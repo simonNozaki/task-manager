@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="/Users/s.nozaki/workspace/project/private/task-manager/task-manager-api/ext/jar/postgresql/postgresql-42.2.1.jar"/>
+
+  <context id="user-context" >
+  	<!-- DB接続情報です. -->
+    <jdbcConnection driverClass="org.postgresql.Driver"
+    	connectionURL="jdbc:postgresql://localhost:5532/task_base"
+    	userId="localuser"
+    	password="21405apple" />
+	<!-- モデルクラスの生成先を指定します. -->
+    <javaModelGenerator targetPackage="com.tm.dto" targetProject="/Users/s.nozaki/workspace/project/private/task-manager/task-manager-api/src/main/java" />
+	<!-- XMLのマッパーファイル生成先を指定します. -->
+    <sqlMapGenerator targetPackage="com.tm.dao.generated" targetProject="/Users/s.nozaki/workspace/project/private/task-manager/task-manager-api/src/main/resources" />
+	<!-- Mapperクラスの生成先を指定します. -->
+    <javaClientGenerator targetPackage="com.tm.dao" targetProject="/Users/s.nozaki/workspace/project/private/task-manager/task-manager-api/src/main/java" type="XMLMAPPER" />
+	<!-- マッピングするテーブルのプロパティです. -->
+    <table tableName="users"></table>
+    <table tableName="task"></table>
+    <table tableName="task_history"></table>
+    <table tableName="task_label"></table>
+    <table tableName="task_label_history"></table>
+  </context>
+</generatorConfiguration>
